@@ -1,0 +1,29 @@
+{
+    "name": "spryker-demo/oms-subscription",
+    "type": "library",
+    "description": "CategoryExporter module",
+    "license": "proprietary",
+    "require": {
+        "php": ">=7.3",
+        "spryker/oms": "*",
+        "spryker/product": "*",
+        "spryker/zed-request": "*"
+    },
+    "require-dev": {
+        "spryker/code-sniffer": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "SprykerDemo\\": "src/SprykerDemo/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "scripts": {
+        "cs-check": "phpcs -p -s --standard=vendor/spryker/code-sniffer/Spryker/ruleset.xml src/",
+        "cs-fix": "phpcbf -p --standard=vendor/spryker/code-sniffer/Spryker/ruleset.xml src/"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}

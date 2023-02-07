@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<statemachine
+    xmlns="spryker:oms-01"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="spryker:oms-01 http://static.spryker.com/oms-01.xsd">
+
+    <process name="Subscription">
+
+        <states>
+            <state name="subscription active"/>
+            <state name="subscription cancelled"/>
+        </states>
+
+        <transitions>
+            <transition>
+                <source>subscription active</source>
+                <target>subscription cancelled</target>
+                <event>trigger-subscription-cancellation</event>
+            </transition>
+            <transition happy="true" condition="Subscription/isSubscriptionInvoiceIntervalReached">
+                <source>subscription active</source>
+                <target>payment pending</target>
+                <event>check-subscription-invoice-interval-reached</event>
+            </transition>
+            <transition>
+                <source>subscription active</source>
+                <target>subscription active</target>
+                <event>check-subscription-invoice-interval-reached</event>
+            </transition>
+        </transitions>
+
+        <events>
+            <event name="check-is-subscription" onEnter="true"/>
+            <event name="trigger-subscription-cancellation" manual="true" command="Subscription/SentCanceledSubscriptionNotification"/>
+            <event name="execute-recurring-payment" onEnter="true"/>
+            <event name="check-subscription-invoice-interval-reached" manual="true" timeout="1 day"/>
+            <event name="sent-payment-reminder" onEnter="true"/>
+        </events>
+    </process>
+</statemachine>

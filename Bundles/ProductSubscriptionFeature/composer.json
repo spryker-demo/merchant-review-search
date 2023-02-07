@@ -1,0 +1,16 @@
+{
+    "name": "spryker-demo/product-subscription-feature",
+    "description": "Product subscription [feature]",
+    "type": "metapackage",
+    "license": "proprietary",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=7.4",
+        "spryker-demo/customer-subscription-page": "*",
+        "spryker-demo/oms-subscription": "*"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
