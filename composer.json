@@ -18,6 +18,6 @@
         }
     },
     "scripts": {
-        "cs-check": "phpcs"
+        "cs-check": "php -d memory_limit=1300M vendor/bin/phpcs"
     }
 }
