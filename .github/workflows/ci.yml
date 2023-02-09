@@ -1,0 +1,32 @@
+name: CI
+
+on:
+    pull_request:
+    push:
+        branches:
+            - main
+    workflow_dispatch:
+
+jobs:
+    php-code-sniffer:
+        name: 'Code Sniffer'
+        runs-on: ubuntu-20.04
+        env:
+            APPLICATION_ENV: development
+            APPLICATION_STORE: DE
+
+        steps:
+            - uses: actions/checkout@v2
+              with:
+                  fetch-depth: 0
+
+            - name: Install dependencies
+              run: |
+                  composer install --no-interaction --prefer-dist --optimize-autoloader
+                  npm ci
+
+            - name: Run code sniffer
+              run: |
+                  composer cs-check
+                  npm run formatter
+                  npm run mp:tslint
