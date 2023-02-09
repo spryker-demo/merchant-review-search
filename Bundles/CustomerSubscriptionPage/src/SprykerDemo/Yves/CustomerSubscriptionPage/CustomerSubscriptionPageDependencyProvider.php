@@ -1,8 +1,8 @@
 <?php
 
 /**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
+ * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
 namespace SprykerDemo\Yves\CustomerSubscriptionPage;
@@ -16,7 +16,15 @@ class CustomerSubscriptionPageDependencyProvider extends AbstractBundleDependenc
      * @var string
      */
     public const CLIENT_CUSTOMER_SUBSCRIPTION = 'CLIENT_CUSTOMER_SUBSCRIPTION';
+
+    /**
+     * @var string
+     */
     public const CLIENT_CUSTOMER = 'CLIENT_CUSTOMER';
+
+    /**
+     * @var string
+     */
     public const CLIENT_GLOSSARY = 'CLIENT_GLOSSARY';
 
     /**

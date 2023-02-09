@@ -1,8 +1,8 @@
 <?php
 
 /**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
+ * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
 namespace SprykerDemo\Yves\CustomerSubscriptionPage\Controller;
@@ -22,10 +22,12 @@ class SubscriptionController extends AbstractController
      * @var string
      */
     protected const CUSTOMER_CANCEL_SUBSCRIPTION_SUCCESS_MESSAGE = 'customer.cancel_subscription.success_message';
+
     /**
      * @var string
      */
     protected const CUSTOMER_CANCEL_SUBSCRIPTION_ERROR_MESSAGE = 'customer.cancel_subscription.error_message';
+
     /**
      * @var string
      */
@@ -93,7 +95,7 @@ class SubscriptionController extends AbstractController
             $successMessage = $this->getFactory()->getGlossaryClient()->translate(
                 static::CUSTOMER_CANCEL_SUBSCRIPTION_SUCCESS_MESSAGE,
                 $this->getLocale(),
-                ['%product%' => $itemTransfer->getName()]
+                ['%product%' => $itemTransfer->getName()],
             );
 
             $this->getFactory()->getCustomerSubscriptionClient()->cancelOrderItemSubscription($itemTransfer);
