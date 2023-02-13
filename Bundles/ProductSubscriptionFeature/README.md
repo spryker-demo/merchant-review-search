@@ -45,8 +45,10 @@ protected function getRouteProvider(): array
 ### Adjust OMS configuration file
 
 ```
+# if installed using demo-packages repo
+cp vendor/spryker-demo/packages/Bundles/OmsSubscription/config/Zed/oms/SubscriptionSubprocess/DummySubscription01.xml config/Zed/oms/SubscriptionSubprocess/DummySubscription01.xml
+# if installed using feature repo
 cp vendor/spryker-demo/oms-subscription/config/Zed/oms/SubscriptionSubprocess/DummySubscription01.xml config/Zed/oms/SubscriptionSubprocess/DummySubscription01.xml
-
 ```
 ```
 # config/Zed/oms/DummyPayment01.xml
@@ -63,7 +65,7 @@ cp vendor/spryker-demo/oms-subscription/config/Zed/oms/SubscriptionSubprocess/Du
             <process>Subscription</process>
         </subprocesses>
         ...
-    
+
     <process name="Subscription" file="SubscriptionSubprocess/DummySubscription01.xml"/>
 </statemachine>
 ```
@@ -97,8 +99,31 @@ customer.account.no_subscriptions,Derzeit keine Abonnements,de_DE
 customer.account.no_subscriptions,No subscriptions at the moment,en_US
 ```
 
+### Import translations
+
+```
+console data:import:glossary
+```
+
 ### Apply Twig customization
 
+#### B2C Marketplace
+```
+# src/Pyz/Yves/CustomerPage/Theme/default/components/molecules/customer-navigation/customer-navigation.twig
+
+{% block body %}
+    <ul class="{{ component.renderClass('menu', modifiers) }}">
+
+        <!-- ... -->
+
+        <li class="{{ component.renderClass('menu__item', modifiers) }} {{macros.isActive('order', data.activePage)}}">
+            <a class="{{ component.renderClass('menu__link', modifiers) }}" href="{{ path('customer/subscription') }}"
+               data-id="sidebar-order">{{ 'customer.account.subscriptions' | trans }}</a>
+        </li>
+```
+
+
+#### B2B Marketplace
 ```
 # src/Pyz/Yves/ShopUi/Theme/default/components/molecules/user-navigation/user-navigation.twig
 
