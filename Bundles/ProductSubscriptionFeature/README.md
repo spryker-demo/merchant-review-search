@@ -25,7 +25,7 @@ $config[KernelConstants::CORE_NAMESPACES] = [
 ];
 ```
 
-### Wire the plugins
+### Wire the router provicder plugin
 
 ```
 # src/Pyz/Yves/Router/RouterDependencyProvider.php
@@ -39,6 +39,40 @@ protected function getRouteProvider(): array
         ...
         new CustomerSubscriptionPageRouteProviderPlugin(),
     ];
+}
+```
+
+### Wire the oms command and conditions plugin
+
+```
+# src/Pyz/Zed/Oms/OmsDependencyProvider.php
+
+use SprykerDemo\Zed\OmsSubscription\Communication\Plugin\Oms\Command\SentCanceledSubscriptionNotificationPlugin;
+use SprykerDemo\Zed\OmsSubscription\Communication\Plugin\Oms\Condition\IsPaymentReminderLimitReachedPlugin;
+use SprykerDemo\Zed\OmsSubscription\Communication\Plugin\Oms\Condition\IsSubscriptionPlugin;
+
+// ...
+
+protected function extendCommandPlugins(Container $container): Container
+{
+    $container->extend(self::COMMAND_PLUGINS, function (CommandCollectionInterface $commandCollection) {
+        $commandCollection->add(new SentCanceledSubscriptionNotificationPlugin(), 'Subscription/SentCanceledSubscriptionNotification');
+
+        return $commandCollection;
+});
+
+// ...
+
+protected function extendConditionPlugins(Container $container): Container
+{
+    $container->extend(self::CONDITION_PLUGINS, function (ConditionCollectionInterface $conditionCollection) {
+        $conditionCollection->add(new IsPaymentReminderLimitReachedPlugin(), 'Subscription/isSubscriptionInvoiceIntervalReached');
+        $conditionCollection->add(new IsSubscriptionPlugin(), 'Subscription/IsSubscription');
+
+        return $conditionCollection;
+    });
+
+    return $container;
 }
 ```
 
