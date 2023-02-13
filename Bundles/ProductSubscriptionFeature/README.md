@@ -125,6 +125,10 @@ customer.subscription.subscription_id,Referenz,de_DE
 customer.subscription.subscription_id,Reference,en_US
 customer.subscription.interval,Intervall,de_DE
 customer.subscription.interval,Interval,en_US
+customer.subscription.date,Datum,de_DE
+customer.subscription.date,Date,en_US
+customer.subscription.total,Summe,de_DE
+customer.subscription.total,Total,en_US
 customer.subscription.item_state,Stand,de_DE
 customer.subscription.item_state,State,en_US
 customer.subscription.item_name,Artikelname,de_DE
