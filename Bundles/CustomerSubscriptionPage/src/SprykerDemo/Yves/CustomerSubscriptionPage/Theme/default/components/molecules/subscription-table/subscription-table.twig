@@ -31,8 +31,8 @@
                         <td class="transform-cell" data-content="{{ 'customer.subscription.item_name' | trans }}">
                             {{- item.name -}}
                         </td>
-                        <td class="transform-cell" data-content="{{ 'customer.subscription.total' | trans }}"><strong>{{ item.unitPrice | default(0) | money(true, order.currencyIsoCode) }}</strong></td>
                         <td class="transform-cell" data-content="{{ 'customer.subscription.date' | trans }}">{{ date(order.createdAt) | formatDateTime }}</td>
+                        <td class="transform-cell" data-content="{{ 'customer.subscription.total' | trans }}"><strong>{{ item.unitPrice | default(0) | money(true, order.currencyIsoCode) }}</strong></td>
                         <td class="transform-cell">
                             {% block stateWrapper %}
 
