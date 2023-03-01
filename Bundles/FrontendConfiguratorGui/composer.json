@@ -5,7 +5,8 @@
     "license": "proprietary",
     "require": {
         "php": ">=7.4",
-        "spryker/kernel": "^3.30.0"
+        "spryker/kernel": "^3.30.0",
+        "spryker/flysystem-aws3v3-file-system": "^2.0"
     },
     "require-dev": {
         "spryker/code-sniffer": "*",
