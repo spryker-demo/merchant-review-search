@@ -1,0 +1,18 @@
+<?php
+
+/**
+* Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+* Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+*/
+
+namespace SprykerDemo\Zed\FrontendConfiguratorGui\Business;
+
+use Generated\Shared\Transfer\ConfigContainerTransfer;
+use Spryker\Zed\Kernel\Business\AbstractFacade;
+
+/**
+ * @method \SprykerDemo\Zed\FrontendConfiguratorGui\Business\FrontendConfiguratorGuiBusinessFactory getFactory()
+ */
+class FrontendConfiguratorGuiFacade extends AbstractFacade implements FrontendConfiguratorGuiFacadeInterface
+{
+}

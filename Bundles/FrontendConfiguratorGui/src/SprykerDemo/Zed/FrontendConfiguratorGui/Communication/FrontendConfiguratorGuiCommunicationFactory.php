@@ -7,8 +7,11 @@
 
 namespace SprykerDemo\Zed\FrontendConfiguratorGui\Communication;
 
+use SprykerDemo\Zed\FrontendConfiguratorGui\Communication\Form\DataProvider\FrontendConfigurationFormDataProvider;
+use SprykerDemo\Zed\FrontendConfiguratorGui\Communication\Form\FrontendConfigurationForm;
 use Spryker\Zed\Kernel\Communication\AbstractCommunicationFactory;
 use SprykerDemo\Zed\FrontendConfiguratorGui\Communication\Twig\BackofficeLogoTwigFunctionProvider;
+use Symfony\Component\Form\FormInterface;
 use Twig\TwigFunction;
 
 /**
@@ -16,6 +19,24 @@ use Twig\TwigFunction;
  */
 class FrontendConfiguratorGuiCommunicationFactory extends AbstractCommunicationFactory
 {
+    /**
+     * @return \Symfony\Component\Form\FormInterface
+     */
+    public function getFrontendConfigGuiForm(): FormInterface
+    {
+        $dataProvider = $this->createFrontendConfigGuiFormDataProvider();
+
+        return $this->getFormFactory()->create(FrontendConfigurationForm::class, $dataProvider->getData());
+    }
+    
+    /**
+     * @return \Pyz\Zed\FrontendConfiguratorGui\Communication\Form\DataProvider\FrontendConfigurationFormDataProvider
+     */
+    public function createFrontendConfigGuiFormDataProvider(): FrontendConfigurationFormDataProvider
+    {
+        return new FrontendConfigurationFormDataProvider($this->getFrontendConfigFacade());
+    }
+    
     /**
      * @return \Twig\TwigFunction
      */

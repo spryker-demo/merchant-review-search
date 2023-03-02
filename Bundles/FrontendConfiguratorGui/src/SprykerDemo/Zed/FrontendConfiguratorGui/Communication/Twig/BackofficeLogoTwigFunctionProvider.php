@@ -8,6 +8,7 @@
 namespace SprykerDemo\Zed\FrontendConfiguratorGui\Communication\Twig;
 
 use SprykerDemo\Zed\FrontendConfigurator\Business\FrontendConfiguratorFacadeInterface;
+use SprykerDemo\Zed\FrontendConfiguratorGui\Business\FrontendConfiguratorGuiFacadeInterface;
 use SprykerDemo\Zed\FrontendConfiguratorGui\FrontendConfiguratorGuiConfig;
 use Spryker\Shared\Twig\TwigFunctionProvider;
 use Twig\Environment;
@@ -19,12 +20,12 @@ class BackofficeLogoTwigFunctionProvider extends TwigFunctionProvider
     /**
      * @var \SprykerDemo\Zed\FrontendConfigurator\Business\FrontendConfiguratorFacadeInterface
      */
-    protected FrontendConfiguratorFacadeInterface $frontendConfigFacade;
+    protected FrontendConfiguratorGuiFacadeInterface $frontendConfigFacade;
 
     /**
-     * @param \SprykerDemo\Zed\FrontendConfigurator\Business\FrontendConfiguratorFacadeInterface $frontendConfigFacade
+     * @param \SprykerDemo\Zed\FrontendConfiguratorGui\Business\FrontendConfiguratorGuiFacadeInterface $frontendConfigFacade
      */
-    public function __construct(FrontendConfiguratorFacadeInterface $frontendConfigFacade)
+    public function __construct(FrontendConfiguratorGuiFacadeInterface $frontendConfigFacade)
     {
         $this->frontendConfigFacade = $frontendConfigFacade;
     }
