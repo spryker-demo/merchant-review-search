@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<database xmlns="spryker:schema-01" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="spryker:schema-01 https://static.spryker.com/schema-01.xsd" name="zed" namespace="Orm\Zed\MerchantReview\Persistence" package="src.Orm.Zed.MerchantReview.Persistence">
+
+    <table name="spy_merchant_review" idMethod="native" allowPkInsert="true">
+        <column name="id_merchant_review" required="true" type="INTEGER" primaryKey="true" autoIncrement="true"/>
+        <column name="fk_merchant" required="true" type="INTEGER"/>
+        <column name="fk_locale" required="true" type="INTEGER"/>
+        <column name="customer_reference" required="true" type="VARCHAR" size="255"/>
+        <column name="rating" required="true" type="INTEGER" defaultValue="0"/>
+        <column name="summary" required="false" type="LONGVARCHAR" defaultValue="NULL"/>
+        <column name="description" required="false" type="LONGVARCHAR" defaultValue="NULL"/>
+        <column name="nickname" required="false" type="VARCHAR" size="255" defaultValue="NULL"/>
+        <column name="status" required="true" type="ENUM" valueSet="pending, approved, rejected" defaultValue="pending"/>
+
+        <behavior name="timestampable"/>
+
+        <id-method-parameter value="id_merchant_review_pk_seq"/>
+
+        <foreign-key name="spy_merchant_review-fk_merchant" foreignTable="spy_merchant">
+            <reference local="fk_merchant" foreign="id_merchant"/>
+        </foreign-key>
+
+        <foreign-key name="spy_merchant_review-fk_locale" foreignTable="spy_locale">
+            <reference local="fk_locale" foreign="id_locale"/>
+        </foreign-key>
+
+        <index name="spy_merchant_review-fk_merchant">
+            <index-column name="fk_merchant"/>
+        </index>
+
+        <index name="spy_merchant_review-fk_locale">
+            <index-column name="fk_locale"/>
+        </index>
+
+        <index name="spy_merchant_review-customer_reference">
+            <index-column name="customer_reference"/>
+        </index>
+
+        <behavior name="event">
+            <parameter name="spy_merchant_review_all" column="*"/>
+        </behavior>
+    </table>
+
+</database>

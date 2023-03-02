@@ -1,0 +1,43 @@
+{
+    "name": "spryker-demo/merchant-review",
+    "type": "library",
+    "description": "MerchantReview module",
+    "license": "proprietary",
+    "require": {
+        "php": ">=7.4",
+        "spryker/event-behavior": "*",
+        "spryker/kernel": "^3.30.0",
+        "spryker/key-builder": "*",
+        "spryker/locale": "*",
+        "spryker/merchant": "*",
+        "spryker/propel-orm": "*",
+        "spryker/zed-request": "*"
+    },
+    "require-dev": {
+        "spryker/code-sniffer": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "SprykerDemo\\": "src/SprykerDemo/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SprykerDemoTest\\": "tests/SprykerDemoTest/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "scripts": {
+        "cs-check": "phpcs -p -s --standard=vendor/spryker/code-sniffer/SprykerStrict/ruleset.xml src/ tests/",
+        "cs-fix": "phpcbf -p --standard=vendor/spryker/code-sniffer/SprykerStrict/ruleset.xml src/ tests/"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}

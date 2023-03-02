@@ -1,0 +1,37 @@
+{
+    "mappings": {
+        "merchant-review": {
+            "dynamic_templates": [
+                {
+                    "search-result-data": {
+                        "mapping": {
+                            "index": "false"
+                        },
+                        "path_match": "search-result-data.*"
+                    }
+                }
+            ],
+            "properties": {
+                "search-result-data": {
+                    "type": "object",
+                    "properties": {}
+                },
+                "store": {
+                    "type": "keyword"
+                },
+                "locale": {
+                    "type": "keyword"
+                },
+                "id-merchant": {
+                    "type": "integer"
+                },
+                "rating": {
+                    "type": "integer"
+                },
+                "created-at": {
+                    "type": "keyword"
+                }
+            }
+        }
+    }
+}
