@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<database xmlns="spryker:schema-01" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="zed" xsi:schemaLocation="spryker:schema-01 https://static.spryker.com/schema-01.xsd" namespace="Orm\Zed\MerchantReviewStorage\Persistence" package="src.Orm.Zed.MerchantReviewStorage.Persistence">
+
+    <table name="spy_merchant_review_storage" identifierQuoting="true">
+        <column name="id_merchant_review_storage" type="BIGINT" autoIncrement="true" primaryKey="true"/>
+        <column name="fk_merchant" type="INTEGER" required="true"/>
+        <index name="spy_merchant_review_storage-fk_merchant">
+            <index-column name="fk_merchant"/>
+        </index>
+        <id-method-parameter value="spy_merchant_review_storage_pk_seq"/>
+        <behavior name="synchronization">
+            <parameter name="resource" value="merchant_review"/>
+            <parameter name="key_suffix_column" value="fk_merchant"/>
+            <parameter name="queue_group" value="sync.storage.merchant"/>
+            <parameter name="queue_pool" value="synchronizationPool"/>
+        </behavior>
+        <behavior name="timestampable"/>
+    </table>
+
+</database>
