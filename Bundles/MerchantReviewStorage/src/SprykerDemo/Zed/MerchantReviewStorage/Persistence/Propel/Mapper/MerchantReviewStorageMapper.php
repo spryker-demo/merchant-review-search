@@ -41,7 +41,7 @@ class MerchantReviewStorageMapper implements MerchantReviewStorageMapperInterfac
      *
      * @return \Generated\Shared\Transfer\MerchantReviewStorageTransfer
      */
-    protected function mapMerchantReviewStorageEntityToMerchantReviewStorageTransfer(
+    public function mapMerchantReviewStorageEntityToMerchantReviewStorageTransfer(
         SpyMerchantReviewStorage $merchantReviewStorageEntity
     ): MerchantReviewStorageTransfer {
         $merchantReviewStorageTransfer = new MerchantReviewStorageTransfer();

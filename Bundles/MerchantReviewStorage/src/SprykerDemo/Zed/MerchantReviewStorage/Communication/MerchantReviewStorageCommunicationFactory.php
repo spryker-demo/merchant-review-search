@@ -26,12 +26,4 @@ class MerchantReviewStorageCommunicationFactory extends AbstractCommunicationFac
     {
         return $this->getProvidedDependency(MerchantReviewStorageDependencyProvider::FACADE_EVENT_BEHAVIOR);
     }
-
-    /**
-     * @return \SprykerDemo\Zed\MerchantReview\Persistence\MerchantReviewQueryContainerInterface
-     */
-    public function getMerchantReviewQuery(): MerchantReviewQueryContainerInterface
-    {
-        return $this->getProvidedDependency(MerchantReviewStorageDependencyProvider::QUERY_CONTAINER_MERCHANT_REVIEW);
-    }
 }

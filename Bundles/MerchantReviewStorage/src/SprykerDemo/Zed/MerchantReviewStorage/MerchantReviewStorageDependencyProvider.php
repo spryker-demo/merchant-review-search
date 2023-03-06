@@ -18,7 +18,7 @@ class MerchantReviewStorageDependencyProvider extends AbstractBundleDependencyPr
     /**
      * @var string
      */
-    public const QUERY_CONTAINER_MERCHANT_REVIEW = 'QUERY_CONTAINER_MERCHANT_REVIEW';
+    public const FACADE_MERCHANT_REVIEW = 'FACADE_MERCHANT_REVIEW';
 
     /**
      * @var string
@@ -44,7 +44,7 @@ class MerchantReviewStorageDependencyProvider extends AbstractBundleDependencyPr
      */
     public function providePersistenceLayerDependencies(Container $container): Container
     {
-        $container = $this->addMerchantReviewQueryContainer($container);
+        $container = $this->addMerchantReviewFacade($container);
 
         return $container;
     }
@@ -54,10 +54,10 @@ class MerchantReviewStorageDependencyProvider extends AbstractBundleDependencyPr
      *
      * @return \Spryker\Zed\Kernel\Container
      */
-    protected function addMerchantReviewQueryContainer(Container $container): Container
+    protected function addMerchantReviewFacade(Container $container): Container
     {
-        $container->set(static::QUERY_CONTAINER_MERCHANT_REVIEW, function (Container $container) {
-            return $container->getLocator()->merchantReview()->queryContainer();
+        $container->set(static::FACADE_MERCHANT_REVIEW, function (Container $container) {
+            return $container->getLocator()->merchantReview()->facade();
         });
 
         return $container;

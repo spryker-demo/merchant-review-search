@@ -8,11 +8,6 @@
         <property name="reviewCount" type="int"/>
     </transfer>
 
-    <transfer name="MerchantReviewStorageCollection">
-        <property name="merchantReviews" type="MerchantReviewStorage[]" singular="merchantReview"/>
-        <property name="pagination" type="Pagination"/>
-    </transfer>
-
     <transfer name="SynchronizationData">
         <property name="reference" type="string"/>
     </transfer>

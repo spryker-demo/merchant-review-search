@@ -7,32 +7,21 @@
 
 namespace SprykerDemo\Zed\MerchantReviewStorage\Business;
 
+use Generated\Shared\Transfer\MerchantReviewStorageTransfer;
+
 interface MerchantReviewStorageFacadeInterface
 {
     /**
      * Specification:
-     * - Queries all merchantReview with merchantIds
-     * - Stores data as json encoded to storage table
-     * - Sends a copy of data to queue based on module config
+     * - Gets merchantIds from eventTransfers.
+     * - Queries all active merchant reviews with the given merchantIds.
+     * - Stores data as json encoded to storage table.
      *
      * @api
      *
-     * @param array<int> $merchantIds
+     * @param array<\Generated\Shared\Transfer\EventEntityTransfer> $eventTransfers
      *
      * @return void
      */
-    public function publish(array $merchantIds): void;
-
-    /**
-     * Specification:
-     * - Finds and deletes merchantReview storage entities with merchantIds
-     * - Sends delete message to queue based on module config
-     *
-     * @api
-     *
-     * @param array<int> $merchantIds
-     *
-     * @return void
-     */
-    public function unpublish(array $merchantIds): void;
+    public function writeCollectionByMerchantReviewEvents(array $eventTransfers): void;
 }

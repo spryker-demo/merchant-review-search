@@ -7,6 +7,7 @@
 
 namespace SprykerDemo\Zed\MerchantReviewStorage\Business;
 
+use Generated\Shared\Transfer\MerchantReviewStorageTransfer;
 use Spryker\Zed\Kernel\Business\AbstractFacade;
 
 /**
@@ -19,30 +20,14 @@ class MerchantReviewStorageFacade extends AbstractFacade implements MerchantRevi
      *
      * @api
      *
-     * @param array<int> $merchantIds
+     * @param array $eventTransfers
      *
      * @return void
      */
-    public function publish(array $merchantIds): void
+    public function writeCollectionByMerchantReviewEvents(array $eventTransfers): void
     {
         $this->getFactory()
             ->createMerchantReviewStorageWriter()
-            ->publish($merchantIds);
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @api
-     *
-     * @param array<int> $merchantIds
-     *
-     * @return void
-     */
-    public function unpublish(array $merchantIds): void
-    {
-        $this->getFactory()
-            ->createMerchantReviewStorageWriter()
-            ->unpublish($merchantIds);
+            ->writeCollectionByMerchantReviewEvents($eventTransfers);
     }
 }

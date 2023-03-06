@@ -10,16 +10,9 @@ namespace SprykerDemo\Zed\MerchantReviewStorage\Business\Storage;
 interface MerchantReviewStorageWriterInterface
 {
     /**
-     * @param array<int> $merchantIds
+     * @param array $eventTransfers
      *
      * @return void
      */
-    public function publish(array $merchantIds): void;
-
-    /**
-     * @param array<int> $merchantIds
-     *
-     * @return void
-     */
-    public function unpublish(array $merchantIds): void;
+    public function writeCollectionByMerchantReviewEvents(array $eventTransfers): void;
 }

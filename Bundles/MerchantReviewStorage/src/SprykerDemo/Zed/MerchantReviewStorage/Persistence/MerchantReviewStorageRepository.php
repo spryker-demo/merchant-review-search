@@ -11,14 +11,12 @@ use Generated\Shared\Transfer\MerchantReviewStorageCollectionTransfer;
 use Generated\Shared\Transfer\MerchantReviewStorageTransfer;
 use Orm\Zed\MerchantReview\Persistence\Map\SpyMerchantReviewTableMap;
 use Spryker\Zed\Kernel\Persistence\AbstractRepository;
-use Spryker\Zed\Kernel\Persistence\EntityManager\InstancePoolingTrait;
 
 /**
  * @method \SprykerDemo\Zed\MerchantReviewStorage\Persistence\MerchantReviewStoragePersistenceFactory getFactory()
  */
 class MerchantReviewStorageRepository extends AbstractRepository implements MerchantReviewStorageRepositoryInterface
 {
-    use InstancePoolingTrait;
 
     public const FIELD_FK_MERCHANT = MerchantReviewStorageTransfer::ID_MERCHANT;
 
@@ -33,9 +31,6 @@ class MerchantReviewStorageRepository extends AbstractRepository implements Merc
      */
     public function getMerchantReviewStorageByIds(array $merchantIds): ?MerchantReviewStorageCollectionTransfer
     {
-        $isInstancePoolingEnabled = $this->isInstancePoolingEnabled();
-        $this->disableInstancePooling();
-
         $merchantReviewStorageEntities = $this->getFactory()
             ->createMerchantReviewStorageQuery()
             ->filterByFkMerchant_In($merchantIds)
@@ -43,10 +38,6 @@ class MerchantReviewStorageRepository extends AbstractRepository implements Merc
 
         if (!$merchantReviewStorageEntities) {
             return null;
-        }
-
-        if ($isInstancePoolingEnabled) {
-            $this->enableInstancePooling();
         }
 
         return $this->getFactory()
@@ -61,11 +52,8 @@ class MerchantReviewStorageRepository extends AbstractRepository implements Merc
      */
     public function getMerchantReviewsByIdMerchants(array $merchantIds): ?array
     {
-        $isInstancePoolingEnabled = $this->isInstancePoolingEnabled();
-        $this->disableInstancePooling();
-
         $spyMerchantReviewQuery = $this->getFactory()
-            ->getMerchantReviewQuery()
+            ->getMerchantReviewFacade()
             ->queryMerchantReview()
             ->filterByFkMerchant_In($merchantIds)
             ->filterByStatus(SpyMerchantReviewTableMap::COL_STATUS_APPROVED)
@@ -81,54 +69,12 @@ class MerchantReviewStorageRepository extends AbstractRepository implements Merc
             )
             ->groupBy(SpyMerchantReviewTableMap::COL_FK_MERCHANT);
 
-        if (!$spyMerchantReviewQuery) {
-            return null;
-        }
-
-        if ($isInstancePoolingEnabled) {
-            $this->enableInstancePooling();
-        }
-
-        return $spyMerchantReviewQuery->find()
+        return $spyMerchantReviewQuery?->find()
             ->toArray();
     }
 
-    /**
-     * @param array $merchantReviewsIds
-     *
-     * @return array|null
-     */
     public function getMerchantReviewsByIds(array $merchantReviewsIds): ?array
     {
-        $isInstancePoolingEnabled = $this->isInstancePoolingEnabled();
-        $this->disableInstancePooling();
-
-        $spyMerchantReviewQuery = $this->getFactory()
-            ->getMerchantReviewQuery()
-            ->queryMerchantReview()
-            ->filterByIdMerchantReview_In($merchantReviewsIds)
-            ->filterByStatus(SpyMerchantReviewTableMap::COL_STATUS_APPROVED)
-            ->withColumn(SpyMerchantReviewTableMap::COL_FK_MERCHANT, static::FIELD_FK_MERCHANT)
-            ->withColumn(sprintf('AVG(%s)', SpyMerchantReviewTableMap::COL_RATING), static::FIELD_AVERAGE_RATING)
-            ->withColumn(sprintf('COUNT(%s)', SpyMerchantReviewTableMap::COL_FK_MERCHANT), static::FIELD_COUNT)
-            ->select(
-                [
-                    static::FIELD_FK_MERCHANT,
-                    static::FIELD_AVERAGE_RATING,
-                    static::FIELD_COUNT,
-                ],
-            )
-            ->groupBy(SpyMerchantReviewTableMap::COL_FK_MERCHANT);
-
-        if (!$spyMerchantReviewQuery) {
-            return null;
-        }
-
-        if ($isInstancePoolingEnabled) {
-            $this->enableInstancePooling();
-        }
-
-        return $spyMerchantReviewQuery->find()
-            ->toArray();
+        // TODO: Implement getMerchantReviewsByIds() method.
     }
 }

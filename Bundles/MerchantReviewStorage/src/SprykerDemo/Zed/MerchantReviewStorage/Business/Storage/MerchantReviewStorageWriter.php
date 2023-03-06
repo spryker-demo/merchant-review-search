@@ -8,130 +8,71 @@
 namespace SprykerDemo\Zed\MerchantReviewStorage\Business\Storage;
 
 use Generated\Shared\Transfer\MerchantReviewStorageTransfer;
-use Orm\Zed\MerchantReviewStorage\Persistence\SpyMerchantReviewStorage;
-use SprykerDemo\Zed\MerchantReviewStorage\Persistence\MerchantReviewStorageQueryContainerInterface;
+use Generated\Shared\Transfer\MerchantReviewTransfer;
+use Spryker\Zed\EventBehavior\Business\EventBehaviorFacadeInterface;
+use SprykerDemo\Zed\MerchantReview\Persistence\MerchantReviewRepositoryInterface;
+use SprykerDemo\Zed\MerchantReviewStorage\Persistence\MerchantReviewStorageEntityManager;
 
 class MerchantReviewStorageWriter implements MerchantReviewStorageWriterInterface
 {
     /**
-     * @var \SprykerDemo\Zed\MerchantReviewStorage\Persistence\MerchantReviewStorageQueryContainerInterface
-     */
-    protected $queryContainer;
-
-    /**
-     * @deprecated Use {@link \Spryker\Zed\SynchronizationBehavior\SynchronizationBehaviorConfig::isSynchronizationEnabled()} instead.
-     *
-     * @var bool
-     */
-    protected $isSendingToQueue = true;
-
-    /**
-     * @param \SprykerDemo\Zed\MerchantReviewStorage\Persistence\MerchantReviewStorageQueryContainerInterface $queryContainer
-     * @param bool $isSendingToQueue
+     * @param \Spryker\Zed\EventBehavior\Business\EventBehaviorFacadeInterface $eventBehaviorFacade
+     * @param \SprykerDemo\Zed\MerchantReview\Persistence\MerchantReviewRepositoryInterface $merchantReviewRepository
+     * @param \SprykerDemo\Zed\MerchantReviewStorage\Persistence\MerchantReviewStorageEntityManager $merchantReviewStorageEntityManager
      */
     public function __construct(
-        MerchantReviewStorageQueryContainerInterface $queryContainer,
-        bool $isSendingToQueue
+        protected EventBehaviorFacadeInterface $eventBehaviorFacade,
+        protected MerchantReviewRepositoryInterface $merchantReviewRepository,
+        protected MerchantReviewStorageEntityManager $merchantReviewStorageEntityManager
     ) {
-        $this->queryContainer = $queryContainer;
-        $this->isSendingToQueue = $isSendingToQueue;
     }
 
     /**
-     * @param array<int> $merchantIds
+     * @param array $eventTransfers
      *
      * @return void
      */
-    public function publish(array $merchantIds): void
+    public function writeCollectionByMerchantReviewEvents(array $eventTransfers): void
     {
-        $merchantReviewEntities = $this->queryContainer->queryMerchantReviewsByIdMerchants($merchantIds)->find()->toArray();
-        $merchantReviewStorageEntities = $this->findMerchantReviewStorageEntitiesByMerchantIds($merchantIds);
+        $merchantReviewIds = $this->eventBehaviorFacade->getEventTransferIds($eventTransfers);
 
-        if (!$merchantReviewEntities) {
-            $this->deleteStorageData($merchantReviewStorageEntities);
+        if (!$merchantReviewIds) {
+            return;
         }
 
-        $this->storeData($merchantReviewEntities, $merchantReviewStorageEntities);
+        $this->writeCollectionByMerchantReviewIds($merchantReviewIds);
     }
 
     /**
-     * @param array<int> $merchantIds
+     * @param array $merchantReviewIds
      *
      * @return void
      */
-    public function unpublish(array $merchantIds): void
+    protected function writeCollectionByMerchantReviewIds(array $merchantReviewIds): void
     {
-        $merchantReviewStorageEntities = $this->findMerchantReviewStorageEntitiesByMerchantIds($merchantIds);
-        foreach ($merchantReviewStorageEntities as $merchantReviewStorageEntity) {
-            $merchantReviewStorageEntity->delete();
+        $merchantReviewCollectionTransfer = $this->merchantReviewRepository->getMerchantReviewsByIds(
+            $merchantReviewIds,
+        );
+
+        foreach ($merchantReviewCollectionTransfer->getReviews() as $merchantReview) {
+            $this->merchantReviewStorageEntityManager->saveMerchantReviewStorage(
+                $this->mapMerchantReviewTransferToStorageTransfer($merchantReview, new MerchantReviewStorageTransfer()),
+            );
         }
     }
 
     /**
-     * @param array $merchantReviewStorageEntities
+     * @param \Generated\Shared\Transfer\MerchantReviewTransfer $merchantReview
+     * @param \Generated\Shared\Transfer\MerchantReviewStorageTransfer $merchantReviewStorageTransfer
      *
-     * @return void
+     * @return \Generated\Shared\Transfer\MerchantReviewStorageTransfer
      */
-    protected function deleteStorageData(array $merchantReviewStorageEntities): void
-    {
-        foreach ($merchantReviewStorageEntities as $merchantReviewStorageEntity) {
-            $merchantReviewStorageEntity->delete();
-        }
-    }
+    protected function mapMerchantReviewTransferToStorageTransfer(
+        MerchantReviewTransfer $merchantReview,
+        MerchantReviewStorageTransfer $merchantReviewStorageTransfer
+    ): MerchantReviewStorageTransfer {
+        $merchantReviewStorageTransfer->fromArray($merchantReview->toArray(), true);
 
-    /**
-     * @param array $merchantReviewEntities
-     * @param array $spyMerchantReviewStorageEntities
-     *
-     * @return void
-     */
-    protected function storeData(array $merchantReviewEntities, array $spyMerchantReviewStorageEntities): void
-    {
-        foreach ($merchantReviewEntities as $merchantReviewEntity) {
-            $idMerchant = $merchantReviewEntity['idMerchant'];
-            if (isset($spyMerchantReviewStorageEntities[$idMerchant])) {
-                $this->storeDataSet($merchantReviewEntity, $spyMerchantReviewStorageEntities[$idMerchant]);
-
-                continue;
-            }
-
-            $this->storeDataSet($merchantReviewEntity);
-        }
-    }
-
-    /**
-     * @param array $merchantReview
-     * @param \Orm\Zed\MerchantReviewStorage\Persistence\SpyMerchantReviewStorage|null $spyMerchantReviewStorageEntity
-     *
-     * @return void
-     */
-    protected function storeDataSet(array $merchantReview, ?SpyMerchantReviewStorage $spyMerchantReviewStorageEntity = null): void
-    {
-        if ($spyMerchantReviewStorageEntity === null) {
-            $spyMerchantReviewStorageEntity = new SpyMerchantReviewStorage();
-        }
-
-        $merchantReviewStorageTransfer = (new MerchantReviewStorageTransfer())->fromArray($merchantReview);
-        $merchantReviewStorageTransfer->setAverageRating(round($merchantReviewStorageTransfer->getAverageRating(), 1));
-        $spyMerchantReviewStorageEntity->setFkMerchant($merchantReview['idMerchant']);
-        $spyMerchantReviewStorageEntity->setData($merchantReviewStorageTransfer->modifiedToArray());
-        $spyMerchantReviewStorageEntity->setIsSendingToQueue($this->isSendingToQueue);
-        $spyMerchantReviewStorageEntity->save();
-    }
-
-    /**
-     * @param array<int> $merchantIds
-     *
-     * @return array
-     */
-    protected function findMerchantReviewStorageEntitiesByMerchantIds(array $merchantIds): array
-    {
-        $merchantReviewStorageEntities = $this->queryContainer->queryMerchantReviewStorageByIds($merchantIds)->find();
-        $merchantStorageReviewEntitiesById = [];
-        foreach ($merchantReviewStorageEntities as $merchantReviewStorageEntity) {
-            $merchantStorageReviewEntitiesById[$merchantReviewStorageEntity->getFkMerchant()] = $merchantReviewStorageEntity;
-        }
-
-        return $merchantStorageReviewEntitiesById;
+        return $merchantReviewStorageTransfer;
     }
 }

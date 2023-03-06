@@ -9,14 +9,13 @@ namespace SprykerDemo\Zed\MerchantReviewStorage\Persistence;
 
 use Orm\Zed\MerchantReviewStorage\Persistence\SpyMerchantReviewStorageQuery;
 use Spryker\Zed\Kernel\Persistence\AbstractPersistenceFactory;
-use SprykerDemo\Zed\MerchantReview\Persistence\MerchantReviewQueryContainerInterface;
+use SprykerDemo\Zed\MerchantReview\Business\MerchantReviewFacadeInterface;
 use SprykerDemo\Zed\MerchantReviewStorage\MerchantReviewStorageDependencyProvider;
 use SprykerDemo\Zed\MerchantReviewStorage\Persistence\Propel\Mapper\MerchantReviewStorageMapper;
 use SprykerDemo\Zed\MerchantReviewStorage\Persistence\Propel\Mapper\MerchantReviewStorageMapperInterface;
 
 /**
  * @method \SprykerDemo\Zed\MerchantReviewStorage\MerchantReviewStorageConfig getConfig()
- * @method \SprykerDemo\Zed\MerchantReviewStorage\Persistence\MerchantReviewStorageQueryContainerInterface getQueryContainer()
  */
 class MerchantReviewStoragePersistenceFactory extends AbstractPersistenceFactory
 {
@@ -29,11 +28,11 @@ class MerchantReviewStoragePersistenceFactory extends AbstractPersistenceFactory
     }
 
     /**
-     * @return \SprykerDemo\Zed\MerchantReview\Persistence\MerchantReviewQueryContainerInterface
+     * @return \SprykerDemo\Zed\MerchantReview\Business\MerchantReviewFacadeInterface
      */
-    public function getMerchantReviewQuery(): MerchantReviewQueryContainerInterface
+    public function getMerchantReviewFacade(): MerchantReviewFacadeInterface
     {
-        return $this->getProvidedDependency(MerchantReviewStorageDependencyProvider::QUERY_CONTAINER_MERCHANT_REVIEW);
+        return $this->getProvidedDependency(MerchantReviewStorageDependencyProvider::FACADE_MERCHANT_REVIEW);
     }
 
     /**

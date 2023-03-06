@@ -7,13 +7,13 @@
 
 namespace SprykerDemo\Zed\MerchantReviewStorage\Business;
 
+use Orm\Zed\MerchantReviewStorage\Persistence\SpyMerchantReviewStorageQuery;
 use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
 use SprykerDemo\Zed\MerchantReviewStorage\Business\Storage\MerchantReviewStorageWriter;
 use SprykerDemo\Zed\MerchantReviewStorage\Business\Storage\MerchantReviewStorageWriterInterface;
 
 /**
  * @method \SprykerDemo\Zed\MerchantReviewStorage\MerchantReviewStorageConfig getConfig()
- * @method \SprykerDemo\Zed\MerchantReviewStorage\Persistence\MerchantReviewStorageQueryContainerInterface getQueryContainer()
  */
 class MerchantReviewStorageBusinessFactory extends AbstractBusinessFactory
 {
@@ -23,9 +23,17 @@ class MerchantReviewStorageBusinessFactory extends AbstractBusinessFactory
     public function createMerchantReviewStorageWriter(): MerchantReviewStorageWriterInterface
     {
         return new MerchantReviewStorageWriter(
-            $this->getQueryContainer(),
-            $this->getConfig()
-                ->isSendingToQueue(),
+            $this->getEventBehaviorFacade(),
+            $this->getMerchantReviewRepository(),
+            $this->getMerchantReviewStorageFacade()
         );
+    }
+
+    /**
+     * @return \Orm\Zed\MerchantReviewStorage\Persistence\SpyMerchantReviewStorageQuery
+     */
+    public function createMerchantReviewStorageQuery(): SpyMerchantReviewStorageQuery
+    {
+        return SpyMerchantReviewStorageQuery::create();
     }
 }

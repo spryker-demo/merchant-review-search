@@ -5,11 +5,18 @@
     "license": "proprietary",
     "require": {
         "php": ">=7.4",
-        "spryker/kernel": "^3.30.0"
+        "spryker-demo/merchant-review": "*",
+        "spryker/event-behavior": "*",
+        "spryker/kernel": "^3.30.0",
+        "spryker/storage": "*",
+        "spryker/synchronization": "*",
+        "spryker/synchronization-behavior": "*",
+        "spryker/synchronization-extension": "*"
     },
     "require-dev": {
         "spryker/code-sniffer": "*",
-        "spryker/testify": "*"
+        "spryker/event": "*",
+        "spryker/propel-orm": "*"
     },
     "autoload": {
         "psr-4": {
@@ -34,5 +41,9 @@
     },
     "config": {
         "sort-packages": true
+    },
+    "suggest": {
+        "spryker/event": "ADD SUGGEST DESCRIPTION",
+        "spryker/propel-orm": "ADD SUGGEST DESCRIPTION"
     }
 }
