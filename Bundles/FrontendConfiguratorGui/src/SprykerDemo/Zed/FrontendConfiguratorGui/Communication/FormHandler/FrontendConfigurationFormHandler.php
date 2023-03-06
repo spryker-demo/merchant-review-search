@@ -15,7 +15,7 @@ use SprykerDemo\Zed\Uploads\Business\UploadsFacadeInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class FrontendConfigurationFrontendConfigurationFormHandler implements FrontendConfigurationFormHandlerInterface
+class FrontendConfigurationFormHandler implements FrontendConfigurationFormHandlerInterface
 {
     /**
      * @var \SprykerDemo\Zed\FrontendConfigurator\Business\FrontendConfiguratorFacadeInterface
