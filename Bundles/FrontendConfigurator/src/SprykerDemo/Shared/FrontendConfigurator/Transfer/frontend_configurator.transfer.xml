@@ -12,4 +12,9 @@
         <property name="isStreamReads" type="bool"/>
     </transfer>
 
+    <transfer name="ConfigContainer">
+        <property name="name" type="string"/>
+        <property name="data" type="array"/>
+    </transfer>
+    
 </transfers>

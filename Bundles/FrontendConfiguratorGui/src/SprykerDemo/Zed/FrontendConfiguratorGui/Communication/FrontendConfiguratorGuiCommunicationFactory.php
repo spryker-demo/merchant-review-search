@@ -7,10 +7,14 @@
 
 namespace SprykerDemo\Zed\FrontendConfiguratorGui\Communication;
 
+use SprykerDemo\Zed\FrontendConfiguratorGui\Communication\FormHandler\FrontendConfigurationFormHandlerInterface;
+use SprykerDemo\Zed\FrontendConfiguratorGui\Communication\FormHandler\FrontendConfigurationFrontendConfigurationFormHandler;
+use SprykerDemo\Zed\FrontendConfigurator\Business\FrontendConfiguratorFacadeInterface;
 use SprykerDemo\Zed\FrontendConfiguratorGui\Communication\Form\DataProvider\FrontendConfigurationFormDataProvider;
 use SprykerDemo\Zed\FrontendConfiguratorGui\Communication\Form\FrontendConfigurationForm;
 use Spryker\Zed\Kernel\Communication\AbstractCommunicationFactory;
 use SprykerDemo\Zed\FrontendConfiguratorGui\Communication\Twig\BackofficeLogoTwigFunctionProvider;
+use SprykerDemo\Zed\FrontendConfiguratorGui\FrontendConfiguratorGuiDependencyProvider;
 use Symfony\Component\Form\FormInterface;
 use Twig\TwigFunction;
 
@@ -28,7 +32,7 @@ class FrontendConfiguratorGuiCommunicationFactory extends AbstractCommunicationF
 
         return $this->getFormFactory()->create(FrontendConfigurationForm::class, $dataProvider->getData());
     }
-    
+
     /**
      * @return \Pyz\Zed\FrontendConfiguratorGui\Communication\Form\DataProvider\FrontendConfigurationFormDataProvider
      */
@@ -36,7 +40,7 @@ class FrontendConfiguratorGuiCommunicationFactory extends AbstractCommunicationF
     {
         return new FrontendConfigurationFormDataProvider($this->getFrontendConfigFacade());
     }
-    
+
     /**
      * @return \Twig\TwigFunction
      */
@@ -59,4 +63,23 @@ class FrontendConfiguratorGuiCommunicationFactory extends AbstractCommunicationF
         return new BackofficeLogoTwigFunctionProvider($this->getFacade());
     }
 
+    /**
+     * @return \SprykerDemo\Zed\FrontendConfigurator\Business\FrontendConfiguratorFacadeInterface
+     */
+    public function getFrontendConfigFacade(): FrontendConfiguratorFacadeInterface
+    {
+        return $this->getProvidedDependency(FrontendConfiguratorGuiDependencyProvider::FRONTEND_CONFIGURATOR_FACADE);
+    }
+
+    /**
+     * @return \Pyz\Zed\FrontendConfiguratorGui\Communication\FormHandler\FrontendConfigurationFormHandlerInterface
+     */
+    public function createFormHandler(): FrontendConfigurationFormHandlerInterface
+    {
+        return new FrontendConfigurationFrontendConfigurationFormHandler(
+            $this->getFrontendConfigFacade(),
+            $this->getUploadsFacade(),
+            $this->getConfig()
+        );
+    }
 }

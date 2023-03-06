@@ -22,7 +22,6 @@ class IndexController extends AbstractController
      */
     public function editAction(Request $request)
     {
-     
         $form = $this->getFactory()
             ->getFrontendConfigGuiForm()
             ->handleRequest($request);
