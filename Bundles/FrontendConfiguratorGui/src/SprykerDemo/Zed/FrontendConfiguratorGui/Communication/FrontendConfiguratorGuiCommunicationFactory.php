@@ -7,8 +7,9 @@
 
 namespace SprykerDemo\Zed\FrontendConfiguratorGui\Communication;
 
+use Spryker\Service\FileSystem\FileSystemServiceInterface;
 use SprykerDemo\Zed\FrontendConfiguratorGui\Communication\FormHandler\FrontendConfigurationFormHandlerInterface;
-use SprykerDemo\Zed\FrontendConfiguratorGui\Communication\FormHandler\FrontendConfigurationFrontendConfigurationFormHandler;
+use SprykerDemo\Zed\FrontendConfiguratorGui\Communication\FormHandler\FrontendConfigurationFormHandler;
 use SprykerDemo\Zed\FrontendConfigurator\Business\FrontendConfiguratorFacadeInterface;
 use SprykerDemo\Zed\FrontendConfiguratorGui\Communication\Form\DataProvider\FrontendConfigurationFormDataProvider;
 use SprykerDemo\Zed\FrontendConfiguratorGui\Communication\Form\FrontendConfigurationForm;
@@ -76,10 +77,18 @@ class FrontendConfiguratorGuiCommunicationFactory extends AbstractCommunicationF
      */
     public function createFormHandler(): FrontendConfigurationFormHandlerInterface
     {
-        return new FrontendConfigurationFrontendConfigurationFormHandler(
+        return new FrontendConfigurationFormHandler(
             $this->getFrontendConfigFacade(),
-            $this->getUploadsFacade(),
+            $this->getFileSystemService(),
             $this->getConfig()
         );
+    }
+
+    /**
+     * @return \Spryker\Service\FileSystem\FileSystemServiceInterface
+     */
+    public function getFileSystemService(): FileSystemServiceInterface
+    {
+        return $this->getProvidedDependency(FrontendConfiguratorGuiDependencyProvider::SERVICE_FILE_SYSTEM);
     }
 }

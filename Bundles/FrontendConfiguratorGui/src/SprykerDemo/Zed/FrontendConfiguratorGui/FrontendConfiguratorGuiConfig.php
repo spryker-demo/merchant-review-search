@@ -7,6 +7,8 @@
 
 namespace SprykerDemo\Zed\FrontendConfiguratorGui;
 
+use Spryker\Shared\Config\Config;
+use Spryker\Shared\FileSystem\FileSystemConstants;
 use Spryker\Zed\Kernel\AbstractBundleConfig;
 
 class FrontendConfiguratorGuiConfig extends AbstractBundleConfig
@@ -48,5 +50,25 @@ class FrontendConfiguratorGuiConfig extends AbstractBundleConfig
     public function getFileSystemName(): string
     {
         return static::FILE_SYSTEM_NAME;
+    }
+
+    /**
+     * @param string $fileSystemName
+     *
+     * @return mixed
+     */
+    public function getFileSystemConfigByName(string $fileSystemName)
+    {
+        return Config::get(FileSystemConstants::FILESYSTEM_SERVICE)[$fileSystemName];
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getFileSystemWriterConfig(): array
+    {
+        return [
+            'ACL' => 'public-read',
+        ];
     }
 }

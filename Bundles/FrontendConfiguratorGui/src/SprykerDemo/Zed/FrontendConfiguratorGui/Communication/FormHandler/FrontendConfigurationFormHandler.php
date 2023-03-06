@@ -7,6 +7,9 @@
 
 namespace SprykerDemo\Zed\FrontendConfiguratorGui\Communication\FormHandler;
 
+use Generated\Shared\Transfer\FileSystemContentTransfer;
+use Generated\Shared\Transfer\FileSystemDeleteTransfer;
+use Spryker\Service\FileSystem\FileSystemServiceInterface;
 use SprykerDemo\Zed\FrontendConfigurator\Business\FrontendConfiguratorFacadeInterface;
 use SprykerDemo\Zed\FrontendConfigurator\FrontendConfiguratorConfig;
 use SprykerDemo\Zed\FrontendConfiguratorGui\Communication\Form\FrontendConfigurationForm;
@@ -23,9 +26,9 @@ class FrontendConfigurationFormHandler implements FrontendConfigurationFormHandl
     protected FrontendConfiguratorFacadeInterface $frontendConfigFacade;
 
     /**
-     * @var \SprykerDemo\Zed\Uploads\Business\UploadsFacadeInterface
+     * @var \Spryker\Service\FileSystem\FileSystemServiceInterface
      */
-    protected UploadsFacadeInterface $uploadsFacade;
+    protected FileSystemServiceInterface $fileSystemService;
 
     /**
      * @var \SprykerDemo\Zed\FrontendConfiguratorGui\FrontendConfiguratorGuiConfig
@@ -34,16 +37,16 @@ class FrontendConfigurationFormHandler implements FrontendConfigurationFormHandl
 
     /**
      * @param \SprykerDemo\Zed\FrontendConfigurator\Business\FrontendConfiguratorFacadeInterface $frontendConfigFacade
-     * @param \SprykerDemo\Zed\Uploads\Business\UploadsFacadeInterface $uploadsFacade
+     * @param \Spryker\Service\FileSystem\FileSystemServiceInterface $fileSystemService
      * @param \SprykerDemo\Zed\FrontendConfiguratorGui\FrontendConfiguratorGuiConfig $config
      */
     public function __construct(
         FrontendConfiguratorFacadeInterface $frontendConfigFacade,
-        UploadsFacadeInterface $uploadsFacade,
+        FileSystemServiceInterface $fileSystemService,
         FrontendConfiguratorGuiConfig $config
     ) {
         $this->frontendConfigFacade = $frontendConfigFacade;
-        $this->uploadsFacade = $uploadsFacade;
+        $this->fileSystemService = $fileSystemService;
         $this->config = $config;
     }
 
@@ -97,31 +100,35 @@ class FrontendConfigurationFormHandler implements FrontendConfigurationFormHandl
     protected function uploadFile(?UploadedFile $file): ?string
     {
         if ($file !== null) {
-            $uploadedFileData = $this->uploadsFacade
-                ->upload(
-                    $file,
-                    $this->config->getFileSystemName(),
-                );
+            $fileSystemName = $this->config->getFileSystemName();
+            $filePath = $this->config->getFileSystemConfigByName($fileSystemName)['path']. $this->generateUniqueFileName($file);
+            $fileSystemContentTransfer = new FileSystemContentTransfer();
+            $fileSystemContentTransfer->setFileSystemName($fileSystemName);
+            $fileSystemContentTransfer->setPath($filePath);
+            $fileSystemContentTransfer->setContent($file->getContent());
+            $fileSystemContentTransfer->setConfig($this->config->getFileSystemWriterConfig());
+            $uploadedFileData = $this->fileSystemService->write($fileSystemContentTransfer);
 
-            return $uploadedFileData['filePublicPath'];
+            return $this->getPublicUrl(
+                $filePath,
+                $fileSystemName
+            );
         }
 
         return null;
     }
 
     /**
-     * @param string|null $filename
+     * @param string|null $filePath
      *
      * @return void
      */
-    protected function deleteFile(?string $filename): void
+    protected function deleteFile(?string $filePath): void
     {
-        if ($filename) {
-            $this->uploadsFacade
-                ->remove(
-                    $filename,
-                    $this->config->getFileSystemName(),
-                );
+        if ($filePath) {
+            $fileSystemDeleteTransfer = new FileSystemDeleteTransfer();
+            $fileSystemDeleteTransfer->setFileSystemName($this->config->getFileSystemName());
+            $fileSystemDeleteTransfer->setPath($filePath);
         }
     }
 
@@ -139,5 +146,32 @@ class FrontendConfigurationFormHandler implements FrontendConfigurationFormHandl
         }
 
         return $formData;
+    }
+
+    /**
+     * @param string $filePath
+     * @param string $fileSystemName
+     *
+     * @return string
+     */
+    protected function getPublicUrl(string $filePath, string $fileSystemName): string
+    {
+        $s3BucketConfig = $this->config->getFileSystemConfigByName($fileSystemName);
+
+        return sprintf(
+            'https://%s.s3.%s.amazonaws.com/%s',
+            $s3BucketConfig['bucket'],
+            $s3BucketConfig['region'],
+            $filePath
+        );
+    }
+    /**
+     * @param \Symfony\Component\HttpFoundation\File\UploadedFile $file
+     *
+     * @return string
+     */
+    protected function generateUniqueFileName(UploadedFile $file): string
+    {
+        return time() . '.' . pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
     }
 }

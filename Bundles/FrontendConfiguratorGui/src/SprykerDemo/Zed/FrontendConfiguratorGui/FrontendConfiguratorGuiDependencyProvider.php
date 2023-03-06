@@ -7,6 +7,7 @@
 
 namespace SprykerDemo\Zed\FrontendConfiguratorGui;
 
+use Spryker\Zed\FileManager\Dependency\Service\FileManagerToFileSystemServiceBridge;
 use Spryker\Zed\Kernel\AbstractBundleDependencyProvider;
 use Spryker\Zed\Kernel\Container;
 
@@ -18,6 +19,11 @@ class FrontendConfiguratorGuiDependencyProvider extends AbstractBundleDependency
     public const FRONTEND_CONFIGURATOR_FACADE = 'FRONTEND_CONFIGURATOR_FACADE';
 
     /**
+     * @var string
+     */
+    public const SERVICE_FILE_SYSTEM = 'SERVICE_FILE_SYSTEM';
+
+    /**
      * @param \Spryker\Zed\Kernel\Container $container
      *
      * @return \Spryker\Zed\Kernel\Container
@@ -27,6 +33,7 @@ class FrontendConfiguratorGuiDependencyProvider extends AbstractBundleDependency
         parent::provideCommunicationLayerDependencies($container);
 
         $this->addFrontendConfiguratorFacade($container);
+        $this->addFileSystemService($container);
 
         return $container;
     }
@@ -40,6 +47,20 @@ class FrontendConfiguratorGuiDependencyProvider extends AbstractBundleDependency
     {
         $container->set(static::FRONTEND_CONFIGURATOR_FACADE, function (Container $container) {
             return $container->getLocator()->frontendConfigurator()->facade();
+        });
+
+        return $container;
+    }
+
+    /**
+     * @param \Spryker\Zed\Kernel\Container $container
+     *
+     * @return \Spryker\Zed\Kernel\Container
+     */
+    protected function addFileSystemService(Container $container)
+    {
+        $container->set(static::SERVICE_FILE_SYSTEM, function (Container $container) {
+            return $container->getLocator()->fileSystem()->service();
         });
 
         return $container;
