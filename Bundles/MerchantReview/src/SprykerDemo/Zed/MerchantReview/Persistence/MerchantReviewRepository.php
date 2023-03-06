@@ -52,4 +52,21 @@ class MerchantReviewRepository extends AbstractRepository implements MerchantRev
             ->createMerchantReviewMapper()
             ->mapMerchantReviewEntitiesToMerchantReviewCollection($merchantReviewEntities);
     }
+
+    /**
+     * @param array $merchantReviewIds
+     *
+     * @return \Generated\Shared\Transfer\MerchantReviewCollectionTransfer
+     */
+    public function getMerchantReviewsByIds(array $merchantReviewIds): MerchantReviewCollectionTransfer
+    {
+        $merchantReviewEntities = $this->getFactory()
+            ->createMerchantReviewQuery()
+            ->filterByIdMerchantReview_In($merchantReviewIds)
+            ->find();
+
+        return $this->getFactory()
+            ->createMerchantReviewMapper()
+            ->mapMerchantReviewEntitiesToMerchantReviewCollection($merchantReviewEntities);
+    }
 }
