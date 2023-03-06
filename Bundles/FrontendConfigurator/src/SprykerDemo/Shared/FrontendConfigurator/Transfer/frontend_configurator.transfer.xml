@@ -8,13 +8,9 @@
         <property name="data" type="array"/>
     </transfer>
 
-    <transfer name="FlysystemConfigAws3v3">
-        <property name="isStreamReads" type="bool"/>
-    </transfer>
-
     <transfer name="ConfigContainer">
         <property name="name" type="string"/>
         <property name="data" type="array"/>
     </transfer>
-    
+
 </transfers>
