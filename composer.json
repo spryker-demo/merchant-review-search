@@ -8,6 +8,11 @@
     "require-dev": {
         "spryker/code-sniffer": "dev-master"
     },
+    "replace": {
+        "spryker-demo/customer-subscription-page": "*",
+        "spryker-demo/oms-subscription": "*",
+        "spryker-demo/product-subscription-feature": "*"
+    },
     "minimum-stability": "dev",
     "prefer-stable": true,
     "config": {
@@ -18,11 +23,6 @@
         }
     },
     "scripts": {
-        "cs-check": "phpcs"
-    },
-    "replace": {
-        "spryker-demo/customer-subscription-page": "*",
-        "spryker-demo/oms-subscription": "*",
-        "spryker-demo/product-subscription-feature": "*"
+        "cs-check": "php -d memory_limit=1300M vendor/bin/phpcs"
     }
 }
