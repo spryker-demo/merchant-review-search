@@ -1,7 +1,13 @@
 concrete_sku,name,quantity,is_never_out_of_stock,is_bundle
-S103451,Warehouse1,0,1,0
-S103452,Warehouse1,0,1,0
-S103453,Warehouse1,0,1,0
-S103471,Warehouse1,0,1,0
-S103472,Warehouse1,0,1,0
-S103473,Warehouse1,0,1,0
+S103451,Spryker MER000008 Warehouse 1,20,1,0
+S103452,Spryker MER000008 Warehouse 1,20,1,0
+S103453,Spryker MER000008 Warehouse 1,20,1,0
+S103471,Spryker MER000008 Warehouse 1,20,1,0
+S103472,Spryker MER000008 Warehouse 1,20,1,0
+S103473,Spryker MER000008 Warehouse 1,20,1,0
+S103551,Spryker MER000008 Warehouse 1,20,1,0
+S103561,Spryker MER000008 Warehouse 1,20,1,0
+S103571,Spryker MER000008 Warehouse 1,20,1,0
+S103552,Spryker MER000008 Warehouse 1,20,1,0
+S103562,Spryker MER000008 Warehouse 1,20,1,0
+S103572,Spryker MER000008 Warehouse 1,20,1,0
