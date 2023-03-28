@@ -11,6 +11,7 @@ use ArrayObject;
 use Generated\Shared\Transfer\MerchantReviewCollectionTransfer;
 use Generated\Shared\Transfer\MerchantReviewTransfer;
 use Orm\Zed\MerchantReview\Persistence\SpyMerchantReview;
+use Propel\Runtime\Collection\ObjectCollection;
 
 class MerchantReviewMapper
 {
@@ -29,11 +30,11 @@ class MerchantReviewMapper
     }
 
     /**
-     * @param \ArrayObject<SpyMerchantReview> $merchantReviewEntities
+     * @param \Propel\Runtime\Collection\ObjectCollection $merchantReviewEntities
      *
      * @return \Generated\Shared\Transfer\MerchantReviewCollectionTransfer
      */
-    public function mapMerchantReviewEntitiesToMerchantReviewCollection(ArrayObject $merchantReviewEntities): MerchantReviewCollectionTransfer
+    public function mapMerchantReviewEntitiesToMerchantReviewCollection(ObjectCollection $merchantReviewEntities): MerchantReviewCollectionTransfer
     {
         $merchantReviews = new ArrayObject();
         $merchantReviewsCollectionTransfer = new MerchantReviewCollectionTransfer();

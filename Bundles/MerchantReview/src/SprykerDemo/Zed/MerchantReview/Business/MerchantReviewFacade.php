@@ -7,6 +7,7 @@
 
 namespace SprykerDemo\Zed\MerchantReview\Business;
 
+use Generated\Shared\Transfer\MerchantReviewCollectionTransfer;
 use Generated\Shared\Transfer\MerchantReviewTransfer;
 use Spryker\Zed\Kernel\Business\AbstractFacade;
 
@@ -24,8 +25,9 @@ class MerchantReviewFacade extends AbstractFacade implements MerchantReviewFacad
      *
      * @return \Generated\Shared\Transfer\MerchantReviewTransfer
      */
-    public function createMerchantReview(MerchantReviewTransfer $merchantReviewTransfer): MerchantReviewTransfer
-    {
+    public function createMerchantReview(
+        MerchantReviewTransfer $merchantReviewTransfer
+    ): MerchantReviewTransfer {
         return $this->getFactory()
             ->createMerchantReviewCreator()
             ->createMerchantReview($merchantReviewTransfer);
@@ -40,8 +42,9 @@ class MerchantReviewFacade extends AbstractFacade implements MerchantReviewFacad
      *
      * @return \Generated\Shared\Transfer\MerchantReviewTransfer|null
      */
-    public function findMerchantReview(MerchantReviewTransfer $merchantReviewTransfer): ?MerchantReviewTransfer
-    {
+    public function findOne(
+        MerchantReviewTransfer $merchantReviewTransfer
+    ): ?MerchantReviewTransfer {
         return $this->getFactory()
             ->createMerchantReviewReader()
             ->findMerchantReview($merchantReviewTransfer);
@@ -56,8 +59,9 @@ class MerchantReviewFacade extends AbstractFacade implements MerchantReviewFacad
      *
      * @return \Generated\Shared\Transfer\MerchantReviewTransfer
      */
-    public function updateMerchantReviewStatus(MerchantReviewTransfer $merchantReviewTransfer): MerchantReviewTransfer
-    {
+    public function updateMerchantReviewStatus(
+        MerchantReviewTransfer $merchantReviewTransfer
+    ): MerchantReviewTransfer {
         return $this->getFactory()
             ->createMerchantReviewStatusUpdater()
             ->updateMerchantReviewStatus($merchantReviewTransfer);
@@ -72,10 +76,16 @@ class MerchantReviewFacade extends AbstractFacade implements MerchantReviewFacad
      *
      * @return void
      */
-    public function deleteMerchantReview(MerchantReviewTransfer $merchantReviewTransfer): void
-    {
+    public function deleteMerchantReview(
+        MerchantReviewTransfer $merchantReviewTransfer
+    ): void {
         $this->getFactory()
             ->createMerchantReviewDeleter()
             ->deleteMerchantReview($merchantReviewTransfer);
+    }
+
+    public function getMerchantReviews(): MerchantReviewCollectionTransfer
+    {
+        return $this->getFactory()->createMerchantReviewReader()->getMerchantReviews();
     }
 }

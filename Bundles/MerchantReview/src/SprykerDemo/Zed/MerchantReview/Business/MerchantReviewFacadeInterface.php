@@ -7,15 +7,16 @@
 
 namespace SprykerDemo\Zed\MerchantReview\Business;
 
+use Generated\Shared\Transfer\MerchantReviewCollectionTransfer;
 use Generated\Shared\Transfer\MerchantReviewTransfer;
 
 interface MerchantReviewFacadeInterface
 {
     /**
      * Specification:
-     * - Stores provided merchant review in persistent storage with pending status.
-     *   - Checks if provided rating in transfer object does not exceed configured limit
-     * - Returns the provided transfer object updated with the stored entity's data.
+     *    - Stores provided merchant review in persistent storage with pending status.
+     *    - Checks if provided rating in transfer object does not exceed configured limit
+     *    - Returns the provided transfer object updated with the stored entity's data.
      *
      * @api
      *
@@ -23,7 +24,9 @@ interface MerchantReviewFacadeInterface
      *
      * @return \Generated\Shared\Transfer\MerchantReviewTransfer
      */
-    public function createMerchantReview(MerchantReviewTransfer $merchantReviewTransfer): MerchantReviewTransfer;
+    public function createMerchantReview(
+        MerchantReviewTransfer $merchantReviewTransfer
+    ): MerchantReviewTransfer;
 
     /**
      * Specification:
@@ -35,7 +38,9 @@ interface MerchantReviewFacadeInterface
      *
      * @return \Generated\Shared\Transfer\MerchantReviewTransfer|null
      */
-    public function findMerchantReview(MerchantReviewTransfer $merchantReviewTransfer): ?MerchantReviewTransfer;
+    public function findOne(
+        MerchantReviewTransfer $merchantReviewTransfer
+    ): ?MerchantReviewTransfer;
 
     /**
      * Specification:
@@ -48,11 +53,14 @@ interface MerchantReviewFacadeInterface
      *
      * @return \Generated\Shared\Transfer\MerchantReviewTransfer
      */
-    public function updateMerchantReviewStatus(MerchantReviewTransfer $merchantReviewTransfer): MerchantReviewTransfer;
+    public function updateMerchantReviewStatus(
+        MerchantReviewTransfer $merchantReviewTransfer
+    ): MerchantReviewTransfer;
 
     /**
      * Specification:
-     * - Permanently deletes the merchant review from persistent storage that matches the provided id in the transfer object.
+     * - Permanently deletes the merchant review from persistent storage that matches the provided id in the transfer
+     * object.
      *
      * @api
      *
@@ -60,5 +68,17 @@ interface MerchantReviewFacadeInterface
      *
      * @return void
      */
-    public function deleteMerchantReview(MerchantReviewTransfer $merchantReviewTransfer): void;
+    public function deleteMerchantReview(
+        MerchantReviewTransfer $merchantReviewTransfer
+    ): void;
+
+    /**
+     * Specification:
+     * - Returns all available merchant reviews
+     *
+     * @api
+     *
+     * @return \Generated\Shared\Transfer\MerchantReviewCollectionTransfer
+     */
+    public function getMerchantReviews(): MerchantReviewCollectionTransfer;
 }

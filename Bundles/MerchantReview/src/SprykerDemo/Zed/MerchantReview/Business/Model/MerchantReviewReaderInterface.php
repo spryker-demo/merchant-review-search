@@ -7,6 +7,7 @@
 
 namespace SprykerDemo\Zed\MerchantReview\Business\Model;
 
+use Generated\Shared\Transfer\MerchantReviewCollectionTransfer;
 use Generated\Shared\Transfer\MerchantReviewTransfer;
 
 interface MerchantReviewReaderInterface
@@ -17,4 +18,6 @@ interface MerchantReviewReaderInterface
      * @return \Generated\Shared\Transfer\MerchantReviewTransfer|null
      */
     public function findMerchantReview(MerchantReviewTransfer $merchantReviewTransfer): ?MerchantReviewTransfer;
+
+    public function getMerchantReviews(): MerchantReviewCollectionTransfer;
 }

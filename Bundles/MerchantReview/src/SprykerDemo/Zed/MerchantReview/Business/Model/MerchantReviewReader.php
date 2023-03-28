@@ -7,6 +7,7 @@
 
 namespace SprykerDemo\Zed\MerchantReview\Business\Model;
 
+use Generated\Shared\Transfer\MerchantReviewCollectionTransfer;
 use Generated\Shared\Transfer\MerchantReviewTransfer;
 use SprykerDemo\Zed\MerchantReview\Persistence\MerchantReviewRepositoryInterface;
 
@@ -46,5 +47,10 @@ class MerchantReviewReader implements MerchantReviewReaderInterface
     protected function assertMerchantReviewForRead(MerchantReviewTransfer $merchantReviewTransfer): void
     {
         $merchantReviewTransfer->requireIdMerchantReview();
+    }
+
+    public function getMerchantReviews(): MerchantReviewCollectionTransfer
+    {
+        return $this->merchantReviewRepository->getMerchantReviews();
     }
 }
