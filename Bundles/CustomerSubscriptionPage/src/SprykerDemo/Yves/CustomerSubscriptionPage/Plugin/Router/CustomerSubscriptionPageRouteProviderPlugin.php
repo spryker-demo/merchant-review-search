@@ -47,7 +47,7 @@ class CustomerSubscriptionPageRouteProviderPlugin extends AbstractRouteProviderP
      */
     protected function addCancelSubscriptionRoute(RouteCollection $routeCollection): RouteCollection
     {
-        $route = $this->buildPostRoute('/customer/subscription/cancel', 'CustomerSubscriptionPage', 'Subscription', 'cancelAction');
+        $route = $this->buildPostRoute('/customer/subscription/cancel', 'CustomerSubscriptionPage', 'CustomerSubscription', 'cancelAction');
         $routeCollection->add(static::ROUTE_CANCEL_SUBSCRIPTION, $route);
 
         return $routeCollection;
@@ -60,7 +60,7 @@ class CustomerSubscriptionPageRouteProviderPlugin extends AbstractRouteProviderP
      */
     protected function addSubscriptionRoute(RouteCollection $routeCollection): RouteCollection
     {
-        $route = $this->buildGetRoute('/customer/subscription', 'CustomerSubscriptionPage', 'Subscription', 'indexAction');
+        $route = $this->buildGetRoute('/customer/subscription', 'CustomerSubscriptionPage', 'CustomerSubscription', 'indexAction');
         $routeCollection->add(static::ROUTE_SUBSCRIPTION, $route);
 
         return $routeCollection;

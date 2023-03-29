@@ -16,7 +16,7 @@ use Spryker\Zed\Oms\Dependency\Plugin\Command\CommandByOrderInterface;
  * @method \SprykerDemo\Zed\OmsSubscription\Communication\OmsSubscriptionCommunicationFactory getFactory()
  * @method \SprykerDemo\Zed\OmsSubscription\Business\OmsSubscriptionFacadeInterface getFacade()
  */
-class SentCanceledSubscriptionNotificationPlugin extends AbstractPlugin implements CommandByOrderInterface
+class SendCanceledSubscriptionNotificationPlugin extends AbstractPlugin implements CommandByOrderInterface
 {
     /**
      * {@inheritDoc}

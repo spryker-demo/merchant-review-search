@@ -25,7 +25,7 @@ $config[KernelConstants::CORE_NAMESPACES] = [
 ];
 ```
 
-### Wire the router provicder plugin
+### Wire the router provider plugin
 
 ```
 # src/Pyz/Yves/Router/RouterDependencyProvider.php
@@ -47,7 +47,7 @@ protected function getRouteProvider(): array
 ```
 # src/Pyz/Zed/Oms/OmsDependencyProvider.php
 
-use SprykerDemo\Zed\OmsSubscription\Communication\Plugin\Oms\Command\SentCanceledSubscriptionNotificationPlugin;
+use SprykerDemo\Zed\OmsSubscription\Communication\Plugin\Oms\Command\SendCanceledSubscriptionNotificationPlugin;
 use SprykerDemo\Zed\OmsSubscription\Communication\Plugin\Oms\Condition\IsPaymentReminderLimitReachedPlugin;
 use SprykerDemo\Zed\OmsSubscription\Communication\Plugin\Oms\Condition\IsSubscriptionPlugin;
 
@@ -56,7 +56,7 @@ use SprykerDemo\Zed\OmsSubscription\Communication\Plugin\Oms\Condition\IsSubscri
 protected function extendCommandPlugins(Container $container): Container
 {
     $container->extend(self::COMMAND_PLUGINS, function (CommandCollectionInterface $commandCollection) {
-        $commandCollection->add(new SentCanceledSubscriptionNotificationPlugin(), 'Subscription/SentCanceledSubscriptionNotification');
+        $commandCollection->add(new SendCanceledSubscriptionNotificationPlugin(), 'Subscription/SendCanceledSubscriptionNotification');
 
         return $commandCollection;
 });

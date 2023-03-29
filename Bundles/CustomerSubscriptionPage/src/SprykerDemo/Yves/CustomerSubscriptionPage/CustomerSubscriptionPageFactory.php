@@ -13,7 +13,7 @@ use Spryker\Client\Sales\SalesClientInterface;
 use Spryker\Yves\Kernel\AbstractFactory;
 use SprykerDemo\Client\OmsSubscription\OmsSubscriptionClientInterface;
 use SprykerDemo\Yves\CustomerSubscriptionPage\Form\FormFactory;
-use SprykerDemo\Yves\CustomerSubscriptionPage\Reader\OrderReader;
+use SprykerDemo\Yves\CustomerSubscriptionPage\Reader\CustomerOrdersReader;
 
 class CustomerSubscriptionPageFactory extends AbstractFactory
 {
@@ -26,11 +26,11 @@ class CustomerSubscriptionPageFactory extends AbstractFactory
     }
 
     /**
-     * @return \SprykerDemo\Yves\CustomerSubscriptionPage\Reader\OrderReader
+     * @return \SprykerDemo\Yves\CustomerSubscriptionPage\Reader\CustomerOrdersReader
      */
-    public function createOrderReader(): OrderReader
+    public function createOrderReader(): CustomerOrdersReader
     {
-        return new OrderReader(
+        return new CustomerOrdersReader(
             $this->getCustomerClient(),
             $this->getSalesClient(),
         );
@@ -53,7 +53,7 @@ class CustomerSubscriptionPageFactory extends AbstractFactory
     }
 
     /**
-     * @return \Pyz\Client\Sales\SalesClient
+     * @return \Spryker\Client\Sales\SalesClientInterface
      */
     public function getSalesClient(): SalesClientInterface
     {

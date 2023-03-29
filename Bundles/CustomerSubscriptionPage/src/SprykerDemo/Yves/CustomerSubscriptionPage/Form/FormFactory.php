@@ -9,26 +9,23 @@ namespace SprykerDemo\Yves\CustomerSubscriptionPage\Form;
 
 use Spryker\Shared\Application\ApplicationConstants;
 use Spryker\Yves\Kernel\AbstractFactory;
+use Symfony\Component\Form\FormFactory as SymfonyFormFactory;
+use Symfony\Component\Form\FormInterface;
 
-/**
- * @method \SprykerShop\Yves\CustomerPage\CustomerPageConfig getConfig()
- */
 class FormFactory extends AbstractFactory
 {
     /**
      * @return \Symfony\Component\Form\FormFactory
      */
-    public function getFormFactory()
+    public function getFormFactory(): SymfonyFormFactory
     {
         return $this->getProvidedDependency(ApplicationConstants::FORM_FACTORY);
     }
 
     /**
-     * @param array $formOptions
-     *
      * @return \Symfony\Component\Form\FormInterface
      */
-    public function getCustomerCancelSubscriptionForm(array $formOptions = [])
+    public function getCustomerCancelSubscriptionForm(): FormInterface
     {
         return $this->getFormFactory()->create(CustomerCancelSubscriptionForm::class);
     }

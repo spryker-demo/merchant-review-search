@@ -23,7 +23,7 @@ class GatewayController extends AbstractGatewayController
      *
      * @return \Generated\Shared\Transfer\ItemTransfer
      */
-    public function cancelOrderItemSubscriptionAction(ItemTransfer $itemTransfer)
+    public function cancelOrderItemSubscriptionAction(ItemTransfer $itemTransfer): ItemTransfer
     {
         $this->getFacade()->cancelOrderItemSubscription($itemTransfer->getIdSalesOrderItem());
 

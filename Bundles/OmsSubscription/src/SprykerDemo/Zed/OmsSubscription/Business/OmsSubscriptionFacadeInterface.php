@@ -17,7 +17,7 @@ interface OmsSubscriptionFacadeInterface
      *
      * @param int $idOrderItem
      *
-     * @return mixed
+     * @return array|null
      */
-    public function cancelOrderItemSubscription(int $idOrderItem);
+    public function cancelOrderItemSubscription(int $idOrderItem): ?array;
 }

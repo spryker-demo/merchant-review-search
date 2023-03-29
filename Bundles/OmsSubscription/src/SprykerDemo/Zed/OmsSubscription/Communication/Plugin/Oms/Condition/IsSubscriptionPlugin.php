@@ -30,6 +30,6 @@ class IsSubscriptionPlugin extends AbstractPlugin implements ConditionInterface
     {
         $concreteProduct = $this->getFactory()->getProductFacade()->getProductConcrete($orderItem->getSku());
 
-        return isset($concreteProduct->getAttributes()['subscription_interval']) && $concreteProduct->getAttributes()['subscription_interval'] !== null;
+        return isset($concreteProduct->getAttributes()['subscription_interval']);
     }
 }

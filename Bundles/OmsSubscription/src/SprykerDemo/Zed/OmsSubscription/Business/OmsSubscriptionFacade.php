@@ -23,7 +23,7 @@ class OmsSubscriptionFacade extends AbstractFacade implements OmsSubscriptionFac
      *
      * @return array|null
      */
-    public function cancelOrderItemSubscription(int $idOrderItem)
+    public function cancelOrderItemSubscription(int $idOrderItem): ?array
     {
         return $this->getFactory()
             ->getOmsFacade()->triggerEventForOrderItems('trigger-subscription-cancellation', [$idOrderItem], []);

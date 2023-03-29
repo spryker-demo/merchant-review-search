@@ -7,8 +7,9 @@
 
 namespace SprykerDemo\Yves\CustomerSubscriptionPage\Controller;
 
-use Generated\Shared\Transfer\OrderListTransfer;
+use Generated\Shared\Transfer\ItemTransfer;
 use Generated\Shared\Transfer\OrderTransfer;
+use Generated\Shared\Transfer\PaginationTransfer;
 use Spryker\Yves\Kernel\Controller\AbstractController;
 use SprykerDemo\Yves\CustomerSubscriptionPage\Plugin\Router\CustomerSubscriptionPageRouteProviderPlugin;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,7 +17,7 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * @method \SprykerDemo\Yves\CustomerSubscriptionPage\CustomerSubscriptionPageFactory getFactory()
  */
-class SubscriptionController extends AbstractController
+class CustomerSubscriptionController extends AbstractController
 {
     /**
      * @var string
@@ -32,6 +33,26 @@ class SubscriptionController extends AbstractController
      * @var string
      */
     protected const CUSTOMER_CANCEL_SUBSCRIPTION_WARNING_MESSAGE = 'customer.cancel_subscription.warning_message';
+
+    /**
+     * @var string
+     */
+    protected const PARAM_PAGE = 'page';
+
+    /**
+     * @var string
+     */
+    protected const PARAM_PER_PAGE = 'perPage';
+
+    /**
+     * @var int
+     */
+    protected const DEFAULT_PAGE = 1;
+
+    /**
+     * @var int
+     */
+    protected const DEFAULT_ITEMS_PAGE = 10;
 
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
@@ -56,13 +77,11 @@ class SubscriptionController extends AbstractController
      */
     protected function executeIndexAction(Request $request): array
     {
-        $orderListTransfer = new OrderListTransfer();
-        $customerPageFactory = $this->getFactory();
+        $paginationTransfer = $this->createPaginationTransfer($request);
 
-        $orderListTransfer = $customerPageFactory->createOrderReader()
-            ->getOrderList($request, $orderListTransfer);
-        $orderListTransfer = $this->getFactory()->getSalesClient()
-            ->getPaginatedOrder($orderListTransfer);
+        $orderListTransfer = $this->getFactory()
+            ->createOrderReader()
+            ->getPaginatedCustomerOrders($paginationTransfer);
 
         return [
             'pagination' => $orderListTransfer->getPagination(),
@@ -81,7 +100,7 @@ class SubscriptionController extends AbstractController
     public function cancelAction(Request $request)
     {
         $customerTransfer = $this->getFactory()->getCustomerClient()->getCustomer();
-        $idSalesOrder = $request->query->get('sales_order_id');
+        $idSalesOrder = (int)$request->query->get('sales_order_id');
 
         $orderTransfer = new OrderTransfer();
         $orderTransfer->setIdSalesOrder($idSalesOrder)
@@ -89,8 +108,38 @@ class SubscriptionController extends AbstractController
             ->setCustomer($customerTransfer);
 
         $orderTransfer = $this->getFactory()->getSalesClient()->getOrderDetails($orderTransfer);
-        $itemTransfer = $this->getItemTransfer($orderTransfer, $request->query->get('sales_order_item_id'));
+        $itemTransfer = $this->getItemTransfer($orderTransfer, (int)$request->query->get('sales_order_item_id'));
 
+        $this->addCancellationMessage($orderTransfer, $itemTransfer);
+
+        return $this->redirectResponseInternal(CustomerSubscriptionPageRouteProviderPlugin::ROUTE_SUBSCRIPTION);
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
+     * @param int $orderItemId
+     *
+     * @return \Generated\Shared\Transfer\ItemTransfer|null
+     */
+    protected function getItemTransfer(OrderTransfer $orderTransfer, int $orderItemId): ?ItemTransfer
+    {
+        foreach ($orderTransfer->getItems() as $item) {
+            if ($item->getIdSalesOrderItem() == $orderItemId) {
+                return $item;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
+     * @param \Generated\Shared\Transfer\ItemTransfer|null $itemTransfer
+     *
+     * @return void
+     */
+    protected function addCancellationMessage(OrderTransfer $orderTransfer, ?ItemTransfer $itemTransfer): void
+    {
         if ($orderTransfer->getIdSalesOrder() !== null && $itemTransfer && $itemTransfer->getState()->getName() == 'subscription active') {
             $successMessage = $this->getFactory()->getGlossaryClient()->translate(
                 static::CUSTOMER_CANCEL_SUBSCRIPTION_SUCCESS_MESSAGE,
@@ -101,29 +150,35 @@ class SubscriptionController extends AbstractController
             $this->getFactory()->getCustomerSubscriptionClient()->cancelOrderItemSubscription($itemTransfer);
 
             $this->addSuccessMessage($successMessage);
-        } elseif ($itemTransfer->getState()->getName() == 'subscription cancelled' || $itemTransfer->getState()->getName() == 'closed') {
-            $this->addErrorMessage(static::CUSTOMER_CANCEL_SUBSCRIPTION_WARNING_MESSAGE);
-        } else {
-            $this->addErrorMessage(static::CUSTOMER_CANCEL_SUBSCRIPTION_ERROR_MESSAGE);
+
+            return;
         }
 
-        return $this->redirectResponseInternal(CustomerSubscriptionPageRouteProviderPlugin::ROUTE_SUBSCRIPTION);
+        if ($itemTransfer->getState()->getName() == 'subscription cancelled' || $itemTransfer->getState()->getName() == 'closed') {
+            $this->addErrorMessage(static::CUSTOMER_CANCEL_SUBSCRIPTION_WARNING_MESSAGE);
+
+            return;
+        }
+
+        $this->addErrorMessage(static::CUSTOMER_CANCEL_SUBSCRIPTION_ERROR_MESSAGE);
     }
 
     /**
-     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
-     * @param int $orderItemId
+     * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @return \Generated\Shared\Transfer\ItemTransfer|mixed
+     * @return \Generated\Shared\Transfer\PaginationTransfer
      */
-    protected function getItemTransfer(OrderTransfer $orderTransfer, int $orderItemId)
+    protected function createPaginationTransfer(Request $request): PaginationTransfer
     {
-        foreach ($orderTransfer->getItems() as $item) {
-            if ($item->getIdSalesOrderItem() == $orderItemId) {
-                return $item;
-            }
-        }
+        $paginationTransfer = new PaginationTransfer();
 
-        return null;
+        $paginationTransfer->setPage(
+            $request->query->getInt(static::PARAM_PAGE, static::DEFAULT_PAGE),
+        );
+        $paginationTransfer->setMaxPerPage(
+            $request->query->getInt(static::PARAM_PER_PAGE, static::DEFAULT_ITEMS_PAGE),
+        );
+
+        return $paginationTransfer;
     }
 }

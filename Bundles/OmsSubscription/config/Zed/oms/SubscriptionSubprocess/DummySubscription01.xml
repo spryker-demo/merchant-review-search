@@ -32,7 +32,7 @@
 
         <events>
             <event name="check-is-subscription" onEnter="true"/>
-            <event name="trigger-subscription-cancellation" manual="true" command="Subscription/SentCanceledSubscriptionNotification"/>
+            <event name="trigger-subscription-cancellation" manual="true" command="Subscription/SendCanceledSubscriptionNotification"/>
             <event name="execute-recurring-payment" onEnter="true"/>
             <event name="check-subscription-invoice-interval-reached" manual="true" timeout="1 day"/>
             <event name="sent-payment-reminder" onEnter="true"/>

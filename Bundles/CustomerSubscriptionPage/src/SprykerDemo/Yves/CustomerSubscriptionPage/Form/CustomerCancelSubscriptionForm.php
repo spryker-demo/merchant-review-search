@@ -9,9 +9,6 @@ namespace SprykerDemo\Yves\CustomerSubscriptionPage\Form;
 
 use Symfony\Component\Form\AbstractType;
 
-/**
- * @method \Pyz\Yves\CustomerPage\CustomerPageConfig getConfig()
- */
 class CustomerCancelSubscriptionForm extends AbstractType
 {
 }
