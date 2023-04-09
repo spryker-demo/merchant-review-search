@@ -12,6 +12,9 @@ use Generated\Shared\Transfer\CustomerRepresentativesFilterTransfer;
 interface CustomerRepresentativeFacadeInterface
 {
     /**
+     * Specification:
+     * - Get All active users.
+     *
      * @api
      *
      * @return array
@@ -19,6 +22,9 @@ interface CustomerRepresentativeFacadeInterface
     public function getActiveUsers(): array;
 
     /**
+     * Specification:
+     * - Find All customer representatives related to a company.
+     *
      * @api
      *
      * @param \Generated\Shared\Transfer\CustomerRepresentativesFilterTransfer $customerRepresentativesFilterTransfer
