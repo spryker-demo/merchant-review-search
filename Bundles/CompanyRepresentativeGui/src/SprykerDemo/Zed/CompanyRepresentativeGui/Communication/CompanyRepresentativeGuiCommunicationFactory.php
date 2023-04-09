@@ -36,7 +36,7 @@ class CompanyRepresentativeGuiCommunicationFactory extends AbstractCommunication
         );
     }
 
-    protected function getCustomerRepresentativeFacade(): CustomerRepresentativeFacadeInterface
+    public function getCustomerRepresentativeFacade(): CustomerRepresentativeFacadeInterface
     {
         return $this->getProvidedDependency(CompanyRepresentativeGuiDependencyProvider::CUSTOMER_REPRESENTATIVE_FACADE);
     }

@@ -30,21 +30,16 @@ class CustomerRepresentativeRepository extends AbstractRepository implements Cus
             ->find();
 
         return $entities->getArrayCopy();
-
-//        return array_map(
-//            function (SpyUser $userEntity) {
-//                return $this->($userEntity);
-//            },
-//            $entities
-//        );
     }
 
-    public function findCustomerRepresentatives(CustomerRepresentativesFilterTransfer $customerRepresentativesFilterTransfer): ?CustomerRepresentativesTransfer
+    public function findCustomerRepresentatives(CustomerRepresentativesFilterTransfer $customerRepresentativesFilterTransfer): array
     {
         return $this->getFactory()
             ->createCompanyCustomerRepresentativeQuery()
-            ->leftJoinUser()
+            ->useUserQuery()
+            ->endUse()
             ->filterByFkCompany($customerRepresentativesFilterTransfer->getCompanyId())
-            ->find();
+            ->find()
+            ->getData();
     }
 }

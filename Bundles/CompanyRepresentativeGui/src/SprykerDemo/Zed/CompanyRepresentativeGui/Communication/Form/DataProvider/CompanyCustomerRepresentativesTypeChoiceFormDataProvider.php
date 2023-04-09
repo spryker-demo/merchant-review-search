@@ -7,6 +7,8 @@
 
 namespace SprykerDemo\Zed\CompanyRepresentativeGui\Communication\Form\DataProvider;
 
+use Generated\Shared\Transfer\CustomerRepresentativesFilterTransfer;
+use Generated\Shared\Transfer\CustomerRepresentativesTransfer;
 use Spryker\Zed\CompanySupplierGui\Communication\Form\CompanyTypeChoiceFormType;
 use Spryker\Zed\CompanySupplierGui\Dependency\Facade\CompanySupplierGuiToCompanySupplierFacadeInterface;
 use SprykerDemo\Zed\CompanyRepresentativeGui\Communication\Form\CompanyCustomerRepresentativesTypeChoiceFormType;
@@ -43,13 +45,34 @@ class CompanyCustomerRepresentativesTypeChoiceFormDataProvider
      */
     protected function getCustomerRepresentatives(): array
     {
-        $companyTypeCollection = $this->customerRepresentativeFacade->getActiveUsers();
+        $activeUsers = $this->customerRepresentativeFacade->getActiveUsers();
 
         $result = [];
-        foreach ($companyTypeCollection->getCompanyTypes() as $companyType) {
-            $result[$companyType->getName()] = $companyType->getIdCompanyType();
+        foreach ($activeUsers as $user) {
+            $result[$user->getFirstName(). ' '.$user->getLastName()] = $user->getIdUser();
         }
 
         return $result;
+    }
+
+    /**
+     * @param int|null $idCompany
+     *
+     * @return \Generated\Shared\Transfer\CustomerRepresentativesTransfer
+     */
+    public function getData(?int $idCompany = null): CustomerRepresentativesTransfer
+    {
+        $customerRepresentativeTransfer = new CustomerRepresentativesTransfer();
+
+        if ($idCompany === null) {
+            return $customerRepresentativeTransfer;
+        }
+
+        $customerRepresentativeFilterTransfer = new CustomerRepresentativesFilterTransfer();
+
+        $userIds = $this->customerRepresentativeFacade->findCustomerRepresentatives($customerRepresentativeFilterTransfer->setCompanyId($idCompany));
+        $customerRepresentativeTransfer->setUserIds($userIds);
+
+        return $customerRepresentativeTransfer;
     }
 }

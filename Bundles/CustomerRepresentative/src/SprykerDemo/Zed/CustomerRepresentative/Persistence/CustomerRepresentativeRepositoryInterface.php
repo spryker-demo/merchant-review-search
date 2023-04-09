@@ -17,5 +17,5 @@ interface CustomerRepresentativeRepositoryInterface
      */
     public function getActiveUsers(): array;
 
-    public function findCustomerRepresentatives(CustomerRepresentativesFilterTransfer $customerRepresentativesFilterTransfer): ?CustomerRepresentativesTransfer;
+    public function findCustomerRepresentatives(CustomerRepresentativesFilterTransfer $customerRepresentativesFilterTransfer): array;
 }

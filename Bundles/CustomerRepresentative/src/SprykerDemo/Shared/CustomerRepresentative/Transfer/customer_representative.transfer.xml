@@ -12,7 +12,7 @@
 
 
     <transfer name="Company">
-        <property name="customerRepresentatives" type="customerRepresentatives" singular="customerRepresentatives"/>
+        <property name="customerRepresentatives" type="CustomerRepresentatives" singular="customerRepresentatives"/>
     </transfer>
 
 </transfers>

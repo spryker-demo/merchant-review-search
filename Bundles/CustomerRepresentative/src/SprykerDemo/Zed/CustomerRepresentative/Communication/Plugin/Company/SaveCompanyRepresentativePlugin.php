@@ -1,20 +1,20 @@
 <?php
 
 /**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
+ * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
 namespace SprykerDemo\Zed\CustomerRepresentative\Communication\Plugin\Company;
 
 use Generated\Shared\Transfer\CompanyResponseTransfer;
-use Generated\Shared\Transfer\CustomerRepresentativesTransfer;
+use Spryker\Zed\CompanyExtension\Dependency\Plugin\CompanyPostSavePluginInterface;
 use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 
 /**
  * @method \SprykerDemo\Zed\CustomerRepresentative\Communication\CustomerRepresentativeCommunicationFactory getFactory()
  */
-class SaveCompanyRepresentativePlugin extends AbstractPlugin
+class SaveCompanyRepresentativePlugin extends AbstractPlugin implements CompanyPostSavePluginInterface
 {
     /**
      * {@inheritDoc}
@@ -25,12 +25,15 @@ class SaveCompanyRepresentativePlugin extends AbstractPlugin
      *
      * @return \Generated\Shared\Transfer\CustomerRepresentativesTransfer
      */
-    public function postSave(CustomerRepresentativesTransfer $customerRepresentativesTransfer): CustomerRepresentativesTransfer
+    public function postSave(CompanyResponseTransfer $companyResponseTransfer): CompanyResponseTransfer
     {
         $this->getFactory()
             ->getCustomerRepresentativeEntityManager()
-            ->updateCompanyCustomerRepresentative($customerRepresentativesTransfer->getCompanyId(), $customerRepresentativesTransfer->getUserIds());
+            ->updateCompanyCustomerRepresentative(
+                $companyResponseTransfer->getCompanyTransfer()->getIdCompany(),
+                $companyResponseTransfer->getCompanyTransfer()->getCustomerRepresentatives()->getUserIds(),
+            );
 
-        return $customerRepresentativesTransfer;
+        return $companyResponseTransfer;
     }
 }

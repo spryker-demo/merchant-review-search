@@ -7,8 +7,11 @@
 
 namespace SprykerDemo\Zed\CompanyRepresentativeGui\Communication\Form;
 
+use Faker\Provider\Company;
 use Generated\Shared\Transfer\CompanyTransfer;
+use Generated\Shared\Transfer\CustomerRepresentativesTransfer;
 use Spryker\Zed\Kernel\Communication\Form\AbstractType;
+use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -50,7 +53,7 @@ class CompanyCustomerRepresentativesTypeChoiceFormType extends AbstractType
      */
     protected function addCompanyCustomerRepresentativesField(FormBuilderInterface $builder, array $options): void
     {
-        $builder->add(static::FIELD_FK_COMPANY_USER, ChoiceType::class, [
+        $builder->add(CompanyTransfer::CUSTOMER_REPRESENTATIVES, ChoiceType::class, [
             'label' => 'Customer representatives',
             'placeholder' => 'Select one',
             'multiple' => true,
@@ -61,5 +64,44 @@ class CompanyCustomerRepresentativesTypeChoiceFormType extends AbstractType
                 new NotBlank(),
             ],
         ]);
+
+        $this->addCompanyCustomerRepresentativesTransformer($builder);
+    }
+
+    /**
+     * @param \Symfony\Component\Form\FormBuilderInterface $builder
+     *
+     * @return void
+     */
+    protected function addCompanyCustomerRepresentativesTransformer(FormBuilderInterface $builder): void
+    {
+        $builder->get('customerRepresentatives')
+            ->addModelTransformer(
+                new CallbackTransformer(
+                    function ($customerRepresentatives) {
+                        if (!$customerRepresentatives) {
+                            return $customerRepresentatives;
+                        }
+
+                        $result = [];
+                        if (isset($customerRepresentatives[static::FIELD_FK_COMPANY_USER])) {
+                            foreach ($customerRepresentatives[static::COMPANY_UNIT_COST_CENTER_KEY] as $customerRepresentative) {
+                                $result[] = $customerRepresentative[static::ID_COMPANY_UNIT_COST_CENTER_KEY];
+                            }
+                        }
+
+                        return $result;
+                    },
+                    function ($data) {
+                        $customerRepresentativesTransfer = new CustomerRepresentativesTransfer();
+
+                        foreach ($data as $id) {
+                            $customerRepresentativesTransfer->addUserId($id);
+                        }
+
+                        return $customerRepresentativesTransfer;
+                    },
+                ),
+            );
     }
 }

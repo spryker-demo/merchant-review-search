@@ -21,7 +21,7 @@ class CustomerRepresentativeFacade extends AbstractFacade implements CustomerRep
         return $this->getRepository()->getActiveUsers();
     }
 
-    public function findCustomerRepresentatives(CustomerRepresentativesFilterTransfer $customerRepresentativesFilterTransfer)
+    public function findCustomerRepresentatives(CustomerRepresentativesFilterTransfer $customerRepresentativesFilterTransfer): array
     {
         return $this->getRepository()->findCustomerRepresentatives($customerRepresentativesFilterTransfer);
     }
