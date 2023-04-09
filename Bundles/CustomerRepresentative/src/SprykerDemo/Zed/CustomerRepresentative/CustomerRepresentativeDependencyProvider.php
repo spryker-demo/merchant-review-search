@@ -20,6 +20,11 @@ class CustomerRepresentativeDependencyProvider extends AbstractBundleDependencyP
      */
     public const QUERY_CONTAINER_USER = 'user query container';
 
+    /**
+     * @param \Spryker\Zed\Kernel\Container $container
+     *
+     * @return \Spryker\Zed\Kernel\Container
+     */
     public function providePersistenceLayerDependencies(Container $container): Container
     {
         $container = parent::providePersistenceLayerDependencies($container);

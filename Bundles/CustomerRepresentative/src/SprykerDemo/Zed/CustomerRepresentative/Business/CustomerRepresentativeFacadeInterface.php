@@ -18,5 +18,12 @@ interface CustomerRepresentativeFacadeInterface
      */
     public function getActiveUsers(): array;
 
+    /**
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\CustomerRepresentativesFilterTransfer $customerRepresentativesFilterTransfer
+     *
+     * @return array
+     */
     public function findCustomerRepresentatives(CustomerRepresentativesFilterTransfer $customerRepresentativesFilterTransfer): array;
 }

@@ -73,7 +73,7 @@ class CompanyCustomerRepresentativesTypeChoiceFormType extends AbstractType
      */
     protected function addCompanyCustomerRepresentativesTransformer(FormBuilderInterface $builder): void
     {
-        $builder->get('customerRepresentatives')
+        $builder->get(CompanyTransfer::CUSTOMER_REPRESENTATIVES)
             ->addModelTransformer(
                 new CallbackTransformer(
                     function ($customerRepresentatives) {

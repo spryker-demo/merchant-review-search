@@ -21,9 +21,9 @@ class SaveCompanyRepresentativePlugin extends AbstractPlugin implements CompanyP
      *
      * @api
      *
-     * @param \Generated\Shared\Transfer\CustomerRepresentativesTransfer $customerRepresentativesTransfer
+     * @param \Generated\Shared\Transfer\CompanyResponseTransfer $companyResponseTransfer
      *
-     * @return \Generated\Shared\Transfer\CustomerRepresentativesTransfer
+     * @return \Generated\Shared\Transfer\CompanyResponseTransfer
      */
     public function postSave(CompanyResponseTransfer $companyResponseTransfer): CompanyResponseTransfer
     {
