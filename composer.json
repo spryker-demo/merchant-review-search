@@ -3,7 +3,11 @@
     "description": "Spryker Demo Packages",
     "license": "proprietary",
     "require": {
-        "php": ">=8.0"
+        "php": ">=8.0",
+        "spryker-demo/merchant-registration-feature": "*",
+        "spryker-demo/merchant-registration": "*",
+        "spryker-demo/merchant-registration-data-import": "*",
+        "spryker-demo/merchant-registration-page": "*"
     },
     "require-dev": {
         "spryker/code-sniffer": "dev-master"

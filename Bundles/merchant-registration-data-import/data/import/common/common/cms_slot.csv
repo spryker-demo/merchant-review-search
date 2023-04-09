@@ -1,0 +1,5 @@
+slot_key,name,description,content_provider,template_path,is_active
+slt-sell-on-spryker-jumbotron,Sell on Spryker - Jumbotron,Sell on Spryker - Jumbotron,SprykerCmsSlotBlock,@Cms/templates/merchant-register/merchant-register.twig,1
+slt-sell-on-spryker-benefits,Sell on Spryker - Benefits,Sell on Spryker - Benefits,SprykerCmsSlotBlock,@Cms/templates/merchant-register/merchant-register.twig,1
+slt-sell-on-spryker-steps-description,Sell on Spryker - Steps description section,Sell on Spryker - Steps description section,SprykerCmsSlotBlock,@Cms/templates/merchant-register/merchant-register.twig,1
+slt-sell-on-spryker-steps,Sell on Spryker - Steps section,Sell on Spryker - Steps section,SprykerCmsSlotBlock,@Cms/templates/merchant-register/merchant-register.twig,1
