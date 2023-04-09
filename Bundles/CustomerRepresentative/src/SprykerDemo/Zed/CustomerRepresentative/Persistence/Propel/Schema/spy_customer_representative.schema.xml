@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="zed" xsi:noNamespaceSchemaLocation="http://static.spryker.com/schema-01.xsd" namespace="Orm\Zed\CustomerRepresentative\Persistence" package="src.Orm.Zed.CustomerRepresentative.Persistence">
+    <table name="spy_customer_representative" idMethod="native" isCrossRef="true">
+        <column name="id_customer_representative" required="true" type="INTEGER" autoIncrement="true" primaryKey="true"/>
+        <column name="fk_company" required="true" type="INTEGER"/>
+        <column name="fk_user" required="true" type="INTEGER"/>
+
+        <behavior name="timestampable"/>
+
+        <foreign-key name="spy_customer_representative-fk_company" foreignTable="spy_company" phpName="Company" onDelete="CASCADE">
+            <reference local="fk_company" foreign="id_company"/>
+        </foreign-key>
+        <foreign-key name="spy_customer_representative-fk_user" foreignTable="spy_user" phpName="User" onDelete="CASCADE">
+            <reference local="fk_user" foreign="id_user"/>
+        </foreign-key>
+
+        <unique name="fk_company-fk_user">
+            <unique-column name="fk_company"/>
+            <unique-column name="fk_user"/>
+        </unique>
+
+        <id-method-parameter value="spy_customer_representative_pk_seq"/>
+    </table>
+</database>
