@@ -8,10 +8,8 @@
 namespace SprykerDemo\Zed\CompanyRepresentativeGui\Communication\Plugin;
 
 use Spryker\Zed\CompanyGuiExtension\Dependency\Plugin\CompanyFormExpanderPluginInterface;
-use Spryker\Zed\Kernel\Communication\AbstractCommunicationFactory;
 use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 /**
  * @method \SprykerDemo\Zed\CompanyRepresentativeGui\Communication\CompanyRepresentativeGuiCommunicationFactory getFactory()
@@ -29,6 +27,15 @@ class CompanyCustomerRepresentativesTypeFieldPlugin extends AbstractPlugin imple
      */
     protected const FIELD_FK_COMPANY_USER = 'userIds';
 
+    /**
+     * {@inheritDoc}
+     *
+     * @api
+     *
+     * @param \Symfony\Component\Form\FormBuilderInterface $builder
+     *
+     * @return void
+     */
     public function buildForm(FormBuilderInterface $builder): void
     {
         $formType = $this->getFactory()

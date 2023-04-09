@@ -7,12 +7,7 @@
 
 namespace SprykerDemo\Zed\CompanyRepresentativeGui\Communication\Plugin;
 
-use Generated\Shared\Transfer\CustomerRepresentativesFilterTransfer;
-use Orm\Zed\Company\Persistence\Map\SpyCompanyTableMap;
-use Spryker\Zed\CompanyGuiExtension\Dependency\Plugin\CompanyTableConfigExpanderPluginInterface;
-use Spryker\Zed\CompanyGuiExtension\Dependency\Plugin\CompanyTableDataExpanderPluginInterface;
 use Spryker\Zed\CompanyGuiExtension\Dependency\Plugin\CompanyTableHeaderExpanderPluginInterface;
-use Spryker\Zed\Gui\Communication\Table\TableConfiguration;
 use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 
 /**
@@ -20,9 +15,23 @@ use Spryker\Zed\Kernel\Communication\AbstractPlugin;
  */
 class CompanyTableCustomerRepresentativesHeaderExpanderPlugin extends AbstractPlugin implements CompanyTableHeaderExpanderPluginInterface
 {
-    protected CONST COL_REPRESENTATIVE = 'representatives';
-    protected CONST COL_COMPANY_CUSTOMER_REPRESENTATIVES_LABEL = 'Customer representatives';
+    /**
+     * @var string
+     */
+    protected const COL_REPRESENTATIVE = 'representatives';
 
+    /**
+     * @var string
+     */
+    protected const COL_COMPANY_CUSTOMER_REPRESENTATIVES_LABEL = 'Customer representatives';
+
+    /**
+     * {@inheritDoc}
+     *
+     * @api
+     *
+     * @return array<string>
+     */
     public function expandHeader(): array
     {
         return [static::COL_REPRESENTATIVE => static::COL_COMPANY_CUSTOMER_REPRESENTATIVES_LABEL];

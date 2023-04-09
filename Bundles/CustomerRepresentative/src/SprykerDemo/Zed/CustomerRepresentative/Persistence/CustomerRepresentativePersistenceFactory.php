@@ -1,15 +1,15 @@
 <?php
 
 /**
-* Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
-* Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
-*/
+ * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ */
 
 namespace SprykerDemo\Zed\CustomerRepresentative\Persistence;
 
 use Orm\Zed\CustomerRepresentative\Persistence\SpyCustomerRepresentativeQuery;
-use Spryker\Zed\Kernel\Persistence\AbstractPersistenceFactory;
 use Pyz\Zed\User\Persistence\UserQueryContainerInterface;
+use Spryker\Zed\Kernel\Persistence\AbstractPersistenceFactory;
 use SprykerDemo\Zed\CustomerRepresentative\CustomerRepresentativeDependencyProvider;
 
 /**

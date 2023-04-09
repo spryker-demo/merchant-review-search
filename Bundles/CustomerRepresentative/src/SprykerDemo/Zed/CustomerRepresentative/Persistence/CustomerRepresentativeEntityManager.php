@@ -1,9 +1,9 @@
 <?php
 
 /**
-* Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
-* Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
-*/
+ * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ */
 
 namespace SprykerDemo\Zed\CustomerRepresentative\Persistence;
 
@@ -20,7 +20,7 @@ class CustomerRepresentativeEntityManager extends AbstractEntityManager implemen
      * @inheritDoc
      *
      * @param int $companyId
-     * @param int[] $userIds
+     * @param array<int> $userIds
      *
      * @return void
      */
@@ -38,7 +38,7 @@ class CustomerRepresentativeEntityManager extends AbstractEntityManager implemen
      * @inheritDoc
      *
      * @param int $companyId
-     * @param int[] $userIds
+     * @param array<int> $userIds
      *
      * @return void
      */
@@ -59,7 +59,7 @@ class CustomerRepresentativeEntityManager extends AbstractEntityManager implemen
      * @inheritDoc
      *
      * @param int $companyId
-     * @param int[] $userIds
+     * @param array<int> $userIds
      *
      * @return void
      */
@@ -77,7 +77,7 @@ class CustomerRepresentativeEntityManager extends AbstractEntityManager implemen
     /**
      * @param int $companyId
      *
-     * @return \Propel\Runtime\Collection\Collection|SpyCustomerRepresentative[]
+     * @return \Propel\Runtime\Collection\Collection<\Orm\Zed\CustomerRepresentative\Persistence\SpyCustomerRepresentative>
      */
     public function findByCompanyId(int $companyId): Collection|array
     {

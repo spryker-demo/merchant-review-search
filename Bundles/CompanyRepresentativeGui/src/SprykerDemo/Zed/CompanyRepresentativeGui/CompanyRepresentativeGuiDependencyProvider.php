@@ -1,9 +1,9 @@
 <?php
 
 /**
-* Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
-* Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
-*/
+ * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ */
 
 namespace SprykerDemo\Zed\CompanyRepresentativeGui;
 
@@ -15,6 +15,9 @@ use Spryker\Zed\Kernel\Container;
  */
 class CompanyRepresentativeGuiDependencyProvider extends AbstractBundleDependencyProvider
 {
+    /**
+     * @var string
+     */
     public const CUSTOMER_REPRESENTATIVE_FACADE = 'CUSTOMER_REPRESENTATIVE_FACADE';
 
     public function provideCommunicationLayerDependencies(Container $container)

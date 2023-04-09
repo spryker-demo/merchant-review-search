@@ -11,6 +11,11 @@ use Generated\Shared\Transfer\CustomerRepresentativesFilterTransfer;
 
 interface CustomerRepresentativeFacadeInterface
 {
+    /**
+     * @api
+     *
+     * @return array
+     */
     public function getActiveUsers(): array;
 
     public function findCustomerRepresentatives(CustomerRepresentativesFilterTransfer $customerRepresentativesFilterTransfer): array;

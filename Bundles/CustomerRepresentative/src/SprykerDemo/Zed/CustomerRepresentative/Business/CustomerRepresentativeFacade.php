@@ -1,9 +1,9 @@
 <?php
 
 /**
-* Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
-* Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
-*/
+ * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ */
 
 namespace SprykerDemo\Zed\CustomerRepresentative\Business;
 
@@ -16,11 +16,27 @@ use Spryker\Zed\Kernel\Business\AbstractFacade;
  */
 class CustomerRepresentativeFacade extends AbstractFacade implements CustomerRepresentativeFacadeInterface
 {
+    /**
+     * {@inheritDoc}
+     *
+     * @api
+     *
+     * @return array
+     */
     public function getActiveUsers(): array
     {
         return $this->getRepository()->getActiveUsers();
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\CustomerRepresentativesFilterTransfer $customerRepresentativesFilterTransfer
+     *
+     * @return array
+     */
     public function findCustomerRepresentatives(CustomerRepresentativesFilterTransfer $customerRepresentativesFilterTransfer): array
     {
         return $this->getRepository()->findCustomerRepresentatives($customerRepresentativesFilterTransfer);

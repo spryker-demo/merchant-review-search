@@ -9,8 +9,6 @@ namespace SprykerDemo\Zed\CompanyRepresentativeGui\Communication\Form\DataProvid
 
 use Generated\Shared\Transfer\CustomerRepresentativesFilterTransfer;
 use Generated\Shared\Transfer\CustomerRepresentativesTransfer;
-use Spryker\Zed\CompanySupplierGui\Communication\Form\CompanyTypeChoiceFormType;
-use Spryker\Zed\CompanySupplierGui\Dependency\Facade\CompanySupplierGuiToCompanySupplierFacadeInterface;
 use SprykerDemo\Zed\CompanyRepresentativeGui\Communication\Form\CompanyCustomerRepresentativesTypeChoiceFormType;
 use SprykerDemo\Zed\CustomerRepresentative\Business\CustomerRepresentativeFacadeInterface;
 
@@ -49,7 +47,7 @@ class CompanyCustomerRepresentativesTypeChoiceFormDataProvider
 
         $result = [];
         foreach ($activeUsers as $user) {
-            $result[$user->getFirstName(). ' '.$user->getLastName()] = $user->getIdUser();
+            $result[$user->getFirstName() . ' ' . $user->getLastName()] = $user->getIdUser();
         }
 
         return $result;

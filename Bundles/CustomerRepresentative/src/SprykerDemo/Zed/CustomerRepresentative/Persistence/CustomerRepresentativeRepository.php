@@ -1,17 +1,13 @@
 <?php
 
 /**
-* Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
-* Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
-*/
+ * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ */
 
 namespace SprykerDemo\Zed\CustomerRepresentative\Persistence;
 
 use Generated\Shared\Transfer\CustomerRepresentativesFilterTransfer;
-use Generated\Shared\Transfer\CustomerRepresentativesTransfer;
-use Orm\Zed\User\Persistence\Map\SpyUserTableMap;
-use Orm\Zed\User\Persistence\SpyUser;
-use Propel\Runtime\ActiveQuery\Criteria;
 use Spryker\Zed\Kernel\Persistence\AbstractRepository;
 
 /**
@@ -32,6 +28,11 @@ class CustomerRepresentativeRepository extends AbstractRepository implements Cus
         return $entities->getArrayCopy();
     }
 
+    /**
+     * @param \Generated\Shared\Transfer\CustomerRepresentativesFilterTransfer $customerRepresentativesFilterTransfer
+     *
+     * @return array
+     */
     public function findCustomerRepresentatives(CustomerRepresentativesFilterTransfer $customerRepresentativesFilterTransfer): array
     {
         return $this->getFactory()

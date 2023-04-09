@@ -7,14 +7,12 @@
 
 namespace SprykerDemo\Zed\CompanyRepresentativeGui\Communication\Form;
 
-use Faker\Provider\Company;
 use Generated\Shared\Transfer\CompanyTransfer;
 use Generated\Shared\Transfer\CustomerRepresentativesTransfer;
 use Spryker\Zed\Kernel\Communication\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 /**
