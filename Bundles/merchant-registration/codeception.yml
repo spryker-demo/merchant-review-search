@@ -1,6 +1,6 @@
 namespace: SprykerDemoTest
 include:
-    - tests/SprykerDemoTest/Zed/MerchantRegistration
+    - tests/SprykerDemoTest/Zed/merchant-registration
 paths:
     tests: tests/
     log: tests/_output/
