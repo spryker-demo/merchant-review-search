@@ -1,8 +1,8 @@
 <?php
 
 /**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
+ * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
 namespace SprykerDemo\Zed\MerchantRegistration\Business\MerchantRegister;
@@ -11,21 +11,18 @@ use Generated\Shared\Transfer\MailTransfer;
 use Generated\Shared\Transfer\MerchantResponseTransfer;
 use Generated\Shared\Transfer\MerchantTransfer;
 use Generated\Shared\Transfer\MerchantUserTransfer;
-use Generated\Shared\Transfer\StateMachineProcessTransfer;
 use Generated\Shared\Transfer\StoreRelationTransfer;
 use Generated\Shared\Transfer\UrlTransfer;
 use Generated\Shared\Transfer\UserTransfer;
-use Pyz\Zed\DemoStateMachine\DemoStateMachineConfig;
-use Spryker\Zed\Merchant\Business\MerchantFacadeInterface;
-use SprykerDemo\Zed\MerchantRegistration\Communication\Plugin\Mail\MerchantRegistrationMailTypePlugin;
 use Spryker\Service\UtilText\UtilTextServiceInterface;
 use Spryker\Zed\Locale\Business\LocaleFacadeInterface;
 use Spryker\Zed\Mail\Business\MailFacadeInterface;
+use Spryker\Zed\Merchant\Business\MerchantFacadeInterface;
 use Spryker\Zed\MerchantUser\Business\MerchantUserFacadeInterface;
 use Spryker\Zed\StateMachine\Business\StateMachineFacadeInterface;
 use Spryker\Zed\Store\Business\StoreFacadeInterface;
 use Spryker\Zed\User\Business\UserFacadeInterface;
-use SprykerDemo\Zed\MerchantRegistration\MerchantRegistrationConfig;
+use SprykerDemo\Zed\MerchantRegistration\Communication\Plugin\Mail\MerchantRegistrationMailTypePlugin;
 
 class MerchantRegister
 {
@@ -94,7 +91,7 @@ class MerchantRegister
         StateMachineFacadeInterface $stateMachineFacade,
         MailFacadeInterface $mailFacade,
         UtilTextServiceInterface $utilTextService,
-        MerchantFacadeInterface $merchantFacade,
+        MerchantFacadeInterface $merchantFacade
     ) {
         $this->localeFacade = $localeFacade;
         $this->merchantUserFacade = $merchantUserFacade;
@@ -113,12 +110,14 @@ class MerchantRegister
      */
     public function merchantRegister(MerchantTransfer $merchantTransfer): MerchantResponseTransfer
     {
-        /** @var StoreRelationTransfer $storeRelationTransfer */
+        /** @var \Generated\Shared\Transfer\StoreRelationTransfer $storeRelationTransfer */
         $storeRelationTransfer = $merchantTransfer->getStoreRelation();
 
         $idStores = $this->getIdStores($storeRelationTransfer);
 
-        $merchantTransfer->getStoreRelation()?->setIdStores(array_unique($idStores));
+        if ($merchantTransfer->getStoreRelation()) {
+            $merchantTransfer->getStoreRelation()->setIdStores(array_unique($idStores));
+        }
 
         $merchantTransfer = $this->expandMerchantWithUrls($merchantTransfer);
 
@@ -127,30 +126,27 @@ class MerchantRegister
         $userTransfer = new UserTransfer();
         $userTransfer->setFkLocale($this->localeFacade->getLocale('en_US')->getIdLocale());
         $userTransfer->setUsername($merchantTransfer->getEmail());
-        $userTransfer->setFirstName($merchantTransfer->getMerchantProfile()?->getContactPersonFirstName());
-        $userTransfer->setLastName($merchantTransfer->getMerchantProfile()?->getContactPersonLastName());
+        if ($merchantTransfer->getMerchantProfile()) {
+            $userTransfer->setFirstName($merchantTransfer->getMerchantProfile()->getContactPersonFirstName());
+            $userTransfer->setLastName($merchantTransfer->getMerchantProfile()->getContactPersonLastName());
+        }
         $userTransfer->setPassword($merchantTransfer->getPassword());
         $userTransfer->setStatus(static::USER_STATUS_ACTIVE);
 
         $merchantUserTransfer = new MerchantUserTransfer();
         $merchantUserTransfer->setMerchant($merchantResponseTransfer->getMerchant());
         $merchantUserTransfer->setUser($userTransfer);
-        $merchantUserTransfer->setIdMerchant($merchantResponseTransfer->getMerchant()?->getIdMerchant());
+        if ($merchantResponseTransfer->getMerchant()) {
+            $merchantUserTransfer->setIdMerchant($merchantResponseTransfer->getMerchant()->getIdMerchant());
+        }
 
         $merchantUserResponseTransfer = $this->merchantUserFacade->createMerchantUser($merchantUserTransfer);
-        $userTransfer = $merchantUserResponseTransfer->getMerchantUser()?->getUser();
-        $userTransfer->setPassword($merchantTransfer->getPassword());
-        $userTransfer->setStatus(static::USER_STATUS_ACTIVE);
-        $this->userFacade->updateUser($userTransfer);
-
-        /*$stateMachineProcessTransfer = (new StateMachineProcessTransfer())
-            ->setProcessName(DemoStateMachineConfig::DEMO_OMS_DEFAULT_PROCESS_NAME)
-            ->setStateMachineName(DemoStateMachineConfig::DEMO_STATE_MACHINE_STATE_MACHINE_NAME);
-
-        $this->stateMachineFacade->triggerForNewStateMachineItem(
-            $stateMachineProcessTransfer,
-            $merchantTransfer->getIdMerchantOrFail(),
-        );*/
+        if ($merchantUserResponseTransfer->getMerchantUser()) {
+            $userTransfer = $merchantUserResponseTransfer->getMerchantUser()->getUser();
+            $userTransfer->setPassword($merchantTransfer->getPassword());
+            $userTransfer->setStatus(static::USER_STATUS_ACTIVE);
+            $this->userFacade->updateUser($userTransfer);
+        }
 
         $this->sendRegistrationEmail($merchantTransfer);
 

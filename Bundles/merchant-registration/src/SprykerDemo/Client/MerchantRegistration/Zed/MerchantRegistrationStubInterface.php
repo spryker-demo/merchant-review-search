@@ -10,7 +10,6 @@ namespace SprykerDemo\Client\MerchantRegistration\Zed;
 use Generated\Shared\Transfer\MerchantCriteriaTransfer;
 use Generated\Shared\Transfer\MerchantResponseTransfer;
 use Generated\Shared\Transfer\MerchantTransfer;
-use Generated\Shared\Transfer\QuoteTransfer;
 
 interface MerchantRegistrationStubInterface
 {

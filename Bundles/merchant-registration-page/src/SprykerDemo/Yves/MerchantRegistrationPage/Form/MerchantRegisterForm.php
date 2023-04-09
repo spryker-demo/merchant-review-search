@@ -1,15 +1,15 @@
 <?php
 
 /**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
+ * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
 namespace SprykerDemo\Yves\MerchantRegistrationPage\Form;
 
+use Spryker\Yves\Kernel\Form\AbstractType;
 use SprykerDemo\Yves\MerchantRegistrationPage\Form\Validator\Constraints\CompanyNameUniqueConstraint;
 use SprykerDemo\Yves\MerchantRegistrationPage\Form\Validator\Constraints\MerchantEmailUniqueConstraint;
-use Spryker\Yves\Kernel\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -29,33 +29,124 @@ use Symfony\Component\Validator\Constraints\Regex;
  */
 class MerchantRegisterForm extends AbstractType
 {
+    /**
+     * @var string
+     */
     public const BLOCK_PREFIX = 'merchantRegisterForm';
+
+    /**
+     * @var string
+     */
     public const FIELD_ADDRESS_1 = 'address1';
+
+    /**
+     * @var string
+     */
     public const FIELD_ADDRESS_2 = 'address2';
+
+    /**
+     * @var string
+     */
     public const FIELD_ZIP_CODE = 'zip_code';
+
+    /**
+     * @var string
+     */
     public const FIELD_CITY = 'city';
+
+    /**
+     * @var string
+     */
     public const FIELD_ISO_2_CODE = 'iso2_code';
+
+    /**
+     * @var string
+     */
     public const FIELD_REGISTRATION_NUMBER = 'registration_number';
+
+    /**
+     * @var string
+     */
     public const FIELD_CONTACT_PERSON_TITLE = 'contact_person_title';
+
+    /**
+     * @var string
+     */
     public const FIELD_CONTACT_PERSON_FIRST_NAME = 'contact_person_first_name';
+
+    /**
+     * @var string
+     */
     public const FIELD_CONTACT_PERSON_LAST_NAME = 'contact_person_last_name';
+
+    /**
+     * @var string
+     */
     public const FIELD_CONTACT_PERSON_ROLE = 'contact_person_role';
+
+    /**
+     * @var string
+     */
     public const FIELD_CONTACT_PERSON_PHONE = 'contact_person_phone';
+
+    /**
+     * @var string
+     */
     public const FIELD_EMAIL = 'email';
+
+    /**
+     * @var string
+     */
     public const FIELD_PASSWORD = 'password';
+
+    /**
+     * @var string
+     */
     public const FIELD_ACCEPT_TERMS = 'accept_terms';
+
+    /**
+     * @var string
+     */
     public const OPTION_COUNTRY_CHOICES = 'country_choices';
+
+    /**
+     * @var string
+     */
     public const VALIDATION_NOT_BLANK_MESSAGE = 'validation.not_blank';
+
+    /**
+     * @var string
+     */
     public const VALIDATION_MIN_LENGTH_MESSAGE = 'validation.min_length';
+
+    /**
+     * @var string
+     */
     public const VALIDATION_ADDRESS_NUMBER_MESSAGE = 'validation.address_number';
+
+    /**
+     * @var string
+     */
     public const VALIDATION_ZIP_CODE_LENGTH_MESSAGE = 'validation.max_length.plural';
+
+    /**
+     * @var string
+     */
     public const VALIDATION_ZIP_CODE_MESSAGE = 'validation.zip_code';
+
+    /**
+     * @var array
+     */
     protected const SALUTATION_CHOICES = [
         'Ms' => 'Ms',
         'Mr' => 'Mr',
         'Mrs' => 'Mrs',
         'Dr' => 'Dr',
     ];
+
+    /**
+     * @var string
+     */
     public const FIELD_COMPANY_NAME = 'company_name';
 
     /**
@@ -220,7 +311,7 @@ class MerchantRegisterForm extends AbstractType
     /**
      * @param int|null $currentId
      *
-     * @return \Symfony\Component\Validator\Constraint[]
+     * @return array<\Symfony\Component\Validator\Constraint>
      */
     protected function getEmailFieldConstraints(?int $currentId = null): array
     {
@@ -413,7 +504,7 @@ class MerchantRegisterForm extends AbstractType
     }
 
     /**
-     * @return \Symfony\Component\Validator\Constraint[]
+     * @return array<\Symfony\Component\Validator\Constraint>
      */
     protected function getRequiredTextFieldConstraints(): array
     {

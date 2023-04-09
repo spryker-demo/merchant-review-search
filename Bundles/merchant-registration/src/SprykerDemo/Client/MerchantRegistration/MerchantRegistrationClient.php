@@ -1,9 +1,9 @@
 <?php
 
 /**
-* Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
-* Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
-*/
+ * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ */
 
 namespace SprykerDemo\Client\MerchantRegistration;
 
@@ -17,16 +17,15 @@ use Spryker\Client\Kernel\AbstractClient;
  */
 class MerchantRegistrationClient extends AbstractClient implements MerchantRegistrationClientInterface
 {
-
-    /**
-     * {@inheritDoc}
-     *
-     * @api
-     *
-     * @param \Generated\Shared\Transfer\MerchantTransfer $merchantTransfer
-     *
-     * @return \Generated\Shared\Transfer\MerchantResponseTransfer
-     */
+ /**
+  * {@inheritDoc}
+  *
+  * @api
+  *
+  * @param \Generated\Shared\Transfer\MerchantTransfer $merchantTransfer
+  *
+  * @return \Generated\Shared\Transfer\MerchantResponseTransfer
+  */
     public function registerMerchant(MerchantTransfer $merchantTransfer): MerchantResponseTransfer
     {
         return $this->getFactory()

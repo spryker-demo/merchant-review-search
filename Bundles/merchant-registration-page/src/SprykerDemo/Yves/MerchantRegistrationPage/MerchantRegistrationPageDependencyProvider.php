@@ -1,9 +1,9 @@
 <?php
 
 /**
-* Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
-* Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
-*/
+ * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ */
 
 namespace SprykerDemo\Yves\MerchantRegistrationPage;
 
@@ -13,8 +13,19 @@ use Spryker\Yves\Kernel\Container;
 
 class MerchantRegistrationPageDependencyProvider extends AbstractBundleDependencyProvider
 {
+    /**
+     * @var string
+     */
     public const STORE = 'STORE';
+
+    /**
+     * @var string
+     */
     public const STORE_CLIENT = 'STORE_CLIENT';
+
+    /**
+     * @var string
+     */
     public const MERCHANT_REGISTRATION_CLIENT = 'MERCHANT_REGISTRATION_CLIENT';
 
     /**

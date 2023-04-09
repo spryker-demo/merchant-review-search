@@ -1,18 +1,17 @@
 <?php
 
 /**
-* Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
-* Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
-*/
+ * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ */
 
 namespace SprykerDemo\Zed\MerchantRegistration\Business;
 
-use Spryker\Zed\Merchant\Business\MerchantFacadeInterface;
-use Spryker\Zed\Merchant\MerchantDependencyProvider;
 use Spryker\Service\UtilText\UtilTextServiceInterface;
 use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
 use Spryker\Zed\Locale\Business\LocaleFacadeInterface;
 use Spryker\Zed\Mail\Business\MailFacadeInterface;
+use Spryker\Zed\Merchant\Business\MerchantFacadeInterface;
 use Spryker\Zed\MerchantUser\Business\MerchantUserFacadeInterface;
 use Spryker\Zed\StateMachine\Business\StateMachineFacadeInterface;
 use Spryker\Zed\Store\Business\StoreFacadeInterface;
@@ -38,7 +37,7 @@ class MerchantRegistrationBusinessFactory extends AbstractBusinessFactory
             $this->getStateMachineFacade(),
             $this->getMailFacade(),
             $this->getUtilTextService(),
-            $this->getMerchantFacade()
+            $this->getMerchantFacade(),
         );
     }
 
@@ -49,7 +48,6 @@ class MerchantRegistrationBusinessFactory extends AbstractBusinessFactory
     {
         return $this->getProvidedDependency(MerchantRegistrationDependencyProvider::FACADE_STORE);
     }
-
 
     /**
      * @return \Spryker\Zed\Locale\Business\LocaleFacadeInterface
@@ -106,7 +104,4 @@ class MerchantRegistrationBusinessFactory extends AbstractBusinessFactory
     {
         return $this->getProvidedDependency(MerchantRegistrationDependencyProvider::FACADE_MERCHANT);
     }
-
-
-
 }

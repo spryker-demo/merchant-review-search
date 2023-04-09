@@ -1,9 +1,9 @@
 <?php
 
 /**
-* Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
-* Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
-*/
+ * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ */
 
 namespace SprykerDemo\Yves\MerchantRegistrationPage\Controller;
 
@@ -21,12 +21,15 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class MerchantRegisterController extends AbstractController
 {
+    /**
+     * @var string
+     */
     public const COMPANY_AUTHORIZATION_SUCCESS = 'company.account.authorization.success';
 
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @return array|\Spryker\Yves\Kernel\View\View|\Symfony\Component\HttpFoundation\RedirectResponse
+     * @return \Spryker\Yves\Kernel\View\View|\Symfony\Component\HttpFoundation\RedirectResponse|array
      */
     public function registerAction(Request $request)
     {
@@ -42,7 +45,7 @@ class MerchantRegisterController extends AbstractController
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|array
      */
     protected function executeRegisterAction(Request $request)
     {
@@ -55,7 +58,7 @@ class MerchantRegisterController extends AbstractController
             ->createMerchantFormFactory()
             ->getMerchantRegisterForm(
                 $dataProvider->getData(),
-                $dataProvider->getOptions()
+                $dataProvider->getOptions(),
             )
             ->handleRequest($request);
 
@@ -179,5 +182,4 @@ class MerchantRegisterController extends AbstractController
 
         return $merchantTransfer;
     }
-
 }

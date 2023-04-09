@@ -1,9 +1,9 @@
 <?php
 
 /**
-* Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
-* Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
-*/
+ * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ */
 
 namespace SprykerDemo\Client\MerchantRegistration;
 
@@ -14,8 +14,10 @@ use Generated\Shared\Transfer\MerchantTransfer;
 interface MerchantRegistrationClientInterface
 {
     /**
-     * Specification
+     * Specification:
      * - Finds merchant according to the criteria sent in merchantCriteriaTransfer.
+     *
+     * @api
      *
      * @param \Generated\Shared\Transfer\MerchantTransfer $merchantTransfer
      *
@@ -24,7 +26,7 @@ interface MerchantRegistrationClientInterface
     public function registerMerchant(MerchantTransfer $merchantTransfer): MerchantResponseTransfer;
 
     /**
-     * Specification
+     * Specification:
      * - Finds merchant according to the criteria sent in merchantCriteriaTransfer.
      *
      * @api
