@@ -17,6 +17,11 @@ use Spryker\Zed\Kernel\Communication\Controller\AbstractGatewayController;
  */
 class GatewayController extends AbstractGatewayController
 {
+    /**
+     * @param \Generated\Shared\Transfer\CustomerRepresentativesFilterTransfer $customerRepresentativesFilterTransfer
+     *
+     * @return \Generated\Shared\Transfer\CustomerRepresentativesTransfer
+     */
     public function findCustomerRepresentativeByCompanyIdAction(
         CustomerRepresentativesFilterTransfer $customerRepresentativesFilterTransfer
     ): CustomerRepresentativesTransfer {

@@ -12,5 +12,15 @@ use Generated\Shared\Transfer\CustomerRepresentativesTransfer;
 
 interface CustomerRepresentativeClientInterface
 {
+    /**
+     * Specification:
+     *  - Returns all customer representatives related to a company.
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\CustomerRepresentativesFilterTransfer $customerRepresentativesFilterTransfer
+     *
+     * @return \Generated\Shared\Transfer\CustomerRepresentativesTransfer
+     */
     public function findCustomerRepresentatives(CustomerRepresentativesFilterTransfer $customerRepresentativesFilterTransfer): CustomerRepresentativesTransfer;
 }

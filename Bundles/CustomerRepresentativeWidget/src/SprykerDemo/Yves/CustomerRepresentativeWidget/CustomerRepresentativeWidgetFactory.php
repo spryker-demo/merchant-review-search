@@ -21,6 +21,9 @@ class CustomerRepresentativeWidgetFactory extends AbstractFactory
         return $this->getProvidedDependency(CustomerRepresentativeWidgetDependencyProvider::CLIENT_CUSTOMER_REPRESENTATIVE);
     }
 
+    /**
+     * @return \Spryker\Client\Customer\CustomerClientInterface
+     */
     public function getCustomerClient(): CustomerClientInterface
     {
         return $this->getProvidedDependency(CustomerRepresentativeWidgetDependencyProvider::CLIENT_CUSTOMER);

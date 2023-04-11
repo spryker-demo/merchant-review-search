@@ -10,6 +10,7 @@ namespace SprykerDemo\Zed\CustomerRepresentative\Persistence;
 use Generated\Shared\Transfer\CustomerRepresentativesFilterTransfer;
 use Generated\Shared\Transfer\CustomerRepresentativesTransfer;
 use Generated\Shared\Transfer\UserTransfer;
+use Orm\Zed\User\Persistence\Map\SpyUserTableMap;
 use Propel\Runtime\Collection\ObjectCollection;
 use Spryker\Zed\Kernel\Persistence\AbstractRepository;
 
@@ -19,13 +20,14 @@ use Spryker\Zed\Kernel\Persistence\AbstractRepository;
 class CustomerRepresentativeRepository extends AbstractRepository implements CustomerRepresentativeRepositoryInterface
 {
     /**
-     * @inheritDoc
+     * @return array
      */
     public function getActiveUsers(): array
     {
         $entities = $this->getFactory()
             ->getUserQueryContainer()
             ->queryUser()
+            ->filterByStatus_In([SpyUserTableMap::COL_STATUS_ACTIVE])
             ->find();
 
         return $entities->getArrayCopy();
@@ -46,8 +48,6 @@ class CustomerRepresentativeRepository extends AbstractRepository implements Cus
             ->find();
 
         return $this->mapCustomerRepresentativesCollectionToTransfer($customerRepresentativesCollection, $customerRepresentativesFilterTransfer->getCompanyId());
-
-
     }
 
     /**
@@ -56,18 +56,20 @@ class CustomerRepresentativeRepository extends AbstractRepository implements Cus
      *
      * @return \Generated\Shared\Transfer\CustomerRepresentativesTransfer
      */
-    protected function mapCustomerRepresentativesCollectionToTransfer(ObjectCollection $customerRepresentativesCollection,int $companyId): CustomerRepresentativesTransfer
-    {
+    protected function mapCustomerRepresentativesCollectionToTransfer(
+        ObjectCollection $customerRepresentativesCollection,
+        int $companyId
+    ): CustomerRepresentativesTransfer {
         $customerRepresentativesTransfer = new CustomerRepresentativesTransfer();
 
-        foreach ($customerRepresentativesCollection as $customerRepresentative)
-        {
+        foreach ($customerRepresentativesCollection as $customerRepresentative) {
             $customerRepresentativesTransfer->addUserId($customerRepresentative->getUser()->getIdUser());
-            $userTransfer = (new UserTransfer())->fromArray($customerRepresentative->getUser()->toArray(),true);
+            $userTransfer = (new UserTransfer())->fromArray($customerRepresentative->getUser()->toArray(), true);
             $customerRepresentativesTransfer->addUser($userTransfer);
         }
 
         $customerRepresentativesTransfer->setCompanyId($companyId);
+
         return $customerRepresentativesTransfer;
     }
 }

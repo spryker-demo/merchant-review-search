@@ -12,9 +12,9 @@ use Generated\Shared\Transfer\CustomerRepresentativesTransfer;
 
 interface CustomerRepresentativeRepositoryInterface
 {
- /**
-  * @return array
-  */
+    /**
+     * @return array
+     */
     public function getActiveUsers(): array;
 
     /**

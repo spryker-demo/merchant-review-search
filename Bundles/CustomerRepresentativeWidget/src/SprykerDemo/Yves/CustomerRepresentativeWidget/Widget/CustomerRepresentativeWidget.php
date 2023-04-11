@@ -21,16 +21,19 @@ class CustomerRepresentativeWidget extends AbstractWidget implements WidgetInter
         $this->addCustomerRepresentativesParameter();
     }
 
+    /**
+     * @return string
+     */
     public static function getName(): string
     {
-        // By convention the name of the widgets are equal with the name of the widget class to be able to find it easily from twig templates.
-        // The widget names must be unique as they are registered globally.
         return 'CustomerRepresentativeWidget';
     }
 
+    /**
+     * @return string
+     */
     public static function getTemplate(): string
     {
-        // The template of the widget to be rendered by default.
         return '@CustomerRepresentativeWidget/views/customer-representative-widget/customer-representative-widget.twig';
     }
 

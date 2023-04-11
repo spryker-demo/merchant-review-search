@@ -20,6 +20,15 @@ use Spryker\Client\Kernel\AbstractClient;
  */
 class CustomerRepresentativeClient extends AbstractClient implements CustomerRepresentativeClientInterface
 {
+    /**
+     * {@inheritDoc}
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\CustomerRepresentativesFilterTransfer $customerRepresentativesFilterTransfer
+     *
+     * @return \Generated\Shared\Transfer\CustomerRepresentativesTransfer
+     */
     public function findCustomerRepresentatives(CustomerRepresentativesFilterTransfer $customerRepresentativesFilterTransfer): CustomerRepresentativesTransfer
     {
         return $this->getFactory()

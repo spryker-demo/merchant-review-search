@@ -14,6 +14,9 @@ use SprykerDemo\Client\CustomerRepresentative\Zed\CustomerRepresentativeStubInte
 
 class CustomerRepresentativeFactory extends AbstractFactory
 {
+    /**
+     * @return \SprykerDemo\Client\CustomerRepresentative\Zed\CustomerRepresentativeStubInterface
+     */
     public function createCustomerRepresentativeStub(): CustomerRepresentativeStubInterface
     {
         return new CustomerRepresentativeStub($this->getZedRequestClient());
