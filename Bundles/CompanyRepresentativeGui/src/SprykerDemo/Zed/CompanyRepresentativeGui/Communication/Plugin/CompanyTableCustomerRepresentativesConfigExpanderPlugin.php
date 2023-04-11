@@ -7,8 +7,6 @@
 
 namespace SprykerDemo\Zed\CompanyRepresentativeGui\Communication\Plugin;
 
-use Generated\Shared\Transfer\CustomerRepresentativesFilterTransfer;
-use Orm\Zed\Company\Persistence\Map\SpyCompanyTableMap;
 use Spryker\Zed\CompanyGuiExtension\Dependency\Plugin\CompanyTableConfigExpanderPluginInterface;
 use Spryker\Zed\Gui\Communication\Table\TableConfiguration;
 use Spryker\Zed\Kernel\Communication\AbstractPlugin;

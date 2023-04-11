@@ -8,8 +8,8 @@
 namespace SprykerDemo\Zed\CustomerRepresentative\Persistence;
 
 use Orm\Zed\CustomerRepresentative\Persistence\SpyCustomerRepresentativeQuery;
-use Spryker\Zed\User\Persistence\UserQueryContainerInterface;
 use Spryker\Zed\Kernel\Persistence\AbstractPersistenceFactory;
+use Spryker\Zed\User\Persistence\UserQueryContainerInterface;
 use SprykerDemo\Zed\CustomerRepresentative\CustomerRepresentativeDependencyProvider;
 
 /**

@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ */
+
 namespace SprykerDemo\Yves\CustomerRepresentativeWidget\Widget;
 
 use Generated\Shared\Transfer\CustomerRepresentativesFilterTransfer;
@@ -29,11 +34,14 @@ class CustomerRepresentativeWidget extends AbstractWidget implements WidgetInter
         return '@CustomerRepresentativeWidget/views/customer-representative-widget/customer-representative-widget.twig';
     }
 
-    protected function addCustomerRepresentativesParameter()
+    /**
+     * @return void
+     */
+    protected function addCustomerRepresentativesParameter(): void
     {
         $companyId = $this->getFactory()->getCustomerClient()->getCustomer()->getCompanyUserTransfer()->getCompany()->getIdCompany();
         $customerRepresentativesFilterTransfer = (new CustomerRepresentativesFilterTransfer())->setCompanyId($companyId);
         $customerRepresentatives = $this->getFactory()->getCustomerRepresentativeClient()->findCustomerRepresentatives($customerRepresentativesFilterTransfer);
-        $this->addParameter('representatives',$customerRepresentatives);
+        $this->addParameter('representatives', $customerRepresentatives);
     }
 }

@@ -8,17 +8,13 @@
 namespace SprykerDemo\Yves\CustomerRepresentativeWidget;
 
 use Spryker\Client\Customer\CustomerClientInterface;
-use Spryker\Shared\Application\ApplicationConstants;
 use Spryker\Yves\Kernel\AbstractFactory;
-use Spryker\Yves\Kernel\Exception\Container\ContainerKeyNotFoundException;
-use SprykerDemo\Client\CustomerRepresentative\CustomerRepresentativeClient;
 use SprykerDemo\Client\CustomerRepresentative\CustomerRepresentativeClientInterface;
 
 class CustomerRepresentativeWidgetFactory extends AbstractFactory
 {
     /**
-     * @return CustomerRepresentativeClientInterface
-     * @throws ContainerKeyNotFoundException
+     * @return \SprykerDemo\Client\CustomerRepresentative\CustomerRepresentativeClientInterface
      */
     public function getCustomerRepresentativeClient(): CustomerRepresentativeClientInterface
     {

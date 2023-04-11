@@ -12,6 +12,10 @@ use Generated\Shared\Transfer\CustomerRepresentativesTransfer;
 use Spryker\Client\Kernel\AbstractClient;
 
 /**
+ * {@inheritDoc}
+ *
+ * @api
+ *
  * @method \SprykerDemo\Client\CustomerRepresentative\CustomerRepresentativeFactory getFactory()
  */
 class CustomerRepresentativeClient extends AbstractClient implements CustomerRepresentativeClientInterface
