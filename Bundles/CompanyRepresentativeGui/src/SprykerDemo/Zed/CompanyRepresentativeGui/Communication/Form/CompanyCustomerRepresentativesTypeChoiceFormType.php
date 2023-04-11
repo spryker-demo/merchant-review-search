@@ -56,7 +56,7 @@ class CompanyCustomerRepresentativesTypeChoiceFormType extends AbstractType
             'placeholder' => 'Select one',
             'multiple' => true,
             'expanded' => true,
-            'required' => true,
+            'required' => false,
             'choices' => $options[static::OPTION_VALUES_COMPANY_CUSTOMER_REPRESENTATIVES_TYPE_CHOICES],
             'constraints' => [
                 new NotBlank(),
@@ -82,10 +82,9 @@ class CompanyCustomerRepresentativesTypeChoiceFormType extends AbstractType
                         }
 
                         $result = [];
-                        if (isset($customerRepresentatives[static::FIELD_FK_COMPANY_USER])) {
-                            foreach ($customerRepresentatives[static::COMPANY_UNIT_COST_CENTER_KEY] as $customerRepresentative) {
-                                $result[] = $customerRepresentative[static::ID_COMPANY_UNIT_COST_CENTER_KEY];
-                            }
+
+                        foreach ($customerRepresentatives->getUserIds() as $id) {
+                            $result[] = $id;
                         }
 
                         return $result;
