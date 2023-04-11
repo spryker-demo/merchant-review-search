@@ -8,7 +8,7 @@
 namespace SprykerDemo\Zed\CustomerRepresentative\Persistence;
 
 use Orm\Zed\CustomerRepresentative\Persistence\SpyCustomerRepresentativeQuery;
-use Pyz\Zed\User\Persistence\UserQueryContainerInterface;
+use Spryker\Zed\User\Persistence\UserQueryContainerInterface;
 use Spryker\Zed\Kernel\Persistence\AbstractPersistenceFactory;
 use SprykerDemo\Zed\CustomerRepresentative\CustomerRepresentativeDependencyProvider;
 
@@ -26,7 +26,7 @@ class CustomerRepresentativePersistenceFactory extends AbstractPersistenceFactor
     }
 
     /**
-     * @return \Pyz\Zed\User\Persistence\UserQueryContainerInterface
+     * @return \Spryker\Zed\User\Persistence\UserQueryContainerInterface
      */
     public function getUserQueryContainer(): UserQueryContainerInterface
     {

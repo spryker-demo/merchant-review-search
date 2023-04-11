@@ -1,0 +1,33 @@
+{% extends template('widget') %}
+{% define config = {
+    name: 'tile',
+} %}
+{% define data = {
+    customerRepresentatives: _widget.representatives,
+} %}
+
+{% block template %}
+    {% include atom('icon') with {
+        data: {
+            name: 'customer-representative'
+        },
+        class: config.name ~ '__icon'
+    } only %}
+
+    {% if data.customerRepresentatives.users is not empty %}
+<div class="{{ config.name }}">
+        <ul class="list list--bullet {{ config.name }}__main">
+            {% for customerRepresentative in data.customerRepresentatives.users %}
+
+                <li class="">
+                    {{ customerRepresentative.firstName }} {{ customerRepresentative.lastName }}
+                </li>
+                <li><a class="link link--alt" href="mailto:{{ customerRepresentative.username }}">{{ customerRepresentative.username }}</a></li>
+            {% endfor %}
+        </ul>
+</div>
+    {% else %}
+        {{ 'company.account.customer.service.empty' | trans }}
+    {% endif %}
+{% endblock %}
+

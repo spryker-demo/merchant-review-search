@@ -8,6 +8,7 @@
 namespace SprykerDemo\Zed\CustomerRepresentative\Business;
 
 use Generated\Shared\Transfer\CustomerRepresentativesFilterTransfer;
+use Generated\Shared\Transfer\CustomerRepresentativesTransfer;
 use Spryker\Zed\Kernel\Business\AbstractFacade;
 
 /**
@@ -35,9 +36,9 @@ class CustomerRepresentativeFacade extends AbstractFacade implements CustomerRep
      *
      * @param \Generated\Shared\Transfer\CustomerRepresentativesFilterTransfer $customerRepresentativesFilterTransfer
      *
-     * @return array
+     * @return \Generated\Shared\Transfer\CustomerRepresentativesTransfer
      */
-    public function findCustomerRepresentatives(CustomerRepresentativesFilterTransfer $customerRepresentativesFilterTransfer): array
+    public function findCustomerRepresentatives(CustomerRepresentativesFilterTransfer $customerRepresentativesFilterTransfer): CustomerRepresentativesTransfer
     {
         return $this->getRepository()->findCustomerRepresentatives($customerRepresentativesFilterTransfer);
     }

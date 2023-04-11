@@ -7,6 +7,8 @@
 
 namespace SprykerDemo\Client\CustomerRepresentative;
 
+use Generated\Shared\Transfer\CustomerRepresentativesFilterTransfer;
+use Generated\Shared\Transfer\CustomerRepresentativesTransfer;
 use Spryker\Client\Kernel\AbstractClient;
 
 /**
@@ -14,4 +16,10 @@ use Spryker\Client\Kernel\AbstractClient;
  */
 class CustomerRepresentativeClient extends AbstractClient implements CustomerRepresentativeClientInterface
 {
+    public function findCustomerRepresentatives(CustomerRepresentativesFilterTransfer $customerRepresentativesFilterTransfer): CustomerRepresentativesTransfer
+    {
+        return $this->getFactory()
+            ->createCustomerRepresentativeStub()
+            ->findCustomerRepresentatives($customerRepresentativesFilterTransfer);
+    }
 }

@@ -4,6 +4,7 @@
     <transfer name="CustomerRepresentatives">
         <property name="companyId" type="int" singular="companyId"/>
         <property name="userIds" type="int[]" singular="userId"/>
+        <property name="users" type="User[]" singular="user"/>
     </transfer>
 
     <transfer name="CustomerRepresentativesFilterTransfer">

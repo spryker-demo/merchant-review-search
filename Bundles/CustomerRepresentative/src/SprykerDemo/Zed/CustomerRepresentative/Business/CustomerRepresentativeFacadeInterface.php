@@ -8,6 +8,7 @@
 namespace SprykerDemo\Zed\CustomerRepresentative\Business;
 
 use Generated\Shared\Transfer\CustomerRepresentativesFilterTransfer;
+use Generated\Shared\Transfer\CustomerRepresentativesTransfer;
 
 interface CustomerRepresentativeFacadeInterface
 {
@@ -29,7 +30,7 @@ interface CustomerRepresentativeFacadeInterface
      *
      * @param \Generated\Shared\Transfer\CustomerRepresentativesFilterTransfer $customerRepresentativesFilterTransfer
      *
-     * @return array
+     * @return \Generated\Shared\Transfer\CustomerRepresentativesTransfer
      */
-    public function findCustomerRepresentatives(CustomerRepresentativesFilterTransfer $customerRepresentativesFilterTransfer): array;
+    public function findCustomerRepresentatives(CustomerRepresentativesFilterTransfer $customerRepresentativesFilterTransfer): CustomerRepresentativesTransfer;
 }

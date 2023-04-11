@@ -57,7 +57,9 @@ class CompanyTableCustomerRepresentativesDataExpanderPlugin extends AbstractPlug
         $customerRepresentatives = $this->getFactory()
             ->getCustomerRepresentativeFacade()
             ->findCustomerRepresentatives((new CustomerRepresentativesFilterTransfer())->setCompanyId($companyId));
+
         $usersList = [];
+
         foreach ($customerRepresentatives as $customerRepresentative) {
             $user = $customerRepresentative->getUser();
             $usersList[] = $user->getFirstName() . ' ' . $user->getLastName();
