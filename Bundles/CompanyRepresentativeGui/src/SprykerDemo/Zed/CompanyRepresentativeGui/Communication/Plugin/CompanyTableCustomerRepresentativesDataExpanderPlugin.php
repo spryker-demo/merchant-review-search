@@ -60,8 +60,7 @@ class CompanyTableCustomerRepresentativesDataExpanderPlugin extends AbstractPlug
 
         $usersList = [];
 
-        foreach ($customerRepresentatives as $customerRepresentative) {
-            $user = $customerRepresentative->getUser();
+        foreach ($customerRepresentatives->getUsers() as $user) {
             $usersList[] = $user->getFirstName() . ' ' . $user->getLastName();
         }
 

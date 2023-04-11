@@ -10,6 +10,7 @@ namespace SprykerDemo\Zed\CustomerRepresentative\Persistence;
 use Generated\Shared\Transfer\CustomerRepresentativesFilterTransfer;
 use Generated\Shared\Transfer\CustomerRepresentativesTransfer;
 use Generated\Shared\Transfer\UserTransfer;
+use Propel\Runtime\Collection\ObjectCollection;
 use Spryker\Zed\Kernel\Persistence\AbstractRepository;
 
 /**
@@ -43,6 +44,20 @@ class CustomerRepresentativeRepository extends AbstractRepository implements Cus
             ->endUse()
             ->filterByFkCompany($customerRepresentativesFilterTransfer->getCompanyId())
             ->find();
+
+        return $this->mapCustomerRepresentativesCollectionToTransfer($customerRepresentativesCollection, $customerRepresentativesFilterTransfer->getCompanyId());
+
+
+    }
+
+    /**
+     * @param \Propel\Runtime\Collection\ObjectCollection $customerRepresentativesCollection
+     * @param int $companyId
+     *
+     * @return \Generated\Shared\Transfer\CustomerRepresentativesTransfer
+     */
+    protected function mapCustomerRepresentativesCollectionToTransfer(ObjectCollection $customerRepresentativesCollection,int $companyId): CustomerRepresentativesTransfer
+    {
         $customerRepresentativesTransfer = new CustomerRepresentativesTransfer();
 
         foreach ($customerRepresentativesCollection as $customerRepresentative)
@@ -52,7 +67,7 @@ class CustomerRepresentativeRepository extends AbstractRepository implements Cus
             $customerRepresentativesTransfer->addUser($userTransfer);
         }
 
-        $customerRepresentativesTransfer->setCompanyId($customerRepresentativesFilterTransfer->getCompanyId());
+        $customerRepresentativesTransfer->setCompanyId($companyId);
         return $customerRepresentativesTransfer;
     }
 }
