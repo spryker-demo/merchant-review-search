@@ -25,7 +25,7 @@ class CustomerRepresentativeRepository extends AbstractRepository implements Cus
     {
         $entities = $this->getFactory()
             ->getUserQueryContainer()
-            ->queryUsers()
+            ->queryUser()
             ->find();
 
         return $entities->getArrayCopy();
