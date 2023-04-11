@@ -68,8 +68,8 @@ class CompanyCustomerRepresentativesTypeChoiceFormDataProvider
 
         $customerRepresentativeFilterTransfer = new CustomerRepresentativesFilterTransfer();
 
-        $userIds = $this->customerRepresentativeFacade->findCustomerRepresentatives($customerRepresentativeFilterTransfer->setCompanyId($idCompany));
-        $customerRepresentativeTransfer->setUserIds($userIds);
+        $customerRepresentativesTransfer = $this->customerRepresentativeFacade->findCustomerRepresentatives($customerRepresentativeFilterTransfer->setCompanyId($idCompany));
+        $customerRepresentativeTransfer->setUserIds($customerRepresentativesTransfer->getUserIds());
 
         return $customerRepresentativeTransfer;
     }
