@@ -8,7 +8,6 @@
         "spryker/zed-request": "*",
         "spryker/merchant": "*",
         "spryker/merchant-user": "*",
-        "spryker/state-machine": "*",
         "spryker/mail": "*",
         "spryker/util-text": "*",
         "spryker/user": "*",

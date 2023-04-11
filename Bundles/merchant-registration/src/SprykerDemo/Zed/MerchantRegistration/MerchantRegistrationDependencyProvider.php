@@ -43,11 +43,6 @@ class MerchantRegistrationDependencyProvider extends AbstractBundleDependencyPro
     /**
      * @var string
      */
-    public const FACADE_STATE_MACHINE = 'FACADE_STATE_MACHINE';
-
-    /**
-     * @var string
-     */
     public const FACADE_MAIL = 'FACADE_MAIL';
 
     /**
@@ -67,7 +62,6 @@ class MerchantRegistrationDependencyProvider extends AbstractBundleDependencyPro
         $container = $this->addLocaleFacade($container);
         $container = $this->addUserFacade($container);
         $container = $this->addMerchantUserFacade($container);
-        $container = $this->addStateMachineFacade($container);
         $container = $this->addMailFacade($container);
         $container = $this->addUtilTextService($container);
         $container = $this->addMerchantFacade($container);
@@ -126,20 +120,6 @@ class MerchantRegistrationDependencyProvider extends AbstractBundleDependencyPro
     {
         $container->set(static::FACADE_MERCHANT_USER, function (Container $container) {
             return $container->getLocator()->merchantUser()->facade();
-        });
-
-        return $container;
-    }
-
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
-    protected function addStateMachineFacade(Container $container): Container
-    {
-        $container->set(static::FACADE_STATE_MACHINE, function (Container $container) {
-            return $container->getLocator()->stateMachine()->facade();
         });
 
         return $container;

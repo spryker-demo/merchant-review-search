@@ -19,7 +19,6 @@ use Spryker\Zed\Locale\Business\LocaleFacadeInterface;
 use Spryker\Zed\Mail\Business\MailFacadeInterface;
 use Spryker\Zed\Merchant\Business\MerchantFacadeInterface;
 use Spryker\Zed\MerchantUser\Business\MerchantUserFacadeInterface;
-use Spryker\Zed\StateMachine\Business\StateMachineFacadeInterface;
 use Spryker\Zed\Store\Business\StoreFacadeInterface;
 use Spryker\Zed\User\Business\UserFacadeInterface;
 use SprykerDemo\Zed\MerchantRegistration\Communication\Plugin\Mail\MerchantRegistrationMailTypePlugin;
@@ -54,11 +53,6 @@ class MerchantRegister
     protected UserFacadeInterface $userFacade;
 
     /**
-     * @var \Spryker\Zed\StateMachine\Business\StateMachineFacadeInterface
-     */
-    protected StateMachineFacadeInterface $stateMachineFacade;
-
-    /**
      * @var \Spryker\Zed\Mail\Business\MailFacadeInterface
      */
     protected MailFacadeInterface $mailFacade;
@@ -78,7 +72,6 @@ class MerchantRegister
      * @param \Spryker\Zed\MerchantUser\Business\MerchantUserFacadeInterface $merchantUserFacade
      * @param \Spryker\Zed\Store\Business\StoreFacadeInterface $storeFacade
      * @param \Spryker\Zed\User\Business\UserFacadeInterface $userFacade
-     * @param \Spryker\Zed\StateMachine\Business\StateMachineFacadeInterface $stateMachineFacade
      * @param \Spryker\Zed\Mail\Business\MailFacadeInterface $mailFacade
      * @param \Spryker\Service\UtilText\UtilTextServiceInterface $utilTextService
      * @param \Spryker\Zed\Merchant\Business\MerchantFacadeInterface $merchantFacade
@@ -88,7 +81,6 @@ class MerchantRegister
         MerchantUserFacadeInterface $merchantUserFacade,
         StoreFacadeInterface $storeFacade,
         UserFacadeInterface $userFacade,
-        StateMachineFacadeInterface $stateMachineFacade,
         MailFacadeInterface $mailFacade,
         UtilTextServiceInterface $utilTextService,
         MerchantFacadeInterface $merchantFacade
@@ -97,7 +89,6 @@ class MerchantRegister
         $this->merchantUserFacade = $merchantUserFacade;
         $this->storeFacade = $storeFacade;
         $this->userFacade = $userFacade;
-        $this->stateMachineFacade = $stateMachineFacade;
         $this->mailFacade = $mailFacade;
         $this->utilTextService = $utilTextService;
         $this->merchantFacade = $merchantFacade;
