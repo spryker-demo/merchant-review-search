@@ -201,3 +201,67 @@ console data:import:glossary
     ]
 } %}
 ```
+
+
+### Install sample data (optional)
+
+```
+composer require spryker-demo/subscription-product-data-import
+```
+
+Sample data for the following entities is provided by the previous composer package:
+
+#### product-attribute-key
+
+* File: `vendor/spryker-demo/subscription-product-data-import/data/import/product_attribute_key.csv`
+* Command: `console data:import:product-attribute-key`
+
+#### product-management-attribute
+
+* File: `vendor/spryker-demo/subscription-product-data-import/data/import/product_management_attribute.csv`
+* Command: `console data:import:product-management-attribute`
+
+#### product-abstract
+
+* File: `vendor/spryker-demo/subscription-product-data-import/data/import/product_abstract.csv`
+* Command: `console data:import:product-abstract`
+
+#### product-concrete
+
+* File: `vendor/spryker-demo/subscription-product-data-import/data/import/product_concrete.csv`
+* Command: `console data:import:product-concrete`
+
+#### product-image
+
+* File: `vendor/spryker-demo/subscription-product-data-import/data/import/product_image.csv`
+* Command: `console data:import:product-image`
+
+#### product-price
+
+* File: `vendor/spryker-demo/subscription-product-data-import/data/import/DE/product_price.csv`
+* Command: `console data:import:product-price`
+
+#### product-abstract-store
+
+* File: `vendor/spryker-demo/subscription-product-data-import/data/import/DE/product_abstract_store.csv`
+* Command: `console data:import:product-abstract-store`
+
+#### product-stock
+
+* File: `vendor/spryker-demo/subscription-product-data-import/data/import/product_stock.csv`
+* Command: `console data:import:product-stock`
+
+#### merchant-product
+
+* File: `vendor/spryker-demo/subscription-product-data-import/data/import/merchant_product.csv`
+* Command: `console data:import:merchant-product`
+
+#### product-approval-status
+
+* File: `vendor/spryker-demo/subscription-product-data-import/data/import/product_abstract_approval_status.csv`
+* Command: `console data:import:product-approval-status`
+
+#### product-price-merchant-relationship (only if installed in a marketplace scenario)
+
+* File: `vendor/spryker-demo/subscription-product-data-import/data/import/DE/price_product_merchant_relationship.csv`
+* Command: `console data:import:product-price-merchant-relationship`
