@@ -7,6 +7,7 @@
 
 namespace SprykerDemo\Zed\CustomerRepresentative\Persistence;
 
+use Orm\Zed\CustomerRepresentative\Persistence\Map\SpyCustomerRepresentativeTableMap;
 use Orm\Zed\CustomerRepresentative\Persistence\SpyCustomerRepresentative;
 use Propel\Runtime\Collection\Collection;
 use Spryker\Zed\Kernel\Persistence\AbstractEntityManager;
@@ -65,7 +66,7 @@ class CustomerRepresentativeEntityManager extends AbstractEntityManager implemen
      */
     public function updateCompanyCustomerRepresentative(int $companyId, array $userIds): void
     {
-        $oldRelationsUserIds = $this->findByCompanyId($companyId)->getColumnValues('FkUser');
+        $oldRelationsUserIds = $this->getCompanyRepresentatives($companyId);
 
         $relationsToDeleteUserIds = array_diff($oldRelationsUserIds, $userIds);
         $relationsToSaveUserIds = array_diff($userIds, $oldRelationsUserIds);
@@ -77,12 +78,14 @@ class CustomerRepresentativeEntityManager extends AbstractEntityManager implemen
     /**
      * @param int $companyId
      *
-     * @return \Propel\Runtime\Collection\Collection<\Orm\Zed\CustomerRepresentative\Persistence\SpyCustomerRepresentative>
+     * @return array
      */
-    public function findByCompanyId(int $companyId): Collection|array
+    public function getCompanyRepresentatives(int $companyId): array
     {
         return $this->getFactory()
             ->createCompanyCustomerRepresentativeQuery()
-            ->findByFkCompany($companyId);
+            ->select(SpyCustomerRepresentativeTableMap::COL_FK_USER)
+            ->findByFkCompany($companyId)
+            ->getArrayCopy();
     }
 }
