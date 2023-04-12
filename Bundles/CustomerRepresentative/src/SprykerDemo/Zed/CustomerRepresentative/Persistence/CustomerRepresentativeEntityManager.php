@@ -9,7 +9,6 @@ namespace SprykerDemo\Zed\CustomerRepresentative\Persistence;
 
 use Orm\Zed\CustomerRepresentative\Persistence\Map\SpyCustomerRepresentativeTableMap;
 use Orm\Zed\CustomerRepresentative\Persistence\SpyCustomerRepresentative;
-use Propel\Runtime\Collection\Collection;
 use Spryker\Zed\Kernel\Persistence\AbstractEntityManager;
 
 /**
