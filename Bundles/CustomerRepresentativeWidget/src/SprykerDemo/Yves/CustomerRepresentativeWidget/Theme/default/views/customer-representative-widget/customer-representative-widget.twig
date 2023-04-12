@@ -1,33 +1,35 @@
 {% extends template('widget') %}
-{% define config = {
-    name: 'tile',
-} %}
+
 {% define data = {
     customerRepresentatives: _widget.representatives,
 } %}
 
 {% block template %}
-    {% include atom('icon') with {
+    {% embed molecule('customer-representative-widget-tile', '@SprykerDemo:CustomerRepresentativeWidget') with {
         data: {
-            name: 'customer-representative'
+            icon: 'customer-representative',
+            title: 'customer.representative.services.title' | trans,
         },
-        class: config.name ~ '__icon'
+        embed: {
+            customerRepresentativesUsers: data.customerRepresentatives.users,
+        },
     } only %}
-
-    {% if data.customerRepresentatives.users is not empty %}
-<div class="{{ config.name }}">
-        <ul class="list list--bullet {{ config.name }}__main">
-            {% for customerRepresentative in data.customerRepresentatives.users %}
-
-                <li class="">
-                    {{ customerRepresentative.firstName }} {{ customerRepresentative.lastName }}
-                </li>
-                <li><a class="link link--alt" href="mailto:{{ customerRepresentative.username }}">{{ customerRepresentative.username }}</a></li>
-            {% endfor %}
-        </ul>
-</div>
-    {% else %}
-        {{ 'company.account.customer.service.empty' | trans }}
-    {% endif %}
+        {% block text %}
+            <div class="{{ config.name }}__text">
+                {% if embed.customerRepresentativesUsers is not empty %}
+                    <ul class="list list--bullet">
+                        {% for customerRepresentativeUser in embed.customerRepresentativesUsers %}
+                            <li class="{{ config.name }}__list-item">
+                                <div>{{ customerRepresentativeUser.firstName }} {{ customerRepresentativeUser.lastName }}</div>
+                                <div><a class="link link--alt" href="mailto:{{ customerRepresentativeUser.username }}">{{ customerRepresentativeUser.username }}</a></div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    {{ 'company.account.customer.service.empty' | trans }}
+                {% endif %}
+            </div>
+        {% endblock %}
+    {% endembed %}
 {% endblock %}
 
