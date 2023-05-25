@@ -18,7 +18,6 @@ class MerchantReviewStorageEntityManager extends AbstractEntityManager implement
     /**
      * @param \Generated\Shared\Transfer\MerchantReviewStorageTransfer $merchantReviewStorageTransfer
      *
-     * @throws \Propel\Runtime\Exception\PropelException
      * @return \Generated\Shared\Transfer\MerchantReviewStorageTransfer
      */
     public function saveMerchantReviewStorage(MerchantReviewStorageTransfer $merchantReviewStorageTransfer): MerchantReviewStorageTransfer

@@ -1,15 +1,15 @@
 <?php
 
 /**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
+ * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
 namespace SprykerDemo\Client\MerchantReview\Calculator;
 
 use Generated\Shared\Transfer\MerchantReviewSummaryTransfer;
 use Generated\Shared\Transfer\RatingAggregationTransfer;
-use SprykerDemo\Shared\MerchantReview\MerchantReviewConfig;
+use SprykerDemo\Client\MerchantReview\MerchantReviewConfig;
 
 class MerchantReviewSummaryCalculator implements MerchantReviewSummaryCalculatorInterface
 {
@@ -24,12 +24,12 @@ class MerchantReviewSummaryCalculator implements MerchantReviewSummaryCalculator
     public const RATING_PRECISION = 1;
 
     /**
-     * @var \SprykerDemo\Shared\MerchantReview\MerchantReviewConfig
+     * @var \SprykerDemo\Client\MerchantReview\MerchantReviewConfig
      */
     protected MerchantReviewConfig $merchantReviewConfig;
 
     /**
-     * @param \SprykerDemo\Shared\MerchantReview\MerchantReviewConfig $merchantReviewConfig
+     * @param \SprykerDemo\Client\MerchantReview\MerchantReviewConfig $merchantReviewConfig
      */
     public function __construct(MerchantReviewConfig $merchantReviewConfig)
     {

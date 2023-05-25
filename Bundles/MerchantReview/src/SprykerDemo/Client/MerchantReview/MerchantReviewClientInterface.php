@@ -1,15 +1,14 @@
 <?php
 
 /**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
+ * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
 namespace SprykerDemo\Client\MerchantReview;
 
 use Generated\Shared\Transfer\MerchantReviewRequestTransfer;
 use Generated\Shared\Transfer\MerchantReviewResponseTransfer;
-use Generated\Shared\Transfer\MerchantReviewSearchRequestTransfer;
 use Generated\Shared\Transfer\MerchantReviewSummaryTransfer;
 use Generated\Shared\Transfer\RatingAggregationTransfer;
 
@@ -43,4 +42,14 @@ interface MerchantReviewClientInterface
      * @return \Generated\Shared\Transfer\MerchantReviewSummaryTransfer
      */
     public function calculateMerchantReviewSummary(RatingAggregationTransfer $ratingAggregationTransfer): MerchantReviewSummaryTransfer;
+
+    /**
+     * Specification:
+     * - Returns the maximum rating value for merchant review.
+     *
+     * @api
+     *
+     * @return int
+     */
+    public function getMaximumRating(): int;
 }

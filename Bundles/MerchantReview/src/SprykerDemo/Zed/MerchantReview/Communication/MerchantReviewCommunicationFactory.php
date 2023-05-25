@@ -1,17 +1,17 @@
 <?php
 
 /**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
+ * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
 namespace SprykerDemo\Zed\MerchantReview\Communication;
 
+use Spryker\Zed\Kernel\Communication\AbstractCommunicationFactory;
+use Spryker\Zed\Locale\Business\LocaleFacadeInterface;
 use SprykerDemo\Zed\MerchantReview\Communication\Controller\Mapper\CustomerReviewSubmitMapper;
 use SprykerDemo\Zed\MerchantReview\Communication\Controller\Mapper\CustomerReviewSubmitMapperInterface;
 use SprykerDemo\Zed\MerchantReview\MerchantReviewDependencyProvider;
-use Spryker\Zed\Kernel\Communication\AbstractCommunicationFactory;
-use Spryker\Zed\Locale\Business\LocaleFacadeInterface;
 
 /**
  * @method \SprykerDemo\Zed\MerchantReview\MerchantReviewConfig getConfig()

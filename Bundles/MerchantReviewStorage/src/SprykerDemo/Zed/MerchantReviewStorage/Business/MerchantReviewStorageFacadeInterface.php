@@ -7,8 +7,6 @@
 
 namespace SprykerDemo\Zed\MerchantReviewStorage\Business;
 
-use Generated\Shared\Transfer\MerchantReviewStorageTransfer;
-
 interface MerchantReviewStorageFacadeInterface
 {
     /**

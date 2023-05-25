@@ -25,7 +25,7 @@ class MerchantReviewStorageBusinessFactory extends AbstractBusinessFactory
         return new MerchantReviewStorageWriter(
             $this->getEventBehaviorFacade(),
             $this->getMerchantReviewRepository(),
-            $this->getMerchantReviewStorageFacade()
+            $this->getMerchantReviewStorageFacade(),
         );
     }
 

@@ -17,7 +17,6 @@ use Spryker\Zed\Kernel\Persistence\AbstractRepository;
  */
 class MerchantReviewStorageRepository extends AbstractRepository implements MerchantReviewStorageRepositoryInterface
 {
-
     public const FIELD_FK_MERCHANT = MerchantReviewStorageTransfer::ID_MERCHANT;
 
     public const FIELD_AVERAGE_RATING = MerchantReviewStorageTransfer::AVERAGE_RATING;
@@ -73,6 +72,9 @@ class MerchantReviewStorageRepository extends AbstractRepository implements Merc
             ->toArray();
     }
 
+    /**
+     * @return null|void
+     */
     public function getMerchantReviewsByIds(array $merchantReviewsIds): ?array
     {
         // TODO: Implement getMerchantReviewsByIds() method.

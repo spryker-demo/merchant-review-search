@@ -9,7 +9,6 @@ namespace SprykerDemo\Zed\MerchantReviewStorage\Communication;
 
 use Spryker\Zed\EventBehavior\Business\EventBehaviorFacade;
 use Spryker\Zed\Kernel\Communication\AbstractCommunicationFactory;
-use SprykerDemo\Zed\MerchantReview\Persistence\MerchantReviewQueryContainerInterface;
 use SprykerDemo\Zed\MerchantReviewStorage\MerchantReviewStorageDependencyProvider;
 
 /**

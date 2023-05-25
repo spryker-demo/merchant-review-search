@@ -7,7 +7,6 @@
 
 namespace SprykerDemo\Zed\MerchantReviewStorage\Business;
 
-use Generated\Shared\Transfer\MerchantReviewStorageTransfer;
 use Spryker\Zed\Kernel\Business\AbstractFacade;
 
 /**
