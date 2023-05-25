@@ -14,6 +14,11 @@
     "require-dev": {
         "spryker/code-sniffer": "dev-master"
     },
+    "replace": {
+        "spryker-demo/subscription-product-page": "*",
+        "spryker-demo/subscription-product-oms": "*",
+        "spryker-demo/subscription-product-feature": "*"
+    },
     "minimum-stability": "dev",
     "prefer-stable": true,
     "config": {
