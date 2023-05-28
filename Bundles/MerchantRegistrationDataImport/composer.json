@@ -1,7 +1,7 @@
 {
     "name": "spryker-demo/merchant-registration-data-import",
     "type": "library",
-    "description": "merchant-registration-data-import module",
+    "description": "Merchant registration data import module",
     "license": "proprietary",
     "require": {
         "php": ">=8.0",

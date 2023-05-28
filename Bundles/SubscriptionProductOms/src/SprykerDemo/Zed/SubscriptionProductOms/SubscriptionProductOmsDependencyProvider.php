@@ -27,7 +27,7 @@ class SubscriptionProductOmsDependencyProvider extends AbstractBundleDependencyP
      *
      * @return \Spryker\Zed\Kernel\Container
      */
-    public function provideBusinessLayerDependencies(Container $container)
+    public function provideBusinessLayerDependencies(Container $container): Container
     {
         $container = parent::provideBusinessLayerDependencies($container);
         $container = $this->addOmsFacade($container);
@@ -40,7 +40,7 @@ class SubscriptionProductOmsDependencyProvider extends AbstractBundleDependencyP
      *
      * @return \Spryker\Zed\Kernel\Container
      */
-    public function provideCommunicationLayerDependencies(Container $container)
+    public function provideCommunicationLayerDependencies(Container $container): Container
     {
         $container = parent::provideCommunicationLayerDependencies($container);
         $container = $this->addProductFacade($container);
@@ -67,7 +67,7 @@ class SubscriptionProductOmsDependencyProvider extends AbstractBundleDependencyP
      *
      * @return \Spryker\Zed\Kernel\Container
      */
-    protected function addProductFacade(Container $container)
+    protected function addProductFacade(Container $container): Container
     {
         $container->set(static::FACADE_PRODUCT, function (Container $container) {
             return $container->getLocator()->product()->facade();

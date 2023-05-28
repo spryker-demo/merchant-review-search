@@ -22,7 +22,7 @@ class SubscriptionProductOmsDependencyProvider extends AbstractDependencyProvide
      *
      * @return \Spryker\Client\Kernel\Container
      */
-    public function provideServiceLayerDependencies(Container $container)
+    public function provideServiceLayerDependencies(Container $container): Container
     {
         return $this->addZedService($container);
     }
