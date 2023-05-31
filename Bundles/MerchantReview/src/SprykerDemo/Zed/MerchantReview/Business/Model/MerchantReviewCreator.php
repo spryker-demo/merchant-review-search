@@ -12,17 +12,20 @@ use Orm\Zed\MerchantReview\Persistence\Map\SpyMerchantReviewTableMap;
 use Orm\Zed\MerchantReview\Persistence\SpyMerchantReview;
 use Spryker\Zed\Kernel\Persistence\EntityManager\TransactionTrait;
 use SprykerDemo\Shared\MerchantReview\Exception\RatingOutOfRangeException;
-use SprykerDemo\Shared\MerchantReview\MerchantReviewConfig;
+use SprykerDemo\Zed\MerchantReview\MerchantReviewConfig;
 
 class MerchantReviewCreator implements MerchantReviewCreatorInterface
 {
     use TransactionTrait;
 
     /**
-     * @var \SprykerDemo\Shared\MerchantReview\MerchantReviewConfig
+     * @var \SprykerDemo\Zed\MerchantReview\MerchantReviewConfig
      */
     protected MerchantReviewConfig $merchantReviewConfig;
 
+    /**
+     * @param \SprykerDemo\Zed\MerchantReview\MerchantReviewConfig $merchantReviewConfig
+     */
     public function __construct(MerchantReviewConfig $merchantReviewConfig)
     {
         $this->merchantReviewConfig = $merchantReviewConfig;

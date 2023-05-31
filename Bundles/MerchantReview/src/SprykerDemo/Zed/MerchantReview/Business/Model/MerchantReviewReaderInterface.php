@@ -19,5 +19,8 @@ interface MerchantReviewReaderInterface
      */
     public function findMerchantReview(MerchantReviewTransfer $merchantReviewTransfer): ?MerchantReviewTransfer;
 
+    /**
+     * @return \Generated\Shared\Transfer\MerchantReviewCollectionTransfer
+     */
     public function getMerchantReviews(): MerchantReviewCollectionTransfer;
 }

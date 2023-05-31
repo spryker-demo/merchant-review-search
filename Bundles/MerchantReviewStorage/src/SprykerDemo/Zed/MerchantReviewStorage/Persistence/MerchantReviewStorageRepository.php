@@ -53,7 +53,7 @@ class MerchantReviewStorageRepository extends AbstractRepository implements Merc
     {
         $spyMerchantReviewQuery = $this->getFactory()
             ->getMerchantReviewFacade()
-            ->queryMerchantReview()
+            ->getMerchantReviews()
             ->filterByFkMerchant_In($merchantIds)
             ->filterByStatus(SpyMerchantReviewTableMap::COL_STATUS_APPROVED)
             ->withColumn(SpyMerchantReviewTableMap::COL_FK_MERCHANT, static::FIELD_FK_MERCHANT)
@@ -68,7 +68,7 @@ class MerchantReviewStorageRepository extends AbstractRepository implements Merc
             )
             ->groupBy(SpyMerchantReviewTableMap::COL_FK_MERCHANT);
 
-        return $spyMerchantReviewQuery?->find()
+        return $spyMerchantReviewQuery->find()
             ->toArray();
     }
 

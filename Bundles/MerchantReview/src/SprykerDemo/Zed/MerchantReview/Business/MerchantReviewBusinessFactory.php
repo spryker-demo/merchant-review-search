@@ -15,6 +15,7 @@ use SprykerDemo\Zed\MerchantReview\Business\Model\MerchantReviewDeleter;
 use SprykerDemo\Zed\MerchantReview\Business\Model\MerchantReviewDeleterInterface;
 use SprykerDemo\Zed\MerchantReview\Business\Model\MerchantReviewEntityReader;
 use SprykerDemo\Zed\MerchantReview\Business\Model\MerchantReviewEntityReaderInterface;
+use SprykerDemo\Zed\MerchantReview\Business\Model\MerchantReviewMapper;
 use SprykerDemo\Zed\MerchantReview\Business\Model\MerchantReviewReader;
 use SprykerDemo\Zed\MerchantReview\Business\Model\MerchantReviewReaderInterface;
 use SprykerDemo\Zed\MerchantReview\Business\Model\MerchantReviewStatusUpdater;
@@ -22,9 +23,8 @@ use SprykerDemo\Zed\MerchantReview\Business\Model\MerchantReviewStatusUpdaterInt
 use SprykerDemo\Zed\MerchantReview\MerchantReviewDependencyProvider;
 
 /**
- * @method \SprykerDemo\Shared\MerchantReview\MerchantReviewConfig getConfig()
+ * @method \SprykerDemo\Zed\MerchantReview\MerchantReviewConfig getConfig()
  * @method \SprykerDemo\Zed\MerchantReview\Persistence\MerchantReviewRepositoryInterface getRepository()
- * @method \SprykerDemo\Zed\MerchantReview\Persistence\MerchantReviewQueryContainerInterface getQueryContainer()
  */
 class MerchantReviewBusinessFactory extends AbstractBusinessFactory
 {
@@ -57,7 +57,7 @@ class MerchantReviewBusinessFactory extends AbstractBusinessFactory
      */
     protected function createMerchantReviewEntityReader(): MerchantReviewEntityReaderInterface
     {
-        return new MerchantReviewEntityReader($this->getQueryContainer());
+        return new MerchantReviewEntityReader($this->getRepository(), $this->createMerchantReviewMapper());
     }
 
     /**
@@ -74,5 +74,13 @@ class MerchantReviewBusinessFactory extends AbstractBusinessFactory
     protected function getMerchantFacade(): MerchantFacadeInterface
     {
         return $this->getProvidedDependency(MerchantReviewDependencyProvider::FACADE_MERCHANT);
+    }
+
+    /**
+     * @return \SprykerDemo\Zed\MerchantReview\Business\Model\MerchantReviewMapper
+     */
+    protected function createMerchantReviewMapper(): MerchantReviewMapper
+    {
+        return new MerchantReviewMapper();
     }
 }

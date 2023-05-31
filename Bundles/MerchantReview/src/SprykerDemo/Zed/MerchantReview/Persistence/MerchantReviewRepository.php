@@ -27,16 +27,16 @@ class MerchantReviewRepository extends AbstractRepository implements MerchantRev
             ->createMerchantReviewQuery()
             ->filterByIdMerchantReview($idMerchantReview);
 
-        $merchantReviewEntity = $this->buildQueryFromCriteria($merchantReviewQuery)
+        $merchantReviewEntityTransfer = $this->buildQueryFromCriteria($merchantReviewQuery)
             ->findOne();
 
-        if (!$merchantReviewEntity) {
+        if (!$merchantReviewEntityTransfer) {
             return null;
         }
 
         return $this->getFactory()
             ->createMerchantReviewMapper()
-            ->mapMerchantReviewEntityToMerchantReviewTransfer($merchantReviewEntity);
+            ->mapMerchantReviewEntityTransferToMerchantReviewTransfer($merchantReviewEntityTransfer);
     }
 
     /**

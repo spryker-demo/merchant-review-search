@@ -49,6 +49,9 @@ class MerchantReviewReader implements MerchantReviewReaderInterface
         $merchantReviewTransfer->requireIdMerchantReview();
     }
 
+    /**
+     * @return \Generated\Shared\Transfer\MerchantReviewCollectionTransfer
+     */
     public function getMerchantReviews(): MerchantReviewCollectionTransfer
     {
         return $this->merchantReviewRepository->getMerchantReviews();

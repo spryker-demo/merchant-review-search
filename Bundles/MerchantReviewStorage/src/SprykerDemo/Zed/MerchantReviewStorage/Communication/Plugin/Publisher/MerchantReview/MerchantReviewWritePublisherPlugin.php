@@ -28,7 +28,7 @@ class MerchantReviewWritePublisherPlugin extends AbstractPlugin implements Publi
      *
      * @return void
      */
-    public function handleBulk(array $eventEntityTransfers, $eventName)
+    public function handleBulk(array $eventEntityTransfers, $eventName): void
     {
         $this->getFacade()->writeCollectionByMerchantReviewEvents($eventEntityTransfers);
     }

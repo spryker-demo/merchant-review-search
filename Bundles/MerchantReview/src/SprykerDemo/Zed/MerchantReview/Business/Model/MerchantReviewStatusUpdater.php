@@ -84,6 +84,7 @@ class MerchantReviewStatusUpdater implements MerchantReviewStatusUpdaterInterfac
         $status = $merchantReviewTransfer->getStatus();
 
         $merchantReviewEntity->setStatus($status);
+        $merchantReviewEntity->setNew(false);
 
         return $merchantReviewEntity;
     }

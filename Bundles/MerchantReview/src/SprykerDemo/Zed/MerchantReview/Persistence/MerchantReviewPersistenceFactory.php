@@ -12,7 +12,6 @@ use Spryker\Zed\Kernel\Persistence\AbstractPersistenceFactory;
 use SprykerDemo\Zed\MerchantReview\Persistence\Propel\Mapper\MerchantReviewMapper;
 
 /**
- * @method \SprykerDemo\Zed\MerchantReview\Persistence\MerchantReviewQueryContainerInterface getQueryContainer()
  * @method \SprykerDemo\Zed\MerchantReview\MerchantReviewConfig getConfig()
  */
 class MerchantReviewPersistenceFactory extends AbstractPersistenceFactory

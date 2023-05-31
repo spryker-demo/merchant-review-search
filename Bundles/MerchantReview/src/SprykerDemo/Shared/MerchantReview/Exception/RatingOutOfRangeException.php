@@ -5,10 +5,10 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-namespace SprykerDemo\Zed\MerchantReview\Business\Exception;
+namespace SprykerDemo\Shared\MerchantReview\Exception;
 
 use Exception;
 
-class MissingMerchantReviewException extends Exception
+class RatingOutOfRangeException extends Exception
 {
 }

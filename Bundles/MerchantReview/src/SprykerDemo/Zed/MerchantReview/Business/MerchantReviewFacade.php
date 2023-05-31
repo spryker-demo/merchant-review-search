@@ -84,6 +84,13 @@ class MerchantReviewFacade extends AbstractFacade implements MerchantReviewFacad
             ->deleteMerchantReview($merchantReviewTransfer);
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @api
+     *
+     * @return \Generated\Shared\Transfer\MerchantReviewCollectionTransfer
+     */
     public function getMerchantReviews(): MerchantReviewCollectionTransfer
     {
         return $this->getFactory()->createMerchantReviewReader()->getMerchantReviews();

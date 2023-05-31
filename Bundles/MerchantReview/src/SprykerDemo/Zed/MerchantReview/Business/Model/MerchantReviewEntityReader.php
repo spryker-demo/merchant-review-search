@@ -9,28 +9,28 @@ namespace SprykerDemo\Zed\MerchantReview\Business\Model;
 
 use Generated\Shared\Transfer\MerchantReviewTransfer;
 use Orm\Zed\MerchantReview\Persistence\SpyMerchantReview;
-use SprykerDemo\Zed\MerchantReview\Business\Exception\MissingMerchantReviewException;
-use SprykerDemo\Zed\MerchantReview\Persistence\MerchantReviewQueryContainerInterface;
+use SprykerDemo\Zed\MerchantReview\Persistence\MerchantReviewRepositoryInterface;
 
 class MerchantReviewEntityReader implements MerchantReviewEntityReaderInterface
 {
-    /**
-     * @var \SprykerDemo\Zed\MerchantReview\Persistence\MerchantReviewQueryContainerInterface
-     */
-    protected MerchantReviewQueryContainerInterface $merchantReviewQueryContainer;
+    protected MerchantReviewRepositoryInterface $merchantReviewRepository;
+
+    protected MerchantReviewMapper $merchantReviewMapper;
 
     /**
-     * @param \SprykerDemo\Zed\MerchantReview\Persistence\MerchantReviewQueryContainerInterface $merchantReviewQueryContainer
+     * @param \SprykerDemo\Zed\MerchantReview\Persistence\MerchantReviewRepositoryInterface $merchantReviewRepository
+     * @param \SprykerDemo\Zed\MerchantReview\Business\Model\MerchantReviewMapper $merchantReviewMapper
      */
-    public function __construct(MerchantReviewQueryContainerInterface $merchantReviewQueryContainer)
-    {
-        $this->merchantReviewQueryContainer = $merchantReviewQueryContainer;
+    public function __construct(
+        MerchantReviewRepositoryInterface $merchantReviewRepository,
+        MerchantReviewMapper $merchantReviewMapper
+    ) {
+        $this->merchantReviewMapper = $merchantReviewMapper;
+        $this->merchantReviewRepository = $merchantReviewRepository;
     }
 
     /**
      * @param \Generated\Shared\Transfer\MerchantReviewTransfer $merchantReviewTransfer
-     *
-     * @throws \SprykerDemo\Zed\MerchantReview\Business\Exception\MissingMerchantReviewException
      *
      * @return \Orm\Zed\MerchantReview\Persistence\SpyMerchantReview
      */
@@ -38,20 +38,9 @@ class MerchantReviewEntityReader implements MerchantReviewEntityReaderInterface
     {
         $this->assertMerchantReviewForRead($merchantReviewTransfer);
 
-        $merchantReviewEntity = $this->merchantReviewQueryContainer
-            ->queryMerchantReviewById($merchantReviewTransfer->getIdMerchantReview())
-            ->findOne();
+        $merchantReviewTransfer = $this->merchantReviewRepository->findMerchantReviewById($merchantReviewTransfer->getIdMerchantReview());
 
-        if (!$merchantReviewEntity) {
-            throw new MissingMerchantReviewException(
-                sprintf(
-                    'Merchant review with id %d could not be found',
-                    $merchantReviewTransfer->getIdMerchantReview(),
-                ),
-            );
-        }
-
-        return $merchantReviewEntity;
+        return $this->merchantReviewMapper->mapMerchantReviewTransferToEntity($merchantReviewTransfer);
     }
 
     /**
