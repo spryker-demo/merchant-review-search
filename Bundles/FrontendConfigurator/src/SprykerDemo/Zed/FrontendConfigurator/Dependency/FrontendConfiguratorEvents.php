@@ -9,6 +9,8 @@ namespace SprykerDemo\Zed\FrontendConfigurator\Dependency;
 
 interface FrontendConfiguratorEvents
 {
+    public const FRONTEND_CONFIGURATOR_PUBLISH = 'FrontendConfigurator.publish';
+
     /**
      * Specification:
      * - Represents pyz_config_container entity creation.
@@ -38,4 +40,14 @@ interface FrontendConfiguratorEvents
      * @var string
      */
     public const ENTITY_PYZ_CONFIG_CONTAINER_DELETE = 'Entity.pyz_config_container.delete';
+
+    /**
+     * Specification:
+     * - Resource name, this will use for key generating.
+     *
+     * @api
+     *
+     * @var string
+     */
+    public const FRONTEND_CONFIGURATOR_RESOURCE_NAME = 'pyz_config_container';
 }
