@@ -69,8 +69,7 @@ class CustomerRepresentativeEntityManager extends AbstractEntityManager implemen
         $userIds = [];
         $companyId = $companyResponseTransfer->getCompanyTransfer()->getIdCompany();
 
-        if($companyResponseTransfer->getCompanyTransfer()->getCustomerRepresentatives())
-        {
+        if($companyResponseTransfer->getCompanyTransfer()->getCustomerRepresentatives()) {
             $userIds = $companyResponseTransfer->getCompanyTransfer()->getCustomerRepresentatives()->getUserIds();
         }
 
