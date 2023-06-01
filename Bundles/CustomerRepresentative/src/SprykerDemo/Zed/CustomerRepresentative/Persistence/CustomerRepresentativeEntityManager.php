@@ -7,6 +7,8 @@
 
 namespace SprykerDemo\Zed\CustomerRepresentative\Persistence;
 
+use Faker\Provider\Company;
+use Generated\Shared\Transfer\CompanyResponseTransfer;
 use Orm\Zed\CustomerRepresentative\Persistence\Map\SpyCustomerRepresentativeTableMap;
 use Orm\Zed\CustomerRepresentative\Persistence\SpyCustomerRepresentative;
 use Spryker\Zed\Kernel\Persistence\AbstractEntityManager;
@@ -58,13 +60,20 @@ class CustomerRepresentativeEntityManager extends AbstractEntityManager implemen
     /**
      * @inheritDoc
      *
-     * @param int $companyId
-     * @param array<int> $userIds
+     * @param \Generated\Shared\Transfer\CompanyResponseTransfer $companyResponseTransfer
      *
      * @return void
      */
-    public function updateCompanyCustomerRepresentative(int $companyId, array $userIds): void
+    public function updateCompanyCustomerRepresentative(CompanyResponseTransfer $companyResponseTransfer): void
     {
+        $userIds = [];
+        $companyId = $companyResponseTransfer->getCompanyTransfer()->getIdCompany();
+
+        if($companyResponseTransfer->getCompanyTransfer()->getCustomerRepresentatives())
+        {
+            $userIds = $companyResponseTransfer->getCompanyTransfer()->getCustomerRepresentatives()->getUserIds();
+        }
+
         $oldRelationsUserIds = $this->getCompanyRepresentatives($companyId);
 
         $relationsToDeleteUserIds = array_diff($oldRelationsUserIds, $userIds);

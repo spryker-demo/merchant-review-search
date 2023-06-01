@@ -29,10 +29,7 @@ class SaveCompanyRepresentativePlugin extends AbstractPlugin implements CompanyP
     {
         $this->getFactory()
             ->getCustomerRepresentativeEntityManager()
-            ->updateCompanyCustomerRepresentative(
-                $companyResponseTransfer->getCompanyTransfer()->getIdCompany(),
-                $companyResponseTransfer->getCompanyTransfer()->getCustomerRepresentatives()->getUserIds(),
-            );
+            ->updateCompanyCustomerRepresentative($companyResponseTransfer);
 
         return $companyResponseTransfer;
     }

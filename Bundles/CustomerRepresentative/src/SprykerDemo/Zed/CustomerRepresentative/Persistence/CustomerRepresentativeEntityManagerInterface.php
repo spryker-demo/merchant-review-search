@@ -7,6 +7,8 @@
 
 namespace SprykerDemo\Zed\CustomerRepresentative\Persistence;
 
+use Generated\Shared\Transfer\CompanyResponseTransfer;
+
 interface CustomerRepresentativeEntityManagerInterface
 {
     /**
@@ -35,10 +37,9 @@ interface CustomerRepresentativeEntityManagerInterface
      * Specification:
      * - Updates company customer representative.
      *
-     * @param int $companyId
-     * @param array<int> $userIds
+     * @param \Generated\Shared\Transfer\CompanyResponseTransfer $companyResponseTransfer
      *
      * @return void
      */
-    public function updateCompanyCustomerRepresentative(int $companyId, array $userIds): void;
+    public function updateCompanyCustomerRepresentative(CompanyResponseTransfer $companyResponseTransfer): void;
 }
