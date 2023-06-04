@@ -4,7 +4,7 @@
     "description": "CustomerRepresentativeWidget module",
     "license": "proprietary",
     "require": {
-        "php": ">=7.4",
+        "php": ">=8.0",
         "spryker-demo/customer-representative": "*",
         "spryker/customer": "^7.48.1",
         "spryker/kernel": "^3.70.0"
