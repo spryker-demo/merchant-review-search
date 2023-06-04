@@ -7,11 +7,11 @@
         "php": ">=7.4",
         "spryker/company": "^1.5.0",
         "spryker/company-extension": "^1.0.0",
-        "spryker/kernel": "^3.30.0",
-        "spryker/propel-orm": "^1.1.0",
+        "spryker/kernel": "^3.70.0",
+        "spryker/propel-orm": "^1.17.0",
         "spryker/testify": "^3.47.1",
-        "spryker/user": "^1.1.0",
-        "spryker/zed-request": "^1.0.0"
+        "spryker/user": "^3.14.1",
+        "spryker/zed-request": "^3.18.1"
     },
     "require-dev": {
         "spryker/code-sniffer": "^0.17.18"
