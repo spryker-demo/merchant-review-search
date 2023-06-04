@@ -1,7 +1,7 @@
 {
     "name": "spryker-demo/customer-representative-widget",
     "type": "library",
-    "description": "CustomerRepresentativeWidget module",
+    "description": "Customer Representative Widget module",
     "license": "proprietary",
     "require": {
         "php": ">=8.0",

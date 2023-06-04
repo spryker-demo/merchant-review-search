@@ -1,7 +1,7 @@
 {
     "name": "spryker-demo/customer-representative",
     "type": "library",
-    "description": "CustomerRepresentative module",
+    "description": "Customer Representative module",
     "license": "proprietary",
     "require": {
         "php": ">=8.0",
