@@ -7,7 +7,6 @@
 
 namespace SprykerDemo\Zed\CustomerRepresentative\Persistence;
 
-use Faker\Provider\Company;
 use Generated\Shared\Transfer\CompanyResponseTransfer;
 use Orm\Zed\CustomerRepresentative\Persistence\Map\SpyCustomerRepresentativeTableMap;
 use Orm\Zed\CustomerRepresentative\Persistence\SpyCustomerRepresentative;
@@ -69,7 +68,7 @@ class CustomerRepresentativeEntityManager extends AbstractEntityManager implemen
         $userIds = [];
         $companyId = $companyResponseTransfer->getCompanyTransfer()->getIdCompany();
 
-        if($companyResponseTransfer->getCompanyTransfer()->getCustomerRepresentatives()) {
+        if ($companyResponseTransfer->getCompanyTransfer()->getCustomerRepresentatives()) {
             $userIds = $companyResponseTransfer->getCompanyTransfer()->getCustomerRepresentatives()->getUserIds();
         }
 
