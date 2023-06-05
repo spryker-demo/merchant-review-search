@@ -42,9 +42,9 @@ class CustomerRepresentativeRepository extends AbstractRepository implements Cus
     {
         $customerRepresentativesCollection = $this->getFactory()
             ->createCompanyCustomerRepresentativeQuery()
+            ->filterByFkCompany($customerRepresentativesFilterTransfer->getCompanyId())
             ->useUserQuery()
             ->endUse()
-            ->filterByFkCompany($customerRepresentativesFilterTransfer->getCompanyId())
             ->find();
 
         return $this->mapCustomerRepresentativesCollectionToTransfer($customerRepresentativesCollection, $customerRepresentativesFilterTransfer->getCompanyId());
