@@ -11,7 +11,8 @@
     "replace": {
         "spryker-demo/subscription-product-page": "*",
         "spryker-demo/subscription-product-oms": "*",
-        "spryker-demo/subscription-product-feature": "*"
+        "spryker-demo/subscription-product-feature": "*",
+        "spryker-demo/customer-representative": "*"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
