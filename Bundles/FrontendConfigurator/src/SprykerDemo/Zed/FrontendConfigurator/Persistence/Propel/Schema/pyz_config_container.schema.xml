@@ -2,17 +2,17 @@
 <database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           name="zed"
           xsi:noNamespaceSchemaLocation="http://static.spryker.com/schema-01.xsd"
-          namespace="Orm\Zed\ConfigContainer\Persistence"
-          package="src.Orm.Zed.ConfigContainer.Persistence">
+          namespace="Orm\Zed\FrontendConfigurator\Persistence"
+          package="src.Orm.Zed.FrontendConfigurator.Persistence">
 
-    <table name="pyz_config_container">
+    <table name="spy_frontend_configurator">
         <column name="name" type="VARCHAR" size="255" required="true" primaryKey="true"/>
         <column name="data" type="LONGVARCHAR" required="true"/>
 
-        <id-method-parameter value="pyz_config_container_pk_seq"/>
+        <id-method-parameter value="spy_frontend_configurator_pk_seq"/>
 
         <behavior name="event">
-            <parameter name="pyz_config_container_all" column="*"/>
+            <parameter name="spy_frontend_configurator_all" column="*"/>
         </behavior>
     </table>
 

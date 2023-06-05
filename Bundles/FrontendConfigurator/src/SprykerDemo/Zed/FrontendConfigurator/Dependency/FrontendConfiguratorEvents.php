@@ -13,33 +13,33 @@ interface FrontendConfiguratorEvents
 
     /**
      * Specification:
-     * - Represents pyz_config_container entity creation.
+     * - Represents spy_frontend_configurator entity creation.
      *
      * @api
      *
      * @var string
      */
-    public const ENTITY_PYZ_CONFIG_CONTAINER_CREATE = 'Entity.pyz_config_container.create';
+    public const ENTITY_SPY_FRONTEND_CONFIGURATOR_CREATE = 'Entity.spy_frontend_configurator.create';
 
     /**
      * Specification:
-     * - Represents pyz_config_container entity changes.
+     * - Represents spy_frontend_configurator entity changes.
      *
      * @api
      *
      * @var string
      */
-    public const ENTITY_PYZ_CONFIG_CONTAINER_UPDATE = 'Entity.pyz_config_container.update';
+    public const ENTITY_SPY_FRONTEND_CONFIGURATOR_UPDATE = 'Entity.spy_frontend_configurator.update';
 
     /**
      * Specification:
-     * - Represents pyz_config_container entity deletion.
+     * - Represents spy_frontend_configurator entity deletion.
      *
      * @api
      *
      * @var string
      */
-    public const ENTITY_PYZ_CONFIG_CONTAINER_DELETE = 'Entity.pyz_config_container.delete';
+    public const ENTITY_SPY_FRONTEND_CONFIGURATOR_DELETE = 'Entity.spy_frontend_configurator.delete';
 
     /**
      * Specification:
@@ -49,5 +49,5 @@ interface FrontendConfiguratorEvents
      *
      * @var string
      */
-    public const FRONTEND_CONFIGURATOR_RESOURCE_NAME = 'pyz_config_container';
+    public const FRONTEND_CONFIGURATOR_RESOURCE_NAME = 'spy_frontend_configurator';
 }

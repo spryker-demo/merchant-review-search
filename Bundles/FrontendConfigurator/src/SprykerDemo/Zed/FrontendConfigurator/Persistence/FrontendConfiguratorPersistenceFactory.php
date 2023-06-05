@@ -7,7 +7,8 @@
 
 namespace SprykerDemo\Zed\FrontendConfigurator\Persistence;
 
-use Orm\Zed\ConfigContainer\Persistence\PyzConfigContainerQuery;
+use Orm\Zed\FrontendConfigurator\Persistence\SpyFrontendConfigurator;
+use Orm\Zed\FrontendConfigurator\Persistence\SpyFrontendConfiguratorQuery;
 use SprykerDemo\Zed\FrontendConfigurator\FrontendConfiguratorDependencyProvider;
 use SprykerDemo\Zed\FrontendConfigurator\Persistence\Mapper\ConfigContainerMapper;
 use SprykerDemo\Zed\FrontendConfigurator\Persistence\Mapper\ConfigContainerMapperInterface;
@@ -20,11 +21,11 @@ use Spryker\Zed\Kernel\Persistence\AbstractPersistenceFactory;
 class FrontendConfiguratorPersistenceFactory extends AbstractPersistenceFactory
 {
     /**
-     * @return \Orm\Zed\ConfigContainer\Persistence\PyzConfigContainerQuery
+     * @return \Orm\Zed\FrontendConfigurator\Persistence\SpyFrontendConfiguratorQuery
      */
-    public function createConfigContainerQuery(): PyzConfigContainerQuery
+    public function createFrontendConfiguratorQuery(): SpyFrontendConfiguratorQuery
     {
-        return PyzConfigContainerQuery::create();
+        return SpyFrontendConfiguratorQuery::create();
     }
 
     /**

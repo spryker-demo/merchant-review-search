@@ -24,7 +24,7 @@ class FrontendConfiguratorRepository extends AbstractRepository implements Front
         string $name
     ): ?ConfigContainerTransfer {
         $configContainerEntity = $this->getFactory()
-            ->createConfigContainerQuery()
+            ->createFrontendConfiguratorQuery()
             ->filterByName($name)
             ->findOneOrCreate();
 

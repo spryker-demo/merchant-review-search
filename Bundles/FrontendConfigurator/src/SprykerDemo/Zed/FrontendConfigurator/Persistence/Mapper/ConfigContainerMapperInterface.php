@@ -9,28 +9,30 @@ namespace SprykerDemo\Zed\FrontendConfigurator\Persistence\Mapper;
 
 use Generated\Shared\Transfer\ConfigContainerTransfer;
 use Orm\Zed\ConfigContainer\Persistence\PyzConfigContainer;
+use Orm\Zed\FrontendConfigurator\Persistence\SpyFrontendConfigurator;
+use Spryker\Service\UtilEncoding\UtilEncodingServiceInterface;
 
 interface ConfigContainerMapperInterface
 {
     /**
      * @param \Generated\Shared\Transfer\ConfigContainerTransfer $configContainerTransfer
-     * @param \Orm\Zed\ConfigContainer\Persistence\PyzConfigContainer $configContainerEntity
+     * @param \Orm\Zed\FrontendConfigurator\Persistence\SpyFrontendConfigurator $configContainerEntity
      *
-     * @return \Orm\Zed\ConfigContainer\Persistence\PyzConfigContainer
+     * @return \Orm\Zed\FrontendConfigurator\Persistence\SpyFrontendConfigurator
      */
     public function mapConfigContainerTransferToConfigContainerEntity(
         ConfigContainerTransfer $configContainerTransfer,
-        PyzConfigContainer $configContainerEntity
-    ): PyzConfigContainer;
+        SpyFrontendConfigurator $configContainerEntity
+    ): SpyFrontendConfigurator;
 
     /**
-     * @param \Orm\Zed\ConfigContainer\Persistence\PyzConfigContainer $configContainerEntity
+     * @param \Orm\Zed\FrontendConfigurator\Persistence\SpyFrontendConfigurator $configContainerEntity
      * @param \Generated\Shared\Transfer\ConfigContainerTransfer $configContainerTransfer
      *
      * @return \Generated\Shared\Transfer\ConfigContainerTransfer
      */
     public function mapConfigContainerEntityToConfigContainerTransfer(
-        PyzConfigContainer $configContainerEntity,
+        SpyFrontendConfigurator $configContainerEntity,
         ConfigContainerTransfer $configContainerTransfer
     ): ConfigContainerTransfer;
 }

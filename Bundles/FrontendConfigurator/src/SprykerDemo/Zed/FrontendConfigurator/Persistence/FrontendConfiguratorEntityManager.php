@@ -24,7 +24,7 @@ class FrontendConfiguratorEntityManager extends AbstractEntityManager implements
         ConfigContainerTransfer $configContainerTransfer
     ): ConfigContainerTransfer {
         $configContainerEntity = $this->getFactory()
-            ->createConfigContainerQuery()
+            ->createFrontendConfiguratorQuery()
             ->filterByName($configContainerTransfer->getName())
             ->findOneOrCreate();
 
