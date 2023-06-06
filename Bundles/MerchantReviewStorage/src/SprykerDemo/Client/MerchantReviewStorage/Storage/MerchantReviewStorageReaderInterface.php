@@ -7,6 +7,7 @@
 
 namespace SprykerDemo\Client\MerchantReviewStorage\Storage;
 
+use Generated\Shared\Transfer\MerchantReviewStorageCollectionTransfer;
 use Generated\Shared\Transfer\MerchantReviewStorageTransfer;
 
 interface MerchantReviewStorageReaderInterface
@@ -17,4 +18,9 @@ interface MerchantReviewStorageReaderInterface
      * @return \Generated\Shared\Transfer\MerchantReviewStorageTransfer|null
      */
     public function findMerchantReview(int $idMerchant): ?MerchantReviewStorageTransfer;
+
+    /**
+     * @return \Generated\Shared\Transfer\MerchantReviewStorageCollectionTransfer
+     */
+    public function findMerchantReviews(): MerchantReviewStorageCollectionTransfer;
 }

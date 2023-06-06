@@ -13,4 +13,9 @@
         <property name="data" type="string"/>
         <property name="key" type="string"/>
     </transfer>
+
+    <transfer name="MerchantReviewStorageCollection">
+        <property name="merchantReviews" type="MerchantReviewStorage[]" singular="merchantReview"/>
+        <property name="pagination" type="Pagination"/>
+    </transfer>
 </transfers>

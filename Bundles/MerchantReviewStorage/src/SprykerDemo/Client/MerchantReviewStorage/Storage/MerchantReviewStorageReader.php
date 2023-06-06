@@ -7,6 +7,7 @@
 
 namespace SprykerDemo\Client\MerchantReviewStorage\Storage;
 
+use Generated\Shared\Transfer\MerchantReviewStorageCollectionTransfer;
 use Generated\Shared\Transfer\MerchantReviewStorageTransfer;
 use Spryker\Client\Storage\StorageClientInterface;
 use SprykerDemo\Shared\MerchantReviewStorage\MerchantReviewStorageConfig;
@@ -64,5 +65,12 @@ class MerchantReviewStorageReader implements MerchantReviewStorageReaderInterfac
         $MerchantReviewStorageTransfer->fromArray($imageData, true);
 
         return $MerchantReviewStorageTransfer;
+    }
+
+    public function findMerchantReviews(): MerchantReviewStorageCollectionTransfer
+    {
+        $key = $this->merchantReviewStorageKeyGenerator->generateKey(MerchantReviewStorageConfig::MERCHANT_REVIEW_RESOURCE_NAME);
+
+        return $this->findMerchantReviewsMerchantStorageTransfer($key);
     }
 }

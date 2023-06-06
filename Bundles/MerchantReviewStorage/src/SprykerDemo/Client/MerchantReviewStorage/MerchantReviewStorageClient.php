@@ -7,6 +7,7 @@
 
 namespace SprykerDemo\Client\MerchantReviewStorage;
 
+use Generated\Shared\Transfer\MerchantReviewStorageCollectionTransfer;
 use Generated\Shared\Transfer\MerchantReviewStorageTransfer;
 use Spryker\Client\Kernel\AbstractClient;
 
@@ -29,5 +30,19 @@ class MerchantReviewStorageClient extends AbstractClient implements MerchantRevi
         return $this->getFactory()
             ->createMerchantReviewStorageReader()
             ->findMerchantReview($idMerchant);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @api
+     *
+     * @return \Generated\Shared\Transfer\MerchantReviewStorageCollectionTransfer
+     */
+    public function findMerchantReviews(): MerchantReviewStorageCollectionTransfer
+    {
+        return $this->getFactory()
+            ->createMerchantReviewStorageReader()
+            ->findMerchantReviews();
     }
 }
