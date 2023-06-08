@@ -7,7 +7,6 @@
 
 namespace SprykerDemo\Client\MerchantReviewStorage\Storage;
 
-use Generated\Shared\Transfer\MerchantReviewStorageCollectionTransfer;
 use Generated\Shared\Transfer\MerchantReviewStorageTransfer;
 use Spryker\Client\Storage\StorageClientInterface;
 use SprykerDemo\Shared\MerchantReviewStorage\MerchantReviewStorageConfig;
@@ -37,18 +36,6 @@ class MerchantReviewStorageReader implements MerchantReviewStorageReaderInterfac
     }
 
     /**
-     * @param int $idMerchant
-     *
-     * @return \Generated\Shared\Transfer\MerchantReviewStorageTransfer|null
-     */
-    public function findMerchantReview(int $idMerchant): ?MerchantReviewStorageTransfer
-    {
-        $key = $this->merchantReviewStorageKeyGenerator->generateKey(MerchantReviewStorageConfig::MERCHANT_REVIEW_RESOURCE_NAME, $idMerchant);
-
-        return $this->findMerchantReviewMerchantStorageTransfer($key);
-    }
-
-    /**
      * @param string $key
      *
      * @return \Generated\Shared\Transfer\MerchantReviewStorageTransfer|null
@@ -67,10 +54,19 @@ class MerchantReviewStorageReader implements MerchantReviewStorageReaderInterfac
         return $MerchantReviewStorageTransfer;
     }
 
-    public function findMerchantReviews(): MerchantReviewStorageCollectionTransfer
+    /**
+     * @param int $idMerchant
+     *
+     * @return \Generated\Shared\Transfer\MerchantReviewCollectionTransfer
+     */
+    public function findMerchantReviews(int $idMerchant): \Generated\Shared\Transfer\MerchantReviewCollectionTransfer
     {
-        $key = $this->merchantReviewStorageKeyGenerator->generateKey(MerchantReviewStorageConfig::MERCHANT_REVIEW_RESOURCE_NAME);
+        $key = $this->merchantReviewStorageKeyGenerator->generateKey(
+            MerchantReviewStorageConfig::MERCHANT_REVIEW_RESOURCE_NAME, $idMerchant
+        );
 
-        return $this->findMerchantReviewsMerchantStorageTransfer($key);
+        $merchantReviewStorageTransfer = $this->findMerchantReviewMerchantStorageTransfer($key);
+
+        return new \Generated\Shared\Transfer\MerchantReviewCollectionTransfer();
     }
 }

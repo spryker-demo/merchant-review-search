@@ -81,4 +81,16 @@ interface MerchantReviewFacadeInterface
      * @return \Generated\Shared\Transfer\MerchantReviewCollectionTransfer
      */
     public function getMerchantReviews(): MerchantReviewCollectionTransfer;
+
+    /**
+     * Specification:
+     * - Returns all available merchant reviews by provided ids
+     *
+     * @api
+     *
+     * @param array $merchantReviewIds
+     *
+     * @return mixed
+     */
+    public function getMerchantReviewsByIds(array $merchantReviewIds);
 }

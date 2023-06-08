@@ -11,9 +11,11 @@ use Orm\Zed\MerchantReviewStorage\Persistence\SpyMerchantReviewStorageQuery;
 use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
 use SprykerDemo\Zed\MerchantReviewStorage\Business\Storage\MerchantReviewStorageWriter;
 use SprykerDemo\Zed\MerchantReviewStorage\Business\Storage\MerchantReviewStorageWriterInterface;
+use SprykerDemo\Zed\MerchantReviewStorage\MerchantReviewStorageDependencyProvider;
 
 /**
  * @method \SprykerDemo\Zed\MerchantReviewStorage\MerchantReviewStorageConfig getConfig()
+ * @method \SprykerDemo\Zed\MerchantReviewStorage\Persistence\MerchantReviewStorageEntityManagerInterface getEntityManager()
  */
 class MerchantReviewStorageBusinessFactory extends AbstractBusinessFactory
 {
@@ -24,8 +26,8 @@ class MerchantReviewStorageBusinessFactory extends AbstractBusinessFactory
     {
         return new MerchantReviewStorageWriter(
             $this->getEventBehaviorFacade(),
-            $this->getMerchantReviewRepository(),
-            $this->getMerchantReviewStorageFacade(),
+            $this->getMerchantReviewFacade(),
+            $this->getEntityManager(),
         );
     }
 
@@ -35,5 +37,15 @@ class MerchantReviewStorageBusinessFactory extends AbstractBusinessFactory
     public function createMerchantReviewStorageQuery(): SpyMerchantReviewStorageQuery
     {
         return SpyMerchantReviewStorageQuery::create();
+    }
+
+    protected function getEventBehaviorFacade()
+    {
+        return $this->getProvidedDependency(MerchantReviewStorageDependencyProvider::FACADE_EVENT_BEHAVIOR);
+    }
+
+    protected function getMerchantReviewFacade()
+    {
+        return $this->getProvidedDependency(MerchantReviewStorageDependencyProvider::FACADE_MERCHANT_REVIEW);
     }
 }

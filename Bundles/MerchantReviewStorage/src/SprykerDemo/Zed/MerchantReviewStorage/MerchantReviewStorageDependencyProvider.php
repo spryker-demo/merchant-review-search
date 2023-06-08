@@ -24,6 +24,25 @@ class MerchantReviewStorageDependencyProvider extends AbstractBundleDependencyPr
      * @var string
      */
     public const FACADE_EVENT_BEHAVIOR = 'FACADE_EVENT_BEHAVIOR';
+    /**
+     * @var string
+     */
+    public const FACADE_MERCHANT_REVIEW_STORAGE = 'FACADE_MERCHANT_REVIEW_STORAGE';
+
+    /**
+     * @param \Spryker\Zed\Kernel\Container $container
+     *
+     * @return \Spryker\Zed\Kernel\Container
+     */
+    public function provideBusinessLayerDependencies(Container $container): Container
+    {
+        $container = parent::provideBusinessLayerDependencies($container);
+        $container = $this->addEventBehaviorFacade($container);
+        $container = $this->addMerchantReviewStorageFacade($container);
+        $container = $this->addMerchantReviewFacade($container);
+
+        return $container;
+    }
 
     /**
      * @param \Spryker\Zed\Kernel\Container $container
@@ -32,6 +51,7 @@ class MerchantReviewStorageDependencyProvider extends AbstractBundleDependencyPr
      */
     public function provideCommunicationLayerDependencies(Container $container): Container
     {
+        $container = parent::provideCommunicationLayerDependencies($container);
         $container = $this->addEventBehaviorFacade($container);
 
         return $container;
@@ -44,6 +64,7 @@ class MerchantReviewStorageDependencyProvider extends AbstractBundleDependencyPr
      */
     public function providePersistenceLayerDependencies(Container $container): Container
     {
+        $container = parent::providePersistenceLayerDependencies($container);
         $container = $this->addMerchantReviewFacade($container);
 
         return $container;
@@ -72,6 +93,20 @@ class MerchantReviewStorageDependencyProvider extends AbstractBundleDependencyPr
     {
         $container->set(static::FACADE_EVENT_BEHAVIOR, function (Container $container) {
             return $container->getLocator()->eventBehavior()->facade();
+        });
+
+        return $container;
+    }
+
+    /**
+     * @param \Spryker\Zed\Kernel\Container $container
+     *
+     * @return \Spryker\Zed\Kernel\Container
+     */
+    public function addMerchantReviewStorageFacade(Container $container): Container
+    {
+        $container->set(static::FACADE_MERCHANT_REVIEW_STORAGE, function (Container $container) {
+            return $container->getLocator()->merchantReviewStorage()->facade();
         });
 
         return $container;

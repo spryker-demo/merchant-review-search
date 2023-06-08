@@ -95,4 +95,9 @@ class MerchantReviewFacade extends AbstractFacade implements MerchantReviewFacad
     {
         return $this->getFactory()->createMerchantReviewReader()->getMerchantReviews();
     }
+
+    public function getMerchantReviewsByIds(array $merchantReviewIds)
+    {
+        return $this->getFactory()->createMerchantReviewReader()->getMerchantReviewsByIds($merchantReviewIds);
+    }
 }

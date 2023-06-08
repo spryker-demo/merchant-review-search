@@ -23,4 +23,6 @@ interface MerchantReviewReaderInterface
      * @return \Generated\Shared\Transfer\MerchantReviewCollectionTransfer
      */
     public function getMerchantReviews(): MerchantReviewCollectionTransfer;
+
+    public function getMerchantReviewsByIds(array $merchantReviewIds);
 }

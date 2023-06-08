@@ -56,4 +56,9 @@ class MerchantReviewReader implements MerchantReviewReaderInterface
     {
         return $this->merchantReviewRepository->getMerchantReviews();
     }
+
+    public function getMerchantReviewsByIds(array $merchantReviewIds)
+    {
+        return $this->merchantReviewRepository->getMerchantReviewsByIds($merchantReviewIds);
+    }
 }

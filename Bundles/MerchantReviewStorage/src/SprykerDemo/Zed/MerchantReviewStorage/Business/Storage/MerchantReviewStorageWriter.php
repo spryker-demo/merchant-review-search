@@ -10,6 +10,7 @@ namespace SprykerDemo\Zed\MerchantReviewStorage\Business\Storage;
 use Generated\Shared\Transfer\MerchantReviewStorageTransfer;
 use Generated\Shared\Transfer\MerchantReviewTransfer;
 use Spryker\Zed\EventBehavior\Business\EventBehaviorFacadeInterface;
+use SprykerDemo\Zed\MerchantReview\Business\MerchantReviewFacadeInterface;
 use SprykerDemo\Zed\MerchantReview\Persistence\MerchantReviewRepositoryInterface;
 use SprykerDemo\Zed\MerchantReviewStorage\Persistence\MerchantReviewStorageEntityManager;
 
@@ -17,12 +18,11 @@ class MerchantReviewStorageWriter implements MerchantReviewStorageWriterInterfac
 {
     /**
      * @param \Spryker\Zed\EventBehavior\Business\EventBehaviorFacadeInterface $eventBehaviorFacade
-     * @param \SprykerDemo\Zed\MerchantReview\Persistence\MerchantReviewRepositoryInterface $merchantReviewRepository
      * @param \SprykerDemo\Zed\MerchantReviewStorage\Persistence\MerchantReviewStorageEntityManager $merchantReviewStorageEntityManager
      */
     public function __construct(
         protected EventBehaviorFacadeInterface $eventBehaviorFacade,
-        protected MerchantReviewRepositoryInterface $merchantReviewRepository,
+        protected MerchantReviewFacadeInterface $merchantReviewFacade,
         protected MerchantReviewStorageEntityManager $merchantReviewStorageEntityManager
     ) {
     }
@@ -50,7 +50,7 @@ class MerchantReviewStorageWriter implements MerchantReviewStorageWriterInterfac
      */
     protected function writeCollectionByMerchantReviewIds(array $merchantReviewIds): void
     {
-        $merchantReviewCollectionTransfer = $this->merchantReviewRepository->getMerchantReviewsByIds(
+        $merchantReviewCollectionTransfer = $this->merchantReviewFacade->getMerchantReviewsByIds(
             $merchantReviewIds,
         );
 
@@ -71,7 +71,11 @@ class MerchantReviewStorageWriter implements MerchantReviewStorageWriterInterfac
         MerchantReviewTransfer $merchantReview,
         MerchantReviewStorageTransfer $merchantReviewStorageTransfer
     ): MerchantReviewStorageTransfer {
-        $merchantReviewStorageTransfer->fromArray($merchantReview->toArray(), true);
+        $merchantReviews = $merchantReviewStorageTransfer->getReviews();
+        $merchantReviews[] = $merchantReview->toArray();
+
+        $merchantReviewStorageTransfer->setFkMerchant($merchantReview->getFkMerchant());
+        $merchantReviewStorageTransfer->setReviews($merchantReviews);
 
         return $merchantReviewStorageTransfer;
     }

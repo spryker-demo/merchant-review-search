@@ -7,7 +7,7 @@
 
 namespace SprykerDemo\Client\MerchantReviewStorage;
 
-use Generated\Shared\Transfer\MerchantReviewStorageCollectionTransfer;
+use Generated\Shared\Transfer\MerchantReviewCollectionTransfer;
 use Generated\Shared\Transfer\MerchantReviewStorageTransfer;
 
 /**
@@ -17,23 +17,11 @@ interface MerchantReviewStorageClientInterface
 {
     /**
      * Specification:
-     *  - Return merchant review storage data by merchant id.
-     *
-     * @api
-     *
-     * @param int $idMerchant
-     *
-     * @return \Generated\Shared\Transfer\MerchantReviewStorageTransfer|null
-     */
-    public function findMerchantReview(int $idMerchant): ?MerchantReviewStorageTransfer;
-
-    /**
-     * Specification:
      *  - Returns all merchant reviews from storage.
      *
      * @api
      *
-     * @return \Generated\Shared\Transfer\MerchantReviewStorageCollectionTransfer
+     * @return \Generated\Shared\Transfer\MerchantReviewCollectionTransfer
      */
-    public function findMerchantReviews(): MerchantReviewStorageCollectionTransfer;
+    public function findMerchantReviews(int $idMerchant): MerchantReviewCollectionTransfer;
 }
