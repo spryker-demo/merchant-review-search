@@ -66,7 +66,7 @@
             <transition happy="true">
                 <source>sent to merchant</source>
                 <target>shipped by merchant</target>
-                <event>check-is-subscription</event>
+                <event>ship by merchant</event>
             </transition>
 
             <transition happy="true" condition="Subscription/IsSubscription">
@@ -95,7 +95,7 @@
             <event name="cancel" manual="true"/>
             <event name="refund" manual="true"/>
             <event name="send to merchant" onEnter="true" command="MerchantSalesOrder/CreateOrders"/>
-            <event name="ship by merchant" manual="true"/>
+            <event name="ship by merchant"/>
             <event name="deliver"/>
             <event name="close" manual="true" command="MerchantOms/CloseOrderItem"/>
         </events>
