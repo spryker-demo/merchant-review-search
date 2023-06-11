@@ -4,9 +4,7 @@
     "description": "Merchant registration feature module",
     "license": "proprietary",
     "require": {
-        "php": ">=8.0",
-        "spryker-demo/merchant-registration": "*",
-        "spryker-demo/merchant-registration-page": "*"
+        "php": ">=8.0"
     },
     "require-dev": {
         "spryker/code-sniffer": "^0.17.18"
