@@ -1,2 +1,2 @@
 template_name,template_path
-"Merchant Register",@Cms/templates/merchant-register/merchant-register.twig
+"Merchant Registration",@Cms/templates/merchant-registration/merchant-registration.twig

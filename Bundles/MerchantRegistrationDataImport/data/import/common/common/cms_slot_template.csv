@@ -1,2 +1,2 @@
 name,description,template_path
-Slots for Sell on Spryker page,Sell on Spryker,@Cms/templates/merchant-register/merchant-register.twig
+Slots for Sell on Spryker page,Sell on Spryker,@Cms/templates/merchant-registration/merchant-registration.twig
