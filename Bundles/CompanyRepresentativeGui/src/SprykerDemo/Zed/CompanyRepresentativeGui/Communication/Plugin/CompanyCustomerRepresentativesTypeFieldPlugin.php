@@ -22,11 +22,6 @@ class CompanyCustomerRepresentativesTypeFieldPlugin extends AbstractPlugin imple
     public const FIELD_REPRESENTATIVE = 'representative';
 
     /**
-     * @var string
-     */
-    protected const FIELD_FK_COMPANY_USER = 'userIds';
-
-    /**
      * {@inheritDoc}
      *
      * @api

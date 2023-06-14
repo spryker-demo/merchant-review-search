@@ -26,11 +26,6 @@ class CompanyCustomerRepresentativesTypeChoiceFormType extends AbstractType
     public const OPTION_VALUES_COMPANY_CUSTOMER_REPRESENTATIVES_TYPE_CHOICES = 'company_customer_representatives_type_value_options';
 
     /**
-     * @var string
-     */
-    protected const FIELD_FK_COMPANY_USER = 'userIds';
-
-    /**
      * @param \Symfony\Component\Form\FormBuilderInterface $builder
      * @param array<string, mixed> $options
      *
