@@ -10,9 +10,6 @@ namespace SprykerDemo\Zed\CompanyRepresentativeGui;
 use Spryker\Zed\Kernel\AbstractBundleDependencyProvider;
 use Spryker\Zed\Kernel\Container;
 
-/**
- * @method \SprykerDemo\Zed\CompanyRepresentativeGui\CompanyRepresentativeGuiConfig getConfig()
- */
 class CompanyRepresentativeGuiDependencyProvider extends AbstractBundleDependencyProvider
 {
     /**
@@ -27,7 +24,6 @@ class CompanyRepresentativeGuiDependencyProvider extends AbstractBundleDependenc
      */
     public function provideCommunicationLayerDependencies(Container $container): Container
     {
-        $container = parent::provideCommunicationLayerDependencies($container);
         $container = $this->addCustomerRepresentativeFacade($container);
 
         return $container;

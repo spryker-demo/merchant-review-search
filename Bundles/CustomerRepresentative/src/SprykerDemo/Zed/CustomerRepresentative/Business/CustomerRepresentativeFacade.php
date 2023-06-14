@@ -12,8 +12,7 @@ use Generated\Shared\Transfer\CustomerRepresentativesTransfer;
 use Spryker\Zed\Kernel\Business\AbstractFacade;
 
 /**
- * @method \SprykerDemo\Zed\CustomerRepresentative\Business\CustomerRepresentativeBusinessFactory getFactory()
- * @method \SprykerDemo\Zed\CustomerRepresentative\Persistence\CustomerRepresentativeRepositoryInterface getRepository()()
+ * @method \SprykerDemo\Zed\CustomerRepresentative\Persistence\CustomerRepresentativeRepositoryInterface getRepository()
  */
 class CustomerRepresentativeFacade extends AbstractFacade implements CustomerRepresentativeFacadeInterface
 {

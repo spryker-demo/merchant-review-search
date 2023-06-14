@@ -21,7 +21,7 @@ class GatewayController extends AbstractGatewayController
      *
      * @return \Generated\Shared\Transfer\CustomerRepresentativesTransfer
      */
-    public function findCustomerRepresentativeByCompanyIdAction(
+    public function findCustomerRepresentativesAction(
         CustomerRepresentativesFilterTransfer $customerRepresentativesFilterTransfer
     ): CustomerRepresentativesTransfer {
         return $this->getFacade()->findCustomerRepresentatives($customerRepresentativesFilterTransfer);

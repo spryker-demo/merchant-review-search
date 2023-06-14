@@ -63,7 +63,7 @@ class CustomerRepresentativeRepository extends AbstractRepository implements Cus
         $customerRepresentativesTransfer = new CustomerRepresentativesTransfer();
 
         foreach ($customerRepresentativesCollection as $customerRepresentative) {
-            $customerRepresentativesTransfer->addUserId($customerRepresentative->getUser()->getIdUser());
+//            $customerRepresentativesTransfer->addUserId($customerRepresentative->getUser()->getIdUser());
             $userTransfer = (new UserTransfer())->fromArray($customerRepresentative->getUser()->toArray(), true);
             $customerRepresentativesTransfer->addUser($userTransfer);
         }

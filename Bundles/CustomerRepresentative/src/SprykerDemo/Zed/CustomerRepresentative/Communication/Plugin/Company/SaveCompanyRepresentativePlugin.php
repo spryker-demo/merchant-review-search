@@ -13,6 +13,7 @@ use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 
 /**
  * @method \SprykerDemo\Zed\CustomerRepresentative\Communication\CustomerRepresentativeCommunicationFactory getFactory()
+ * @method \SprykerDemo\Zed\CustomerRepresentative\Persistence\CustomerRepresentativeEntityManagerInterface getEntityManager()
  */
 class SaveCompanyRepresentativePlugin extends AbstractPlugin implements CompanyPostSavePluginInterface
 {

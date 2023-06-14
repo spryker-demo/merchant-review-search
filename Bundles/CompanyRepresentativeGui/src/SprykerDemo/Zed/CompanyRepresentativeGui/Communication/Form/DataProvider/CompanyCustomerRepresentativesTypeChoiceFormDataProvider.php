@@ -70,7 +70,6 @@ class CompanyCustomerRepresentativesTypeChoiceFormDataProvider
 
         $customerRepresentativesTransfer = $this->customerRepresentativeFacade->findCustomerRepresentatives($customerRepresentativeFilterTransfer->setCompanyId($idCompany));
         $customerRepresentativeTransfer->setUserIds($customerRepresentativesTransfer->getUserIds());
-        $customerRepresentativesTransfer->setUsers($customerRepresentativeTransfer->getUsers());
 
         return $customerRepresentativeTransfer;
     }
