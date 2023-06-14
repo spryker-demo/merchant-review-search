@@ -20,12 +20,7 @@ class CompanyTableCustomerRepresentativesDataExpanderPlugin extends AbstractPlug
     /**
      * @var string
      */
-    protected const COL_REPRESENTATIVE = 'representatives';
-
-    /**
-     * @var string
-     */
-    protected const COL_COMPANY_CUSTOMER_REPRESENTATIVES_LABEL = 'Customer representatives';
+    protected const COL_COMPANY_CUSTOMER_REPRESENTATIVES_LABEL = 'Representative';
 
     /**
      * {@inheritDoc}
@@ -38,7 +33,7 @@ class CompanyTableCustomerRepresentativesDataExpanderPlugin extends AbstractPlug
      */
     public function expandData(array $item): array
     {
-        return [static::COL_REPRESENTATIVE => $this->generateUsers($item)];
+        return [static::COL_COMPANY_CUSTOMER_REPRESENTATIVES_LABEL => $this->generateUsers($item)];
     }
 
     /**

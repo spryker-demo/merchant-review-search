@@ -13,7 +13,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 /**
  * @method \SprykerDemo\Zed\CompanyRepresentativeGui\Communication\CompanyRepresentativeGuiCommunicationFactory getFactory()
- * @method \SprykerDemo\Zed\CompanyRepresentativeGui\CompanyRepresentativeGuiConfig getConfig()
  */
 class CompanyCustomerRepresentativesTypeFieldPlugin extends AbstractPlugin implements CompanyFormExpanderPluginInterface
 {

@@ -18,11 +18,6 @@ class CompanyTableCustomerRepresentativesHeaderExpanderPlugin extends AbstractPl
     /**
      * @var string
      */
-    protected const COL_REPRESENTATIVE = 'representatives';
-
-    /**
-     * @var string
-     */
     protected const COL_COMPANY_CUSTOMER_REPRESENTATIVES_LABEL = 'Representative';
 
     /**
@@ -34,6 +29,6 @@ class CompanyTableCustomerRepresentativesHeaderExpanderPlugin extends AbstractPl
      */
     public function expandHeader(): array
     {
-        return [static::COL_REPRESENTATIVE => static::COL_COMPANY_CUSTOMER_REPRESENTATIVES_LABEL];
+        return [static::COL_COMPANY_CUSTOMER_REPRESENTATIVES_LABEL => static::COL_COMPANY_CUSTOMER_REPRESENTATIVES_LABEL];
     }
 }
