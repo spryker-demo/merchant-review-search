@@ -15,7 +15,7 @@ class CompanyRepresentativeGuiDependencyProvider extends AbstractBundleDependenc
     /**
      * @var string
      */
-    public const CUSTOMER_REPRESENTATIVE_FACADE = 'CUSTOMER_REPRESENTATIVE_FACADE';
+    public const FACADE_CUSTOMER_REPRESENTATIVE = 'FACADE_CUSTOMER_REPRESENTATIVE';
 
     /**
      * @param \Spryker\Zed\Kernel\Container $container
@@ -36,7 +36,7 @@ class CompanyRepresentativeGuiDependencyProvider extends AbstractBundleDependenc
      */
     public function addCustomerRepresentativeFacade(Container $container): Container
     {
-        $container->set(static::CUSTOMER_REPRESENTATIVE_FACADE, function (Container $container) {
+        $container->set(static::FACADE_CUSTOMER_REPRESENTATIVE, function (Container $container) {
             return $container->getLocator()->customerRepresentative()->facade();
         });
 
