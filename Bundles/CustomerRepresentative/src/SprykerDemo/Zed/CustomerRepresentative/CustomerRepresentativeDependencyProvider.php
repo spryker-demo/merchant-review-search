@@ -10,15 +10,12 @@ namespace SprykerDemo\Zed\CustomerRepresentative;
 use Spryker\Zed\Kernel\AbstractBundleDependencyProvider;
 use Spryker\Zed\Kernel\Container;
 
-/**
- * @method \SprykerDemo\Zed\CustomerRepresentative\CustomerRepresentativeConfig getConfig()
- */
 class CustomerRepresentativeDependencyProvider extends AbstractBundleDependencyProvider
 {
     /**
      * @var string
      */
-    public const QUERY_CONTAINER_USER = 'user query container';
+    public const QUERY_CONTAINER_USER = 'QUERY_CONTAINER_USER';
 
     /**
      * @param \Spryker\Zed\Kernel\Container $container
@@ -27,7 +24,6 @@ class CustomerRepresentativeDependencyProvider extends AbstractBundleDependencyP
      */
     public function providePersistenceLayerDependencies(Container $container): Container
     {
-        $container = parent::providePersistenceLayerDependencies($container);
         $container = $this->addUserQueryContainer($container);
 
         return $container;

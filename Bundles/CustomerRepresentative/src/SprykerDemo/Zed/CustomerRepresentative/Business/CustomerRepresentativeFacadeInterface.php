@@ -14,16 +14,6 @@ interface CustomerRepresentativeFacadeInterface
 {
     /**
      * Specification:
-     * - Get All active users.
-     *
-     * @api
-     *
-     * @return array
-     */
-    public function getActiveUsers(): array;
-
-    /**
-     * Specification:
      * - Find All customer representatives related to a company.
      *
      * @api

@@ -25,7 +25,7 @@ class CustomerRepresentativeEntityManager extends AbstractEntityManager implemen
      *
      * @return void
      */
-    public function createCompanyCustomerRepresentative(int $companyId, array $userIds): void
+    public function addCompanyCustomerRepresentatives(int $companyId, array $userIds): void
     {
         foreach ($userIds as $userId) {
             $companyHasUsers = new SpyCustomerRepresentative();
@@ -43,7 +43,7 @@ class CustomerRepresentativeEntityManager extends AbstractEntityManager implemen
      *
      * @return void
      */
-    public function removeCompanyCustomerRepresentative(int $companyId, array $userIds): void
+    public function removeCompanyCustomerRepresentatives(int $companyId, array $userIds): void
     {
         if (count($userIds) === 0) {
             return;
@@ -63,7 +63,7 @@ class CustomerRepresentativeEntityManager extends AbstractEntityManager implemen
      *
      * @return void
      */
-    public function updateCompanyCustomerRepresentative(CompanyResponseTransfer $companyResponseTransfer): void
+    public function updateCompanyCustomerRepresentatives(CompanyResponseTransfer $companyResponseTransfer): void
     {
         $userIds = [];
         $companyId = $companyResponseTransfer->getCompanyTransfer()->getIdCompany();
@@ -77,8 +77,8 @@ class CustomerRepresentativeEntityManager extends AbstractEntityManager implemen
         $relationsToDeleteUserIds = array_diff($oldRelationsUserIds, $userIds);
         $relationsToSaveUserIds = array_diff($userIds, $oldRelationsUserIds);
 
-        $this->removeCompanyCustomerRepresentative($companyId, $relationsToDeleteUserIds);
-        $this->createCompanyCustomerRepresentative($companyId, $relationsToSaveUserIds);
+        $this->removeCompanyCustomerRepresentatives($companyId, $relationsToDeleteUserIds);
+        $this->addCompanyCustomerRepresentatives($companyId, $relationsToSaveUserIds);
     }
 
     /**

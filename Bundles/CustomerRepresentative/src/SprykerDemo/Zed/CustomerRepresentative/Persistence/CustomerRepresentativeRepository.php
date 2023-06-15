@@ -20,20 +20,6 @@ use Spryker\Zed\Kernel\Persistence\AbstractRepository;
 class CustomerRepresentativeRepository extends AbstractRepository implements CustomerRepresentativeRepositoryInterface
 {
     /**
-     * @return array
-     */
-    public function getActiveUsers(): array
-    {
-        $entities = $this->getFactory()
-            ->getUserQueryContainer()
-            ->queryUser()
-            ->filterByStatus_In([SpyUserTableMap::COL_STATUS_ACTIVE])
-            ->find();
-
-        return $entities->getArrayCopy();
-    }
-
-    /**
      * @param \Generated\Shared\Transfer\CustomerRepresentativesFilterTransfer $customerRepresentativesFilterTransfer
      *
      * @return \Generated\Shared\Transfer\CustomerRepresentativesTransfer

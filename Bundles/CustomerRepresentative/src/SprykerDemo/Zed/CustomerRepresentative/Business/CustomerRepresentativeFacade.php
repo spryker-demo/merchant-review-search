@@ -21,18 +21,6 @@ class CustomerRepresentativeFacade extends AbstractFacade implements CustomerRep
      *
      * @api
      *
-     * @return array
-     */
-    public function getActiveUsers(): array
-    {
-        return $this->getRepository()->getActiveUsers();
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @api
-     *
      * @param \Generated\Shared\Transfer\CustomerRepresentativesFilterTransfer $customerRepresentativesFilterTransfer
      *
      * @return \Generated\Shared\Transfer\CustomerRepresentativesTransfer

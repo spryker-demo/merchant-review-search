@@ -9,6 +9,8 @@ namespace SprykerDemo\Zed\CompanyRepresentativeGui\Communication\Form\DataProvid
 
 use Generated\Shared\Transfer\CustomerRepresentativesFilterTransfer;
 use Generated\Shared\Transfer\CustomerRepresentativesTransfer;
+use Orm\Zed\User\Persistence\Map\SpyUserTableMap;
+use Spryker\Zed\User\Persistence\UserQueryContainerInterface;
 use SprykerDemo\Zed\CompanyRepresentativeGui\Communication\Form\CompanyCustomerRepresentativesTypeChoiceFormType;
 use SprykerDemo\Zed\CustomerRepresentative\Business\CustomerRepresentativeFacadeInterface;
 
@@ -20,12 +22,19 @@ class CompanyCustomerRepresentativesTypeChoiceFormDataProvider
     protected $customerRepresentativeFacade;
 
     /**
+     * @var \Spryker\Zed\User\Persistence\UserQueryContainerInterface
+     */
+    protected $userQueryContainer;
+
+    /**
      * @param \SprykerDemo\Zed\CustomerRepresentative\Business\CustomerRepresentativeFacadeInterface $customerRepresentativeFacade
      */
     public function __construct(
-        CustomerRepresentativeFacadeInterface $customerRepresentativeFacade
+        CustomerRepresentativeFacadeInterface $customerRepresentativeFacade,
+        UserQueryContainerInterface $userQueryContainer
     ) {
         $this->customerRepresentativeFacade = $customerRepresentativeFacade;
+        $this->userQueryContainer = $userQueryContainer;
     }
 
     /**
@@ -43,7 +52,12 @@ class CompanyCustomerRepresentativesTypeChoiceFormDataProvider
      */
     protected function getCustomerRepresentatives(): array
     {
-        $activeUsers = $this->customerRepresentativeFacade->getActiveUsers();
+        $activeUsers = $this
+            ->userQueryContainer
+            ->queryUser()
+            ->filterByStatus_In([SpyUserTableMap::COL_STATUS_ACTIVE])
+            ->find()
+            ->getArrayCopy();
 
         $result = [];
         foreach ($activeUsers as $user) {

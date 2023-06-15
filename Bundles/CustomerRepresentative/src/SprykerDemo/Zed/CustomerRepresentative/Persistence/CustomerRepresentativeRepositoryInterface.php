@@ -13,11 +13,6 @@ use Generated\Shared\Transfer\CustomerRepresentativesTransfer;
 interface CustomerRepresentativeRepositoryInterface
 {
     /**
-     * @return array
-     */
-    public function getActiveUsers(): array;
-
-    /**
      * @param \Generated\Shared\Transfer\CustomerRepresentativesFilterTransfer $customerRepresentativesFilterTransfer
      *
      * @return \Generated\Shared\Transfer\CustomerRepresentativesTransfer

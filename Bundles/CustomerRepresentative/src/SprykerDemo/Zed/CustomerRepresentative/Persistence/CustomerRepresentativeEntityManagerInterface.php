@@ -20,7 +20,7 @@ interface CustomerRepresentativeEntityManagerInterface
      *
      * @return void
      */
-    public function createCompanyCustomerRepresentative(int $companyId, array $userIds): void;
+    public function addCompanyCustomerRepresentatives(int $companyId, array $userIds): void;
 
     /**
      * Specification:
@@ -31,7 +31,7 @@ interface CustomerRepresentativeEntityManagerInterface
      *
      * @return void
      */
-    public function removeCompanyCustomerRepresentative(int $companyId, array $userIds): void;
+    public function removeCompanyCustomerRepresentatives(int $companyId, array $userIds): void;
 
     /**
      * Specification:
@@ -41,5 +41,5 @@ interface CustomerRepresentativeEntityManagerInterface
      *
      * @return void
      */
-    public function updateCompanyCustomerRepresentative(CompanyResponseTransfer $companyResponseTransfer): void;
+    public function updateCompanyCustomerRepresentatives(CompanyResponseTransfer $companyResponseTransfer): void;
 }
