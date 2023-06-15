@@ -9,14 +9,14 @@ namespace SprykerDemo\Yves\CustomerRepresentativeWidget;
 
 use Spryker\Client\Customer\CustomerClientInterface;
 use Spryker\Yves\Kernel\AbstractFactory;
-use SprykerDemo\Client\CustomerRepresentative\CustomerRepresentativeClientInterface;
+use SprykerDemo\Client\CustomerRepresentative\CompanyRepresentativeClientInterface;
 
 class CustomerRepresentativeWidgetFactory extends AbstractFactory
 {
     /**
-     * @return \SprykerDemo\Client\CustomerRepresentative\CustomerRepresentativeClientInterface
+     * @return \SprykerDemo\Client\CustomerRepresentative\CompanyRepresentativeClientInterface
      */
-    public function getCustomerRepresentativeClient(): CustomerRepresentativeClientInterface
+    public function getCustomerRepresentativeClient(): CompanyRepresentativeClientInterface
     {
         return $this->getProvidedDependency(CustomerRepresentativeWidgetDependencyProvider::CLIENT_CUSTOMER_REPRESENTATIVE);
     }

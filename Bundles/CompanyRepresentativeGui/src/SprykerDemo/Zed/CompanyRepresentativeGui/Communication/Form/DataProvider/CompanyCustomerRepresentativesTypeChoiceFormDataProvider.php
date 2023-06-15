@@ -7,17 +7,17 @@
 
 namespace SprykerDemo\Zed\CompanyRepresentativeGui\Communication\Form\DataProvider;
 
-use Generated\Shared\Transfer\CustomerRepresentativesFilterTransfer;
-use Generated\Shared\Transfer\CustomerRepresentativesTransfer;
+use Generated\Shared\Transfer\CompanyRepresentativesFilterTransfer;
+use Generated\Shared\Transfer\CompanyRepresentativesTransfer;
 use Orm\Zed\User\Persistence\Map\SpyUserTableMap;
 use Spryker\Zed\User\Persistence\UserQueryContainerInterface;
+use SprykerDemo\Zed\CompanyRepresentative\Business\CompanyRepresentativeFacadeInterface;
 use SprykerDemo\Zed\CompanyRepresentativeGui\Communication\Form\CompanyCustomerRepresentativesTypeChoiceFormType;
-use SprykerDemo\Zed\CustomerRepresentative\Business\CustomerRepresentativeFacadeInterface;
 
 class CompanyCustomerRepresentativesTypeChoiceFormDataProvider
 {
     /**
-     * @var \SprykerDemo\Zed\CustomerRepresentative\Business\CustomerRepresentativeFacadeInterface
+     * @var \SprykerDemo\Zed\CompanyRepresentative\Business\CompanyRepresentativeFacadeInterface
      */
     protected $customerRepresentativeFacade;
 
@@ -27,11 +27,11 @@ class CompanyCustomerRepresentativesTypeChoiceFormDataProvider
     protected $userQueryContainer;
 
     /**
-     * @param \SprykerDemo\Zed\CustomerRepresentative\Business\CustomerRepresentativeFacadeInterface $customerRepresentativeFacade
+     * @param \SprykerDemo\Zed\CompanyRepresentative\Business\CompanyRepresentativeFacadeInterface $customerRepresentativeFacade
      * @param \Spryker\Zed\User\Persistence\UserQueryContainerInterface $userQueryContainer
      */
     public function __construct(
-        CustomerRepresentativeFacadeInterface $customerRepresentativeFacade,
+        CompanyRepresentativeFacadeInterface $customerRepresentativeFacade,
         UserQueryContainerInterface $userQueryContainer
     ) {
         $this->customerRepresentativeFacade = $customerRepresentativeFacade;
@@ -71,19 +71,19 @@ class CompanyCustomerRepresentativesTypeChoiceFormDataProvider
     /**
      * @param int|null $idCompany
      *
-     * @return \Generated\Shared\Transfer\CustomerRepresentativesTransfer
+     * @return \Generated\Shared\Transfer\CompanyRepresentativesTransfer
      */
-    public function getData(?int $idCompany = null): CustomerRepresentativesTransfer
+    public function getData(?int $idCompany = null): CompanyRepresentativesTransfer
     {
-        $customerRepresentativeTransfer = new CustomerRepresentativesTransfer();
+        $customerRepresentativeTransfer = new CompanyRepresentativesTransfer();
 
         if ($idCompany === null) {
             return $customerRepresentativeTransfer;
         }
 
-        $customerRepresentativeFilterTransfer = new CustomerRepresentativesFilterTransfer();
+        $customerRepresentativeFilterTransfer = new CompanyRepresentativesFilterTransfer();
 
-        $customerRepresentativesTransfer = $this->customerRepresentativeFacade->findCustomerRepresentatives($customerRepresentativeFilterTransfer->setCompanyId($idCompany));
+        $customerRepresentativesTransfer = $this->customerRepresentativeFacade->findCompanyRepresentatives($customerRepresentativeFilterTransfer->setCompanyId($idCompany));
         $customerRepresentativeTransfer->setUserIds($customerRepresentativesTransfer->getUserIds());
 
         return $customerRepresentativeTransfer;

@@ -9,10 +9,10 @@ namespace SprykerDemo\Zed\CompanyRepresentativeGui\Communication;
 
 use Spryker\Zed\Kernel\Communication\AbstractCommunicationFactory;
 use Spryker\Zed\User\Persistence\UserQueryContainerInterface;
+use SprykerDemo\Zed\CompanyRepresentative\Business\CompanyRepresentativeFacadeInterface;
 use SprykerDemo\Zed\CompanyRepresentativeGui\Communication\Form\CompanyCustomerRepresentativesTypeChoiceFormType;
 use SprykerDemo\Zed\CompanyRepresentativeGui\Communication\Form\DataProvider\CompanyCustomerRepresentativesTypeChoiceFormDataProvider;
 use SprykerDemo\Zed\CompanyRepresentativeGui\CompanyRepresentativeGuiDependencyProvider;
-use SprykerDemo\Zed\CustomerRepresentative\Business\CustomerRepresentativeFacadeInterface;
 
 class CompanyRepresentativeGuiCommunicationFactory extends AbstractCommunicationFactory
 {
@@ -30,17 +30,17 @@ class CompanyRepresentativeGuiCommunicationFactory extends AbstractCommunication
     public function createCompanyCustomerRepresentativeTypeChoiceFormDataProvider(): CompanyCustomerRepresentativesTypeChoiceFormDataProvider
     {
         return new CompanyCustomerRepresentativesTypeChoiceFormDataProvider(
-            $this->getCustomerRepresentativeFacade(),
+            $this->getCompanyRepresentativeFacade(),
             $this->getUserQueryContainer(),
         );
     }
 
     /**
-     * @return \SprykerDemo\Zed\CustomerRepresentative\Business\CustomerRepresentativeFacadeInterface
+     * @return \SprykerDemo\Zed\CompanyRepresentative\Business\CompanyRepresentativeFacadeInterface
      */
-    public function getCustomerRepresentativeFacade(): CustomerRepresentativeFacadeInterface
+    public function getCompanyRepresentativeFacade(): CompanyRepresentativeFacadeInterface
     {
-        return $this->getProvidedDependency(CompanyRepresentativeGuiDependencyProvider::FACADE_CUSTOMER_REPRESENTATIVE);
+        return $this->getProvidedDependency(CompanyRepresentativeGuiDependencyProvider::FACADE_COMPANY_REPRESENTATIVE);
     }
 
     /**

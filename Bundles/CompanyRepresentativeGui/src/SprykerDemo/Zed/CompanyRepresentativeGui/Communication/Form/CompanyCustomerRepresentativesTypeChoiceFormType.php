@@ -7,8 +7,8 @@
 
 namespace SprykerDemo\Zed\CompanyRepresentativeGui\Communication\Form;
 
+use Generated\Shared\Transfer\CompanyRepresentativesTransfer;
 use Generated\Shared\Transfer\CompanyTransfer;
-use Generated\Shared\Transfer\CustomerRepresentativesTransfer;
 use Spryker\Zed\Kernel\Communication\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -46,7 +46,7 @@ class CompanyCustomerRepresentativesTypeChoiceFormType extends AbstractType
      */
     protected function addCompanyCustomerRepresentativesField(FormBuilderInterface $builder, array $options): void
     {
-        $builder->add(CompanyTransfer::CUSTOMER_REPRESENTATIVES, ChoiceType::class, [
+        $builder->add(CompanyTransfer::COMPANY_REPRESENTATIVES, ChoiceType::class, [
             'label' => 'Customer representatives',
             'placeholder' => 'Select one',
             'multiple' => true,
@@ -68,7 +68,7 @@ class CompanyCustomerRepresentativesTypeChoiceFormType extends AbstractType
      */
     protected function addCompanyCustomerRepresentativesTransformer(FormBuilderInterface $builder): void
     {
-        $builder->get(CompanyTransfer::CUSTOMER_REPRESENTATIVES)
+        $builder->get(CompanyTransfer::COMPANY_REPRESENTATIVES)
             ->addModelTransformer(
                 new CallbackTransformer(
                     function ($customerRepresentatives) {
@@ -85,7 +85,7 @@ class CompanyCustomerRepresentativesTypeChoiceFormType extends AbstractType
                         return $result;
                     },
                     function ($data) {
-                        $customerRepresentativesTransfer = new CustomerRepresentativesTransfer();
+                        $customerRepresentativesTransfer = new CompanyRepresentativesTransfer();
 
                         foreach ($data as $id) {
                             $customerRepresentativesTransfer->addUserId($id);

@@ -7,7 +7,7 @@
 
 namespace SprykerDemo\Zed\CompanyRepresentativeGui\Communication\Plugin;
 
-use Generated\Shared\Transfer\CustomerRepresentativesFilterTransfer;
+use Generated\Shared\Transfer\CompanyRepresentativesFilterTransfer;
 use Orm\Zed\Company\Persistence\Map\SpyCompanyTableMap;
 use Spryker\Zed\CompanyGuiExtension\Dependency\Plugin\CompanyTableDataExpanderPluginInterface;
 use Spryker\Zed\Kernel\Communication\AbstractPlugin;
@@ -50,8 +50,8 @@ class CompanyTableCustomerRepresentativesDataExpanderPlugin extends AbstractPlug
         }
 
         $customerRepresentatives = $this->getFactory()
-            ->getCustomerRepresentativeFacade()
-            ->findCustomerRepresentatives((new CustomerRepresentativesFilterTransfer())->setCompanyId($companyId));
+            ->getCompanyRepresentativeFacade()
+            ->findCompanyRepresentatives((new CompanyRepresentativesFilterTransfer())->setCompanyId($companyId));
 
         $usersList = [];
 

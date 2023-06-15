@@ -40,7 +40,7 @@ class CompanyCustomerRepresentativesTypeFieldPlugin extends AbstractPlugin imple
 
         $customerRepresentativesTransfer = $builder->getData();
         $result = $dataProvider->getData($customerRepresentativesTransfer->getIdCompany());
-        $customerRepresentativesTransfer->setCustomerRepresentatives($result);
+        $customerRepresentativesTransfer->setCompanyRepresentatives($result);
 
         $formType->buildForm(
             $builder,

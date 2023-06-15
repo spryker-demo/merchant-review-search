@@ -12,7 +12,7 @@
         "spryker-demo/subscription-product-page": "*",
         "spryker-demo/subscription-product-oms": "*",
         "spryker-demo/subscription-product-feature": "*",
-        "spryker-demo/customer-representative": "* as 1.0.0"
+        "spryker-demo/company-representative": "* as 1.0.0"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,

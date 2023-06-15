@@ -5,18 +5,13 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-namespace SprykerDemo\Zed\CompanyRepresentativeGui;
+namespace SprykerDemo\Zed\CompanyRepresentative;
 
 use Spryker\Zed\Kernel\AbstractBundleDependencyProvider;
 use Spryker\Zed\Kernel\Container;
 
-class CompanyRepresentativeGuiDependencyProvider extends AbstractBundleDependencyProvider
+class CompanyRepresentativeDependencyProvider extends AbstractBundleDependencyProvider
 {
-    /**
-     * @var string
-     */
-    public const FACADE_COMPANY_REPRESENTATIVE = 'FACADE_COMPANY_REPRESENTATIVE';
-
     /**
      * @var string
      */
@@ -27,24 +22,9 @@ class CompanyRepresentativeGuiDependencyProvider extends AbstractBundleDependenc
      *
      * @return \Spryker\Zed\Kernel\Container
      */
-    public function provideCommunicationLayerDependencies(Container $container): Container
+    public function providePersistenceLayerDependencies(Container $container): Container
     {
-        $container = $this->addCompanyRepresentativeFacade($container);
         $container = $this->addUserQueryContainer($container);
-
-        return $container;
-    }
-
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
-    public function addCompanyRepresentativeFacade(Container $container): Container
-    {
-        $container->set(static::FACADE_COMPANY_REPRESENTATIVE, function (Container $container) {
-            return $container->getLocator()->companyRepresentative()->facade();
-        });
 
         return $container;
     }
