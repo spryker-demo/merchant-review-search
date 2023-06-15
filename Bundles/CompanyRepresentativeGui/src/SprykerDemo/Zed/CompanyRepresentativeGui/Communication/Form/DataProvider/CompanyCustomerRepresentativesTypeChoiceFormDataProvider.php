@@ -28,6 +28,7 @@ class CompanyCustomerRepresentativesTypeChoiceFormDataProvider
 
     /**
      * @param \SprykerDemo\Zed\CustomerRepresentative\Business\CustomerRepresentativeFacadeInterface $customerRepresentativeFacade
+     * @param \Spryker\Zed\User\Persistence\UserQueryContainerInterface $userQueryContainer
      */
     public function __construct(
         CustomerRepresentativeFacadeInterface $customerRepresentativeFacade,
