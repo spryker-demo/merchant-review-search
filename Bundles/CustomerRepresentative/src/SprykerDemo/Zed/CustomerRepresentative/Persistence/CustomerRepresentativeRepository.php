@@ -10,7 +10,6 @@ namespace SprykerDemo\Zed\CustomerRepresentative\Persistence;
 use Generated\Shared\Transfer\CustomerRepresentativesFilterTransfer;
 use Generated\Shared\Transfer\CustomerRepresentativesTransfer;
 use Generated\Shared\Transfer\UserTransfer;
-use Orm\Zed\User\Persistence\Map\SpyUserTableMap;
 use Propel\Runtime\Collection\ObjectCollection;
 use Spryker\Zed\Kernel\Persistence\AbstractRepository;
 
