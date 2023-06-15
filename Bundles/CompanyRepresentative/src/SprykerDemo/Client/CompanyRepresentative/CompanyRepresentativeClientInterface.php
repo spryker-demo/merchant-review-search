@@ -5,10 +5,10 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-namespace SprykerDemo\Client\CustomerRepresentative;
+namespace SprykerDemo\Client\CompanyRepresentative;
 
-use Generated\Shared\Transfer\CustomerRepresentativesFilterTransfer;
-use Generated\Shared\Transfer\CustomerRepresentativesTransfer;
+use Generated\Shared\Transfer\CompanyRepresentativesFilterTransfer;
+use Generated\Shared\Transfer\CompanyRepresentativesTransfer;
 
 interface CompanyRepresentativeClientInterface
 {
@@ -18,9 +18,9 @@ interface CompanyRepresentativeClientInterface
      *
      * @api
      *
-     * @param \Generated\Shared\Transfer\CompanyRepresentativesFilterTransfer $customerRepresentativesFilterTransfer
+     * @param \Generated\Shared\Transfer\CompanyRepresentativesFilterTransfer $companyRepresentativesFilterTransfer
      *
-     * @return \Generated\Shared\Transfer\CustomerRepresentativesTransfer
+     * @return \Generated\Shared\Transfer\CompanyRepresentativesTransfer
      */
-    public function findCustomerRepresentatives(CustomerRepresentativesFilterTransfer $customerRepresentativesFilterTransfer): CustomerRepresentativesTransfer;
+    public function findCustomerRepresentatives(CompanyRepresentativesFilterTransfer $companyRepresentativesFilterTransfer): CompanyRepresentativesTransfer;
 }

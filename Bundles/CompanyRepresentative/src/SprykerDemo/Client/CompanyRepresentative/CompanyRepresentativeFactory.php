@@ -5,17 +5,17 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-namespace SprykerDemo\Client\CustomerRepresentative;
+namespace SprykerDemo\Client\CompanyRepresentative;
 
 use Spryker\Client\Kernel\AbstractFactory;
 use Spryker\Client\ZedRequest\ZedRequestClientInterface;
-use SprykerDemo\Client\CustomerRepresentative\Zed\CompanyRepresentativeStub;
-use SprykerDemo\Client\CustomerRepresentative\Zed\CompanyRepresentativeStubInterface;
+use SprykerDemo\Client\CompanyRepresentative\Zed\CompanyRepresentativeStub;
+use SprykerDemo\Client\CompanyRepresentative\Zed\CompanyRepresentativeStubInterface;
 
 class CompanyRepresentativeFactory extends AbstractFactory
 {
     /**
-     * @return \SprykerDemo\Client\CustomerRepresentative\Zed\CompanyRepresentativeStubInterface
+     * @return \SprykerDemo\Client\CompanyRepresentative\Zed\CompanyRepresentativeStubInterface
      */
     public function createCustomerRepresentativeStub(): CompanyRepresentativeStubInterface
     {

@@ -5,10 +5,10 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-namespace SprykerDemo\Client\CustomerRepresentative;
+namespace SprykerDemo\Client\CompanyRepresentative;
 
-use Generated\Shared\Transfer\CustomerRepresentativesFilterTransfer;
-use Generated\Shared\Transfer\CustomerRepresentativesTransfer;
+use Generated\Shared\Transfer\CompanyRepresentativesFilterTransfer;
+use Generated\Shared\Transfer\CompanyRepresentativesTransfer;
 use Spryker\Client\Kernel\AbstractClient;
 
 /**
@@ -16,7 +16,7 @@ use Spryker\Client\Kernel\AbstractClient;
  *
  * @api
  *
- * @method \SprykerDemo\Client\CustomerRepresentative\CompanyRepresentativeFactory getFactory()
+ * @method \SprykerDemo\Client\CompanyRepresentative\CompanyRepresentativeFactory getFactory()
  */
 class CompanyRepresentativeClient extends AbstractClient implements CompanyRepresentativeClientInterface
 {
@@ -25,14 +25,14 @@ class CompanyRepresentativeClient extends AbstractClient implements CompanyRepre
      *
      * @api
      *
-     * @param \Generated\Shared\Transfer\CompanyRepresentativesFilterTransfer $customerRepresentativesFilterTransfer
+     * @param \Generated\Shared\Transfer\CompanyRepresentativesFilterTransfer $companyRepresentativesFilterTransfer
      *
-     * @return \Generated\Shared\Transfer\CustomerRepresentativesTransfer
+     * @return \Generated\Shared\Transfer\CompanyRepresentativesTransfer
      */
-    public function findCustomerRepresentatives(CustomerRepresentativesFilterTransfer $customerRepresentativesFilterTransfer): CustomerRepresentativesTransfer
+    public function findCustomerRepresentatives(CompanyRepresentativesFilterTransfer $companyRepresentativesFilterTransfer): CompanyRepresentativesTransfer
     {
         return $this->getFactory()
             ->createCustomerRepresentativeStub()
-            ->findCustomerRepresentatives($customerRepresentativesFilterTransfer);
+            ->findCustomerRepresentatives($companyRepresentativesFilterTransfer);
     }
 }

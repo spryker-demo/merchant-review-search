@@ -5,7 +5,7 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-namespace SprykerDemo\Client\CustomerRepresentative\Zed;
+namespace SprykerDemo\Client\CompanyRepresentative\Zed;
 
 use Generated\Shared\Transfer\CompanyRepresentativesFilterTransfer;
 use Generated\Shared\Transfer\CompanyRepresentativesTransfer;
