@@ -34,7 +34,7 @@ class CompanyRepresentativeStub implements CompanyRepresentativeStubInterface
     public function findCustomerRepresentatives(CompanyRepresentativesFilterTransfer $companyRepresentativesFilterTransfer): CompanyRepresentativesTransfer
     {
         /** @var \Generated\Shared\Transfer\CompanyRepresentativesTransfer $response */
-        $response = $this->zedStub->call('/customer-representative/gateway/find-customer-representatives', $companyRepresentativesFilterTransfer);
+        $response = $this->zedStub->call('/company-representative/gateway/find-company-representatives', $companyRepresentativesFilterTransfer);
 
         return $response;
     }

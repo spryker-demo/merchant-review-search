@@ -1,5 +1,5 @@
 # CustomerRepresentative Module
-[![Latest Stable Version](https://poser.pugx.org/spryker-demo/customer-representative/v/stable.svg)](https://packagist.org/packages/spryker-demo/customer-representative)
+[![Latest Stable Version](https://poser.pugx.org/spryker-demo/company-representative/v/stable.svg)](https://packagist.org/packages/spryker-demo/company-representative)
 [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.4-8892BF.svg)](https://php.net/)
 
 {{ADD DESCRIPTION HERE}}
@@ -7,7 +7,7 @@
 ## Installation
 
 ```
-composer require spryker-demo/customer-representative
+composer require spryker-demo/company-representative
 ```
 
 ## Documentation
