@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          name="zed"
+          xsi:noNamespaceSchemaLocation="http://static.spryker.com/schema-01.xsd"
+          namespace="Orm\Zed\ImportProcess\Persistence"
+          package="src.Orm.Zed.ImportProcess.Persistence">
+
+    <table name="pyz_import_process">
+        <column name="id_import_process" required="true" type="INTEGER" autoIncrement="true" primaryKey="true"/>
+        <column name="fk_user" type="INTEGER" required="true"/>
+        <column name="filesystem" type="VARCHAR" size="64" required="true" />
+        <column name="status" required="true" size="10" type="ENUM" valueSet="created,finished,failed" defaultValue="created"/>
+        <column name="import_report" type="CLOB" required="false"/>
+        <column name="import_map" type="CLOB" required="false" />
+
+        <index name="pyz_import_process-fk_user">
+            <index-column name="fk_user"/>
+        </index>
+
+        <foreign-key name="pyz_import_process-fk_user" foreignTable="spy_user" phpName="User">
+            <reference local="fk_user" foreign="id_user"/>
+        </foreign-key>
+
+        <behavior name="timestampable"/>
+
+        <id-method-parameter value="pyz_import_process_pk_seq"/>
+    </table>
+
+</database>
