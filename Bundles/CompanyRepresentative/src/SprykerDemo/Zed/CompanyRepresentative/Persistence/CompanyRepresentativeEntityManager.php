@@ -50,7 +50,7 @@ class CompanyRepresentativeEntityManager extends AbstractEntityManager implement
         }
 
         $this->getFactory()
-            ->createCompanyCompanyRepresentativeQuery()
+            ->createCompanyRepresentativeQuery()
             ->filterByFkCompany($companyId)
             ->filterByFkUser_In($userIds)
             ->delete();
@@ -89,7 +89,7 @@ class CompanyRepresentativeEntityManager extends AbstractEntityManager implement
     public function getCompanyRepresentatives(int $companyId): array
     {
         return $this->getFactory()
-            ->createCompanyCompanyRepresentativeQuery()
+            ->createCompanyRepresentativeQuery()
             ->select(SpyCompanyRepresentativeTableMap::COL_FK_USER)
             ->findByFkCompany($companyId)
             ->getArrayCopy();

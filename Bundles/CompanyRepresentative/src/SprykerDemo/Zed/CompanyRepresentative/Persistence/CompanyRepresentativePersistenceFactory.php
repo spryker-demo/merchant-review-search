@@ -17,7 +17,7 @@ class CompanyRepresentativePersistenceFactory extends AbstractPersistenceFactory
     /**
      * @return \Orm\Zed\CompanyRepresentative\Persistence\SpyCompanyRepresentativeQuery
      */
-    public function createCompanyCompanyRepresentativeQuery(): SpyCompanyRepresentativeQuery
+    public function createCompanyRepresentativeQuery(): SpyCompanyRepresentativeQuery
     {
         return SpyCompanyRepresentativeQuery::create();
     }

@@ -85,13 +85,13 @@ class CompanyCustomerRepresentativesTypeChoiceFormType extends AbstractType
                         return $result;
                     },
                     function ($data) {
-                        $customerRepresentativesTransfer = new CompanyRepresentativesTransfer();
+                        $companyRepresentativesTransfer = new CompanyRepresentativesTransfer();
 
                         foreach ($data as $id) {
-                            $customerRepresentativesTransfer->addUserId($id);
+                            $companyRepresentativesTransfer->addUserId($id);
                         }
 
-                        return $customerRepresentativesTransfer;
+                        return $companyRepresentativesTransfer;
                     },
                 ),
             );

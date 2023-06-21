@@ -19,7 +19,7 @@ class CompanyCustomerRepresentativesTypeChoiceFormDataProvider
     /**
      * @var \SprykerDemo\Zed\CompanyRepresentative\Business\CompanyRepresentativeFacadeInterface
      */
-    protected $customerRepresentativeFacade;
+    protected $companyRepresentativeFacade;
 
     /**
      * @var \Spryker\Zed\User\Persistence\UserQueryContainerInterface
@@ -27,14 +27,14 @@ class CompanyCustomerRepresentativesTypeChoiceFormDataProvider
     protected $userQueryContainer;
 
     /**
-     * @param \SprykerDemo\Zed\CompanyRepresentative\Business\CompanyRepresentativeFacadeInterface $customerRepresentativeFacade
+     * @param \SprykerDemo\Zed\CompanyRepresentative\Business\CompanyRepresentativeFacadeInterface $companyRepresentativeFacade
      * @param \Spryker\Zed\User\Persistence\UserQueryContainerInterface $userQueryContainer
      */
     public function __construct(
-        CompanyRepresentativeFacadeInterface $customerRepresentativeFacade,
+        CompanyRepresentativeFacadeInterface $companyRepresentativeFacade,
         UserQueryContainerInterface $userQueryContainer
     ) {
-        $this->customerRepresentativeFacade = $customerRepresentativeFacade;
+        $this->companyRepresentativeFacade = $companyRepresentativeFacade;
         $this->userQueryContainer = $userQueryContainer;
     }
 
@@ -44,14 +44,14 @@ class CompanyCustomerRepresentativesTypeChoiceFormDataProvider
     public function getOptions(): array
     {
         return [
-            CompanyCustomerRepresentativesTypeChoiceFormType::OPTION_VALUES_COMPANY_CUSTOMER_REPRESENTATIVES_TYPE_CHOICES => $this->getCustomerRepresentatives(),
+            CompanyCustomerRepresentativesTypeChoiceFormType::OPTION_VALUES_COMPANY_CUSTOMER_REPRESENTATIVES_TYPE_CHOICES => $this->getCompanyRepresentatives(),
         ];
     }
 
     /**
      * @return array
      */
-    protected function getCustomerRepresentatives(): array
+    protected function getCompanyRepresentatives(): array
     {
         $activeUsers = $this
             ->userQueryContainer
@@ -75,17 +75,14 @@ class CompanyCustomerRepresentativesTypeChoiceFormDataProvider
      */
     public function getData(?int $idCompany = null): CompanyRepresentativesTransfer
     {
-        $customerRepresentativeTransfer = new CompanyRepresentativesTransfer();
+        $companyRepresentativeTransfer = new CompanyRepresentativesTransfer();
 
         if ($idCompany === null) {
-            return $customerRepresentativeTransfer;
+            return $companyRepresentativeTransfer;
         }
 
-        $customerRepresentativeFilterTransfer = new CompanyRepresentativesFilterTransfer();
+        $companyRepresentativeFilterTransfer = new CompanyRepresentativesFilterTransfer();
 
-        $customerRepresentativesTransfer = $this->customerRepresentativeFacade->findCompanyRepresentatives($customerRepresentativeFilterTransfer->setCompanyId($idCompany));
-        $customerRepresentativeTransfer->setUserIds($customerRepresentativesTransfer->getUserIds());
-
-        return $customerRepresentativeTransfer;
+        return $this->companyRepresentativeFacade->findCompanyRepresentatives($companyRepresentativeFilterTransfer->setCompanyId($idCompany));
     }
 }

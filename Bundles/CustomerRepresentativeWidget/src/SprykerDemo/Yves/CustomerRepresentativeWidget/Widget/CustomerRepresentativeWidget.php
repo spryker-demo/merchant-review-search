@@ -7,7 +7,7 @@
 
 namespace SprykerDemo\Yves\CustomerRepresentativeWidget\Widget;
 
-use Generated\Shared\Transfer\CustomerRepresentativesFilterTransfer;
+use Generated\Shared\Transfer\CompanyRepresentativesFilterTransfer;
 use Spryker\Yves\Kernel\Dependency\Widget\WidgetInterface;
 use Spryker\Yves\Kernel\Widget\AbstractWidget;
 
@@ -43,8 +43,8 @@ class CustomerRepresentativeWidget extends AbstractWidget implements WidgetInter
     protected function addCustomerRepresentativesParameter(): void
     {
         $companyId = $this->getFactory()->getCustomerClient()->getCustomer()->getCompanyUserTransfer()->getCompany()->getIdCompany();
-        $customerRepresentativesFilterTransfer = (new CustomerRepresentativesFilterTransfer())->setCompanyId($companyId);
-        $customerRepresentatives = $this->getFactory()->getCustomerRepresentativeClient()->findCustomerRepresentatives($customerRepresentativesFilterTransfer);
+        $customerRepresentativesFilterTransfer = (new CompanyRepresentativesFilterTransfer())->setCompanyId($companyId);
+        $customerRepresentatives = $this->getFactory()->getCompanyRepresentativeClient()->findCustomerRepresentatives($customerRepresentativesFilterTransfer);
         $this->addParameter('representatives', $customerRepresentatives);
     }
 }

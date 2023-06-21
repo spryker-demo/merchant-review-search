@@ -32,7 +32,7 @@ class CompanyRepresentativeClient extends AbstractClient implements CompanyRepre
     public function findCustomerRepresentatives(CompanyRepresentativesFilterTransfer $companyRepresentativesFilterTransfer): CompanyRepresentativesTransfer
     {
         return $this->getFactory()
-            ->createCustomerRepresentativeStub()
-            ->findCustomerRepresentatives($companyRepresentativesFilterTransfer);
+            ->createCompanyRepresentativeStub()
+            ->findCompanyRepresentatives($companyRepresentativesFilterTransfer);
     }
 }

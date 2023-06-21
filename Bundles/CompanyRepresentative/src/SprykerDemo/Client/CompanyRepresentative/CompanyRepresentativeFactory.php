@@ -17,7 +17,7 @@ class CompanyRepresentativeFactory extends AbstractFactory
     /**
      * @return \SprykerDemo\Client\CompanyRepresentative\Zed\CompanyRepresentativeStubInterface
      */
-    public function createCustomerRepresentativeStub(): CompanyRepresentativeStubInterface
+    public function createCompanyRepresentativeStub(): CompanyRepresentativeStubInterface
     {
         return new CompanyRepresentativeStub($this->getZedRequestClient());
     }

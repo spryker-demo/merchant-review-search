@@ -15,7 +15,7 @@ class CustomerRepresentativeWidgetDependencyProvider extends AbstractBundleDepen
     /**
      * @var string
      */
-    public const CLIENT_CUSTOMER_REPRESENTATIVE = 'CLIENT_CUSTOMER_REPRESENTATIVE';
+    public const CLIENT_COMPANY_REPRESENTATIVE = 'CLIENT_COMPANY_REPRESENTATIVE';
 
     /**
      * @var string
@@ -29,7 +29,7 @@ class CustomerRepresentativeWidgetDependencyProvider extends AbstractBundleDepen
      */
     public function provideDependencies(Container $container): Container
     {
-        $container = $this->provideCustomerRepresentativeClient($container);
+        $container = $this->provideCompanyRepresentativeClient($container);
         $container = $this->provideCustomerClient($container);
 
         return $container;
@@ -40,10 +40,10 @@ class CustomerRepresentativeWidgetDependencyProvider extends AbstractBundleDepen
      *
      * @return \Spryker\Yves\Kernel\Container
      */
-    protected function provideCustomerRepresentativeClient(Container $container): Container
+    protected function provideCompanyRepresentativeClient(Container $container): Container
     {
-        $container->set(static::CLIENT_CUSTOMER_REPRESENTATIVE, function (Container $container) {
-            return $container->getLocator()->customerRepresentative()->client();
+        $container->set(static::CLIENT_COMPANY_REPRESENTATIVE, function (Container $container) {
+            return $container->getLocator()->companyRepresentative()->client();
         });
 
         return $container;
