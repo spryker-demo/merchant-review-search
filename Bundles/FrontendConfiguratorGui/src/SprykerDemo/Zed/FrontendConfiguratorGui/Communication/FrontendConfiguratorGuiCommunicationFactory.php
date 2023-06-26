@@ -61,7 +61,7 @@ class FrontendConfiguratorGuiCommunicationFactory extends AbstractCommunicationF
      */
     public function createBackofficeLogoTwigFunctionProvider(): BackofficeLogoTwigFunctionProvider
     {
-        return new BackofficeLogoTwigFunctionProvider($this->getFacade());
+        return new BackofficeLogoTwigFunctionProvider($this->getFrontendConfigFacade());
     }
 
     /**

@@ -20,12 +20,12 @@ class BackofficeLogoTwigFunctionProvider extends TwigFunctionProvider
     /**
      * @var \SprykerDemo\Zed\FrontendConfigurator\Business\FrontendConfiguratorFacadeInterface
      */
-    protected FrontendConfiguratorGuiFacadeInterface $frontendConfigFacade;
+    protected FrontendConfiguratorFacadeInterface $frontendConfigFacade;
 
     /**
-     * @param \SprykerDemo\Zed\FrontendConfiguratorGui\Business\FrontendConfiguratorGuiFacadeInterface $frontendConfigFacade
+     * @param \SprykerDemo\Zed\FrontendConfigurator\Business\FrontendConfiguratorFacadeInterface $frontendConfigFacade
      */
-    public function __construct(FrontendConfiguratorGuiFacadeInterface $frontendConfigFacade)
+    public function __construct(FrontendConfiguratorFacadeInterface $frontendConfigFacade)
     {
         $this->frontendConfigFacade = $frontendConfigFacade;
     }
