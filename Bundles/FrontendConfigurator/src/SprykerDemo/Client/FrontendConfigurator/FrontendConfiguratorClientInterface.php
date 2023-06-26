@@ -7,6 +7,17 @@
 
 namespace SprykerDemo\Client\FrontendConfigurator;
 
+use Generated\Shared\Transfer\ConfigContainerTransfer;
+
 interface FrontendConfiguratorClientInterface
 {
+    /**
+     *  Specification:
+     * - Get Frontend Configuration from zed
+     *
+     * @api
+     *
+     * @return \Generated\Shared\Transfer\ConfigContainerTransfer
+     */
+    public function getFrontendConfigContainer(): ConfigContainerTransfer;
 }
