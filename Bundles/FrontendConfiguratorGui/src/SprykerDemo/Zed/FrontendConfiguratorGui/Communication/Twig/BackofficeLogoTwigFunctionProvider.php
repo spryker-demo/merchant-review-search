@@ -1,20 +1,22 @@
 <?php
 
 /**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
+ * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
 namespace SprykerDemo\Zed\FrontendConfiguratorGui\Communication\Twig;
 
-use SprykerDemo\Zed\FrontendConfigurator\Business\FrontendConfiguratorFacadeInterface;
-use SprykerDemo\Zed\FrontendConfiguratorGui\Business\FrontendConfiguratorGuiFacadeInterface;
-use SprykerDemo\Zed\FrontendConfiguratorGui\FrontendConfiguratorGuiConfig;
 use Spryker\Shared\Twig\TwigFunctionProvider;
+use SprykerDemo\Zed\FrontendConfigurator\Business\FrontendConfiguratorFacadeInterface;
+use SprykerDemo\Zed\FrontendConfiguratorGui\FrontendConfiguratorGuiConfig;
 use Twig\Environment;
 
 class BackofficeLogoTwigFunctionProvider extends TwigFunctionProvider
 {
+    /**
+     * @var string
+     */
     public const FUNCTION_NAME = 'backofficeLogo';
 
     /**
@@ -58,7 +60,7 @@ class BackofficeLogoTwigFunctionProvider extends TwigFunctionProvider
     }
 
     /**
-     * @return array|callable
+     * @return callable|array
      */
     public function getFunction()
     {

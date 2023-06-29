@@ -1,14 +1,14 @@
 <?php
 
 /**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
+ * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
 namespace SprykerDemo\Zed\FrontendConfiguratorGui\Communication\Form;
 
-use SprykerDemo\Zed\FrontendConfiguratorGui\FrontendConfiguratorGuiConfig;
 use Spryker\Zed\Kernel\Communication\Form\AbstractType;
+use SprykerDemo\Zed\FrontendConfiguratorGui\FrontendConfiguratorGuiConfig;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ColorType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -25,25 +25,50 @@ class FrontendConfigurationForm extends AbstractType
      * @var string
      */
     public const FRONTEND_GUI_FIELD_HEADER_COLOR = FrontendConfiguratorGuiConfig::FRONTEND_GUI_FIELD_HEADER_COLOR;
+
     public const FRONTEND_GUI_FIELD_HEADER_TEXT_COLOR = FrontendConfiguratorGuiConfig::FRONTEND_GUI_FIELD_HEADER_TEXT_COLOR;
+
     public const FRONTEND_GUI_FIELD_HEADER_TOPBAR_COLOR = FrontendConfiguratorGuiConfig::FRONTEND_GUI_FIELD_HEADER_TOPBAR_COLOR;
+
     public const FRONTEND_GUI_FIELD_HEADER_TOPBAR_TEXT_COLOR = FrontendConfiguratorGuiConfig::FRONTEND_GUI_FIELD_HEADER_TOPBAR_TEXT_COLOR;
+
     public const FRONTEND_GUI_FIELD_HEADER_NAVIGATION_BACKGROUND = FrontendConfiguratorGuiConfig::FRONTEND_GUI_FIELD_HEADER_NAVIGATION_BACKGROUND;
+
     public const FRONTEND_GUI_FIELD_HEADER_NAVIGATION_TEXT_COLOR = FrontendConfiguratorGuiConfig::FRONTEND_GUI_FIELD_HEADER_NAVIGATION_TEXT_COLOR;
+
     public const FRONTEND_GUI_FIELD_FOOTER_COLOR = FrontendConfiguratorGuiConfig::FRONTEND_GUI_FIELD_FOOTER_COLOR;
+
     public const FRONTEND_GUI_FIELD_FOOTER_TEXT_COLOR = FrontendConfiguratorGuiConfig::FRONTEND_GUI_FIELD_FOOTER_TEXT_COLOR;
+
     public const FRONTEND_GUI_FIELD_BUTTON_PRIMARY_COLOR = FrontendConfiguratorGuiConfig::FRONTEND_GUI_FIELD_BUTTON_PRIMARY_COLOR;
+
     public const FRONTEND_GUI_FIELD_LOGO_FILE = FrontendConfiguratorGuiConfig::FRONTEND_GUI_FIELD_LOGO_FILE;
+
+    /**
+     * @var string
+     */
     public const FRONTEND_GUI_FIELD_LOGO_FILE_DELETE = 'deleteLogo';
+
     public const FRONTEND_GUI_FIELD_BACKOFFICE_LOGO_FILE = FrontendConfiguratorGuiConfig::FRONTEND_GUI_FIELD_BACKOFFICE_LOGO_FILE;
+
+    /**
+     * @var string
+     */
     public const FRONTEND_GUI_FIELD_BACKOFFICE_LOGO_FILE_DELETE = 'deleteBackofficeLogo';
 
+    /**
+     * @var array
+     */
     public const LOGO_ALLOWED_MIME_TYPES = ['image/gif', 'image/png', 'image/jpeg', 'image/bmp', 'image/webp'];
+
+    /**
+     * @var string
+     */
     public const LOGO_MAX_IMAGE_SIZE = '10M';
 
     /**
      * @param \Symfony\Component\Form\FormBuilderInterface $builder
-     * @param string[] $options
+     * @param array<string> $options
      *
      * @return void
      */

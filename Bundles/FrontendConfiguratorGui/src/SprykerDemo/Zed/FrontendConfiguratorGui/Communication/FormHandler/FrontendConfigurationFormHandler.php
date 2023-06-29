@@ -1,8 +1,8 @@
 <?php
 
 /**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
+ * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
 namespace SprykerDemo\Zed\FrontendConfiguratorGui\Communication\FormHandler;
@@ -14,7 +14,6 @@ use SprykerDemo\Zed\FrontendConfigurator\Business\FrontendConfiguratorFacadeInte
 use SprykerDemo\Zed\FrontendConfigurator\FrontendConfiguratorConfig;
 use SprykerDemo\Zed\FrontendConfiguratorGui\Communication\Form\FrontendConfigurationForm;
 use SprykerDemo\Zed\FrontendConfiguratorGui\FrontendConfiguratorGuiConfig;
-use SprykerDemo\Zed\Uploads\Business\UploadsFacadeInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -85,7 +84,7 @@ class FrontendConfigurationFormHandler implements FrontendConfigurationFormHandl
             [
                 FrontendConfiguratorGuiConfig::FRONTEND_GUI_FIELD_LOGO_FILE => $shopLogoUrl,
                 FrontendConfiguratorGuiConfig::FRONTEND_GUI_FIELD_BACKOFFICE_LOGO_FILE => $backofficeLogoUrl,
-            ]
+            ],
         ));
 
         $this->frontendConfigFacade
@@ -101,7 +100,7 @@ class FrontendConfigurationFormHandler implements FrontendConfigurationFormHandl
     {
         if ($file !== null) {
             $fileSystemName = $this->config->getFileSystemName();
-            $filePath = $this->config->getFileSystemConfigByName($fileSystemName)['path']. $this->generateUniqueFileName($file);
+            $filePath = $this->config->getFileSystemConfigByName($fileSystemName)['path'] . $this->generateUniqueFileName($file);
             $fileSystemContentTransfer = new FileSystemContentTransfer();
             $fileSystemContentTransfer->setFileSystemName($fileSystemName);
             $fileSystemContentTransfer->setPath($filePath);
@@ -111,7 +110,7 @@ class FrontendConfigurationFormHandler implements FrontendConfigurationFormHandl
 
             return $this->getPublicUrl(
                 $filePath,
-                $fileSystemName
+                $fileSystemName,
             );
         }
 
@@ -162,9 +161,10 @@ class FrontendConfigurationFormHandler implements FrontendConfigurationFormHandl
             'https://%s.s3.%s.amazonaws.com/%s',
             $s3BucketConfig['bucket'],
             $s3BucketConfig['region'],
-            $filePath
+            $filePath,
         );
     }
+
     /**
      * @param \Symfony\Component\HttpFoundation\File\UploadedFile $file
      *

@@ -1,19 +1,19 @@
 <?php
 
 /**
-* Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
-* Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
-*/
+ * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ */
 
 namespace SprykerDemo\Zed\FrontendConfiguratorGui\Communication;
 
 use Spryker\Service\FileSystem\FileSystemServiceInterface;
-use SprykerDemo\Zed\FrontendConfiguratorGui\Communication\FormHandler\FrontendConfigurationFormHandlerInterface;
-use SprykerDemo\Zed\FrontendConfiguratorGui\Communication\FormHandler\FrontendConfigurationFormHandler;
+use Spryker\Zed\Kernel\Communication\AbstractCommunicationFactory;
 use SprykerDemo\Zed\FrontendConfigurator\Business\FrontendConfiguratorFacadeInterface;
 use SprykerDemo\Zed\FrontendConfiguratorGui\Communication\Form\DataProvider\FrontendConfigurationFormDataProvider;
 use SprykerDemo\Zed\FrontendConfiguratorGui\Communication\Form\FrontendConfigurationForm;
-use Spryker\Zed\Kernel\Communication\AbstractCommunicationFactory;
+use SprykerDemo\Zed\FrontendConfiguratorGui\Communication\FormHandler\FrontendConfigurationFormHandler;
+use SprykerDemo\Zed\FrontendConfiguratorGui\Communication\FormHandler\FrontendConfigurationFormHandlerInterface;
 use SprykerDemo\Zed\FrontendConfiguratorGui\Communication\Twig\BackofficeLogoTwigFunctionProvider;
 use SprykerDemo\Zed\FrontendConfiguratorGui\FrontendConfiguratorGuiDependencyProvider;
 use Symfony\Component\Form\FormInterface;
@@ -52,7 +52,7 @@ class FrontendConfiguratorGuiCommunicationFactory extends AbstractCommunicationF
         return new TwigFunction(
             $functionProvider->getFunctionName(),
             $functionProvider->getFunction(),
-            $functionProvider->getOptions()
+            $functionProvider->getOptions(),
         );
     }
 
@@ -80,7 +80,7 @@ class FrontendConfiguratorGuiCommunicationFactory extends AbstractCommunicationF
         return new FrontendConfigurationFormHandler(
             $this->getFrontendConfigFacade(),
             $this->getFileSystemService(),
-            $this->getConfig()
+            $this->getConfig(),
         );
     }
 
