@@ -1,8 +1,8 @@
 <?php
 
 /**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
+ * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
 namespace SprykerDemo\Zed\FrontendConfigurator\Persistence\Mapper;
@@ -11,7 +11,7 @@ use Generated\Shared\Transfer\ConfigContainerTransfer;
 use Orm\Zed\FrontendConfigurator\Persistence\SpyFrontendConfigurator;
 use Spryker\Service\UtilEncoding\UtilEncodingServiceInterface;
 
-class ConfigContainerMapper implements ConfigContainerMapperInterface
+class ConfigContainerMapper
 {
     /**
      * @var \Spryker\Service\UtilEncoding\UtilEncodingServiceInterface

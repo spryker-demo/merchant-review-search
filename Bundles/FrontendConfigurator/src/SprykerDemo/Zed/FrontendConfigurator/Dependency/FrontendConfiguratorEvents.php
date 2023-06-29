@@ -9,6 +9,9 @@ namespace SprykerDemo\Zed\FrontendConfigurator\Dependency;
 
 interface FrontendConfiguratorEvents
 {
+    /**
+     * @var string
+     */
     public const FRONTEND_CONFIGURATOR_PUBLISH = 'FrontendConfigurator.publish';
 
     /**

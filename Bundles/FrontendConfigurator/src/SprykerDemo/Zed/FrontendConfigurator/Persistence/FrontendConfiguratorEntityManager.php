@@ -1,9 +1,9 @@
 <?php
 
 /**
-* Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
-* Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
-*/
+ * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ */
 
 namespace SprykerDemo\Zed\FrontendConfigurator\Persistence;
 
@@ -32,7 +32,7 @@ class FrontendConfiguratorEntityManager extends AbstractEntityManager implements
             ->createConfigContainerMapper()
             ->mapConfigContainerTransferToConfigContainerEntity(
                 $configContainerTransfer,
-                $configContainerEntity
+                $configContainerEntity,
             );
 
         $configContainerEntity->save();
@@ -41,7 +41,7 @@ class FrontendConfiguratorEntityManager extends AbstractEntityManager implements
             ->createConfigContainerMapper()
             ->mapConfigContainerEntityToConfigContainerTransfer(
                 $configContainerEntity,
-                $configContainerTransfer
+                $configContainerTransfer,
             );
 
         return $configContainerTransfer;

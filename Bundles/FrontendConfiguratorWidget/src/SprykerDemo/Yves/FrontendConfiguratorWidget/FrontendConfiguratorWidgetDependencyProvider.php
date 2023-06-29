@@ -1,8 +1,8 @@
 <?php
 
 /**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
+ * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
 namespace SprykerDemo\Yves\FrontendConfiguratorWidget;
@@ -15,7 +15,7 @@ class FrontendConfiguratorWidgetDependencyProvider extends AbstractBundleDepende
     /**
      * @var string
      */
-    public const CLIENT_FRONTEND_CONFIG = 'CLIENT_FRONTEND_CONFIG';
+    public const CLIENT_FRONTEND_CONFIGURATOR_STORAGE = 'CLIENT_FRONTEND_CONFIGURATOR_STORAGE';
 
     /**
      * @param \Spryker\Yves\Kernel\Container $container
@@ -24,7 +24,8 @@ class FrontendConfiguratorWidgetDependencyProvider extends AbstractBundleDepende
      */
     public function provideDependencies(Container $container): Container
     {
-        $container = $this->addFrontendConfigClient($container);
+        $container = parent::provideDependencies($container);
+        $container = $this->addFrontendConfiguratorStorageClient($container);
 
         return $container;
     }
@@ -34,10 +35,10 @@ class FrontendConfiguratorWidgetDependencyProvider extends AbstractBundleDepende
      *
      * @return \Spryker\Yves\Kernel\Container
      */
-    protected function addFrontendConfigClient(Container $container): Container
+    protected function addFrontendConfiguratorStorageClient(Container $container): Container
     {
-        $container->set(static::CLIENT_FRONTEND_CONFIG, function (Container $container) {
-            return $container->getLocator()->frontendConfigurator()->client();
+        $container->set(static::CLIENT_FRONTEND_CONFIGURATOR_STORAGE, function (Container $container) {
+            return $container->getLocator()->frontendConfiguratorStorage()->client();
         });
 
         return $container;

@@ -35,7 +35,7 @@ class FrontendConfiguratorGuiCommunicationFactory extends AbstractCommunicationF
     }
 
     /**
-     * @return \Pyz\Zed\FrontendConfiguratorGui\Communication\Form\DataProvider\FrontendConfigurationFormDataProvider
+     * @return \SprykerDemo\Zed\FrontendConfiguratorGui\Communication\Form\DataProvider\FrontendConfigurationFormDataProvider
      */
     public function createFrontendConfigGuiFormDataProvider(): FrontendConfigurationFormDataProvider
     {
@@ -61,7 +61,7 @@ class FrontendConfiguratorGuiCommunicationFactory extends AbstractCommunicationF
      */
     public function createBackofficeLogoTwigFunctionProvider(): BackofficeLogoTwigFunctionProvider
     {
-        return new BackofficeLogoTwigFunctionProvider($this->getFacade());
+        return new BackofficeLogoTwigFunctionProvider($this->getFrontendConfigFacade());
     }
 
     /**
@@ -73,7 +73,7 @@ class FrontendConfiguratorGuiCommunicationFactory extends AbstractCommunicationF
     }
 
     /**
-     * @return \Pyz\Zed\FrontendConfiguratorGui\Communication\FormHandler\FrontendConfigurationFormHandlerInterface
+     * @return \SprykerDemo\Zed\FrontendConfiguratorGui\Communication\FormHandler\FrontendConfigurationFormHandlerInterface
      */
     public function createFormHandler(): FrontendConfigurationFormHandlerInterface
     {

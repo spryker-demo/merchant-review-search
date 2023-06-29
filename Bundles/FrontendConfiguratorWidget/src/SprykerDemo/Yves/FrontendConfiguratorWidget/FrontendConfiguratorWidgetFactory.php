@@ -1,22 +1,22 @@
 <?php
 
 /**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
+ * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
 namespace SprykerDemo\Yves\FrontendConfiguratorWidget;
 
 use Spryker\Yves\Kernel\AbstractFactory;
-use SprykerDemo\Client\FrontendConfigurator\FrontendConfiguratorClientInterface;
+use SprykerDemo\Client\FrontendConfiguratorStorage\FrontendConfiguratorStorageClientInterface;
 
 class FrontendConfiguratorWidgetFactory extends AbstractFactory
 {
     /**
-     * @return \SprykerDemo\Client\FrontendConfigurator\FrontendConfiguratorClientInterface
+     * @return \SprykerDemo\Client\FrontendConfiguratorStorage\FrontendConfiguratorStorageClientInterface
      */
-    public function getFrontendConfigClient(): FrontendConfiguratorClientInterface
+    public function getFrontendConfiguratorStorageClient(): FrontendConfiguratorStorageClientInterface
     {
-        return $this->getProvidedDependency(FrontendConfiguratorWidgetDependencyProvider::CLIENT_FRONTEND_CONFIG);
+        return $this->getProvidedDependency(FrontendConfiguratorWidgetDependencyProvider::CLIENT_FRONTEND_CONFIGURATOR_STORAGE);
     }
 }
