@@ -1,6 +1,6 @@
 {
     "name": "spryker-demo/merchant-registration-feature",
-    "type": "library",
+    "type": "metapackage",
     "description": "Merchant registration feature module",
     "license": "proprietary",
     "require": {
