@@ -20,7 +20,8 @@ class FrontendConfiguratorRepository extends AbstractRepository implements Front
      *
      * @return \Generated\Shared\Transfer\FrontendConfiguratorTransfer|null
      */
-    public function getFrontendConfigurationByName(string $name): ?FrontendConfiguratorTransfer {
+    public function getFrontendConfigurationByName(string $name): ?FrontendConfiguratorTransfer
+    {
         $frontendConfiguratorEntity = $this->getFactory()
             ->createFrontendConfiguratorQuery()
             ->filterByName($name)

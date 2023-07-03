@@ -22,8 +22,7 @@ class FrontendConfiguratorEntityManager extends AbstractEntityManager implements
      */
     public function saveFrontendConfiguration(
         FrontendConfiguratorTransfer $frontendConfiguratorTransfer
-    ): void
-    {
+    ): void {
         $frontendConfiguratorEntity = $this->getFactory()
             ->createFrontendConfiguratorQuery()
             ->filterByName($frontendConfiguratorTransfer->getName())

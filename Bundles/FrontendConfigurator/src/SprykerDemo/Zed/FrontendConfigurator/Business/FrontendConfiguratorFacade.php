@@ -8,7 +8,6 @@
 namespace SprykerDemo\Zed\FrontendConfigurator\Business;
 
 use Generated\Shared\Transfer\FrontendConfiguratorTransfer;
-use org\bovigo\vfs\visitor\vfsStreamPrintVisitor;
 use Spryker\Zed\Kernel\Business\AbstractFacade;
 use SprykerDemo\Zed\FrontendConfigurator\FrontendConfiguratorConfig;
 
