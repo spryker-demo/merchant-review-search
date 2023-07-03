@@ -7,16 +7,14 @@
 
 namespace SprykerDemo\Zed\FrontendConfigurator\Persistence;
 
-use Generated\Shared\Transfer\ConfigContainerTransfer;
+use Generated\Shared\Transfer\FrontendConfiguratorTransfer;
 
 interface FrontendConfiguratorRepositoryInterface
 {
     /**
      * @param string $name
      *
-     * @return \Generated\Shared\Transfer\ConfigContainerTransfer|null
+     * @return \Generated\Shared\Transfer\FrontendConfiguratorTransfer|null
      */
-    public function getConfigContainerByName(
-        string $name
-    ): ?ConfigContainerTransfer;
+    public function getFrontendConfigurationByName(string $name): ?FrontendConfiguratorTransfer;
 }

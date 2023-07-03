@@ -7,7 +7,8 @@
 
 namespace SprykerDemo\Zed\FrontendConfigurator\Business;
 
-use Generated\Shared\Transfer\ConfigContainerTransfer;
+use Generated\Shared\Transfer\FrontendConfiguratorTransfer;
+use SprykerDemo\Zed\FrontendConfigurator\FrontendConfiguratorConfig;
 
 interface FrontendConfiguratorFacadeInterface
 {
@@ -17,9 +18,11 @@ interface FrontendConfiguratorFacadeInterface
      *
      * @api
      *
-     * @return \Generated\Shared\Transfer\ConfigContainerTransfer
+     * @param string $name
+     *
+     * @return \Generated\Shared\Transfer\FrontendConfiguratorTransfer
      */
-    public function getFrontendGuiConfigContainer(): ConfigContainerTransfer;
+    public function getFrontendConfiguration(string $name = FrontendConfiguratorConfig::FRONTEND_CONFIG_REDIS_KEY_SUFFIX): FrontendConfiguratorTransfer;
 
     /**
      * Specification:
@@ -27,33 +30,9 @@ interface FrontendConfiguratorFacadeInterface
      *
      * @api
      *
-     * @param \Generated\Shared\Transfer\ConfigContainerTransfer $configContainerTransfer
+     * @param \Generated\Shared\Transfer\FrontendConfiguratorTransfer $frontendConfiguratorTransfer
      *
-     * @return \Generated\Shared\Transfer\ConfigContainerTransfer
+     * @return void
      */
-    public function saveFrontendGuiConfigContainer(ConfigContainerTransfer $configContainerTransfer): ConfigContainerTransfer;
-
-    /**
-     * Specification:
-     * - Persists ConfigContainerTransfer
-     *
-     * @api
-     *
-     * @param \Generated\Shared\Transfer\ConfigContainerTransfer $configContainerTransfer
-     *
-     * @return \Generated\Shared\Transfer\ConfigContainerTransfer
-     */
-    public function saveConfigContainer(ConfigContainerTransfer $configContainerTransfer): ConfigContainerTransfer;
-
-    /**
-     * Specification:
-     * - Gets ConfigContainerTransfer by name
-     *
-     * @api
-     *
-     * @param string $name
-     *
-     * @return \Generated\Shared\Transfer\ConfigContainerTransfer
-     */
-    public function getConfigContainerByName(string $name): ConfigContainerTransfer;
+    public function saveFrontendConfiguration(FrontendConfiguratorTransfer $frontendConfiguratorTransfer): void;
 }

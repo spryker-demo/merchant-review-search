@@ -7,16 +7,16 @@
 
 namespace SprykerDemo\Zed\FrontendConfigurator\Persistence;
 
-use Generated\Shared\Transfer\ConfigContainerTransfer;
+use Generated\Shared\Transfer\FrontendConfiguratorTransfer;
 
 interface FrontendConfiguratorEntityManagerInterface
 {
     /**
-     * @param \Generated\Shared\Transfer\ConfigContainerTransfer $configContainerTransfer
+     * @param \Generated\Shared\Transfer\FrontendConfiguratorTransfer $frontendConfiguratorTransfer
      *
-     * @return \Generated\Shared\Transfer\ConfigContainerTransfer
+     * @return void
      */
-    public function saveConfigContainerEntity(
-        ConfigContainerTransfer $configContainerTransfer
-    ): ConfigContainerTransfer;
+    public function saveFrontendConfiguration(
+        FrontendConfiguratorTransfer $frontendConfiguratorTransfer
+    ): void;
 }

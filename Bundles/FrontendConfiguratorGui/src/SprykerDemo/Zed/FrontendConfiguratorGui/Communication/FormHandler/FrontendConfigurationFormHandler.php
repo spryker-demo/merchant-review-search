@@ -59,27 +59,27 @@ class FrontendConfigurationFormHandler implements FrontendConfigurationFormHandl
         $formData = $form->getData();
 
         $formData = $this->setDefaultColor($formData);
-        $configContainerTransfer = $this->frontendConfigFacade->getFrontendGuiConfigContainer();
-        $configContainerTransfer->setName(FrontendConfiguratorConfig::FRONTEND_CONFIG_CONTAINER_NAME);
+        $frontendConfiguratorTransfer = $this->frontendConfigFacade->getFrontendConfiguration();
+        $frontendConfiguratorTransfer->setName(FrontendConfiguratorConfig::FRONTEND_CONFIG_REDIS_KEY_SUFFIX);
 
         $shopLogoUrl = $this->uploadFile($formData[FrontendConfigurationForm::FRONTEND_GUI_FIELD_LOGO_FILE])
-            ?? $configContainerTransfer->getData()[FrontendConfiguratorGuiConfig::FRONTEND_GUI_FIELD_LOGO_FILE] ?? null;
+            ?? $frontendConfiguratorTransfer->getData()[FrontendConfiguratorGuiConfig::FRONTEND_GUI_FIELD_LOGO_FILE] ?? null;
         $backofficeLogoUrl = $this->uploadFile($formData[FrontendConfigurationForm::FRONTEND_GUI_FIELD_BACKOFFICE_LOGO_FILE])
-            ?? $configContainerTransfer->getData()[FrontendConfiguratorGuiConfig::FRONTEND_GUI_FIELD_BACKOFFICE_LOGO_FILE] ?? null;
+            ?? $frontendConfiguratorTransfer->getData()[FrontendConfiguratorGuiConfig::FRONTEND_GUI_FIELD_BACKOFFICE_LOGO_FILE] ?? null;
 
         if ($formData[FrontendConfigurationForm::FRONTEND_GUI_FIELD_LOGO_FILE_DELETE]) {
-            $this->deleteFile($configContainerTransfer->getData()[FrontendConfiguratorGuiConfig::FRONTEND_GUI_FIELD_LOGO_FILE] ?? null);
+            $this->deleteFile($frontendConfiguratorTransfer->getData()[FrontendConfiguratorGuiConfig::FRONTEND_GUI_FIELD_LOGO_FILE] ?? null);
             $shopLogoUrl = null;
         }
 
         if ($formData[FrontendConfigurationForm::FRONTEND_GUI_FIELD_BACKOFFICE_LOGO_FILE_DELETE]) {
-            $this->deleteFile($configContainerTransfer->getData()[FrontendConfiguratorGuiConfig::FRONTEND_GUI_FIELD_BACKOFFICE_LOGO_FILE] ?? null);
+            $this->deleteFile($frontendConfiguratorTransfer->getData()[FrontendConfiguratorGuiConfig::FRONTEND_GUI_FIELD_BACKOFFICE_LOGO_FILE] ?? null);
             $backofficeLogoUrl = null;
         }
 
         unset($formData[FrontendConfigurationForm::FRONTEND_GUI_FIELD_LOGO_FILE_DELETE], $formData[FrontendConfigurationForm::FRONTEND_GUI_FIELD_BACKOFFICE_LOGO_FILE_DELETE]);
 
-        $configContainerTransfer->setData(array_merge(
+        $frontendConfiguratorTransfer->setData(array_merge(
             $formData,
             [
                 FrontendConfiguratorGuiConfig::FRONTEND_GUI_FIELD_LOGO_FILE => $shopLogoUrl,
@@ -88,7 +88,7 @@ class FrontendConfigurationFormHandler implements FrontendConfigurationFormHandl
         ));
 
         $this->frontendConfigFacade
-            ->saveFrontendGuiConfigContainer($configContainerTransfer);
+            ->saveFrontendConfiguration($frontendConfiguratorTransfer);
     }
 
     /**
@@ -106,7 +106,7 @@ class FrontendConfigurationFormHandler implements FrontendConfigurationFormHandl
             $fileSystemContentTransfer->setPath($filePath);
             $fileSystemContentTransfer->setContent($file->getContent());
             $fileSystemContentTransfer->setConfig($this->config->getFileSystemWriterConfig());
-            $uploadedFileData = $this->fileSystemService->write($fileSystemContentTransfer);
+            $this->fileSystemService->write($fileSystemContentTransfer);
 
             return $this->getPublicUrl(
                 $filePath,

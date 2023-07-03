@@ -32,16 +32,17 @@ class FrontendConfiguratorWidget extends AbstractWidget
 
     public function __construct()
     {
-        $this->addParameter('data', $this->getConfigContainer());
+        $this->addParameter('data', $this->getFrontendConfiguration());
     }
 
     /**
      * @return array
      */
-    protected function getConfigContainer(): array
+    protected function getFrontendConfiguration(): array
     {
-        $configContainerTransfer = $this->getFactory()->getFrontendConfiguratorStorageClient()->getFrontendConfigContainer();
-
-        return $configContainerTransfer->getData();
+        return $this->getFactory()
+            ->getFrontendConfiguratorStorageClient()
+            ->getFrontendConfiguration()
+            ->getData();
     }
 }

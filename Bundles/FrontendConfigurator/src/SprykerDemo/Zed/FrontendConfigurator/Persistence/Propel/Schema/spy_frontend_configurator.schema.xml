@@ -10,10 +10,6 @@
         <column name="data" type="LONGVARCHAR" required="true"/>
 
         <id-method-parameter value="spy_frontend_configurator_pk_seq"/>
-
-        <behavior name="event">
-            <parameter name="spy_frontend_configurator_all" column="*"/>
-        </behavior>
     </table>
 
 </database>

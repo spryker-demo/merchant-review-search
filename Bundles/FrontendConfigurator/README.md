@@ -2,7 +2,7 @@
 [![Latest Stable Version](https://poser.pugx.org/spryker-demo/frontend-configurator/v/stable.svg)](https://packagist.org/packages/spryker-demo/frontend-configurator)
 [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.4-8892BF.svg)](https://php.net/)
 
-{{ADD DESCRIPTION HERE}}
+Provides logic for saving and reading global frontend configuration.
 
 ## Installation
 

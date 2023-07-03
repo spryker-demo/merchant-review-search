@@ -24,7 +24,6 @@ class FrontendConfiguratorWidgetDependencyProvider extends AbstractBundleDepende
      */
     public function provideDependencies(Container $container): Container
     {
-        $container = parent::provideDependencies($container);
         $container = $this->addFrontendConfiguratorStorageClient($container);
 
         return $container;

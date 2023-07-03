@@ -7,7 +7,7 @@
 
 namespace SprykerDemo\Zed\FrontendConfigurator\Persistence;
 
-use Generated\Shared\Transfer\ConfigContainerTransfer;
+use Generated\Shared\Transfer\FrontendConfiguratorTransfer;
 use Spryker\Zed\Kernel\Persistence\AbstractRepository;
 
 /**
@@ -18,21 +18,19 @@ class FrontendConfiguratorRepository extends AbstractRepository implements Front
     /**
      * @param string $name
      *
-     * @return \Generated\Shared\Transfer\ConfigContainerTransfer|null
+     * @return \Generated\Shared\Transfer\FrontendConfiguratorTransfer|null
      */
-    public function getConfigContainerByName(
-        string $name
-    ): ?ConfigContainerTransfer {
-        $configContainerEntity = $this->getFactory()
+    public function getFrontendConfigurationByName(string $name): ?FrontendConfiguratorTransfer {
+        $frontendConfiguratorEntity = $this->getFactory()
             ->createFrontendConfiguratorQuery()
             ->filterByName($name)
             ->findOneOrCreate();
 
         return $this->getFactory()
-            ->createConfigContainerMapper()
-            ->mapConfigContainerEntityToConfigContainerTransfer(
-                $configContainerEntity,
-                new ConfigContainerTransfer(),
+            ->createFrontendConfigurationMapper()
+            ->mapFrontendConfiguratorEntityToFrontendConfiguratorTransfer(
+                $frontendConfiguratorEntity,
+                new FrontendConfiguratorTransfer(),
             );
     }
 }

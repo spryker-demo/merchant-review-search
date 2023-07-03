@@ -30,13 +30,13 @@ class FrontendConfigurationFormDataProvider
      */
     public function getData(): array
     {
-        $configContainerTransfer = $this->frontendConfigFacade->getFrontendGuiConfigContainer();
+        $frontendConfiguratorTransfer = $this->frontendConfigFacade->getFrontendConfiguration();
 
         return array_merge(
-            $configContainerTransfer->getData(),
+            $frontendConfiguratorTransfer->getData(),
             [
-                'logoUrl' => $configContainerTransfer->getData()[FrontendConfiguratorGuiConfig::FRONTEND_GUI_FIELD_LOGO_FILE] ?? null,
-                'backofficeLogoUrl' => $configContainerTransfer->getData()[FrontendConfiguratorGuiConfig::FRONTEND_GUI_FIELD_BACKOFFICE_LOGO_FILE] ?? null,
+                'logoUrl' => $frontendConfiguratorTransfer->getData()[FrontendConfiguratorGuiConfig::FRONTEND_GUI_FIELD_LOGO_FILE] ?? null,
+                'backofficeLogoUrl' => $frontendConfiguratorTransfer->getData()[FrontendConfiguratorGuiConfig::FRONTEND_GUI_FIELD_BACKOFFICE_LOGO_FILE] ?? null,
             ],
         );
     }

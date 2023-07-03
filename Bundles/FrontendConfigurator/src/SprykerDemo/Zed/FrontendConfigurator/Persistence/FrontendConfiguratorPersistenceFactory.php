@@ -11,7 +11,7 @@ use Orm\Zed\FrontendConfigurator\Persistence\SpyFrontendConfiguratorQuery;
 use Spryker\Service\UtilEncoding\UtilEncodingServiceInterface;
 use Spryker\Zed\Kernel\Persistence\AbstractPersistenceFactory;
 use SprykerDemo\Zed\FrontendConfigurator\FrontendConfiguratorDependencyProvider;
-use SprykerDemo\Zed\FrontendConfigurator\Persistence\Mapper\ConfigContainerMapper;
+use SprykerDemo\Zed\FrontendConfigurator\Persistence\Mapper\FrontendConfigurationMapper;
 
 /**
  * @method \SprykerDemo\Zed\FrontendConfigurator\FrontendConfiguratorConfig getConfig()
@@ -27,11 +27,11 @@ class FrontendConfiguratorPersistenceFactory extends AbstractPersistenceFactory
     }
 
     /**
-     * @return \SprykerDemo\Zed\FrontendConfigurator\Persistence\Mapper\ConfigContainerMapper
+     * @return \SprykerDemo\Zed\FrontendConfigurator\Persistence\Mapper\FrontendConfigurationMapper
      */
-    public function createConfigContainerMapper(): ConfigContainerMapper
+    public function createFrontendConfigurationMapper(): FrontendConfigurationMapper
     {
-        return new ConfigContainerMapper($this->getUtilEncodingService());
+        return new FrontendConfigurationMapper($this->getUtilEncodingService());
     }
 
     /**

@@ -18,7 +18,7 @@ class FrontendConfiguratorGuiDependencyProvider extends AbstractBundleDependency
     /**
      * @var string
      */
-    public const FRONTEND_CONFIGURATOR_FACADE = 'FRONTEND_CONFIGURATOR_FACADE';
+    public const FACADE_FRONTEND_CONFIGURATOR = 'FACADE_FRONTEND_CONFIGURATOR';
 
     /**
      * @var string
@@ -32,8 +32,6 @@ class FrontendConfiguratorGuiDependencyProvider extends AbstractBundleDependency
      */
     public function provideCommunicationLayerDependencies(Container $container): Container
     {
-        parent::provideCommunicationLayerDependencies($container);
-
         $this->addFrontendConfiguratorFacade($container);
         $this->addFileSystemService($container);
 
@@ -47,7 +45,7 @@ class FrontendConfiguratorGuiDependencyProvider extends AbstractBundleDependency
      */
     protected function addFrontendConfiguratorFacade(Container $container): Container
     {
-        $container->set(static::FRONTEND_CONFIGURATOR_FACADE, function (Container $container) {
+        $container->set(static::FACADE_FRONTEND_CONFIGURATOR, function (Container $container) {
             return $container->getLocator()->frontendConfigurator()->facade();
         });
 

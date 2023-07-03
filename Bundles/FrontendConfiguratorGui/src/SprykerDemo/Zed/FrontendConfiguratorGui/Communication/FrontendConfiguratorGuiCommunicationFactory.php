@@ -69,7 +69,7 @@ class FrontendConfiguratorGuiCommunicationFactory extends AbstractCommunicationF
      */
     public function getFrontendConfigFacade(): FrontendConfiguratorFacadeInterface
     {
-        return $this->getProvidedDependency(FrontendConfiguratorGuiDependencyProvider::FRONTEND_CONFIGURATOR_FACADE);
+        return $this->getProvidedDependency(FrontendConfiguratorGuiDependencyProvider::FACADE_FRONTEND_CONFIGURATOR);
     }
 
     /**

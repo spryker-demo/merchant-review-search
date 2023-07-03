@@ -7,12 +7,14 @@
 
 namespace SprykerDemo\Zed\FrontendConfigurator\Business;
 
-use Generated\Shared\Transfer\ConfigContainerTransfer;
+use Generated\Shared\Transfer\FrontendConfiguratorTransfer;
+use org\bovigo\vfs\visitor\vfsStreamPrintVisitor;
 use Spryker\Zed\Kernel\Business\AbstractFacade;
 use SprykerDemo\Zed\FrontendConfigurator\FrontendConfiguratorConfig;
 
 /**
- * @method \SprykerDemo\Zed\FrontendConfigurator\Business\FrontendConfiguratorBusinessFactory getFactory()
+ * @method \SprykerDemo\Zed\FrontendConfigurator\Persistence\FrontendConfiguratorEntityManagerInterface getEntityManager()
+ * @method \SprykerDemo\Zed\FrontendConfigurator\Persistence\FrontendConfiguratorRepositoryInterface getRepository()
  */
 class FrontendConfiguratorFacade extends AbstractFacade implements FrontendConfiguratorFacadeInterface
 {
@@ -21,54 +23,28 @@ class FrontendConfiguratorFacade extends AbstractFacade implements FrontendConfi
      *
      * @api
      *
-     * @return \Generated\Shared\Transfer\ConfigContainerTransfer
-     */
-    public function getFrontendGuiConfigContainer(): ConfigContainerTransfer
-    {
-        return $this->getConfigContainerByName(FrontendConfiguratorConfig::FRONTEND_CONFIG_CONTAINER_NAME);
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @api
-     *
-     * @param \Generated\Shared\Transfer\ConfigContainerTransfer $configContainerTransfer
-     *
-     * @return \Generated\Shared\Transfer\ConfigContainerTransfer
-     */
-    public function saveFrontendGuiConfigContainer(ConfigContainerTransfer $configContainerTransfer): ConfigContainerTransfer
-    {
-        return $this->saveConfigContainer($configContainerTransfer);
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @api
-     *
-     * @param \Generated\Shared\Transfer\ConfigContainerTransfer $configContainerTransfer
-     *
-     * @return \Generated\Shared\Transfer\ConfigContainerTransfer
-     */
-    public function saveConfigContainer(ConfigContainerTransfer $configContainerTransfer): ConfigContainerTransfer
-    {
-        return $this->getEntityManager()
-            ->saveConfigContainerEntity($configContainerTransfer);
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @api
-     *
      * @param string $name
      *
-     * @return \Generated\Shared\Transfer\ConfigContainerTransfer
+     * @return \Generated\Shared\Transfer\FrontendConfiguratorTransfer
      */
-    public function getConfigContainerByName(string $name): ConfigContainerTransfer
+    public function getFrontendConfiguration(string $name = FrontendConfiguratorConfig::FRONTEND_CONFIG_REDIS_KEY_SUFFIX): FrontendConfiguratorTransfer
     {
         return $this->getRepository()
-            ->getConfigContainerByName($name);
+            ->getFrontendConfigurationByName($name);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\FrontendConfiguratorTransfer $frontendConfiguratorTransfer
+     *
+     * @return void
+     */
+    public function saveFrontendConfiguration(FrontendConfiguratorTransfer $frontendConfiguratorTransfer): void
+    {
+        $this->getEntityManager()
+            ->saveFrontendConfiguration($frontendConfiguratorTransfer);
     }
 }

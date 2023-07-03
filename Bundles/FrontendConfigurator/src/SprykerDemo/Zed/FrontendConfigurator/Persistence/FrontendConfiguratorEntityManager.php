@@ -7,7 +7,7 @@
 
 namespace SprykerDemo\Zed\FrontendConfigurator\Persistence;
 
-use Generated\Shared\Transfer\ConfigContainerTransfer;
+use Generated\Shared\Transfer\FrontendConfiguratorTransfer;
 use Spryker\Zed\Kernel\Persistence\AbstractEntityManager;
 
 /**
@@ -16,34 +16,26 @@ use Spryker\Zed\Kernel\Persistence\AbstractEntityManager;
 class FrontendConfiguratorEntityManager extends AbstractEntityManager implements FrontendConfiguratorEntityManagerInterface
 {
     /**
-     * @param \Generated\Shared\Transfer\ConfigContainerTransfer $configContainerTransfer
+     * @param \Generated\Shared\Transfer\FrontendConfiguratorTransfer $frontendConfiguratorTransfer
      *
-     * @return \Generated\Shared\Transfer\ConfigContainerTransfer
+     * @return void
      */
-    public function saveConfigContainerEntity(
-        ConfigContainerTransfer $configContainerTransfer
-    ): ConfigContainerTransfer {
-        $configContainerEntity = $this->getFactory()
+    public function saveFrontendConfiguration(
+        FrontendConfiguratorTransfer $frontendConfiguratorTransfer
+    ): void
+    {
+        $frontendConfiguratorEntity = $this->getFactory()
             ->createFrontendConfiguratorQuery()
-            ->filterByName($configContainerTransfer->getName())
+            ->filterByName($frontendConfiguratorTransfer->getName())
             ->findOneOrCreate();
 
         $this->getFactory()
-            ->createConfigContainerMapper()
-            ->mapConfigContainerTransferToConfigContainerEntity(
-                $configContainerTransfer,
-                $configContainerEntity,
+            ->createFrontendConfigurationMapper()
+            ->mapFrontendConfiguratorTransferToFrontendConfiguratorEntity(
+                $frontendConfiguratorTransfer,
+                $frontendConfiguratorEntity,
             );
 
-        $configContainerEntity->save();
-
-        $this->getFactory()
-            ->createConfigContainerMapper()
-            ->mapConfigContainerEntityToConfigContainerTransfer(
-                $configContainerEntity,
-                $configContainerTransfer,
-            );
-
-        return $configContainerTransfer;
+        $frontendConfiguratorEntity->save();
     }
 }

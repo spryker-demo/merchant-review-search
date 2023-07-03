@@ -14,5 +14,5 @@ class FrontendConfiguratorConfig extends AbstractBundleConfig
     /**
      * @var string
      */
-    public const FRONTEND_CONFIG_CONTAINER_NAME = 'FRONTEND_CONFIG';
+    public const FRONTEND_CONFIG_REDIS_KEY_SUFFIX = 'FRONTEND_CONFIG';
 }

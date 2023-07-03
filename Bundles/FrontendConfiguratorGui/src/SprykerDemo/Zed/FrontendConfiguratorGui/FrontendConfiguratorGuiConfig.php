@@ -16,7 +16,7 @@ class FrontendConfiguratorGuiConfig extends AbstractBundleConfig
     /**
      * @var string
      */
-    public const FILE_SYSTEM_NAME = 'logo';
+    protected const FILE_SYSTEM_NAME = 'logo';
 
     /**
      * @var string

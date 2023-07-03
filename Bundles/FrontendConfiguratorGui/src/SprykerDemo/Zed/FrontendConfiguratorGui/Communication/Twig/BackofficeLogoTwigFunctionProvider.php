@@ -42,8 +42,8 @@ class BackofficeLogoTwigFunctionProvider extends TwigFunctionProvider
         Environment $environment,
         string $class = ''
     ): string {
-        $configContainerTransfer = $this->frontendConfigFacade->getFrontendGuiConfigContainer();
-        $backofficeLogoUrl = $configContainerTransfer->getData()[FrontendConfiguratorGuiConfig::FRONTEND_GUI_FIELD_BACKOFFICE_LOGO_FILE] ?? null;
+        $frontendConfiguratorTransfer = $this->frontendConfigFacade->getFrontendConfiguration();
+        $backofficeLogoUrl = $frontendConfiguratorTransfer->getData()[FrontendConfiguratorGuiConfig::FRONTEND_GUI_FIELD_BACKOFFICE_LOGO_FILE] ?? null;
 
         return $environment->render('@Gui/Partials/backoffice-logo.twig', [
             'backofficeLogoUrl' => $backofficeLogoUrl,
