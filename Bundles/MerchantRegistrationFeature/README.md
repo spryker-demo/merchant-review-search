@@ -74,3 +74,47 @@ merchant.register.step.text-4,"When you’re ready, request to launch and we’l
 ```
 console data:import:glossary
 ```
+
+### Set up behavior
+
+Activate the following plugins:
+
+#### src/Pyz/Zed/Mail/MailDependencyProvider.php
+
+```php
+
+use SprykerDemo\Zed\MerchantRegistration\Communication\Plugin\Mail\MerchantRegistrationMailTypePlugin;
+
+class MailDependencyProvider extends SprykerMailDependencyProvider
+{
+    /**
+     * @return array<\Spryker\Zed\MailExtension\Dependency\Plugin\MailTypeBuilderPluginInterface>
+     */
+    protected function getMailTypeBuilderPlugins(): array
+    {
+        return [
+            new MerchantRegistrationMailTypePlugin(),
+        ];
+    }
+}
+```
+
+#### src/Pyz/Yves/Router/RouterDependencyProvider.php
+
+```php
+
+use SprykerDemo\Yves\MerchantRegistrationPage\Plugin\Router\MerchantRegistrationPageRouterProviderPlugin;
+
+class RouterDependencyProvider extends SprykerRouterDependencyProvider
+{
+    /**
+     * @return array<\Spryker\Yves\RouterExtension\Dependency\Plugin\RouteProviderPluginInterface>
+     */
+    protected function getRouteProvider(): array
+    {
+        return [
+            new MerchantRegistrationPageRouterProviderPlugin(),
+        ];
+    }
+}
+```
