@@ -5,13 +5,15 @@
     "license": "proprietary",
     "require": {
         "php": ">=8.0",
+        "spryker-demo/frontend-configurator": "* as 1.0.0",
+        "spryker/config": "*",
         "spryker/file-system": "^2.0.0",
         "spryker/kernel": "^3.70.0",
-        "spryker-demo/frontend-configurator": "* as 1.0.0"
+        "spryker/symfony": "*",
+        "spryker/twig": "*"
     },
     "require-dev": {
-        "spryker/code-sniffer": "*",
-        "spryker/testify": "*"
+        "spryker/code-sniffer": "*"
     },
     "autoload": {
         "psr-4": {
