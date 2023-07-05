@@ -57,7 +57,7 @@ class FrontendConfigurationForm extends AbstractType
     public const FRONTEND_GUI_FIELD_BACKOFFICE_LOGO_FILE_DELETE = 'deleteBackofficeLogo';
 
     /**
-     * @var array
+     * @var array<string>
      */
     public const LOGO_ALLOWED_MIME_TYPES = ['image/gif', 'image/png', 'image/jpeg', 'image/bmp', 'image/webp'];
 
@@ -252,7 +252,7 @@ class FrontendConfigurationForm extends AbstractType
 
     /**
      * @param \Symfony\Component\Form\FormBuilderInterface $builder
-     * @param array $options
+     * @param array<string, mixed> $options
      *
      * @return $this
      */
@@ -284,7 +284,7 @@ class FrontendConfigurationForm extends AbstractType
 
     /**
      * @param \Symfony\Component\Form\FormBuilderInterface $builder
-     * @param array $options
+     * @param array<string, mixed> $options
      *
      * @return $this
      */

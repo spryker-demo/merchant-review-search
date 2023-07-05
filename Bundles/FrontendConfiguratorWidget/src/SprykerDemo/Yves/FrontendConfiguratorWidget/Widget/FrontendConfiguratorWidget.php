@@ -36,7 +36,7 @@ class FrontendConfiguratorWidget extends AbstractWidget
     }
 
     /**
-     * @return array
+     * @return array<string, mixed>
      */
     protected function getFrontendConfiguration(): array
     {

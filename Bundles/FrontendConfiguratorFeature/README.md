@@ -123,14 +123,6 @@ use SprykerDemo\Zed\FrontendConfiguratorStorage\Communication\Plugin\Publisher\F
         );
     }
 
-    protected function getPublisherTriggerPlugins(): array
-    {
-        return [
-            ...
-            new FrontendConfiguratorPublisherTriggerPlugin(),
-        ];
-    }
-
     public function getFrontendConfiguratorStoragePlugins(): array
     {
         return [

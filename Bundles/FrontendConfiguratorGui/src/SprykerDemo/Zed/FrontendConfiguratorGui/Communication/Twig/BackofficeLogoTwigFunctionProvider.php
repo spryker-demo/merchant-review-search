@@ -60,15 +60,15 @@ class BackofficeLogoTwigFunctionProvider extends TwigFunctionProvider
     }
 
     /**
-     * @return callable|array
+     * @return callable
      */
-    public function getFunction()
+    public function getFunction(): callable
     {
         return [$this, 'getBackofficeLogo'];
     }
 
     /**
-     * @return array
+     * @return array<string, mixed>
      */
     public function getOptions(): array
     {

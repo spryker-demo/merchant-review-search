@@ -132,9 +132,9 @@ class FrontendConfigurationFormHandler implements FrontendConfigurationFormHandl
     }
 
     /**
-     * @param array $formData
+     * @param array<string, mixed> $formData
      *
-     * @return array
+     * @return array<string, mixed>
      */
     protected function setDefaultColor(array $formData): array
     {

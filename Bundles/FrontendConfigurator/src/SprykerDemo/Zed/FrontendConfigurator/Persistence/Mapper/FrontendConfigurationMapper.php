@@ -53,8 +53,10 @@ class FrontendConfigurationMapper
         FrontendConfiguratorTransfer $frontendConfiguratorTransfer
     ): FrontendConfiguratorTransfer {
         $frontendConfiguratorTransfer->setName($frontendConfiguratorEntity->getName());
+        /** @var array<mixed> $decodedData*/
+        $decodedData = $this->utilEncodingService->decodeJson($frontendConfiguratorEntity->getData(), true);
         $frontendConfiguratorTransfer->setData($frontendConfiguratorEntity->getData()
-            ? $this->utilEncodingService->decodeJson($frontendConfiguratorEntity->getData(), true)
+            ? $decodedData
             : []);
 
         return $frontendConfiguratorTransfer;
