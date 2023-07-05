@@ -1,19 +1,21 @@
-# Spryker Demo Subscription Product Feature
+# Spryker Demo Frontend Configurator Feature
 
 ## Installation
 
 ### Add repositories to composer as they are not registered in packagist.org
 
 ```
-composer config repositories.spryker-demo-subscription-product-feature path './demo-vendor/subscription-product-feature'
-composer config repositories.spryker-demo-subscription-product-oms path './demo-vendor/subscription-product-oms'
-composer config repositories.spryker-demo-subscription-product-page path './demo-vendor/subscription-product-page'
+composer config repositories.spryker-demo-frontend-configurator-feature path './demo-vendor/frontend-configurator-feature'
+composer config repositories.spryker-demo-frontend-configurator path './demo-vendor/frontend-configurator'
+composer config repositories.spryker-demo-frontend-configurator-gui path './demo-vendor/frontend-configurator-gui'
+composer config repositories.spryker-demo-frontend-configurator-storage path './demo-vendor/frontend-configurator-storage'
+composer config repositories.spryker-demo-frontend-configurator-widget path './demo-vendor/frontend-configurator-widget'
 ```
 
 ### Install feature
 
 ```
-composer require spryker-demo/subscription-product-feature
+composer require spryker-demo/frontend-configurator-feature
 ```
 
 ### Add `SprykerDemo` namespace to configuration
@@ -25,243 +27,485 @@ $config[KernelConstants::CORE_NAMESPACES] = [
 ];
 ```
 
-### Wire the router provider plugin
+### Adjust environment config with filesystem
 
 ```
-# src/Pyz/Yves/Router/RouterDependencyProvider.php
+# config/Shared/config_default.php
 
-use SprykerDemo\Yves\SubscriptionProductPage\Plugin\Router\SubscriptionProductPageRouteProviderPlugin;
+$config[FileSystemConstants::FILESYSTEM_SERVICE] = [
+    ...
+    'logo' => [
+        'sprykerAdapterClass' => Aws3v3FilesystemBuilderPlugin::class,
+        'root' => '',
+        'path' => 'sc-b2b/yves/logo/',
+        'key' => getenv('AWS_S3_KEY') ?? '',
+        'secret' => getenv('AWS_S3_SECRET') ?? '',
+        'bucket' => 'spryker-scb2b',
+        'version' => '2006-03-01',
+        'region' => 'eu-west-2',
+    ],
+    ...
+];
+```
+
+### Wire filesystem reader, writer and stream plugins
+
+```
+# src/Pyz/Service/FileSystem/FileSystemDependencyProvider.php
+
+use Spryker\Service\FileSystem\FileSystemDependencyProvider as SprykerFileSystemDependencyProvider;
+use Spryker\Service\Flysystem\Plugin\FileSystem\FileSystemReaderPlugin;
+use Spryker\Service\Flysystem\Plugin\FileSystem\FileSystemStreamPlugin;
+use Spryker\Service\Flysystem\Plugin\FileSystem\FileSystemWriterPlugin;
+
+class FileSystemDependencyProvider extends SprykerFileSystemDependencyProvider
+{
+    /**
+     * @return \Spryker\Service\Flysystem\Plugin\FileSystem\FileSystemReaderPlugin
+     */
+    protected function getFileSystemReaderPlugin(): FileSystemReaderPlugin
+    {
+        return new FileSystemReaderPlugin();
+    }
+
+    /**
+     * @return \Spryker\Service\Flysystem\Plugin\FileSystem\FileSystemWriterPlugin
+     */
+    protected function getFileSystemWriterPlugin(): FileSystemWriterPlugin
+    {
+        return new FileSystemWriterPlugin();
+    }
+
+    /**
+     * @return \Spryker\Service\Flysystem\Plugin\FileSystem\FileSystemStreamPlugin
+     */
+    protected function getFileSystemStreamPlugin(): FileSystemStreamPlugin
+    {
+        return new FileSystemStreamPlugin();
+    }
+}
+```
+
+### Wire the Aws S3 plugin
+
+```
+# src/Pyz/Service/FlySystem/FlySystemDependencyProvider.php
+
+use Spryker\Service\FlysystemAws3v3FileSystem\Plugin\Flysystem\Aws3v3FilesystemBuilderPlugin;
 ...
+    protected function addFilesystemBuilderPluginCollection($container): Container
+    {
+        $container->set(static::PLUGIN_COLLECTION_FILESYSTEM_BUILDER, function (Container $container) {
+            return [
+                ...
+                new Aws3v3FilesystemBuilderPlugin(),
+                ...
+            ];
+        });
 
-protected function getRouteProvider(): array
-{
-    return [
-        ...
-        new SubscriptionProductPageRouteProviderPlugin(),
-    ];
-}
+        return $container;
+    }
 ```
 
-### Wire the oms command and conditions plugin
+### Wire the publisher plugins
 
 ```
-# src/Pyz/Zed/Oms/OmsDependencyProvider.php
+# src/Pyz/Zed/Publisher/PublisherDependencyProvider.php
 
-use SprykerDemo\Zed\SubscriptionProductOms\Communication\Plugin\Oms\Command\SendCanceledSubscriptionNotificationPlugin;
-use SprykerDemo\Zed\SubscriptionProductOms\Communication\Plugin\Oms\Condition\IsPaymentReminderLimitReachedPlugin;
-use SprykerDemo\Zed\SubscriptionProductOms\Communication\Plugin\Oms\Condition\IsSubscriptionPlugin;
+use SprykerDemo\Zed\FrontendConfiguratorStorage\Communication\Plugin\Publisher\FrontendConfigurator\FrontendConfiguratorStoragePublisherPlugin;
+use SprykerDemo\Zed\FrontendConfiguratorStorage\Communication\Plugin\Publisher\FrontendConfiguratorPublisherTriggerPlugin;
 
-// ...
+    protected function getPublisherPlugins(): array
+    {
+        return array_merge(
+            ...
+            $this->getFrontendConfiguratorStoragePlugins(),
+        );
+    }
 
-protected function extendCommandPlugins(Container $container): Container
-{
-    $container->extend(self::COMMAND_PLUGINS, function (CommandCollectionInterface $commandCollection) {
-        $commandCollection->add(new SendCanceledSubscriptionNotificationPlugin(), 'Subscription/SendCanceledSubscriptionNotification');
+    protected function getPublisherTriggerPlugins(): array
+    {
+        return [
+            ...
+            new FrontendConfiguratorPublisherTriggerPlugin(),
+        ];
+    }
 
-        return $commandCollection;
-});
+    public function getFrontendConfiguratorStoragePlugins(): array
+    {
+        return [
+            new FrontendConfiguratorStoragePublisherPlugin(),
+        ];
+    }
 
-// ...
-
-protected function extendConditionPlugins(Container $container): Container
-{
-    $container->extend(self::CONDITION_PLUGINS, function (ConditionCollectionInterface $conditionCollection) {
-        $conditionCollection->add(new IsPaymentReminderLimitReachedPlugin(), 'Subscription/isSubscriptionInvoiceIntervalReached');
-        $conditionCollection->add(new IsSubscriptionPlugin(), 'Subscription/IsSubscription');
-
-        return $conditionCollection;
-    });
-
-    return $container;
-}
-```
-
-### Adjust OMS configuration file
 
 ```
-# if installed using demo-packages repo
-cp vendor/spryker-demo/packages/Bundles/SubscriptionProductOms/config/Zed/oms/SubscriptionSubprocess/DummySubscription01.xml config/Zed/oms/SubscriptionSubprocess/DummySubscription01.xml
-# if installed using feature repo
-cp vendor/spryker-demo/subscription-product-oms/config/Zed/oms/SubscriptionSubprocess/DummySubscription01.xml config/Zed/oms/SubscriptionSubprocess/DummySubscription01.xml
+
+### Wire the queue plugin
+
 ```
+# src/Pyz/Zed/Queue/QueueDependencyProvider.php
+
+use Spryker\Zed\Synchronization\Communication\Plugin\Queue\SynchronizationStorageQueueMessageProcessorPlugin;
+use SprykerDemo\Zed\FrontendConfiguratorStorage\FrontendConfiguratorStorageConfig;
+
+    protected function getProcessorMessagePlugins(Container $container): array
+    {
+        return [
+            ...
+            FrontendConfiguratorStorageConfig::FRONTEND_CONFIGURATOR_SYNC_STORAGE_QUEUE => new SynchronizationStorageQueueMessageProcessorPlugin(),
+        ];
+    }
 ```
-# config/Zed/oms/DummyPayment01.xml
+
+### Wire the synchronization plugin
+
+```
+# src/Pyz/Zed/Synchronization/SynchronizationDependencyProvider.php
+
+use SprykerDemo\Zed\FrontendConfiguratorStorage\Communication\Plugin\Synchronization\FrontendConfiguratorSynchronizationDataPlugin;
+
+    protected function getSynchronizationDataPlugins(): array
+    {
+        return [
+            ...
+            new FrontendConfiguratorSynchronizationDataPlugin(),
+        ];
+    }
+```
+
+### Wire the twig extension plugin
+
+```
+# src/Pyz/Zed/Twig/TwigDependencyProvider.php
+
+use SprykerDemo\Zed\FrontendConfiguratorGui\Communication\Plugin\Twig\Buttons\Form\BackofficeLogoTwigExtensionPlugin;
+
+    protected function getTwigPlugins(): array
+    {
+        return [
+            ...
+            new BackofficeLogoTwigExtensionPlugin(),
+        ];
+    }
+```
+
+### Adjust navigation configuration file
+
+```
+# config/Zed/navigation.xml
 
 <?xml version="1.0"?>
-<statemachine
-    xmlns="spryker:oms-01"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="spryker:oms-01 http://static.spryker.com/oms-01.xsd">
-
-    <process name="DummyPayment01" main="true">
-        <subprocesses>
+<config>
+    <administration>
+        <pages>
             ...
-            <process>Subscription</process>
-        </subprocesses>
-        ...
-
-    <process name="Subscription" file="SubscriptionSubprocess/DummySubscription01.xml"/>
-</statemachine>
-```
-
-### Add translations
-
-```
-# data/import/common/common/glossary.csv
-
-product.cancel_subscription.success_message,Das Abonnement für Produkt %product% wurde erfolgreich gekündigt,de_DE
-product.cancel_subscription.success_message,Subscription for product %product% has been successfully canceled,en_US
-product.cancel_subscription.error_message,Das Abonnement für diesen Bestellartikel kann nicht gekündigt werden!,de_DE
-product.cancel_subscription.error_message,Can't cancel subscription for this order item!,en_US
-product.cancel_subscription.warning_message,Abonnement bereits gekündigt!,de_DE
-product.cancel_subscription.warning_message,Subscription already cancelled!,en_US
-oms.state.subscription-active,Abonnement aktiv,de_DE
-oms.state.subscription-active,Subscription Active,en_US
-oms.state.subscription-cancelled,Abonnement gekündigt,de_DE
-oms.state.subscription-cancelled,Subscription Cancelled,en_US
-customer.account.subscriptions,Abonnements,de_DE
-customer.account.subscriptions,Subscriptions,en_US
-product.subscription.subscription_id,Referenz,de_DE
-product.subscription.subscription_id,Reference,en_US
-product.subscription.interval,Intervall,de_DE
-product.subscription.interval,Interval,en_US
-product.subscription.date,Datum,de_DE
-product.subscription.date,Date,en_US
-product.subscription.total,Summe,de_DE
-product.subscription.total,Total,en_US
-product.subscription.item_state,Stand,de_DE
-product.subscription.item_state,State,en_US
-product.subscription.item_name,Artikelname,de_DE
-product.subscription.item_name,Name,en_US
-product.subscription.actions,Actions,en_US
-product.subscription.actions,Aktion,de_DE
-customer.account.no_subscriptions,Derzeit keine Abonnements,de_DE
-customer.account.no_subscriptions,No subscriptions at the moment,en_US
-```
-
-### Import translations
+            <frontend-configurator-gui>
+                <label>Frontend configurator Gui</label>
+                <title>Frontend configurator Gui</title>
+                <bundle>frontend-configurator-gui</bundle>
+                <controller>index</controller>
+                <action>edit</action>
+            </frontend-configurator-gui>
+        </pages>
+    </administration>
+</config>
 
 ```
-console data:import:glossary
+
+### Adjust RabbitMq configuration
+
+```
+# src/Pyz/Client/RabbitMq/RabbitMqConfig.php
+
+use SprykerDemo\Zed\FrontendConfiguratorStorage\FrontendConfiguratorStorageConfig;
+...
+
+protected function getPyzSynchronizationQueueConfiguration(): array
+    {
+        return [
+            ...
+            FrontendConfiguratorStorageConfig::FRONTEND_CONFIGURATOR_SYNC_STORAGE_QUEUE,
+        ];
+    }
+
 ```
 
 ### Apply Twig customization
 
-#### B2C Marketplace
 ```
-# src/Pyz/Yves/CustomerPage/Theme/default/components/molecules/customer-navigation/customer-navigation.twig
+# src/Pyz/Yves/CheckoutPage/Theme/default/templates/page-layout-checkout/page-layout-checkout.twig
 
+                    {% block logo %}
+                        <div class="col col--sm-4 text-center">
+                            {% if findWidget('FrontendConfiguratorWidget') %}
+                                {% set frontendConfiguratorWidget = findWidget('FrontendConfiguratorWidget') %}
+                            {% endif %}
+
+                            {% include molecule('logo') with {
+                                attributes: {
+                                    src: frontendConfiguratorWidget.data.logoUrl ?? null,
+                                },
+                            } only %}
+                        </div>
+                    {% endblock %}
+
+# src/Pyz/Yves/ShopUi/Theme/automotive/components/organisms/header/header.twig
+
+                {% block logo %}
+                    {% include molecule('logo') with {
+                        class: 'col ' ~  config.name ~ '__logo',
+                        modifiers: ['main'],
+                    } only %}
+                {% endblock %}
+
+#src/Pyz/Yves/ShopUi/Theme/cpg/components/organisms/header/header.twig
+
+                 {% block logo %}
+                     {% include molecule('logo') with {
+                         class: 'col ' ~  config.name ~ '__logo',
+                         modifiers: ['main'],
+                     } only %}
+                 {% endblock %}
+
+#src/Pyz/Yves/ShopUi/Theme/default/components/organisms/header/header.twig
+
+                 {% block logo %}
+                     {% include molecule('logo') with {
+                         class: 'col ' ~  config.name ~ '__logo',
+                         modifiers: ['main'],
+                     } only %}
+                 {% endblock %}
+
+#src/Pyz/Yves/ShopUi/Theme/default/templates/page-layout-main/page-layout-main.twig
+
+{% block headStyles %}
+    {{ parent() }}
+
+    {% if findWidget('FrontendConfiguratorWidget') %}
+        {% widget 'FrontendConfiguratorWidget' only %}{% endwidget %}
+    {% endif %}
+{% endblock %}
+...
 {% block body %}
-    <ul class="{{ component.renderClass('menu', modifiers) }}">
 
-        <!-- ... -->
+    {% if findWidget('FrontendConfiguratorWidget') %}
+        {% set frontendConfiguratorWidget = findWidget('FrontendConfiguratorWidget') %}
+    {% endif %}
+    ...
+                 {% block logo %}
+                     {% include molecule('logo') with {
+                         class: 'col ' ~  config.name ~ '__logo',
+                         modifiers: ['main'],
+                         attributes: {
+                             src: embed.logoSrc,
+                         }
+                     } only %}
+                 {% endblock %}
 
-        <li class="{{ component.renderClass('menu__item', modifiers) }} {{macros.isActive('order', data.activePage)}}">
-            <a class="{{ component.renderClass('menu__link', modifiers) }}" href="{{ path('subscription-product') }}"
-               data-id="sidebar-order">{{ 'customer.account.subscriptions' | trans }}</a>
+#src/Pyz/Yves/ShopUi/Theme/industrial/components/organisms/header/header.twig
+
+                {% block logo %}
+                    {% include molecule('logo') with {
+                        class: 'col ' ~  config.name ~ '__logo',
+                        modifiers: ['main'],
+                    } only %}
+                {% endblock %}
+
+#src/Pyz/Yves/ShopUi/Theme/services/components/organisms/header/header.twig
+
+                {% block logo %}
+                    {% include molecule('logo') with {
+                        class: 'col ' ~  config.name ~ '__logo',
+                        modifiers: ['main'],
+                    } only %}
+                {% endblock %}
+
+#src/Pyz/Yves/ShopUi/Theme/wholesale-distribution/components/organisms/header/header.twig
+
+                 {% block logo %}
+                     {% include molecule('logo') with {
+                         class: 'col ' ~  config.name ~ '__logo',
+                         modifiers: ['main'],
+                     } only %}
+                 {% endblock %}
+
+#src/Pyz/Zed/Gui/Presentation/Partials/menu.twig
+
+{%- macro leaf(node, depth=0) -%}
+    {%- import _self as menu -%}
+
+    {%- if node is defined %}
+        {%- if menu_highlight is defined -%}
+            {%- if menu_highlight == node.uri -%}
+                <li class="item active">
+            {%- else -%}
+                <li class="item">
+            {%- endif -%}
+        {%- else-%}
+            <li class="item{{ node.is_active is defined and node.is_active ? " active" : "" }}">
+        {%- endif -%}
+        <a href="{{ node.uri }}"{% if node.shortcut is defined %} data-hotkey="{{ node.shortcut }}"{% endif %}>
+            {{ menu.getNodeIcon(node) }}
+            <span class="nav-label">{{ node.label | trans }}</span>
+        </a>
         </li>
+    {% endif -%}
+{%- endmacro -%}
+
+{%- macro branch(node, depth=0) -%}
+    {%- import _self as menu -%}
+
+    {%- if node is defined %}
+        <li class="{{ node.is_active is defined and node.is_active ? " active" : "" }}">
+            <a href="javascript:void(0)">
+                {{ menu.getNodeIcon(node) }}
+                <span class="nav-label">{{ node.label | trans }}</span>
+                <span class="fa arrow"></span>
+            </a>
+
+            <ul class="nav nav-second-level collapse">
+                {{ menu.tree(node.children, (depth + 1)) }}
+            </ul>
+        </li>
+    {% endif -%}
+{%- endmacro -%}
+
+{%- macro tree(root) -%}
+    {%- import _self as menu -%}
+
+    {%- for child in root -%}
+        {%- if child.children is defined and child.children is not empty -%}
+            {{ menu.branch(child, 0) }}
+        {%- else -%}
+            {{ menu.leaf(child, 0) }}
+        {%- endif -%}
+    {%- endfor -%}
+{%- endmacro -%}
+
+{%- macro getNodeIcon(node) -%}
+    {%- set defaultIcon = 'fa-angle-double-right' -%}
+    {%- if node.icon is defined and node.icon != '' -%}
+        <i class="fa {{ node.icon }}"></i>
+    {%- else -%}
+        <i class="fa {{ defaultIcon }}"></i>
+    {%- endif -%}
+{%- endmacro -%}
+
+{%- import _self as menu -%}
+<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul tabindex="0" class="nav metismenu" id="side-menu">
+            <li class="nav-header">
+                <div class="dropdown profile-element">
+
+                    {{ backofficeLogo() }}
+
+                    <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                        <li><a href="/auth/logout">{{ 'Logout' | trans }}</a></li>
+                    </ul>
+                </div>
+                <div class="logo-element">
+                    SP
+                </div>
+            </li>
+            {{ menu.tree(navigation.menu) }}
+        </ul>
+    </div>
+</nav>
+
+#src/Pyz/Zed/Gui/Presentation/Partials/backoffice-logo.twig
+
+{% if not backofficeLogoUrl is empty %}
+     <style>
+         .zed-logo {
+             background: center/contain no-repeat url("{{ backofficeLogoUrl }}");
+         }
+     </style>
+ {% endif %}
+ <a href="/" class="{{ class }} zed-logo"></a>
+
+#src/Pyz/Zed/SecurityGui/Presentation/Layout/layout.twig
+
+<!DOCTYPE html>
+ <html>
+ <head>
+
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+     <title>{% block head_title %}{% if title is defined %}{{ title | trans }}{% endif %}{% endblock %}</title>
+
+     {% block head_css %}
+         <link rel="stylesheet" href="{{ assetsPath('css/spryker-zed-gui-commons.css') }}">
+         <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+     {% endblock %}
+
+ </head>
+ <body class="login">
+
+ <div class="login__wrapper">
+     <div class="login__container">
+         {{ backofficeLogo('login__logo') }}
+
+         {% include '@Messenger/Partials/flash-messages.twig' %}
+
+         <div class="login-box">
+             {% block login_heading %}
+                 <div class="login-box__heading">
+                     <h1 class="login-box__title">{{ 'Login' | trans }}</h1>
+                 </div>
+             {% endblock %}
+             <div class="login-box__content">
+                 {% block content %}{% endblock %}
+             </div>
+         </div>
+     </div>
+ </div>
+
+ {% block footer_js %}
+     <script src="{{ assetsPath('js/spryker-zed-gui-commons.js') }}"></script>
+ {% endblock %}
+
+ </body>
+ </html>
 ```
 
-
-#### B2B Marketplace
+### Add behaviors to the database definition schemas
 ```
-# src/Pyz/Yves/ShopUi/Theme/default/components/molecules/user-navigation/user-navigation.twig
+#src/Pyz/Zed/FrontendConfigurator/Persistence/Propel/Schema/spy_frontend_configurator.schema.xml
 
-{% include molecule('navigation-list') with {
-            modifiers: ['secondary'],
-            class: config.name ~ '__sub-nav',
-            data: {
-                nodes: [
-                // ...
-                {
-                    url: url('subscription-product'),
-                    title: 'customer.account.subscriptions' | trans,
-                },
-                // ...
-            ]},
-        } only %}
+<?xml version="1.0"?>
+ <database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           name="zed"
+           xsi:noNamespaceSchemaLocation="http://static.spryker.com/schema-01.xsd"
+           namespace="Orm\Zed\FrontendConfigurator\Persistence"
+           package="src.Orm.Zed.FrontendConfigurator.Persistence">
 
+     <table name="spy_frontend_configurator">
+         <behavior name="event">
+             <parameter name="spy_frontend_configurator_all" column="*"/>
+         </behavior>
+     </table>
+
+ </database>
+
+ #src/Pyz/Zed/FrontendConfiguratorStorage/Persistence/Propel/Schema/spy_frontend_configurator_storage.schema.xml
+
+ <?xml version="1.0"?>
+ <database xmlns="spryker:schema-01"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           name="zed"
+           xsi:schemaLocation="spryker:schema-01 https://static.spryker.com/schema-01.xsd"
+           namespace="Orm\Zed\FrontendConfiguratorStorage\Persistence"
+           package="src.Orm.Zed.FrontendConfiguratorStorage.Persistence">
+
+     <table name="spy_frontend_configurator_storage" identifierQuoting="true">
+         <behavior name="synchronization">
+             <parameter name="resource" value="frontend_configurator"/>
+             <parameter name="queue_group" value="sync.storage.frontend_configurator"/>
+             <parameter name="key_suffix_column" value="fk_frontend_configurator"/>
+         </behavior>
+     </table>
+ </database>
 ```
-
-```
-# src/Pyz/Yves/CustomerPage/Theme/default/components/molecules/navigation-sidebar/navigation-sidebar.twig
-
-{% define data = {
-    items: [
-        // ...
-
-        {
-            name: 'subscription',
-            url: path('subscription-product'),
-            label: 'customer.account.subscriptions' | trans,
-            icon: 'subscribe',
-        },
-
-        // ...
-    ]
-} %}
-```
-
-
-### Install sample data (optional)
-
-```
-composer require spryker-demo/subscription-product-data-import
-```
-
-Sample data for the following entities is provided by the previous composer package:
-
-#### product-attribute-key
-
-* File: `vendor/spryker-demo/subscription-product-data-import/data/import/product_attribute_key.csv`
-* Command: `console data:import:product-attribute-key`
-
-#### product-management-attribute
-
-* File: `vendor/spryker-demo/subscription-product-data-import/data/import/product_management_attribute.csv`
-* Command: `console data:import:product-management-attribute`
-
-#### product-abstract
-
-* File: `vendor/spryker-demo/subscription-product-data-import/data/import/product_abstract.csv`
-* Command: `console data:import:product-abstract`
-
-#### product-concrete
-
-* File: `vendor/spryker-demo/subscription-product-data-import/data/import/product_concrete.csv`
-* Command: `console data:import:product-concrete`
-
-#### product-image
-
-* File: `vendor/spryker-demo/subscription-product-data-import/data/import/product_image.csv`
-* Command: `console data:import:product-image`
-
-#### product-price
-
-* File: `vendor/spryker-demo/subscription-product-data-import/data/import/DE/product_price.csv`
-* Command: `console data:import:product-price`
-
-#### product-abstract-store
-
-* File: `vendor/spryker-demo/subscription-product-data-import/data/import/DE/product_abstract_store.csv`
-* Command: `console data:import:product-abstract-store`
-
-#### product-stock
-
-* File: `vendor/spryker-demo/subscription-product-data-import/data/import/product_stock.csv`
-* Command: `console data:import:product-stock`
-
-#### merchant-product
-
-* File: `vendor/spryker-demo/subscription-product-data-import/data/import/merchant_product.csv`
-* Command: `console data:import:merchant-product`
-
-#### product-approval-status
-
-* File: `vendor/spryker-demo/subscription-product-data-import/data/import/product_abstract_approval_status.csv`
-* Command: `console data:import:product-approval-status`
-
-#### product-price-merchant-relationship (only if installed in a marketplace scenario)
-
-* File: `vendor/spryker-demo/subscription-product-data-import/data/import/DE/price_product_merchant_relationship.csv`
-* Command: `console data:import:product-price-merchant-relationship`
