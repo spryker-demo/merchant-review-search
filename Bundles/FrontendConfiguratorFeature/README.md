@@ -5,11 +5,9 @@
 ### Add repositories to composer as they are not registered in packagist.org
 
 ```
-composer config repositories.spryker-demo-frontend-configurator-feature path './demo-vendor/frontend-configurator-feature'
-composer config repositories.spryker-demo-frontend-configurator path './demo-vendor/frontend-configurator'
-composer config repositories.spryker-demo-frontend-configurator-gui path './demo-vendor/frontend-configurator-gui'
-composer config repositories.spryker-demo-frontend-configurator-storage path './demo-vendor/frontend-configurator-storage'
-composer config repositories.spryker-demo-frontend-configurator-widget path './demo-vendor/frontend-configurator-widget'
+composer config repositories.spryker-demo-subscription-product-feature path './demo-vendor/subscription-product-feature'
+composer config repositories.spryker-demo-subscription-product-oms path './demo-vendor/subscription-product-oms'
+composer config repositories.spryker-demo-subscription-product-page path './demo-vendor/subscription-product-page'
 ```
 
 ### Install feature
