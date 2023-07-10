@@ -242,24 +242,6 @@ protected function getPyzSynchronizationQueueConfiguration(): array
                         </div>
                     {% endblock %}
 
-# src/Pyz/Yves/ShopUi/Theme/automotive/components/organisms/header/header.twig
-
-                {% block logo %}
-                    {% include molecule('logo') with {
-                        class: 'col ' ~  config.name ~ '__logo',
-                        modifiers: ['main'],
-                    } only %}
-                {% endblock %}
-
-#src/Pyz/Yves/ShopUi/Theme/cpg/components/organisms/header/header.twig
-
-                 {% block logo %}
-                     {% include molecule('logo') with {
-                         class: 'col ' ~  config.name ~ '__logo',
-                         modifiers: ['main'],
-                     } only %}
-                 {% endblock %}
-
 #src/Pyz/Yves/ShopUi/Theme/default/components/organisms/header/header.twig
 
                  {% block logo %}
@@ -292,33 +274,6 @@ protected function getPyzSynchronizationQueueConfiguration(): array
                          attributes: {
                              src: embed.logoSrc,
                          }
-                     } only %}
-                 {% endblock %}
-
-#src/Pyz/Yves/ShopUi/Theme/industrial/components/organisms/header/header.twig
-
-                {% block logo %}
-                    {% include molecule('logo') with {
-                        class: 'col ' ~  config.name ~ '__logo',
-                        modifiers: ['main'],
-                    } only %}
-                {% endblock %}
-
-#src/Pyz/Yves/ShopUi/Theme/services/components/organisms/header/header.twig
-
-                {% block logo %}
-                    {% include molecule('logo') with {
-                        class: 'col ' ~  config.name ~ '__logo',
-                        modifiers: ['main'],
-                    } only %}
-                {% endblock %}
-
-#src/Pyz/Yves/ShopUi/Theme/wholesale-distribution/components/organisms/header/header.twig
-
-                 {% block logo %}
-                     {% include molecule('logo') with {
-                         class: 'col ' ~  config.name ~ '__logo',
-                         modifiers: ['main'],
                      } only %}
                  {% endblock %}
 
