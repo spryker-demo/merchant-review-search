@@ -36,10 +36,10 @@ class MerchantReviewMapper
      *
      * @return \Generated\Shared\Transfer\MerchantReviewTransfer
      */
-    public function mapMerchantReviewEntityToMerchantReviewTransfer(SpyMerchantReview $merchantReviewEntity): MerchantReviewTransfer
-    {
-        $merchantReviewTransfer = new MerchantReviewTransfer();
-
+    public function mapMerchantReviewEntityToMerchantReviewTransfer(
+        SpyMerchantReview $merchantReviewEntity,
+        MerchantReviewTransfer $merchantReviewTransfer
+    ): MerchantReviewTransfer {
         $merchantReviewTransfer->fromArray($merchantReviewEntity->toArray(), true);
 
         return $merchantReviewTransfer;
@@ -56,11 +56,24 @@ class MerchantReviewMapper
         $merchantReviewsCollectionTransfer = new MerchantReviewCollectionTransfer();
 
         foreach ($merchantReviewEntities as $merchantReviewEntity) {
-            $merchantReviews->append($this->mapMerchantReviewEntityToMerchantReviewTransfer($merchantReviewEntity));
+            $merchantReviews->append($this->mapMerchantReviewEntityToMerchantReviewTransfer($merchantReviewEntity, new MerchantReviewTransfer()));
         }
 
         $merchantReviewsCollectionTransfer->setReviews($merchantReviews);
 
         return $merchantReviewsCollectionTransfer;
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\MerchantReviewTransfer $merchantReviewTransfer
+     * @param \Orm\Zed\MerchantReview\Persistence\SpyMerchantReview $merchantReviewEntity
+     *
+     * @return \Orm\Zed\MerchantReview\Persistence\SpyMerchantReview
+     */
+    public function mapMerchantReviewTransferToMerchantReviewEntity(
+        MerchantReviewTransfer $merchantReviewTransfer,
+        SpyMerchantReview $merchantReviewEntity
+    ) {
+        return $merchantReviewEntity->fromArray($merchantReviewTransfer->toArray());
     }
 }

@@ -64,12 +64,12 @@ interface MerchantReviewFacadeInterface
      *
      * @api
      *
-     * @param \Generated\Shared\Transfer\MerchantReviewTransfer $merchantReviewTransfer
+     * @param int $idMerchantReview
      *
      * @return void
      */
     public function deleteMerchantReview(
-        MerchantReviewTransfer $merchantReviewTransfer
+        int $idMerchantReview
     ): void;
 
     /**

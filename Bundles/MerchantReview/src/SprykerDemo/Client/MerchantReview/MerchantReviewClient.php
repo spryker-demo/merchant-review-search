@@ -39,22 +39,6 @@ class MerchantReviewClient extends AbstractClient implements MerchantReviewClien
      *
      * @api
      *
-     * @param \Generated\Shared\Transfer\RatingAggregationTransfer $ratingAggregationTransfer
-     *
-     * @return \Generated\Shared\Transfer\MerchantReviewSummaryTransfer
-     */
-    public function calculateMerchantReviewSummary(RatingAggregationTransfer $ratingAggregationTransfer): MerchantReviewSummaryTransfer
-    {
-        return $this->getFactory()
-            ->createMerchantReviewSummaryCalculator()
-            ->calculate($ratingAggregationTransfer);
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @api
-     *
      * @return int
      */
     public function getMaximumRating(): int

@@ -9,8 +9,6 @@ namespace SprykerDemo\Zed\MerchantReview\Business;
 
 use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
 use Spryker\Zed\Merchant\Business\MerchantFacadeInterface;
-use SprykerDemo\Zed\MerchantReview\Business\Model\MerchantReviewCreator;
-use SprykerDemo\Zed\MerchantReview\Business\Model\MerchantReviewCreatorInterface;
 use SprykerDemo\Zed\MerchantReview\Business\Model\MerchantReviewDeleter;
 use SprykerDemo\Zed\MerchantReview\Business\Model\MerchantReviewDeleterInterface;
 use SprykerDemo\Zed\MerchantReview\Business\Model\MerchantReviewEntityReader;
@@ -28,14 +26,6 @@ use SprykerDemo\Zed\MerchantReview\MerchantReviewDependencyProvider;
  */
 class MerchantReviewBusinessFactory extends AbstractBusinessFactory
 {
-    /**
-     * @return \SprykerDemo\Zed\MerchantReview\Business\Model\MerchantReviewCreatorInterface
-     */
-    public function createMerchantReviewCreator(): MerchantReviewCreatorInterface
-    {
-        return new MerchantReviewCreator($this->getConfig());
-    }
-
     /**
      * @return \SprykerDemo\Zed\MerchantReview\Business\Model\MerchantReviewReaderInterface
      */

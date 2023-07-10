@@ -13,6 +13,7 @@ use Spryker\Zed\Kernel\Business\AbstractFacade;
 
 /**
  * @method \SprykerDemo\Zed\MerchantReview\Business\MerchantReviewBusinessFactory getFactory()
+ * @method \SprykerDemo\Zed\MerchantReview\Persistence\MerchantReviewEntityManagerInterface getEntityManager()
  */
 class MerchantReviewFacade extends AbstractFacade implements MerchantReviewFacadeInterface
 {
@@ -28,9 +29,7 @@ class MerchantReviewFacade extends AbstractFacade implements MerchantReviewFacad
     public function createMerchantReview(
         MerchantReviewTransfer $merchantReviewTransfer
     ): MerchantReviewTransfer {
-        return $this->getFactory()
-            ->createMerchantReviewCreator()
-            ->createMerchantReview($merchantReviewTransfer);
+        return $this->getEntityManager()->createMerchantReview($merchantReviewTransfer);
     }
 
     /**
@@ -72,16 +71,14 @@ class MerchantReviewFacade extends AbstractFacade implements MerchantReviewFacad
      *
      * @api
      *
-     * @param \Generated\Shared\Transfer\MerchantReviewTransfer $merchantReviewTransfer
+     * @param int $idMerchantReview
      *
      * @return void
      */
     public function deleteMerchantReview(
-        MerchantReviewTransfer $merchantReviewTransfer
+        int $idMerchantReview
     ): void {
-        $this->getFactory()
-            ->createMerchantReviewDeleter()
-            ->deleteMerchantReview($merchantReviewTransfer);
+        $this->getEntityManager()->deleteMerchantReview($idMerchantReview);
     }
 
     /**
