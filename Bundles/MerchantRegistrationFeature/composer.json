@@ -1,0 +1,38 @@
+{
+    "name": "spryker-demo/merchant-registration-feature",
+    "type": "metapackage",
+    "description": "Merchant registration [feature]",
+    "license": "proprietary",
+    "require": {
+        "php": ">=8.0",
+        "spryker-demo/merchant-registration": "*",
+        "spryker-demo/merchant-registration-page": "*"
+    },
+    "require-dev": {
+        "spryker/code-sniffer": "^0.17.18"
+    },
+    "autoload": {
+        "psr-4": {
+            "SprykerDemo\\": "src/SprykerDemo/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SprykerDemoTest\\": "tests/SprykerDemoTest/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "scripts": {
+        "cs-check": "phpcs -p -s --standard=vendor/spryker/code-sniffer/SprykerStrict/ruleset.xml src/ tests/",
+        "cs-fix": "phpcbf -p --standard=vendor/spryker/code-sniffer/SprykerStrict/ruleset.xml src/ tests/"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}

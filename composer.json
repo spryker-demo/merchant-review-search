@@ -11,7 +11,11 @@
     "replace": {
         "spryker-demo/subscription-product-page": "*",
         "spryker-demo/subscription-product-oms": "*",
-        "spryker-demo/subscription-product-feature": "*"
+        "spryker-demo/subscription-product-feature": "*",
+        "spryker-demo/merchant-registration": "*",
+        "spryker-demo/merchant-registration-page": "*",
+        "spryker-demo/merchant-registration-data-import": "*",
+        "spryker-demo/merchant-registration-feature": "*"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
