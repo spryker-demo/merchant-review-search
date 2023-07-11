@@ -8,8 +8,8 @@
 namespace SprykerDemo\Zed\CompanyRepresentative\Persistence;
 
 use Generated\Shared\Transfer\CompanyResponseTransfer;
-use Orm\Zed\CustomerRepresentative\Persistence\Map\SpyCompanyRepresentativeTableMap;
-use Orm\Zed\CustomerRepresentative\Persistence\SpyCompanyRepresentative;
+use Orm\Zed\CompanyRepresentative\Persistence\Map\SpyCompanyRepresentativeTableMap;
+use Orm\Zed\CompanyRepresentative\Persistence\SpyCompanyRepresentative;
 use Spryker\Zed\Kernel\Persistence\AbstractEntityManager;
 
 /**
