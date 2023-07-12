@@ -1,30 +1,30 @@
 <?php
 
 /**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
+ * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
 namespace SprykerDemo\Zed\ImportProcess\Persistence;
 
-use Orm\Zed\ImportProcess\Persistence\PyzImportProcessQuery;
-use SprykerDemo\Zed\ImportProcess\Persistence\Mapper\ImportProcessMapper;
+use Orm\Zed\ImportProcess\Persistence\SpyImportProcessQuery;
 use Spryker\Zed\Kernel\Persistence\AbstractPersistenceFactory;
+use SprykerDemo\Zed\ImportProcess\Persistence\Mapper\ImportProcessMapper;
 
 /**
  * @method \SprykerDemo\Zed\ImportProcess\ImportProcessConfig getConfig()
- * @method \SprykerDemo\Zed\ImportProcess\Persistence\ImportProcessQueryContainer getQueryContainer()
+ * @method \SprykerDemo\Zed\ImportProcess\Persistence\ImportProcessQueryContainerInterface getQueryContainer()
  * @method \SprykerDemo\Zed\ImportProcess\Persistence\ImportProcessRepositoryInterface getRepository()
  * @method \SprykerDemo\Zed\ImportProcess\Persistence\ImportProcessEntityManagerInterface getEntityManager()
  */
 class ImportProcessPersistenceFactory extends AbstractPersistenceFactory
 {
     /**
-     * @return \Orm\Zed\ImportProcess\Persistence\PyzImportProcessQuery
+     * @return \Orm\Zed\ImportProcess\Persistence\SpyImportProcessQuery
      */
-    public function createImportProcessQuery(): PyzImportProcessQuery
+    public function createImportProcessQuery(): SpyImportProcessQuery
     {
-        return PyzImportProcessQuery::create();
+        return SpyImportProcessQuery::create();
     }
 
     /**

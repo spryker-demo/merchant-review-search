@@ -4,19 +4,19 @@
 </div>
 {% if importProcess.importReport %}
     <div class="flash-messages">
-        {% for message in importProcess.importReport.messages %}
-            {% if message.isSuccess %}
+        {% for sourceReport in importProcess.importReport.sourceReports %}
+            {% if sourceReport.isSuccess %}
                 <div class="alert alert-success">
                     <i class="far fa-check-circle alert__icon"></i>
                     <div class="alert__text">
-                        {{ message.message | trans }}
+                        {{ sourceReport.importType }}: imported {{ sourceReport.importedDataSetCount }} out of {{ sourceReport.expectedImportableDataSetCount }}
                     </div>
                 </div>
             {% else %}
                 <div class="alert alert-danger">
                     <i class="fas fa-ban alert__icon"></i>
                     <div class="alert__text">
-                        {{ message.message | trans }}
+                        {{ sourceReport.importType }}: Import failed
                     </div>
                 </div>
             {% endif %}

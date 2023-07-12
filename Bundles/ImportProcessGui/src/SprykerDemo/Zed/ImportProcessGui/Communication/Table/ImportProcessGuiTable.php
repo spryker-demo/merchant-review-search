@@ -1,47 +1,59 @@
 <?php
 
 /**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
+ * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
 namespace SprykerDemo\Zed\ImportProcessGui\Communication\Table;
 
-use Orm\Zed\ImportProcess\Persistence\Map\PyzImportProcessTableMap;
-use Orm\Zed\ImportProcess\Persistence\PyzImportProcess;
-use Orm\Zed\ImportProcess\Persistence\PyzImportProcessQuery;
-use Pyz\Zed\Acl\Business\AclFacadeInterface;
-use SprykerDemo\Zed\ImportProcessGui\ImportProcessGuiConfig;
+use Orm\Zed\ImportProcess\Persistence\Map\SpyImportProcessTableMap;
+use Orm\Zed\ImportProcess\Persistence\SpyImportProcess;
+use Orm\Zed\ImportProcess\Persistence\SpyImportProcessQuery;
 use Spryker\Service\UtilText\Model\Url\Url;
+use Spryker\Zed\Acl\Business\AclFacadeInterface;
 use Spryker\Zed\Gui\Communication\Table\AbstractTable;
 use Spryker\Zed\Gui\Communication\Table\TableConfiguration;
+use SprykerDemo\Zed\ImportProcessGui\ImportProcessGuiConfig;
 
 class ImportProcessGuiTable extends AbstractTable
 {
-    public const ACTIONS = 'actions';
-
-    public const COL_ID = PyzImportProcessTableMap::COL_ID_IMPORT_PROCESS;
-    public const COL_STATUS = PyzImportProcessTableMap::COL_STATUS;
-    public const COL_CREATED_AT = PyzImportProcessTableMap::COL_CREATED_AT;
+    /**
+     * @var string
+     */
+    protected const ACTIONS = 'actions';
 
     /**
-     * @var \Orm\Zed\ImportProcess\Persistence\PyzImportProcessQuery
+     * @var string
+     */
+    protected const COL_ID = SpyImportProcessTableMap::COL_ID_IMPORT_PROCESS;
+
+    /**
+     * @var string
+     */
+    protected const COL_STATUS = SpyImportProcessTableMap::COL_STATUS;
+
+    /**
+     * @var string
+     */
+    protected const COL_CREATED_AT = SpyImportProcessTableMap::COL_CREATED_AT;
+
+    /**
+     * @var \Orm\Zed\ImportProcess\Persistence\SpyImportProcessQuery
      */
     protected $importProcessQuery;
 
     /**
-     * @var \Pyz\Zed\Acl\Business\AclFacadeInterface
+     * @var \Spryker\Zed\Acl\Business\AclFacadeInterface
      */
     protected $aclFacade;
 
     /**
-     * @param \Orm\Zed\ImportProcess\Persistence\PyzImportProcessQuery $importProcessQuery
-     * @param \Pyz\Zed\Acl\Business\AclFacadeInterface $aclFacade
+     * @param \Orm\Zed\ImportProcess\Persistence\SpyImportProcessQuery $importProcessQuery
+     * @param \Spryker\Zed\Acl\Business\AclFacadeInterface $aclFacade
      */
-    public function __construct(
-        PyzImportProcessQuery $importProcessQuery,
-        AclFacadeInterface $aclFacade
-    ) {
+    public function __construct(SpyImportProcessQuery $importProcessQuery, AclFacadeInterface $aclFacade)
+    {
         $this->importProcessQuery = $importProcessQuery;
         $this->aclFacade = $aclFacade;
     }
@@ -51,17 +63,17 @@ class ImportProcessGuiTable extends AbstractTable
      *
      * @return \Spryker\Zed\Gui\Communication\Table\TableConfiguration
      */
-    protected function configure(TableConfiguration $config)
+    protected function configure(TableConfiguration $config): TableConfiguration
     {
         $config->setHeader([
             static::COL_ID => '#',
             static::COL_STATUS => 'Status',
             static::COL_CREATED_AT => 'Created at',
-            static::ACTIONS => self::ACTIONS,
+            static::ACTIONS => static::ACTIONS,
         ]);
 
-        $config->addRawColumn(self::ACTIONS);
-        $config->addRawColumn(self::COL_STATUS);
+        $config->addRawColumn(static::ACTIONS);
+        $config->addRawColumn(static::COL_STATUS);
 
         $config->setSortable([
             static::COL_ID,
@@ -75,22 +87,26 @@ class ImportProcessGuiTable extends AbstractTable
     /**
      * @param \Spryker\Zed\Gui\Communication\Table\TableConfiguration $config
      *
-     * @return array
+     * @return array<mixed>
      */
-    protected function prepareData(TableConfiguration $config)
+    protected function prepareData(TableConfiguration $config): array
     {
-        $this->importProcessQuery->where(PyzImportProcessTableMap::COL_FK_USER . '=?', $this->aclFacade->getCurrentUser()->getIdUser());
+        $this->importProcessQuery->where(SpyImportProcessTableMap::COL_FK_USER . '=?', $this->aclFacade->getCurrentUser()->getIdUser());
         $result = [];
 
-        /** @var \Orm\Zed\ImportProcess\Persistence\PyzImportProcess[] $queryResult */
+        /** @var array<\Orm\Zed\ImportProcess\Persistence\SpyImportProcess> $queryResult */
         $queryResult = $this->runQuery($this->importProcessQuery, $config, true);
 
         foreach ($queryResult as $importProcessEntity) {
             $result[] = [
                 static::COL_ID => $importProcessEntity->getIdImportProcess(),
-                static::COL_STATUS => $this->createStatusLabel($importProcessEntity->getStatus()),
-                static::COL_CREATED_AT => $importProcessEntity->getCreatedAt()->format('Y-m-d H:i:s'),
-                self::ACTIONS => $this->getActionButtons($importProcessEntity),
+                static::COL_STATUS => $importProcessEntity->getStatus() !== null
+                    ? $this->createStatusLabel($importProcessEntity->getStatus())
+                    : '',
+                static::COL_CREATED_AT => $importProcessEntity->getCreatedAt() !== null
+                    ? $importProcessEntity->getCreatedAt()->format('Y-m-d H:i:s')
+                    : '',
+                static::ACTIONS => $this->getActionButtons($importProcessEntity),
             ];
         }
 
@@ -98,27 +114,16 @@ class ImportProcessGuiTable extends AbstractTable
     }
 
     /**
-     * @param \Orm\Zed\ImportProcess\Persistence\PyzImportProcess $importProcessEntity
+     * @param \Orm\Zed\ImportProcess\Persistence\SpyImportProcess $importProcessEntity
      *
      * @return string
      */
-    protected function getActionButtons(PyzImportProcess $importProcessEntity)
+    protected function getActionButtons(SpyImportProcess $importProcessEntity): string
     {
-        $buttons = [];
-
-        $buttons[] = $this->generateEditButton(
+        return $this->generateEditButton(
             Url::generate('/import-process-gui/index/view', ['id-process' => $importProcessEntity->getIdImportProcess()]),
-            'View'
+            'View',
         );
-
-        if ($importProcessEntity->getStatus() === PyzImportProcessTableMap::COL_STATUS_CREATED) {
-            $buttons[] = $this->generateEditButton(
-                Url::generate('/import-process-gui/index/execute-import', ['id-process' => $importProcessEntity->getIdImportProcess()]),
-                'Rerun import'
-            );
-        }
-
-        return implode(' ', $buttons);
     }
 
     /**

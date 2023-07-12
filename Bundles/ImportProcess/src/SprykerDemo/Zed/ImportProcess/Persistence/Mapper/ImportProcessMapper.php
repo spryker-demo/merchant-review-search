@@ -1,61 +1,77 @@
 <?php
 
 /**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
+ * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
 namespace SprykerDemo\Zed\ImportProcess\Persistence\Mapper;
 
-use Generated\Shared\Transfer\DataImporterCombinedReportTransfer;
+use Generated\Shared\Transfer\ImportProcessPayloadTransfer;
+use Generated\Shared\Transfer\ImportProcessReportTransfer;
 use Generated\Shared\Transfer\ImportProcessTransfer;
-use Orm\Zed\ImportProcess\Persistence\PyzImportProcess;
+use Orm\Zed\ImportProcess\Persistence\SpyImportProcess;
 
 class ImportProcessMapper
 {
     /**
      * @param \Generated\Shared\Transfer\ImportProcessTransfer $importProcessTransfer
-     * @param \Orm\Zed\ImportProcess\Persistence\PyzImportProcess $importProcessEntity
+     * @param \Orm\Zed\ImportProcess\Persistence\SpyImportProcess $importProcessEntity
      *
-     * @return \Orm\Zed\ImportProcess\Persistence\PyzImportProcess
+     * @return \Orm\Zed\ImportProcess\Persistence\SpyImportProcess
      */
     public function mapImportProcessTransferToImportProcessEntity(
         ImportProcessTransfer $importProcessTransfer,
-        PyzImportProcess $importProcessEntity
-    ): PyzImportProcess {
-        $importProcessEntity->setIdImportProcess($importProcessTransfer->getIdImportProcess());
-        $importProcessEntity->setFkUser($importProcessTransfer->getFkUser());
-        $importProcessEntity->setFilesystem($importProcessTransfer->getFilesystem());
-        $importProcessEntity->setStatus($importProcessTransfer->getStatus());
-        $importProcessEntity->setImportMap(json_encode($importProcessTransfer->getImportMap(), JSON_THROW_ON_ERROR));
-        if ($importProcessTransfer->getImportReport()) {
-            $importProcessEntity->setImportReport($importProcessTransfer->getImportReport()->serialize());
-        } else {
-            $importProcessEntity->setImportReport(null);
+        SpyImportProcess $importProcessEntity
+    ): SpyImportProcess {
+        if ($importProcessTransfer->getIdImportProcess() !== null) {
+            $importProcessEntity->setIdImportProcess($importProcessTransfer->getIdImportProcess());
         }
+
+        $importProcessEntity->setFkUser($importProcessTransfer->getFkUserOrFail());
+        $importProcessEntity->setType($importProcessTransfer->getTypeOrFail());
+        $importProcessEntity->setStatus($importProcessTransfer->getStatusOrFail());
+        $importProcessEntity->setImportMap($importProcessTransfer->getPayloadOrFail()->serialize());
+        $importProcessEntity->setImportReport(
+            $importProcessTransfer->getImportReport()
+                ? $importProcessTransfer->getImportReport()->serialize()
+                : null,
+        );
 
         return $importProcessEntity;
     }
 
     /**
-     * @param \Orm\Zed\ImportProcess\Persistence\PyzImportProcess $importProcessEntity
+     * @param \Orm\Zed\ImportProcess\Persistence\SpyImportProcess $importProcessEntity
      * @param \Generated\Shared\Transfer\ImportProcessTransfer $importProcessTransfer
      *
      * @return \Generated\Shared\Transfer\ImportProcessTransfer
      */
     public function mapImportProcessEntityToImportProcessTransfer(
-        PyzImportProcess $importProcessEntity,
+        SpyImportProcess $importProcessEntity,
         ImportProcessTransfer $importProcessTransfer
     ): ImportProcessTransfer {
         $importProcessTransfer->setIdImportProcess($importProcessEntity->getIdImportProcess());
         $importProcessTransfer->setFkUser($importProcessEntity->getFkUser());
-        $importProcessTransfer->setFilesystem($importProcessEntity->getFilesystem());
+        $importProcessTransfer->setType($importProcessEntity->getType());
         $importProcessTransfer->setStatus($importProcessEntity->getStatus());
-        $importProcessTransfer->setImportMap(json_decode($importProcessEntity->getImportMap() ?? '[]', true, 512, JSON_THROW_ON_ERROR));
-        $importProcessTransfer->setCreatedAt($importProcessEntity->getCreatedAt() ? $importProcessEntity->getCreatedAt()->format('Y-m-d H:i:s') : $importProcessEntity->getCreatedAt());
-        $importProcessTransfer->setUpdatedAt($importProcessEntity->getUpdatedAt() ? $importProcessEntity->getUpdatedAt()->format('Y-m-d H:i:s') : $importProcessEntity->getUpdatedAt());
-        if ($importProcessEntity->getImportReport()) {
-            $reportTransfer = new DataImporterCombinedReportTransfer();
+        $importProcessTransfer->setCreatedAt(
+            $importProcessEntity->getCreatedAt()
+                ? $importProcessEntity->getCreatedAt()->format('Y-m-d H:i:s')
+                : $importProcessEntity->getCreatedAt(),
+        );
+        $importProcessTransfer->setUpdatedAt(
+            $importProcessEntity->getUpdatedAt()
+                ? $importProcessEntity->getUpdatedAt()->format('Y-m-d H:i:s')
+                : $importProcessEntity->getUpdatedAt(),
+        );
+
+        $importProcessPayloadTransfer = new ImportProcessPayloadTransfer();
+        $importProcessPayloadTransfer->unserialize($importProcessEntity->getImportMap() ?? '[]');
+        $importProcessTransfer->setPayload($importProcessPayloadTransfer);
+
+        if ($importProcessEntity->getImportReport() !== null) {
+            $reportTransfer = new ImportProcessReportTransfer();
             $reportTransfer->unserialize($importProcessEntity->getImportReport());
             $importProcessTransfer->setImportReport($reportTransfer);
         }

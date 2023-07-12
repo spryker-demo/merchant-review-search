@@ -1,14 +1,14 @@
 <?php
 
 /**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
+ * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
 namespace SprykerDemo\Zed\ImportProcessSpreadsheetGui\Communication\Form\DataProvider;
 
 use Google\Service\Exception;
-use SprykerDemo\Zed\ImportProcess\Business\ImportProcessFacadeInterface;
+use SprykerDemo\Service\GoogleSpreadsheets\GoogleSpreadsheetsServiceInterface;
 use SprykerDemo\Zed\ImportProcessSpreadsheet\Business\ImportProcessSpreadsheetFacadeInterface;
 use SprykerDemo\Zed\ImportProcessSpreadsheetGui\Communication\Exception\SpreadsheetAccessDeniedException;
 use SprykerDemo\Zed\ImportProcessSpreadsheetGui\Communication\Form\ImportSheetForm;
@@ -16,36 +16,41 @@ use SprykerDemo\Zed\ImportProcessSpreadsheetGui\Communication\Form\ImportSheetFo
 class ImportSheetFormDataProvider
 {
     /**
+     * @var int
+     */
+    protected const CODE_HTTP_UNAUTHORIZED = 403;
+
+    /**
+     * @var \SprykerDemo\Service\GoogleSpreadsheets\GoogleSpreadsheetsServiceInterface
+     */
+    protected GoogleSpreadsheetsServiceInterface $googleSpreadsheetsService;
+
+    /**
      * @var \SprykerDemo\Zed\ImportProcessSpreadsheet\Business\ImportProcessSpreadsheetFacadeInterface
      */
     protected ImportProcessSpreadsheetFacadeInterface $importProcessSpreadsheetFacade;
 
     /**
-     * @var \SprykerDemo\Zed\ImportProcess\Business\ImportProcessFacadeInterface
-     */
-    protected ImportProcessFacadeInterface $importProcessFacade;
-
-    /**
+     * @param \SprykerDemo\Service\GoogleSpreadsheets\GoogleSpreadsheetsServiceInterface $googleSpreadsheetsService
      * @param \SprykerDemo\Zed\ImportProcessSpreadsheet\Business\ImportProcessSpreadsheetFacadeInterface $importProcessSpreadsheetFacade
-     * @param \SprykerDemo\Zed\ImportProcess\Business\ImportProcessFacadeInterface $importProcessFacade
      */
     public function __construct(
-        ImportProcessSpreadsheetFacadeInterface $importProcessSpreadsheetFacade,
-        ImportProcessFacadeInterface $importProcessFacade
+        GoogleSpreadsheetsServiceInterface $googleSpreadsheetsService,
+        ImportProcessSpreadsheetFacadeInterface $importProcessSpreadsheetFacade
     ) {
+        $this->googleSpreadsheetsService = $googleSpreadsheetsService;
         $this->importProcessSpreadsheetFacade = $importProcessSpreadsheetFacade;
-        $this->importProcessFacade = $importProcessFacade;
     }
 
     /**
      * @param string $spreadsheetUrl
      *
-     * @return array[]
+     * @return array<string, mixed>
      */
     public function getOptions(string $spreadsheetUrl): array
     {
         return [
-            ImportSheetForm::OPTION_IMPORT_TYPES => $this->getAvailableImportTypes($spreadsheetUrl),
+            ImportSheetForm::OPTION_IMPORT_TYPES => $this->getApplicableImportTypes($spreadsheetUrl),
         ];
     }
 
@@ -54,38 +59,37 @@ class ImportSheetFormDataProvider
      *
      * @throws \SprykerDemo\Zed\ImportProcessSpreadsheetGui\Communication\Exception\SpreadsheetAccessDeniedException
      *
-     * @return array
+     * @return array<string, string>
      */
-    protected function getAvailableImportTypes(string $spreadsheetUrl): array
+    protected function getApplicableImportTypes(string $spreadsheetUrl): array
     {
         try {
-            $spreadsheetId = $this->importProcessSpreadsheetFacade->getSheetIdFromUrl($spreadsheetUrl);
-            $sheetsTitles = $this->importProcessSpreadsheetFacade->getSheetsTitles($spreadsheetId);
+            $sheetNames = $this->googleSpreadsheetsService->getSheetNames($spreadsheetUrl);
         } catch (Exception $e) {
-            if ($e->getCode() === 403) {
-                throw new SpreadsheetAccessDeniedException();
+            if ($e->getCode() === static::CODE_HTTP_UNAUTHORIZED) {
+                throw new SpreadsheetAccessDeniedException(
+                    $e->getMessage(),
+                );
             }
 
             throw $e;
         }
 
-        $importTypes = $this->filterImportTypesByAvailableImportTypes($sheetsTitles);
+        $importTypes = $this->getAllowedSheetNames($sheetNames);
 
         return array_combine($importTypes, $importTypes);
     }
 
     /**
-     * @param array $importTypes
+     * @param array<string> $sheetNames
      *
-     * @return array
+     * @return array<string>
      */
-    protected function filterImportTypesByAvailableImportTypes(array $importTypes): array
+    protected function getAllowedSheetNames(array $sheetNames): array
     {
-        $availableImportTypes = $this->importProcessFacade->getAvailableOrderedImportTypes();
-        $importTypes = array_filter($importTypes, static function (string $importType) use ($availableImportTypes) {
-            return in_array($importType, $availableImportTypes, true);
-        });
-
-        return $importTypes;
+        return array_intersect(
+            $this->importProcessSpreadsheetFacade->getAllowedSheetNames(),
+            $sheetNames,
+        );
     }
 }

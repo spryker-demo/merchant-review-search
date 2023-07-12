@@ -1,8 +1,8 @@
 <?php
 
 /**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
+ * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
 namespace SprykerDemo\Zed\ImportProcessSpreadsheetGui\Communication\Form;
@@ -18,7 +18,14 @@ use Symfony\Component\Validator\Constraints\NotBlank;
  */
 class ImportSheetForm extends AbstractType
 {
+    /**
+     * @var string
+     */
     public const FIELD_IMPORT_TYPES = 'importTypes';
+
+    /**
+     * @var string
+     */
     public const BLOCK_PREFIX = 'ImportSheetForm';
 
     /**
@@ -57,7 +64,7 @@ class ImportSheetForm extends AbstractType
 
     /**
      * @param \Symfony\Component\Form\FormBuilderInterface $builder
-     * @param array $options
+     * @param array<string, mixed> $options
      *
      * @return void
      */
@@ -68,7 +75,7 @@ class ImportSheetForm extends AbstractType
 
     /**
      * @param \Symfony\Component\Form\FormBuilderInterface $builder
-     * @param array $options
+     * @param array<string, mixed> $options
      *
      * @return $this
      */

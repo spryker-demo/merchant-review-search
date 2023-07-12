@@ -4,12 +4,12 @@
     "description": "ImportProcessSpreadsheet module",
     "license": "proprietary",
     "require": {
-        "php": ">=7.4",
+        "php": ">=8.0",
+        "spryker-demo/import-process": "* as 1.0.0",
         "spryker/kernel": "^3.30.0"
     },
     "require-dev": {
-        "spryker/code-sniffer": "*",
-        "spryker/testify": "*"
+        "spryker/code-sniffer": "*"
     },
     "autoload": {
         "psr-4": {

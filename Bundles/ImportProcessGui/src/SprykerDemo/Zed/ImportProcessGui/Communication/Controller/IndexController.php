@@ -1,16 +1,15 @@
 <?php
 
 /**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
+ * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
 namespace SprykerDemo\Zed\ImportProcessGui\Communication\Controller;
 
-use SprykerDemo\Zed\ImportProcessGui\ImportProcessGuiConfig;
-use Spryker\Service\UtilText\Model\Url\Url;
 use Spryker\Zed\Kernel\BundleConfigResolverAwareTrait;
 use Spryker\Zed\Kernel\Communication\Controller\AbstractController;
+use SprykerDemo\Zed\ImportProcessGui\ImportProcessGuiConfig;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -22,10 +21,23 @@ class IndexController extends AbstractController
 {
     use BundleConfigResolverAwareTrait;
 
+    /**
+     * @var string
+     */
     protected const PARAM_ID_PROCESS = 'id-process';
 
     /**
-     * @return array
+     * @var string
+     */
+    protected const MESSAGE_IMPORT_PROCESS_NOT_FOUND = 'Import process with id#%d not found.';
+
+    /**
+     * @var string
+     */
+    protected const REDIRECT_URL = '/import-process-gui/index';
+
+    /**
+     * @return array<string, mixed>
      */
     public function indexAction(): array
     {
@@ -51,9 +63,9 @@ class IndexController extends AbstractController
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
+     * @return array<string, mixed>
      */
-    public function viewAction(Request $request)
+    public function viewAction(Request $request): array
     {
         $idImportProcess = $this->castId($request->query->get(static::PARAM_ID_PROCESS));
 
@@ -71,37 +83,21 @@ class IndexController extends AbstractController
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|array<string, mixed>
      */
-    public function executeImportAction(Request $request)
+    public function viewStatusAction(Request $request)
     {
-        $idImportProcess = $this->castId($request->query->get(static::PARAM_ID_PROCESS));
+        $importProcessId = $this->castId($request->query->get(static::PARAM_ID_PROCESS));
 
         $importProcessTransfer = $this->getFactory()
             ->getImportProcessFacade()
-            ->findImportProcessById($idImportProcess);
+            ->findImportProcessById($importProcessId);
 
-        $this->getFactory()->getImportProcessFacade()->runDetachedImportProcess($importProcessTransfer);
+        if ($importProcessTransfer === null) {
+            $this->addErrorMessage(sprintf(static::MESSAGE_IMPORT_PROCESS_NOT_FOUND, $importProcessId));
 
-        $this->addSuccessMessage('Import process started successfully.');
-
-        return $this->redirectResponse(Url::generate('view', [
-            static::PARAM_ID_PROCESS => $importProcessTransfer->getIdImportProcess(),
-        ])->build());
-    }
-
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
-     * @return array
-     */
-    public function viewStatusAction(Request $request): array
-    {
-        $idImportProcess = $this->castId($request->query->get(static::PARAM_ID_PROCESS));
-
-        $importProcessTransfer = $this->getFactory()
-            ->getImportProcessFacade()
-            ->findImportProcessById($idImportProcess);
+            return $this->redirectResponse(static::REDIRECT_URL);
+        }
 
         return $this->viewResponse([
             'importProcess' => $importProcessTransfer,

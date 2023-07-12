@@ -1,8 +1,8 @@
 <?php
 
 /**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
+ * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
 namespace SprykerDemo\Zed\ImportProcess\Persistence;
@@ -20,9 +20,8 @@ class ImportProcessEntityManager extends AbstractEntityManager implements Import
      *
      * @return \Generated\Shared\Transfer\ImportProcessTransfer
      */
-    public function saveImportProcessEntity(
-        ImportProcessTransfer $importProcessTransfer
-    ): ImportProcessTransfer {
+    public function saveImportProcessEntity(ImportProcessTransfer $importProcessTransfer): ImportProcessTransfer
+    {
         $importProcessEntity = $this->getFactory()
             ->createImportProcessQuery()
             ->filterByIdImportProcess($importProcessTransfer->getIdImportProcess())
@@ -32,7 +31,7 @@ class ImportProcessEntityManager extends AbstractEntityManager implements Import
             ->createImportProcessMapper()
             ->mapImportProcessTransferToImportProcessEntity(
                 $importProcessTransfer,
-                $importProcessEntity
+                $importProcessEntity,
             );
 
         $importProcessEntity->save();
@@ -41,7 +40,7 @@ class ImportProcessEntityManager extends AbstractEntityManager implements Import
             ->createImportProcessMapper()
             ->mapImportProcessEntityToImportProcessTransfer(
                 $importProcessEntity,
-                $importProcessTransfer
+                $importProcessTransfer,
             );
 
         return $importProcessTransfer;

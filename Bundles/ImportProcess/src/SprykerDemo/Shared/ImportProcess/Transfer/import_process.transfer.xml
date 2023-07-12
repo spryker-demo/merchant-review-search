@@ -6,12 +6,37 @@
     <transfer name="ImportProcess">
         <property name="idImportProcess" type="int"/>
         <property name="fkUser" type="int"/>
-        <property name="filesystem" type="string"/>
+        <property name="type" type="string"/>
         <property name="status" type="string"/>
-        <property name="importReport" type="DataImporterCombinedReport"/>
-        <property name="importMap" type="array"/>
+        <property name="importReport" type="ImportProcessReport"/>
+        <property name="payload" type="ImportProcessPayload"/>
         <property name="createdAt" type="string"/>
         <property name="updatedAt" type="string"/>
+    </transfer>
+
+    <transfer name="ImportProcessPayload">
+        <property name="type" type="string"/>
+        <property name="sourceMaps" type="ImportProcessSourceMap[]" singular="sourceMap"/>
+    </transfer>
+
+    <transfer name="ImportProcessSourceMap">
+        <property name="importType" type="string"/>
+        <property name="source" type="string"/>
+    </transfer>
+
+    <transfer name="ImportProcessReport">
+        <property name="isSuccess" type="bool"/>
+        <property name="sourceReports" type="ImportProcessSourceReport[]" singular="sourceReport"/>
+        <property name="importedDataSetCount" type="int"/>
+        <property name="importTime" type="float"/>
+    </transfer>
+
+    <transfer name="ImportProcessSourceReport">
+        <property name="isSuccess" type="bool"/>
+        <property name="importType" type="string"/>
+        <property name="importedDataSetCount" type="int"/>
+        <property name="expectedImportableDataSetCount" type="int"/>
+        <property name="importTime" type="float"/>
     </transfer>
 
 </transfers>

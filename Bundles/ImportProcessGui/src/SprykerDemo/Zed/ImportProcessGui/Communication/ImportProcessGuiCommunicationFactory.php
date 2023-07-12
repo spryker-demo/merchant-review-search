@@ -1,18 +1,18 @@
 <?php
 
 /**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
+ * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
 namespace SprykerDemo\Zed\ImportProcessGui\Communication;
 
-use Orm\Zed\ImportProcess\Persistence\PyzImportProcessQuery;
-use Pyz\Zed\Acl\Business\AclFacadeInterface;
+use Orm\Zed\ImportProcess\Persistence\SpyImportProcessQuery;
+use Spryker\Zed\Acl\Business\AclFacadeInterface;
+use Spryker\Zed\Kernel\Communication\AbstractCommunicationFactory;
 use SprykerDemo\Zed\ImportProcess\Business\ImportProcessFacadeInterface;
 use SprykerDemo\Zed\ImportProcessGui\Communication\Table\ImportProcessGuiTable;
 use SprykerDemo\Zed\ImportProcessGui\ImportProcessGuiDependencyProvider;
-use Spryker\Zed\Kernel\Communication\AbstractCommunicationFactory;
 
 /**
  * @method \SprykerDemo\Zed\ImportProcessGui\ImportProcessGuiConfig getConfig()
@@ -25,21 +25,21 @@ class ImportProcessGuiCommunicationFactory extends AbstractCommunicationFactory
     public function createTable(): ImportProcessGuiTable
     {
         return new ImportProcessGuiTable(
-            $this->createImportProcessQuery(),
-            $this->getAclFacade()
+            $this->getImportProcessQuery(),
+            $this->getAclFacade(),
         );
     }
 
     /**
-     * @return \Orm\Zed\ImportProcess\Persistence\PyzImportProcessQuery
+     * @return \Orm\Zed\ImportProcess\Persistence\SpyImportProcessQuery
      */
-    protected function createImportProcessQuery(): PyzImportProcessQuery
+    protected function getImportProcessQuery(): SpyImportProcessQuery
     {
-        return new PyzImportProcessQuery();
+        return SpyImportProcessQuery::create();
     }
 
     /**
-     * @return \Pyz\Zed\Acl\Business\AclFacadeInterface
+     * @return \Spryker\Zed\Acl\Business\AclFacadeInterface
      */
     public function getAclFacade(): AclFacadeInterface
     {

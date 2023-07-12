@@ -1,8 +1,8 @@
 <?php
 
 /**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
+ * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
 namespace SprykerDemo\Zed\ImportProcessSpreadsheet\Business;
@@ -21,35 +21,7 @@ class ImportProcessSpreadsheetFacade extends AbstractFacade implements ImportPro
      * @api
      *
      * @param string $spreadsheetUrl
-     *
-     * @return string
-     */
-    public function getSheetIdFromUrl(string $spreadsheetUrl): string
-    {
-        return $this->getFactory()->createSpreadsheetManager()->getSheetIdFromUrl($spreadsheetUrl);
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @api
-     *
-     * @param string $spreadsheetId
-     *
-     * @return array
-     */
-    public function getSheetsTitles(string $spreadsheetId): array
-    {
-        return $this->getFactory()->createSpreadsheetManager()->getSheetsTitles($spreadsheetId);
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @api
-     *
-     * @param string $spreadsheetUrl
-     * @param array $sheetNames
+     * @param array<string> $sheetNames
      *
      * @return \Generated\Shared\Transfer\ImportProcessTransfer
      */
@@ -58,5 +30,45 @@ class ImportProcessSpreadsheetFacade extends AbstractFacade implements ImportPro
         return $this->getFactory()
             ->createImportProcessCreator()
             ->createImportProcess($spreadsheetUrl, $sheetNames);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @api
+     *
+     * @return array<string>
+     */
+    public function getAllowedSheetNames(): array
+    {
+        return $this->getFactory()->getConfig()->getAllowedSheetNames();
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\ImportProcessTransfer $importProcessTransfer
+     *
+     * @return \Generated\Shared\Transfer\ImportProcessTransfer
+     */
+    public function downloadImportProcessPayloadAssets(ImportProcessTransfer $importProcessTransfer): ImportProcessTransfer
+    {
+        return $this->getFactory()->createImportProcessAssetsDownloader()->downloadAssets($importProcessTransfer);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\ImportProcessTransfer $importProcessTransfer
+     *
+     * @return \Generated\Shared\Transfer\ImportProcessTransfer
+     */
+    public function cleanupImportProcessPayloadAssets(ImportProcessTransfer $importProcessTransfer): ImportProcessTransfer
+    {
+        return $this->getFactory()->createImportProcessAssetsDeleter()->deleteAssets($importProcessTransfer);
     }
 }

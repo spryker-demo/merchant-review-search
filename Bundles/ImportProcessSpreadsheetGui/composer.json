@@ -4,12 +4,17 @@
     "description": "ImportProcessSpreadsheetGui module",
     "license": "proprietary",
     "require": {
-        "php": ">=7.4",
-        "spryker/kernel": "^3.30.0"
+        "google/apiclient": "*",
+        "php": ">=8.0",
+        "spryker-demo/google-spreadsheets": "* as 1.0.0",
+        "spryker-demo/import-process-spreadsheet": "* as 1.0.0",
+        "spryker/gui": "^3.47.1",
+        "spryker/kernel": "^3.30.0",
+        "spryker/symfony": "^3.11.1",
+        "spryker/util-text": "^1.5.1"
     },
     "require-dev": {
-        "spryker/code-sniffer": "*",
-        "spryker/testify": "*"
+        "spryker/code-sniffer": "*"
     },
     "autoload": {
         "psr-4": {

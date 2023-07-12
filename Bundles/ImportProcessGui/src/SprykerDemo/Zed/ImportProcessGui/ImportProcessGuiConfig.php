@@ -1,24 +1,23 @@
 <?php
 
 /**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
+ * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
 namespace SprykerDemo\Zed\ImportProcessGui;
 
-use Orm\Zed\ImportProcess\Persistence\Map\PyzImportProcessTableMap;
+use Orm\Zed\ImportProcess\Persistence\Map\SpyImportProcessTableMap;
 use Spryker\Zed\Kernel\AbstractBundleConfig;
 
 class ImportProcessGuiConfig extends AbstractBundleConfig
 {
     /**
-     * @phpstan-var array<string, string>
-     * @var array
+     * @var array<string, string>
      */
     public const STATUS_CLASS_LABEL_MAPPING = [
-        PyzImportProcessTableMap::COL_STATUS_CREATED => 'label-warning',
-        PyzImportProcessTableMap::COL_STATUS_FINISHED => 'label-success',
-        PyzImportProcessTableMap::COL_STATUS_FAILED => 'label-danger',
+        SpyImportProcessTableMap::COL_STATUS_CREATED => 'label-warning',
+        SpyImportProcessTableMap::COL_STATUS_FINISHED => 'label-success',
+        SpyImportProcessTableMap::COL_STATUS_FAILED => 'label-danger',
     ];
 }

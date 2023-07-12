@@ -1,8 +1,8 @@
 <?php
 
 /**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
+ * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
 namespace SprykerDemo\Zed\ImportProcessSpreadsheetGui\Communication\Form;
@@ -18,7 +18,14 @@ use Symfony\Component\Validator\Constraints\Regex;
  */
 class SelectSheetForm extends AbstractType
 {
+    /**
+     * @var string
+     */
     public const FIELD_SHEET_URL = 'sheetUrl';
+
+    /**
+     * @var string
+     */
     public const BLOCK_PREFIX = 'selectSheetForm';
 
     /**
@@ -45,7 +52,7 @@ class SelectSheetForm extends AbstractType
 
     /**
      * @param \Symfony\Component\Form\FormBuilderInterface $builder
-     * @param array $options
+     * @param array<string, mixed> $options
      *
      * @return void
      */
@@ -61,7 +68,7 @@ class SelectSheetForm extends AbstractType
      */
     protected function addSheetUrlField(FormBuilderInterface $builder)
     {
-        $builder->add(self::FIELD_SHEET_URL, TextType::class, [
+        $builder->add(static::FIELD_SHEET_URL, TextType::class, [
             'label' => 'Spreadsheet URL',
             'required' => true,
             'attr' => [
