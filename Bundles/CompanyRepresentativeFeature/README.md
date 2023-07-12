@@ -2,7 +2,7 @@
 [![Latest Stable Version](https://poser.pugx.org/spryker-demo/company-representative-feature/v/stable.svg)](https://packagist.org/packages/spryker-demo/company-representative-feature)
 [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.4-8892BF.svg)](https://php.net/)
 
-Provides logic for saving and reading company representatives.
+Company representatives functionality.
 
 ###  Install the required modules using Composer
 
