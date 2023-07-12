@@ -44,13 +44,15 @@ class TwigConfig extends SprykerTwigConfig
 
 ```
 ### Frontend config
-#### 1) Adjust `frontend/settings.js`
-```js
-    const paths = {
 
-        // demo folders
-        demo: globalSettings.paths.demo,
-    };
+#### frontend/settings.js
+```js
+
+const paths = {
+
+    // demo folders
+    demo: globalSettings.paths.demo,
+};
 
 // define global settings
 const globalSettings = {

@@ -2,7 +2,7 @@
 [![Latest Stable Version](https://poser.pugx.org/spryker-demo/company-representative-feature/v/stable.svg)](https://packagist.org/packages/spryker-demo/company-representative-feature)
 [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.4-8892BF.svg)](https://php.net/)
 
-This feature introduce company representative.
+Provides logic for saving and reading company representatives.
 
 ###  Install the required modules using Composer
 
@@ -39,10 +39,11 @@ company.account.customer.service.empty,"No Customer Service Representative.",es_
 ```
 console data:import:glossary
 ```
-
 ### Frontend config
-#### 1) Adjust `frontend/settings.js`
+
+#### frontend/settings.js
 ```js
+
     const paths = {
 
         // demo folders
@@ -75,7 +76,7 @@ return {
     }
 };
 ```
-#### 2) Add company representative widget plugin to `src/Pyz/Yves/CompanyPage/CompanyPageDependencyProvider.php`
+#### src/Pyz/Yves/CompanyPage/CompanyPageDependencyProvider.php
 ```php
 <?php
 
@@ -103,13 +104,13 @@ class CompanyPageDependencyProvider extends SprykerCompanyPageDependencyProvider
 }
 ```
 
-#### 3) Add company customer represnetative widget to `src/Pyz/Yves/CompanyPage/Theme/default/views/overview/overview.twig`
+#### src/Pyz/Yves/CompanyPage/Theme/default/views/overview/overview.twig
 ```html
   {% if widgetExists('CustomerRepresentativeWidget') %}
     {% widget 'CustomerRepresentativeWidget' only %}{% endwidget %}
   {% endif %}
 ```
-#### 4) Add customer represnetative icon to `src/Pyz/Yves/ShopUi/Theme/default/components/atoms/icon-sprite/icon-sprite.twig`
+#### src/Pyz/Yves/ShopUi/Theme/default/components/atoms/icon-sprite/icon-sprite.twig
 ```svg
 <symbol id=":customer-representative" viewBox="0 0 33 33">
             <title id=":customer-representative">Customer Representative</title>
@@ -121,7 +122,7 @@ class CompanyPageDependencyProvider extends SprykerCompanyPageDependencyProvider
         </symbol>
 ```
 ### Zed config
-#### 1)Add `SaveCompanyRepresentativePlugin` to `src/Pyz/Zed/Company/CompanyDependencyProvider.php`
+#### src/Pyz/Zed/Company/CompanyDependencyProvider.php
 ````php
 <?php
 
@@ -152,7 +153,7 @@ class CompanyDependencyProvider extends SprykerCompanyDependencyProvider
     }
 }
 ````
-#### 2) Extend `src/Pyz/Zed/CompanyGui/CompanyGuiDependencyProvider.php`  and add Company representative plugins
+#### src/Pyz/Zed/CompanyGui/CompanyGuiDependencyProvider.php
 ```php
 <?php
 
