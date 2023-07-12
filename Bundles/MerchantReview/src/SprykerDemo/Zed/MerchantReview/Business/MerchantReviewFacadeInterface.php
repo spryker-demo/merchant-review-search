@@ -34,28 +34,27 @@ interface MerchantReviewFacadeInterface
      *
      * @api
      *
-     * @param \Generated\Shared\Transfer\MerchantReviewTransfer $merchantReviewTransfer
+     * @param int $idMerchantReview
      *
      * @return \Generated\Shared\Transfer\MerchantReviewTransfer|null
      */
-    public function findOne(
-        MerchantReviewTransfer $merchantReviewTransfer
+    public function findMerchantReviewById(
+        int $idMerchantReview
     ): ?MerchantReviewTransfer;
 
     /**
      * Specification:
      * - Updates merchant review's status in persistent storage that matches the provided id in the transfer object.
-     * - Returns the provided transfer object updated with the saved entity's data.
      *
      * @api
      *
      * @param \Generated\Shared\Transfer\MerchantReviewTransfer $merchantReviewTransfer
      *
-     * @return \Generated\Shared\Transfer\MerchantReviewTransfer
+     * @return void
      */
     public function updateMerchantReviewStatus(
         MerchantReviewTransfer $merchantReviewTransfer
-    ): MerchantReviewTransfer;
+    ): void;
 
     /**
      * Specification:

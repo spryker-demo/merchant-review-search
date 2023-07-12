@@ -11,7 +11,7 @@ use SprykerDemo\Service\MerchantReview\Calculator\MerchantReviewSummaryCalculato
 class MerchantReviewServiceFactory extends AbstractServiceFactory
 {
     /**
-     * @return \SprykerDemo\Client\MerchantReview\Calculator\MerchantReviewSummaryCalculator
+     * @return \SprykerDemo\Service\MerchantReview\Calculator\MerchantReviewSummaryCalculator
      */
     public function createMerchantReviewSummaryCalculator(): MerchantReviewSummaryCalculator
     {

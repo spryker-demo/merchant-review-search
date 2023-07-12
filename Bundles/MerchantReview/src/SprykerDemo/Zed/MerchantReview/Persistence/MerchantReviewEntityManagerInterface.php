@@ -23,4 +23,11 @@ interface MerchantReviewEntityManagerInterface
      * @return void
      */
     public function deleteMerchantReview(int $idMerchantReview): void;
+
+    /**
+     * @param \Generated\Shared\Transfer\MerchantReviewTransfer $merchantReviewTransfer
+     *
+     * @return void
+     */
+    public function updateMerchantReview(MerchantReviewTransfer $merchantReviewTransfer): void;
 }

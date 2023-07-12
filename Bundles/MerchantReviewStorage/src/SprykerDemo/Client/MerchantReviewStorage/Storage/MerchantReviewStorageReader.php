@@ -48,10 +48,10 @@ class MerchantReviewStorageReader implements MerchantReviewStorageReaderInterfac
             return null;
         }
 
-        $MerchantReviewStorageTransfer = new MerchantReviewStorageTransfer();
-        $MerchantReviewStorageTransfer->fromArray($imageData, true);
+        $merchantReviewStorageTransfer = new MerchantReviewStorageTransfer();
+        $merchantReviewStorageTransfer->fromArray($imageData, true);
 
-        return $MerchantReviewStorageTransfer;
+        return $merchantReviewStorageTransfer;
     }
 
     /**

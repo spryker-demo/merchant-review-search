@@ -10,37 +10,29 @@ namespace SprykerDemo\Zed\MerchantReview\Business\Model;
 use Generated\Shared\Transfer\MerchantReviewTransfer;
 use Orm\Zed\MerchantReview\Persistence\SpyMerchantReview;
 use Spryker\Zed\Kernel\Persistence\EntityManager\TransactionTrait;
+use SprykerDemo\Zed\MerchantReview\Persistence\MerchantReviewEntityManagerInterface;
 
 class MerchantReviewStatusUpdater implements MerchantReviewStatusUpdaterInterface
 {
-    use TransactionTrait;
+    protected MerchantReviewEntityManagerInterface $merchantReviewEntityManager;
 
     /**
-     * @var \SprykerDemo\Zed\MerchantReview\Business\Model\MerchantReviewEntityReaderInterface
+     * @param \SprykerDemo\Zed\MerchantReview\Persistence\MerchantReviewEntityManagerInterface $merchantReviewEntityManager
      */
-    protected MerchantReviewEntityReaderInterface $merchantReviewEntityReader;
-
-    /**
-     * @param \SprykerDemo\Zed\MerchantReview\Business\Model\MerchantReviewEntityReaderInterface $merchantReviewEntityReader
-     */
-    public function __construct(MerchantReviewEntityReaderInterface $merchantReviewEntityReader)
+    public function __construct(MerchantReviewEntityManagerInterface $merchantReviewEntityManager)
     {
-        $this->merchantReviewEntityReader = $merchantReviewEntityReader;
+        $this->merchantReviewEntityManager = $merchantReviewEntityManager;
     }
 
     /**
      * @param \Generated\Shared\Transfer\MerchantReviewTransfer $merchantReviewTransfer
      *
-     * @return \Generated\Shared\Transfer\MerchantReviewTransfer
+     * @return void
      */
-    public function updateMerchantReviewStatus(MerchantReviewTransfer $merchantReviewTransfer): MerchantReviewTransfer
+    public function updateMerchantReviewStatus(MerchantReviewTransfer $merchantReviewTransfer): void
     {
         $this->assertMerchantReviewTransfer($merchantReviewTransfer);
-
-        return $this->getTransactionHandler()
-            ->handleTransaction(function () use ($merchantReviewTransfer) {
-                return $this->executeUpdateMerchantReviewStatusTransaction($merchantReviewTransfer);
-            });
+        $this->merchantReviewEntityManager->updateMerchantReview($merchantReviewTransfer);
     }
 
     /**
@@ -52,55 +44,5 @@ class MerchantReviewStatusUpdater implements MerchantReviewStatusUpdaterInterfac
     {
         $merchantReviewTransfer->requireIdMerchantReview();
         $merchantReviewTransfer->requireStatus();
-    }
-
-    /**
-     * @param \Generated\Shared\Transfer\MerchantReviewTransfer $merchantReviewTransfer
-     *
-     * @return \Generated\Shared\Transfer\MerchantReviewTransfer
-     */
-    protected function executeUpdateMerchantReviewStatusTransaction(MerchantReviewTransfer $merchantReviewTransfer): MerchantReviewTransfer
-    {
-        $merchantReviewEntity = $this->merchantReviewEntityReader->getMerchantReviewEntity($merchantReviewTransfer);
-
-        $this->mapTransferToEntity($merchantReviewTransfer, $merchantReviewEntity);
-        $merchantReviewEntity->save();
-        $this->mapEntityToTransfer($merchantReviewTransfer, $merchantReviewEntity);
-
-        return $merchantReviewTransfer;
-    }
-
-    /**
-     * @param \Generated\Shared\Transfer\MerchantReviewTransfer $merchantReviewTransfer
-     * @param \Orm\Zed\MerchantReview\Persistence\SpyMerchantReview $merchantReviewEntity
-     *
-     * @return \Orm\Zed\MerchantReview\Persistence\SpyMerchantReview
-     */
-    protected function mapTransferToEntity(
-        MerchantReviewTransfer $merchantReviewTransfer,
-        SpyMerchantReview $merchantReviewEntity
-    ): SpyMerchantReview {
-        /** @var string $status */
-        $status = $merchantReviewTransfer->getStatus();
-
-        $merchantReviewEntity->setStatus($status);
-        $merchantReviewEntity->setNew(false);
-
-        return $merchantReviewEntity;
-    }
-
-    /**
-     * @param \Generated\Shared\Transfer\MerchantReviewTransfer $merchantReviewTransfer
-     * @param \Orm\Zed\MerchantReview\Persistence\SpyMerchantReview $merchantReviewEntity
-     *
-     * @return \Generated\Shared\Transfer\MerchantReviewTransfer
-     */
-    protected function mapEntityToTransfer(
-        MerchantReviewTransfer $merchantReviewTransfer,
-        SpyMerchantReview $merchantReviewEntity
-    ): MerchantReviewTransfer {
-        $merchantReviewTransfer->fromArray($merchantReviewEntity->toArray(), true);
-
-        return $merchantReviewTransfer;
     }
 }

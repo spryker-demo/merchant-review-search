@@ -5,6 +5,7 @@ namespace SprykerDemo\Zed\MerchantReview\Persistence;
 use Generated\Shared\Transfer\MerchantReviewTransfer;
 use Orm\Zed\MerchantReview\Persistence\Map\SpyMerchantReviewTableMap;
 use Orm\Zed\MerchantReview\Persistence\SpyMerchantReview;
+use Propel\Runtime\Exception\EntityNotFoundException;
 use Spryker\Zed\Kernel\Persistence\AbstractEntityManager;
 
 /**
@@ -42,5 +43,27 @@ class MerchantReviewEntityManager extends AbstractEntityManager implements Merch
             ->filterByIdMerchantReview($idMerchantReview)
             ->findOne()
             ->delete();
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\MerchantReviewTransfer $merchantReviewTransfer
+     *
+     * @return void
+     */
+    public function updateMerchantReview(MerchantReviewTransfer $merchantReviewTransfer): void
+    {
+        $merchantReviewEntity = $this->getFactory()
+            ->createMerchantReviewQuery()
+            ->filterByIdMerchantReview($merchantReviewTransfer->getIdMerchantReview())
+            ->findOne();
+
+        if ($merchantReviewEntity === null) {
+            throw new EntityNotFoundException('Merchant review entity not found');
+        }
+
+        $this->getFactory()
+            ->createMerchantReviewMapper()
+            ->mapMerchantReviewTransferToMerchantReviewEntity($merchantReviewTransfer, $merchantReviewEntity);
+        $merchantReviewEntity->save();
     }
 }

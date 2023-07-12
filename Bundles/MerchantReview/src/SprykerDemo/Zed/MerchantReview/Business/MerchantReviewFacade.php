@@ -14,6 +14,7 @@ use Spryker\Zed\Kernel\Business\AbstractFacade;
 /**
  * @method \SprykerDemo\Zed\MerchantReview\Business\MerchantReviewBusinessFactory getFactory()
  * @method \SprykerDemo\Zed\MerchantReview\Persistence\MerchantReviewEntityManagerInterface getEntityManager()
+ * @method \SprykerDemo\Zed\MerchantReview\Persistence\MerchantReviewRepositoryInterface getRepository()
  */
 class MerchantReviewFacade extends AbstractFacade implements MerchantReviewFacadeInterface
 {
@@ -37,16 +38,14 @@ class MerchantReviewFacade extends AbstractFacade implements MerchantReviewFacad
      *
      * @api
      *
-     * @param \Generated\Shared\Transfer\MerchantReviewTransfer $merchantReviewTransfer
+     * @param int $idMerchantReview
      *
      * @return \Generated\Shared\Transfer\MerchantReviewTransfer|null
      */
-    public function findOne(
-        MerchantReviewTransfer $merchantReviewTransfer
+    public function findMerchantReviewById(
+        int $idMerchantReview
     ): ?MerchantReviewTransfer {
-        return $this->getFactory()
-            ->createMerchantReviewReader()
-            ->findMerchantReview($merchantReviewTransfer);
+        return $this->getRepository()->findMerchantReviewById($idMerchantReview);
     }
 
     /**
@@ -60,8 +59,8 @@ class MerchantReviewFacade extends AbstractFacade implements MerchantReviewFacad
      */
     public function updateMerchantReviewStatus(
         MerchantReviewTransfer $merchantReviewTransfer
-    ): MerchantReviewTransfer {
-        return $this->getFactory()
+    ): void {
+        $this->getFactory()
             ->createMerchantReviewStatusUpdater()
             ->updateMerchantReviewStatus($merchantReviewTransfer);
     }
@@ -90,11 +89,20 @@ class MerchantReviewFacade extends AbstractFacade implements MerchantReviewFacad
      */
     public function getMerchantReviews(): MerchantReviewCollectionTransfer
     {
-        return $this->getFactory()->createMerchantReviewReader()->getMerchantReviews();
+        return $this->getRepository()->getMerchantReviews();
     }
 
-    public function getMerchantReviewsByIds(array $merchantReviewIds)
+    /**
+     * {@inheritDoc}
+     *
+     * @api
+     *
+     * @param array $merchantReviewIds
+     *
+     * @return \Generated\Shared\Transfer\MerchantReviewCollectionTransfer
+     */
+    public function getMerchantReviewsByIds(array $merchantReviewIds): MerchantReviewCollectionTransfer
     {
-        return $this->getFactory()->createMerchantReviewReader()->getMerchantReviewsByIds($merchantReviewIds);
+        return $this->getRepository()->getMerchantReviewsByIds($merchantReviewIds);
     }
 }

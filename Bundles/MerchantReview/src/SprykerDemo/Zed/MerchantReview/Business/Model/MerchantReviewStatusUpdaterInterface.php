@@ -14,7 +14,7 @@ interface MerchantReviewStatusUpdaterInterface
     /**
      * @param \Generated\Shared\Transfer\MerchantReviewTransfer $merchantReviewTransfer
      *
-     * @return \Generated\Shared\Transfer\MerchantReviewTransfer
+     * @return void
      */
-    public function updateMerchantReviewStatus(MerchantReviewTransfer $merchantReviewTransfer): MerchantReviewTransfer;
+    public function updateMerchantReviewStatus(MerchantReviewTransfer $merchantReviewTransfer): void;
 }
