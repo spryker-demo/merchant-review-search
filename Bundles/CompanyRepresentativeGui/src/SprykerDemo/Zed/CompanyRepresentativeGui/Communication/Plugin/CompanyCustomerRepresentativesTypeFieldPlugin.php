@@ -17,11 +17,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 class CompanyCustomerRepresentativesTypeFieldPlugin extends AbstractPlugin implements CompanyFormExpanderPluginInterface
 {
     /**
-     * @var string
-     */
-    public const FIELD_REPRESENTATIVE = 'representative';
-
-    /**
      * {@inheritDoc}
      *
      * @api
