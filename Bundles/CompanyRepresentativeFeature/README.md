@@ -75,7 +75,7 @@ return {
     }
 };
 ```
-#### 2) Add company representative widget plugin to `CompanyPageDependencyProvider`
+#### 2) Add company representative widget plugin to `src/Pyz/Yves/CompanyPage/CompanyPageDependencyProvider.php`
 ```php
 <?php
 
@@ -103,7 +103,7 @@ class CompanyPageDependencyProvider extends SprykerCompanyPageDependencyProvider
 }
 ```
 
-#### 3) Add company customer represnetative widget to overview.twig
+#### 3) Add company customer represnetative widget to `src/Pyz/Yves/CompanyPage/Theme/default/views/overview/overview.twig`
 ```html
   {% if widgetExists('CustomerRepresentativeWidget') %}
     {% widget 'CustomerRepresentativeWidget' only %}{% endwidget %}
@@ -121,19 +121,56 @@ class CompanyPageDependencyProvider extends SprykerCompanyPageDependencyProvider
         </symbol>
 ```
 ### Zed config
-#### 1)Add `SaveCompanyRepresentativePlugin` to `getCompanyPostSavePlugins`
+#### 1)Add `SaveCompanyRepresentativePlugin` to `src/Pyz/Zed/Company/CompanyDependencyProvider.php`
 ````php
 <?php
-protected function getCompanyPostSavePlugins(): array
+
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
+namespace Pyz\Zed\Company;
+
+use Spryker\Zed\Company\CompanyDependencyProvider as SprykerCompanyDependencyProvider;
+use Spryker\Zed\CompanyBusinessUnit\Communication\Plugin\Company\CompanyBusinessUnitCreatePlugin;
+use Spryker\Zed\CompanyMailConnector\Communication\Plugin\Company\SendCompanyStatusChangePlugin;
+use Spryker\Zed\CompanyRole\Communication\Plugin\CompanyRoleCreatePlugin;
+use Spryker\Zed\CompanyUser\Communication\Plugin\Company\CompanyUserCreatePlugin;
+use SprykerDemo\Zed\CompanyRepresentative\Communication\Plugin\Company\SaveCompanyRepresentativePlugin;
+
+class CompanyDependencyProvider extends SprykerCompanyDependencyProvider
 {
-    return [
-                new SaveCompanyRepresentativePlugin(),
-           ];
+    /**
+     * @return array<\Spryker\Zed\CompanyExtension\Dependency\Plugin\CompanyPostSavePluginInterface>
+     */
+    protected function getCompanyPostSavePlugins(): array
+    {
+        return [
+            new SaveCompanyRepresentativePlugin(),
+        ];
+    }
 }
 ````
-#### 2) Extend `CompanyGuiDependencyProvider`  and add Company representative plugins
+#### 2) Extend `src/Pyz/Zed/CompanyGui/CompanyGuiDependencyProvider.php`  and add Company representative plugins
 ```php
+<?php
+
 /**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
+namespace Pyz\Zed\CompanyGui;
+
+use Spryker\Zed\CompanyGui\CompanyGuiDependencyProvider as SprykerCompanyGuiDependencyProvider;
+use SprykerDemo\Zed\CompanyRepresentativeGui\Communication\Plugin\CompanyCustomerRepresentativesTypeFieldPlugin;
+use SprykerDemo\Zed\CompanyRepresentativeGui\Communication\Plugin\CompanyTableCustomerRepresentativesDataExpanderPlugin;
+use SprykerDemo\Zed\CompanyRepresentativeGui\Communication\Plugin\CompanyTableCustomerRepresentativesHeaderExpanderPlugin;
+
+class CompanyGuiDependencyProvider extends SprykerCompanyGuiDependencyProvider
+{
+    /**
      * @return array<\Spryker\Zed\CompanyGuiExtension\Dependency\Plugin\CompanyFormExpanderPluginInterface>
      */
     protected function getCompanyFormPlugins(): array
@@ -162,5 +199,7 @@ protected function getCompanyPostSavePlugins(): array
             new CompanyTableCustomerRepresentativesDataExpanderPlugin(),
         ];
     }
+}
+
 ```
 ####
