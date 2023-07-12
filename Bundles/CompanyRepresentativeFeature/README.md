@@ -27,7 +27,11 @@ $config[KernelConstants::CORE_NAMESPACES] = [
 customer.representative.services.title,Customer service representative,en_US
 customer.representative.services.title,Kundenbetreuer,de_DE
 customer.representative.services.title,Customer service representative,fr_FR
-customer.representative.services.title,Kundenbetreuer,es_ES
+customer.representative.services.title,Customer service representative,es_ES
+company.account.customer.service.empty,"No Customer Service Representative.",en_US
+company.account.customer.service.empty,"Kein Kundendienstmitarbeiter.",de_DE
+company.account.customer.service.empty,"No Customer Service Representative.",fr_FR
+company.account.customer.service.empty,"No Customer Service Representative.",es_ES
 ```
 
 ### Import translations
