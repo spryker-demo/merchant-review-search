@@ -1,8 +1,6 @@
 $setting-color-title: #2f2f2f;
 
-@mixin company-representative-widget-company-representative-widget-tile(
-    $name: ".company-representative-widget-tile"
-) {
+@mixin company-representative-widget-company-representative-widget-tile($name: '.company-representative-widget-tile') {
     #{$name} {
         display: flex;
         flex-flow: row nowrap;
