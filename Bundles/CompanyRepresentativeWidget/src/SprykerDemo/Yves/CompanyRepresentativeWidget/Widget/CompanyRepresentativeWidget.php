@@ -44,7 +44,7 @@ class CompanyRepresentativeWidget extends AbstractWidget implements WidgetInterf
     {
         $companyId = $this->getFactory()->getCustomerClient()->getCustomer()->getCompanyUserTransfer()->getCompany()->getIdCompany();
         $customerRepresentativesFilterTransfer = (new CompanyRepresentativesFilterTransfer())->setCompanyId($companyId);
-        $customerRepresentatives = $this->getFactory()->getCompanyRepresentativeClient()->findCompanyRepresentatives($customerRepresentativesFilterTransfer);
-        $this->addParameter('representatives', $customerRepresentatives);
+        $companyRepresentatives = $this->getFactory()->getCompanyRepresentativeClient()->findCompanyRepresentatives($customerRepresentativesFilterTransfer);
+        $this->addParameter('representatives', $companyRepresentatives);
     }
 }

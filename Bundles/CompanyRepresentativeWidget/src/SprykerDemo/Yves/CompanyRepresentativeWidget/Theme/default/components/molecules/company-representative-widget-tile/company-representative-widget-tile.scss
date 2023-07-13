@@ -1,6 +1,6 @@
 $setting-color-title: #2f2f2f;
 
-@mixin company-representative-widget-customer-representative-widget-tile(
+@mixin company-representative-widget-company-representative-widget-tile(
     $name: ".company-representative-widget-tile"
 ) {
     #{$name} {
@@ -71,4 +71,4 @@ $setting-color-title: #2f2f2f;
     }
 }
 
-@include company-representative-widget-customer-representative-widget-tile;
+@include company-representative-widget-company-representative-widget-tile;
