@@ -7,7 +7,7 @@
         "php": ">=8.0",
         "spryker-demo/company-representative": "*",
         "spryker-demo/company-representative-gui": "*",
-        "spryker-demo/customer-representative-widget": "*"
+        "spryker-demo/company-representative-widget": "*"
     },
     "require-dev": {
         "spryker/code-sniffer": "^0.17.18"

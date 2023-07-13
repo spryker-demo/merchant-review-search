@@ -1,0 +1,35 @@
+{% extends template('widget') %}
+
+{% define data = {
+    companyRepresentatives: _widget.representatives,
+} %}
+
+{% block template %}
+    {% embed molecule('company-representative-widget-tile', 'CompanyRepresentativeWidget') with {
+        data: {
+            icon: 'company-representative',
+            title: 'company.representative.services.title' | trans,
+        },
+        embed: {
+            companyRepresentativesUsers: data.companyRepresentatives.users,
+        },
+    } only %}
+        {% block text %}
+            <div class="{{ config.name }}__text">
+                {% if embed.companyRepresentativesUsers is not empty %}
+                    <ul class="list list--bullet">
+                        {% for companyRepresentativeUser in embed.companyRepresentativesUsers %}
+                            <li class="{{ config.name }}__list-item">
+                                <div>{{ companyRepresentativeUser.firstName }} {{ companyRepresentativeUser.lastName }}</div>
+                                <div><a class="link link--alt" href="mailto:{{ companyRepresentativeUser.username }}">{{ companyRepresentativeUser.username }}</a></div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    {{ 'company.account.customer.service.empty' | trans }}
+                {% endif %}
+            </div>
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
+

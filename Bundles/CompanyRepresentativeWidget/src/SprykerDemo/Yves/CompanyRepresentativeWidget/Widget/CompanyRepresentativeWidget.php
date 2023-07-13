@@ -5,20 +5,20 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-namespace SprykerDemo\Yves\CustomerRepresentativeWidget\Widget;
+namespace SprykerDemo\Yves\CompanyRepresentativeWidget\Widget;
 
 use Generated\Shared\Transfer\CompanyRepresentativesFilterTransfer;
 use Spryker\Yves\Kernel\Dependency\Widget\WidgetInterface;
 use Spryker\Yves\Kernel\Widget\AbstractWidget;
 
 /**
- * @method \SprykerDemo\Yves\CustomerRepresentativeWidget\CustomerRepresentativeWidgetFactory getFactory()
+ * @method \SprykerDemo\Yves\CompanyRepresentativeWidget\CompanyRepresentativeWidgetFactory getFactory()
  */
-class CustomerRepresentativeWidget extends AbstractWidget implements WidgetInterface
+class CompanyRepresentativeWidget extends AbstractWidget implements WidgetInterface
 {
     public function __construct()
     {
-        $this->addCustomerRepresentativesParameter();
+        $this->addCompanyRepresentativesParameter();
     }
 
     /**
@@ -26,7 +26,7 @@ class CustomerRepresentativeWidget extends AbstractWidget implements WidgetInter
      */
     public static function getName(): string
     {
-        return 'CustomerRepresentativeWidget';
+        return 'CompanyRepresentativeWidget';
     }
 
     /**
@@ -34,17 +34,17 @@ class CustomerRepresentativeWidget extends AbstractWidget implements WidgetInter
      */
     public static function getTemplate(): string
     {
-        return '@CustomerRepresentativeWidget/views/customer-representative-widget/customer-representative-widget.twig';
+        return '@CompanyRepresentativeWidget/views/company-representative-widget/company-representative-widget.twig';
     }
 
     /**
      * @return void
      */
-    protected function addCustomerRepresentativesParameter(): void
+    protected function addCompanyRepresentativesParameter(): void
     {
         $companyId = $this->getFactory()->getCustomerClient()->getCustomer()->getCompanyUserTransfer()->getCompany()->getIdCompany();
         $customerRepresentativesFilterTransfer = (new CompanyRepresentativesFilterTransfer())->setCompanyId($companyId);
-        $customerRepresentatives = $this->getFactory()->getCompanyRepresentativeClient()->findCustomerRepresentatives($customerRepresentativesFilterTransfer);
+        $customerRepresentatives = $this->getFactory()->getCompanyRepresentativeClient()->findCompanyRepresentatives($customerRepresentativesFilterTransfer);
         $this->addParameter('representatives', $customerRepresentatives);
     }
 }

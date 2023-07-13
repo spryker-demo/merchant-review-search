@@ -22,5 +22,5 @@ interface CompanyRepresentativeClientInterface
      *
      * @return \Generated\Shared\Transfer\CompanyRepresentativesTransfer
      */
-    public function findCustomerRepresentatives(CompanyRepresentativesFilterTransfer $companyRepresentativesFilterTransfer): CompanyRepresentativesTransfer;
+    public function findCompanyRepresentatives(CompanyRepresentativesFilterTransfer $companyRepresentativesFilterTransfer): CompanyRepresentativesTransfer;
 }

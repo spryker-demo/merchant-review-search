@@ -1,6 +1,6 @@
 namespace: SprykerDemoTest
 include:
-    - tests/SprykerDemoTest/Zed/CustomerRepresentativeWidget
+    - tests/SprykerDemoTest/Zed/CompanyRepresentativeWidget
 paths:
     tests: tests/
     log: tests/_output/

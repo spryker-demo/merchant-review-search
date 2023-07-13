@@ -29,7 +29,7 @@ class CompanyRepresentativeClient extends AbstractClient implements CompanyRepre
      *
      * @return \Generated\Shared\Transfer\CompanyRepresentativesTransfer
      */
-    public function findCustomerRepresentatives(CompanyRepresentativesFilterTransfer $companyRepresentativesFilterTransfer): CompanyRepresentativesTransfer
+    public function findCompanyRepresentatives(CompanyRepresentativesFilterTransfer $companyRepresentativesFilterTransfer): CompanyRepresentativesTransfer
     {
         return $this->getFactory()
             ->createCompanyRepresentativeStub()

@@ -1,4 +1,4 @@
-namespace: SprykerDemoTest\Zed\CustomerRepresentativeWidget
+namespace: SprykerDemoTest\Zed\CompanyRepresentativeWidget
 
 paths:
     tests: .

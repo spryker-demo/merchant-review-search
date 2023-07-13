@@ -23,7 +23,7 @@
         "spryker-demo/merchant-registration-feature": "*",
         "spryker-demo/company-representative": "*",
         "spryker-demo/company-representative-gui": "*",
-        "spryker-demo/customer-representative-widget": "*"
+        "spryker-demo/company-representative-widget": "*"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,

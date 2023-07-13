@@ -5,20 +5,20 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-namespace SprykerDemo\Yves\CustomerRepresentativeWidget;
+namespace SprykerDemo\Yves\CompanyRepresentativeWidget;
 
 use Spryker\Client\Customer\CustomerClientInterface;
 use Spryker\Yves\Kernel\AbstractFactory;
 use SprykerDemo\Client\CompanyRepresentative\CompanyRepresentativeClientInterface;
 
-class CustomerRepresentativeWidgetFactory extends AbstractFactory
+class CompanyRepresentativeWidgetFactory extends AbstractFactory
 {
     /**
      * @return \SprykerDemo\Client\CompanyRepresentative\CompanyRepresentativeClientInterface
      */
     public function getCompanyRepresentativeClient(): CompanyRepresentativeClientInterface
     {
-        return $this->getProvidedDependency(CustomerRepresentativeWidgetDependencyProvider::CLIENT_COMPANY_REPRESENTATIVE);
+        return $this->getProvidedDependency(CompanyRepresentativeWidgetDependencyProvider::CLIENT_COMPANY_REPRESENTATIVE);
     }
 
     /**
@@ -26,6 +26,6 @@ class CustomerRepresentativeWidgetFactory extends AbstractFactory
      */
     public function getCustomerClient(): CustomerClientInterface
     {
-        return $this->getProvidedDependency(CustomerRepresentativeWidgetDependencyProvider::CLIENT_CUSTOMER);
+        return $this->getProvidedDependency(CompanyRepresentativeWidgetDependencyProvider::CLIENT_CUSTOMER);
     }
 }

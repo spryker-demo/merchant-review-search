@@ -5,12 +5,12 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-namespace SprykerDemo\Yves\CustomerRepresentativeWidget;
+namespace SprykerDemo\Yves\CompanyRepresentativeWidget;
 
 use Spryker\Yves\Kernel\AbstractBundleDependencyProvider;
 use Spryker\Yves\Kernel\Container;
 
-class CustomerRepresentativeWidgetDependencyProvider extends AbstractBundleDependencyProvider
+class CompanyRepresentativeWidgetDependencyProvider extends AbstractBundleDependencyProvider
 {
     /**
      * @var string
