@@ -71,7 +71,7 @@
     </transfer>
 
     <transfer name="MerchantReviewCollection">
-        <property name="productAbstracts" type="MerchantReview[]" singular="merchantReview"/>
+        <property name="merchantReviews" type="MerchantReview[]" singular="merchantReview"/>
         <property name="pagination" type="Pagination"/>
     </transfer>
 

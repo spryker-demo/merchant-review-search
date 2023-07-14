@@ -3,8 +3,37 @@
 namespace SprykerDemo\Zed\MerchantReviewMerchantPortalGui\Communication\Controller;
 
 use Spryker\Zed\Kernel\Communication\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * @method \SprykerDemo\Zed\MerchantReviewMerchantPortalGui\Communication\MerchantReviewMerchantPortalGuiCommunicationFactory getFactory()
+ */
 class IndexController extends AbstractController
 {
+    /**
+     * @return array<mixed>
+     */
+    public function indexAction(): array
+    {
+        return $this->viewResponse([
+            'merchantReviewTableConfiguration' => $this->getFactory()
+                ->createMerchantReviewGuiTableConfigurationProvider()
+                ->getConfiguration(),
+        ]);
+    }
 
+    /**
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function tableDataAction(Request $request): Response
+    {
+        return $this->getFactory()->getGuiTableHttpDataRequestExecutor()->execute(
+            $request,
+            $this->getFactory()->createMerchantReviewTableDataProvider(),
+            $this->getFactory()->createMerchantReviewGuiTableConfigurationProvider()->getConfiguration(),
+        );
+    }
 }

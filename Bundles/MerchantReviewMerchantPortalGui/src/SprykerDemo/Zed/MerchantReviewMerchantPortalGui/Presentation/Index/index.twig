@@ -1,0 +1,25 @@
+{#
+@var merchantReviewTableConfiguration \Generated\Shared\Transfer\GuiTableConfigurationTransfer
+#}
+
+{% extends '@ZedUi/Layout/merchant-layout-main.twig' %}
+{% import _self as view %}
+
+{% block headTitle %}
+    {{ 'Merchant Reviews' | trans }}
+{% endblock %}
+
+{% block content %}
+
+    <web-mp-product-list
+        cloak
+        table-id="{{ idTableProductList }}"
+        table-config='{{ guiTableConfiguration(productAbstractTableConfiguration) }}'>
+        <h1 title>{{ 'Products' | trans }}</h1>
+    </web-mp-product-list>
+{% endblock %}
+
+{% block footerJs %}
+    {{ view.importJsBundle('merchant-review-merchant-portal-gui', importConfig) }}
+    {{ parent() }}
+{% endblock %}

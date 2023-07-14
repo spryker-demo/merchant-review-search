@@ -17,7 +17,7 @@ use SprykerDemo\Zed\MerchantReviewMerchantPortalGui\Persistence\Propel\MerchantR
 /**
  * @method \SprykerDemo\Zed\MerchantReviewMerchantPortalGui\Persistence\MerchantReviewMerchantPortalGuiPersistenceFactory getFactory()
  */
-class MerchantReviewMerchantPortalGuiRepository extends AbstractRepository
+class MerchantReviewMerchantPortalGuiRepository extends AbstractRepository implements MerchantReviewMerchantPortalGuiRepositoryInterface
 {
     /**
      * @var string
