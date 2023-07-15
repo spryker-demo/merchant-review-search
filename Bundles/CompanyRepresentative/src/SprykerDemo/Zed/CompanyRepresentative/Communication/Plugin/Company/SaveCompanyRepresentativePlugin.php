@@ -28,7 +28,7 @@ class SaveCompanyRepresentativePlugin extends AbstractPlugin implements CompanyP
      */
     public function postSave(CompanyResponseTransfer $companyResponseTransfer): CompanyResponseTransfer
     {
-        $this->getFactory()->getEntityManager()->updateCompanyCompanyRepresentatives($companyResponseTransfer);
+        $this->getFactory()->getCompanyRepresentativeEntityManager()->updateCompanyCompanyRepresentatives($companyResponseTransfer);
 
         return $companyResponseTransfer;
     }
