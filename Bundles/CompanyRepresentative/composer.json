@@ -13,7 +13,8 @@
         "spryker/zed-request": "^3.18.1"
     },
     "require-dev": {
-        "spryker/code-sniffer": "^0.17.18"
+        "spryker/code-sniffer": "^0.17.18",
+        "spryker/customer": "^7.48.1"
     },
     "autoload": {
         "psr-4": {
@@ -38,5 +39,8 @@
     },
     "config": {
         "sort-packages": true
+    },
+    "suggest": {
+        "spryker/customer": "^7.48.1"
     }
 }
