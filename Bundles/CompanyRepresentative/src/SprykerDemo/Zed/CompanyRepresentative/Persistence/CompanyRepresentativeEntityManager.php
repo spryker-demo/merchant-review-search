@@ -63,7 +63,7 @@ class CompanyRepresentativeEntityManager extends AbstractEntityManager implement
      *
      * @return void
      */
-    public function updateCompanyCompanyRepresentatives(CompanyResponseTransfer $companyResponseTransfer): void
+    public function updateCompanyRepresentatives(CompanyResponseTransfer $companyResponseTransfer): void
     {
         $userIds = [];
         $companyId = $companyResponseTransfer->getCompanyTransfer()->getIdCompany();

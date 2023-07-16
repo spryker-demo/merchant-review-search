@@ -9,6 +9,7 @@ namespace SprykerDemo\Zed\CompanyRepresentative\Business;
 
 use Generated\Shared\Transfer\CompanyRepresentativesFilterTransfer;
 use Generated\Shared\Transfer\CompanyRepresentativesTransfer;
+use Generated\Shared\Transfer\CompanyResponseTransfer;
 
 interface CompanyRepresentativeFacadeInterface
 {
@@ -23,4 +24,16 @@ interface CompanyRepresentativeFacadeInterface
      * @return \Generated\Shared\Transfer\CompanyRepresentativesTransfer
      */
     public function findCompanyRepresentatives(CompanyRepresentativesFilterTransfer $companyRepresentativesFilterTransfer): CompanyRepresentativesTransfer;
+
+    /**
+     * Specification:
+     * - Updates company customer representative.
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\CompanyResponseTransfer $companyResponseTransfer
+     *
+     * @return void
+     */
+    public function updateCompanyRepresentatives(CompanyResponseTransfer $companyResponseTransfer): void;
 }

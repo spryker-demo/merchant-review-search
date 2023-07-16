@@ -12,8 +12,7 @@ use Spryker\Zed\CompanyExtension\Dependency\Plugin\CompanyPostSavePluginInterfac
 use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 
 /**
- * @method \SprykerDemo\Zed\CompanyRepresentative\Communication\CompanyRepresentativeCommunicationFactory getFactory()
- * @method \SprykerDemo\Zed\CompanyRepresentative\Persistence\CompanyRepresentativeEntityManagerInterface getEntityManager()
+ * @method \SprykerDemo\Zed\CompanyRepresentative\Business\CompanyRepresentativeFacadeInterface getFacade()
  */
 class SaveCompanyRepresentativePlugin extends AbstractPlugin implements CompanyPostSavePluginInterface
 {
@@ -28,7 +27,7 @@ class SaveCompanyRepresentativePlugin extends AbstractPlugin implements CompanyP
      */
     public function postSave(CompanyResponseTransfer $companyResponseTransfer): CompanyResponseTransfer
     {
-        $this->getFactory()->getCompanyRepresentativeEntityManager()->updateCompanyCompanyRepresentatives($companyResponseTransfer);
+        $this->getFacade()->updateCompanyRepresentatives($companyResponseTransfer);
 
         return $companyResponseTransfer;
     }
