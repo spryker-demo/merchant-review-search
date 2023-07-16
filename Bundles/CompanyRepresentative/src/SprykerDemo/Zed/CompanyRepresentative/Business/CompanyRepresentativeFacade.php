@@ -45,4 +45,16 @@ class CompanyRepresentativeFacade extends AbstractFacade implements CompanyRepre
     {
         $this->getEntityManager()->updateCompanyRepresentatives($companyResponseTransfer);
     }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @api
+     *
+     * @return array
+     */
+    public function getAllRepresentatives(): array
+    {
+        return $this->getRepository()->getAllRepresentatives();
+    }
 }

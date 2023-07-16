@@ -10,6 +10,7 @@ namespace SprykerDemo\Zed\CompanyRepresentative\Persistence;
 use Generated\Shared\Transfer\CompanyRepresentativesFilterTransfer;
 use Generated\Shared\Transfer\CompanyRepresentativesTransfer;
 use Generated\Shared\Transfer\UserTransfer;
+use Orm\Zed\User\Persistence\Map\SpyUserTableMap;
 use Propel\Runtime\Collection\ObjectCollection;
 use Spryker\Zed\Kernel\Persistence\AbstractRepository;
 
@@ -56,5 +57,26 @@ class CompanyRepresentativeRepository extends AbstractRepository implements Comp
         $companyRepresentativesTransfer->setCompanyId($companyId);
 
         return $companyRepresentativesTransfer;
+    }
+
+    /**
+     * @return array
+     */
+    public function getAllRepresentatives(): array
+    {
+        $activeUsers = $this
+            ->getFactory()
+            ->getUserQueryContainer()
+            ->queryUser()
+            ->filterByStatus_In([SpyUserTableMap::COL_STATUS_ACTIVE])
+            ->find()
+            ->getArrayCopy();
+
+        $result = [];
+        foreach ($activeUsers as $user) {
+            $result[$user->getFirstName() . ' ' . $user->getLastName()] = $user->getIdUser();
+        }
+
+        return $result;
     }
 }

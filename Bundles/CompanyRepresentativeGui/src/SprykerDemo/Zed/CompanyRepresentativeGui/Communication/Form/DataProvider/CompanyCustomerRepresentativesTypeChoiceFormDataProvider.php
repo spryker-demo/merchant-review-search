@@ -9,8 +9,6 @@ namespace SprykerDemo\Zed\CompanyRepresentativeGui\Communication\Form\DataProvid
 
 use Generated\Shared\Transfer\CompanyRepresentativesFilterTransfer;
 use Generated\Shared\Transfer\CompanyRepresentativesTransfer;
-use Orm\Zed\User\Persistence\Map\SpyUserTableMap;
-use Spryker\Zed\User\Persistence\UserQueryContainerInterface;
 use SprykerDemo\Zed\CompanyRepresentative\Business\CompanyRepresentativeFacadeInterface;
 use SprykerDemo\Zed\CompanyRepresentativeGui\Communication\Form\CompanyCustomerRepresentativesTypeChoiceFormType;
 
@@ -22,20 +20,12 @@ class CompanyCustomerRepresentativesTypeChoiceFormDataProvider
     protected $companyRepresentativeFacade;
 
     /**
-     * @var \Spryker\Zed\User\Persistence\UserQueryContainerInterface
-     */
-    protected $userQueryContainer;
-
-    /**
      * @param \SprykerDemo\Zed\CompanyRepresentative\Business\CompanyRepresentativeFacadeInterface $companyRepresentativeFacade
-     * @param \Spryker\Zed\User\Persistence\UserQueryContainerInterface $userQueryContainer
      */
     public function __construct(
-        CompanyRepresentativeFacadeInterface $companyRepresentativeFacade,
-        UserQueryContainerInterface $userQueryContainer
+        CompanyRepresentativeFacadeInterface $companyRepresentativeFacade
     ) {
         $this->companyRepresentativeFacade = $companyRepresentativeFacade;
-        $this->userQueryContainer = $userQueryContainer;
     }
 
     /**
@@ -43,29 +33,11 @@ class CompanyCustomerRepresentativesTypeChoiceFormDataProvider
      */
     public function getOptions(): array
     {
+        $allRepresentatives = $this->companyRepresentativeFacade->getAllRepresentatives();
+
         return [
-            CompanyCustomerRepresentativesTypeChoiceFormType::OPTION_VALUES_COMPANY_CUSTOMER_REPRESENTATIVES_TYPE_CHOICES => $this->getCompanyRepresentatives(),
+            CompanyCustomerRepresentativesTypeChoiceFormType::OPTION_VALUES_COMPANY_CUSTOMER_REPRESENTATIVES_TYPE_CHOICES => $allRepresentatives,
         ];
-    }
-
-    /**
-     * @return array
-     */
-    protected function getCompanyRepresentatives(): array
-    {
-        $activeUsers = $this
-            ->userQueryContainer
-            ->queryUser()
-            ->filterByStatus_In([SpyUserTableMap::COL_STATUS_ACTIVE])
-            ->find()
-            ->getArrayCopy();
-
-        $result = [];
-        foreach ($activeUsers as $user) {
-            $result[$user->getFirstName() . ' ' . $user->getLastName()] = $user->getIdUser();
-        }
-
-        return $result;
     }
 
     /**

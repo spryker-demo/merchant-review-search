@@ -36,4 +36,14 @@ interface CompanyRepresentativeFacadeInterface
      * @return void
      */
     public function updateCompanyRepresentatives(CompanyResponseTransfer $companyResponseTransfer): void;
+
+    /**
+     * Specification:
+     * - Get All active representatives.
+     *
+     * @api
+     *
+     * @return array
+     */
+    public function getAllRepresentatives(): array;
 }

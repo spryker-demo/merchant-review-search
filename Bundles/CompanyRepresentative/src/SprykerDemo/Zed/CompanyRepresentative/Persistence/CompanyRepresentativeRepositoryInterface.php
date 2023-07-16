@@ -18,4 +18,9 @@ interface CompanyRepresentativeRepositoryInterface
      * @return \Generated\Shared\Transfer\CompanyRepresentativesTransfer
      */
     public function findCompanyRepresentatives(CompanyRepresentativesFilterTransfer $companyRepresentativesFilterTransfer): CompanyRepresentativesTransfer;
+
+    /**
+     * @return array
+     */
+    public function getAllRepresentatives(): array;
 }
