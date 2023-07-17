@@ -47,7 +47,7 @@ class CompanyCustomerRepresentativesTypeChoiceFormType extends AbstractType
     protected function addCompanyCustomerRepresentativesField(FormBuilderInterface $builder, array $options): void
     {
         $builder->add(CompanyTransfer::COMPANY_REPRESENTATIVES, ChoiceType::class, [
-            'label' => 'Customer representatives',
+            'label' => 'Company representatives',
             'placeholder' => 'Select one',
             'multiple' => true,
             'expanded' => true,
