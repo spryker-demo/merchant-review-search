@@ -8,39 +8,14 @@ use Orm\Zed\MerchantReview\Persistence\Map\SpyMerchantReviewTableMap;
 
 class MerchantReviewTableDataMapper
 {
-    /**
-     * @uses \Spryker\Zed\ProductMerchantPortalGui\Communication\GuiTable\ConfigurationProvider\ProductAbstractGuiTableConfigurationProvider::COL_KEY_SKU
-     *
-     * @var string
-     */
     protected const COL_KEY_CREATED_AT = 'created_at';
 
-    /**
-     * @uses \Spryker\Zed\ProductMerchantPortalGui\Communication\GuiTable\ConfigurationProvider\ProductAbstractGuiTableConfigurationProvider::COL_KEY_IMAGE
-     *
-     * @var string
-     */
     protected const COL_KEY_RATING = 'rating';
 
-    /**
-     * @uses \Spryker\Zed\ProductMerchantPortalGui\Communication\GuiTable\ConfigurationProvider\ProductAbstractGuiTableConfigurationProvider::COL_KEY_NAME
-     *
-     * @var string
-     */
     protected const COL_KEY_DESCRIPTION = 'description';
 
-    /**
-     * @uses \Spryker\Zed\ProductMerchantPortalGui\Communication\GuiTable\ConfigurationProvider\ProductAbstractGuiTableConfigurationProvider::COL_KEY_SUPER_ATTRIBUTES
-     *
-     * @var string
-     */
     protected const COL_KEY_SUMMARY = 'summary';
 
-    /**
-     * @uses \Spryker\Zed\ProductMerchantPortalGui\Communication\GuiTable\ConfigurationProvider\ProductAbstractGuiTableConfigurationProvider::COL_KEY_VARIANTS
-     *
-     * @var string
-     */
     protected const COL_KEY_NICKNAME = 'nickname';
 
     /**
@@ -60,7 +35,7 @@ class MerchantReviewTableDataMapper
      *
      * @return \Generated\Shared\Transfer\MerchantReviewCollectionTransfer
      */
-    public function mapProductAbstractTableDataArrayToProductAbstractCollectionTransfer(
+    public function mapMerchantReviewTableDataArrayToMerchantReviewCollectionTransfer(
         array $merchantReviewTableDataArray,
         MerchantReviewCollectionTransfer $merchantReviewCollectionTransfer
     ): MerchantReviewCollectionTransfer {

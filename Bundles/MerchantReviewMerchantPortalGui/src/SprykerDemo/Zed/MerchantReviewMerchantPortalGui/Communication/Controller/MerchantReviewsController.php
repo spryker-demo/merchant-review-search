@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * @method \SprykerDemo\Zed\MerchantReviewMerchantPortalGui\Communication\MerchantReviewMerchantPortalGuiCommunicationFactory getFactory()
  */
-class IndexController extends AbstractController
+class MerchantReviewsController extends AbstractController
 {
     /**
      * @return array<mixed>

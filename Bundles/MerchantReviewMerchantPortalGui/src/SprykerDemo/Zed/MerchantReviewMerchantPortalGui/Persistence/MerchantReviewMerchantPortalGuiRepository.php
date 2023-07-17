@@ -53,7 +53,7 @@ class MerchantReviewMerchantPortalGuiRepository extends AbstractRepository imple
         );
         $merchantReviewCollectionTransfer = $this->getFactory()
             ->createMerchantReviewTableDataMapper()
-            ->mapProductAbstractTableDataArrayToProductAbstractCollectionTransfer(
+            ->mapMerchantReviewTableDataArrayToMerchantReviewCollectionTransfer(
                 $propelPager->getResults()->getData(),
                 new MerchantReviewCollectionTransfer(),
             );
@@ -63,13 +63,6 @@ class MerchantReviewMerchantPortalGuiRepository extends AbstractRepository imple
     }
 
     /**
-     * @module MerchantProduct
-     * @module Product
-     * @module ProductImage
-     * @module Store
-     * @module ProductCategory
-     * @module Category
-     *
      * @param \Generated\Shared\Transfer\MerchantReviewTableCriteriaTransfer $merchantReviewTableCriteriaTransfer
      *
      * @return \Orm\Zed\MerchantReview\Persistence\SpyMerchantReviewQuery
@@ -95,19 +88,19 @@ class MerchantReviewMerchantPortalGuiRepository extends AbstractRepository imple
     }
 
     /**
-     * @param \Orm\Zed\MerchantReview\Persistence\SpyMerchantReviewQuery $merchantProductAbstractQuery
+     * @param \Orm\Zed\MerchantReview\Persistence\SpyMerchantReviewQuery $merchantReviewQuery
      * @param \Generated\Shared\Transfer\MerchantReviewTableCriteriaTransfer $merchantReviewTableCriteriaTransfer
      *
      * @return \Orm\Zed\MerchantReview\Persistence\SpyMerchantReviewQuery
      */
     protected function applyMerchantReviewSearch(
-        SpyMerchantReviewQuery $merchantProductAbstractQuery,
+        SpyMerchantReviewQuery $merchantReviewQuery,
         MerchantReviewTableCriteriaTransfer $merchantReviewTableCriteriaTransfer
     ): SpyMerchantReviewQuery {
         $searchTerm = $merchantReviewTableCriteriaTransfer->getSearchTerm();
 
         if (!$searchTerm) {
-            return $merchantProductAbstractQuery;
+            return $merchantReviewQuery;
         }
 
         $criteria = new Criteria();
@@ -117,9 +110,9 @@ class MerchantReviewMerchantPortalGuiRepository extends AbstractRepository imple
         $nicknameCriterion->addOr($summaryCriterion);
         $nicknameCriterion->addOr($descriptionCriterion);
 
-        $merchantProductAbstractQuery->addAnd($nicknameCriterion);
+        $merchantReviewQuery->addAnd($nicknameCriterion);
 
-        return $merchantProductAbstractQuery;
+        return $merchantReviewQuery;
     }
 
     /**
@@ -196,7 +189,6 @@ class MerchantReviewMerchantPortalGuiRepository extends AbstractRepository imple
         $orderColumn = MerchantReviewTableDataMapper::MERCHANT_REVIEW_DATA_COLUMN_MAP[$orderColumn] ?? $orderColumn;
 
         if ($orderColumn === SpyMerchantReviewTableMap::COL_CREATED_AT) {
-            /** @var \Orm\Zed\MerchantProduct\Persistence\SpyMerchantProductAbstractQuery<\Orm\Zed\MerchantProduct\Persistence\SpyMerchantProductAbstract> $merchantReviewQuery */
             $merchantReviewQuery = $this->addNaturalSorting($merchantReviewQuery, $orderColumn, $orderDirection);
         }
 

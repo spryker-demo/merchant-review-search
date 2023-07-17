@@ -25,7 +25,7 @@ class MerchantReviewGuiTableConfigurationProvider implements MerchantReviewGuiTa
     protected const SEARCH_PLACEHOLDER = 'Search by summary, description, nickname';
 
     /**
-     * @uses \Spryker\Zed\ProductMerchantPortalGui\Communication\Controller\ProductsController::tableDataAction()
+     * @uses \SprykerDemo\Zed\MerchantReviewMerchantPortalGui\Communication\Controller\IndexController::tableDataAction()
      *
      * @var string
      */

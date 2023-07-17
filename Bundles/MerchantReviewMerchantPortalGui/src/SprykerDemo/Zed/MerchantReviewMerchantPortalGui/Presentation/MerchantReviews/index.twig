@@ -10,13 +10,12 @@
 {% endblock %}
 
 {% block content %}
-
-    <web-mp-product-list
+    <web-mp-merchant-review-list
         cloak
-        table-id="{{ idTableProductList }}"
-        table-config='{{ guiTableConfiguration(productAbstractTableConfiguration) }}'>
-        <h1 title>{{ 'Products' | trans }}</h1>
-    </web-mp-product-list>
+        table-id="web-mp-merchant-reviews-merchant-portal"
+        table-config='{{ guiTableConfiguration(merchantReviewTableConfiguration) }}'>
+        <h1 title>{{ 'Merchant Reviews' | trans }}</h1>
+    </web-mp-merchant-review-list>
 {% endblock %}
 
 {% block footerJs %}

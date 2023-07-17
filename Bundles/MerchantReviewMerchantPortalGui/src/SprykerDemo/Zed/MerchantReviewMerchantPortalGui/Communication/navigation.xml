@@ -5,7 +5,7 @@
         <title>Merchant Reviews</title>
         <icon>offers</icon>
         <bundle>merchant-review-merchant-portal-gui</bundle>
-        <controller>index</controller>
+        <controller>merchant-reviews</controller>
         <action>index</action>
     </merchant-review-merchant-portal-gui>
 </config>
