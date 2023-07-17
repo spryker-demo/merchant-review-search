@@ -18,7 +18,7 @@ class CompanyTableCustomerRepresentativesHeaderExpanderPlugin extends AbstractPl
     /**
      * @var string
      */
-    protected const COL_COMPANY_CUSTOMER_REPRESENTATIVES_LABEL = 'Representatives';
+    protected const COL_COMPANY_CUSTOMER_REPRESENTATIVES_LABEL = 'Representative';
 
     /**
      * {@inheritDoc}
