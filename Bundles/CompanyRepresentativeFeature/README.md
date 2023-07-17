@@ -200,4 +200,28 @@ class CompanyGuiDependencyProvider extends SprykerCompanyGuiDependencyProvider
 }
 
 ```
-####
+#### src/Pyz/Zed/Customer/CustomerDependencyProvider.php
+```php
+<?php
+
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
+namespace Pyz\Zed\Customer;
+
+use Spryker\Zed\CompanyUser\Communication\Plugin\Customer\CustomerTransferCompanyUserExpanderPlugin;
+class CustomerDependencyProvider extends SprykerCustomerDependencyProvider
+{
+/**
+     * @return array<\Spryker\Zed\Customer\Dependency\Plugin\CustomerTransferExpanderPluginInterface>
+     */
+    protected function getCustomerTransferExpanderPlugins(): array
+    {
+        return [
+            new CompanyRepresentativeCustomerTransferExpanderPlugin(),
+        ];
+    }
+}
+```
