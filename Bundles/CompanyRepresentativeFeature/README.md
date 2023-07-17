@@ -211,7 +211,7 @@ class CompanyGuiDependencyProvider extends SprykerCompanyGuiDependencyProvider
 
 namespace Pyz\Zed\Customer;
 
-use Spryker\Zed\CompanyUser\Communication\Plugin\Customer\CustomerTransferCompanyUserExpanderPlugin;
+use SprykerDemo\Zed\CompanyRepresentative\Communication\Plugin\Company\CompanyRepresentativeCustomerTransferExpanderPlugin;
 class CustomerDependencyProvider extends SprykerCustomerDependencyProvider
 {
 /**
