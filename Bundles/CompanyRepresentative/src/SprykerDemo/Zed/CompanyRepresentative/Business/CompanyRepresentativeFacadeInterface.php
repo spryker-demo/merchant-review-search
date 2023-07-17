@@ -43,7 +43,7 @@ interface CompanyRepresentativeFacadeInterface
      *
      * @api
      *
-     * @return array
+     * @return array<string, int>
      */
     public function getAllRepresentatives(): array;
 }

@@ -51,7 +51,7 @@ class CompanyRepresentativeFacade extends AbstractFacade implements CompanyRepre
      *
      * @api
      *
-     * @return array
+     * @return array<string, int>
      */
     public function getAllRepresentatives(): array
     {
