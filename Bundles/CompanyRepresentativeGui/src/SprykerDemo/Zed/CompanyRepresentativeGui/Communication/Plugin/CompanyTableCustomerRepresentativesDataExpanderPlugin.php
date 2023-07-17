@@ -20,7 +20,7 @@ class CompanyTableCustomerRepresentativesDataExpanderPlugin extends AbstractPlug
     /**
      * @var string
      */
-    protected const COL_COMPANY_CUSTOMER_REPRESENTATIVES_LABEL = 'Representative';
+    protected const COL_COMPANY_CUSTOMER_REPRESENTATIVES_LABEL = 'Representatives';
 
     /**
      * {@inheritDoc}
