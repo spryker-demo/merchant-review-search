@@ -1,0 +1,39 @@
+{
+    "name": "spryker-demo/company-representative-widget",
+    "type": "library",
+    "description": "Company Representative Widget module",
+    "license": "proprietary",
+    "require": {
+        "php": ">=8.0",
+        "spryker-demo/company-representative": "* as 1.0.0",
+        "spryker/customer": "^7.48.1",
+        "spryker/kernel": "^3.70.0"
+    },
+    "require-dev": {
+        "spryker/code-sniffer": "^0.17.18"
+    },
+    "autoload": {
+        "psr-4": {
+            "SprykerDemo\\": "src/SprykerDemo/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SprykerDemoTest\\": "tests/SprykerDemoTest/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "scripts": {
+        "cs-check": "phpcs -p -s --standard=vendor/spryker/code-sniffer/SprykerStrict/ruleset.xml src/ tests/",
+        "cs-fix": "phpcbf -p --standard=vendor/spryker/code-sniffer/SprykerStrict/ruleset.xml src/ tests/"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
