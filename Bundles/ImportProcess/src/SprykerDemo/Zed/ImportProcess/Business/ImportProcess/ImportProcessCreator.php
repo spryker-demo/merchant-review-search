@@ -55,7 +55,7 @@ class ImportProcessCreator implements ImportProcessCreatorInterface
     protected function createImportProcessTransfer(ImportProcessPayloadTransfer $importProcessPayloadTransfer): ImportProcessTransfer
     {
         return (new ImportProcessTransfer())
-            ->setFkUser($this->aclFacade->getCurrentUser()->getIdUser())
+            ->setIdUser($this->aclFacade->getCurrentUser()->getIdUser())
             ->setPayload($importProcessPayloadTransfer)
             ->setType($importProcessPayloadTransfer->getType())
             ->setStatus(SpyImportProcessTableMap::COL_STATUS_CREATED);

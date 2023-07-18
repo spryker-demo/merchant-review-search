@@ -2,7 +2,7 @@
 [![Latest Stable Version](https://poser.pugx.org/spryker-demo/import-process-gui/v/stable.svg)](https://packagist.org/packages/spryker-demo/import-process-gui)
 [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.4-8892BF.svg)](https://php.net/)
 
-{{ADD DESCRIPTION HERE}}
+This modules provides GUI for the ImportProcess module.
 
 ## Installation
 

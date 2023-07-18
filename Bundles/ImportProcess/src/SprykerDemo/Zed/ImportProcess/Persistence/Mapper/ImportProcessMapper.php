@@ -28,7 +28,7 @@ class ImportProcessMapper
             $importProcessEntity->setIdImportProcess($importProcessTransfer->getIdImportProcess());
         }
 
-        $importProcessEntity->setFkUser($importProcessTransfer->getFkUserOrFail());
+        $importProcessEntity->setFkUser($importProcessTransfer->getIdUserOrFail());
         $importProcessEntity->setType($importProcessTransfer->getTypeOrFail());
         $importProcessEntity->setStatus($importProcessTransfer->getStatusOrFail());
         $importProcessEntity->setImportMap($importProcessTransfer->getPayloadOrFail()->serialize());
@@ -52,7 +52,7 @@ class ImportProcessMapper
         ImportProcessTransfer $importProcessTransfer
     ): ImportProcessTransfer {
         $importProcessTransfer->setIdImportProcess($importProcessEntity->getIdImportProcess());
-        $importProcessTransfer->setFkUser($importProcessEntity->getFkUser());
+        $importProcessTransfer->setIdUser($importProcessEntity->getFkUser());
         $importProcessTransfer->setType($importProcessEntity->getType());
         $importProcessTransfer->setStatus($importProcessEntity->getStatus());
         $importProcessTransfer->setCreatedAt(

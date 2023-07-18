@@ -2,7 +2,7 @@
 [![Latest Stable Version](https://poser.pugx.org/spryker-demo/import-process/v/stable.svg)](https://packagist.org/packages/spryker-demo/import-process)
 [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.4-8892BF.svg)](https://php.net/)
 
-{{ADD DESCRIPTION HERE}}
+This module provides infrastructure for data import done via various sources.
 
 ## Installation
 
