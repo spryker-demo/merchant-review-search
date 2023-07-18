@@ -4,19 +4,16 @@
     "description": "MerchantReviewStorage module",
     "license": "proprietary",
     "require": {
-        "php": ">=7.4",
-        "spryker-demo/merchant-review": "*",
-        "spryker/event-behavior": "*",
-        "spryker/kernel": "^3.30.0",
-        "spryker/storage": "*",
-        "spryker/synchronization": "*",
-        "spryker/synchronization-behavior": "*",
-        "spryker/synchronization-extension": "*"
+        "php": ">=8.0",
+        "spryker-demo/merchant-review": "^1.0.0",
+        "spryker/event-behavior": "^1.25.0",
+        "spryker/kernel": "^3.70.0",
+        "spryker/publisher-extension": "^1.0.0",
+        "spryker/storage": "^3.20.0",
+        "spryker/synchronization": "*"
     },
     "require-dev": {
-        "spryker/code-sniffer": "*",
-        "spryker/event": "*",
-        "spryker/propel-orm": "*"
+        "spryker/code-sniffer": "*"
     },
     "autoload": {
         "psr-4": {

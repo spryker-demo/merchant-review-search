@@ -4,10 +4,8 @@
     "description": "MerchantReview module",
     "license": "proprietary",
     "require": {
-        "php": ">=7.4",
-        "spryker/event-behavior": "*",
+        "php": ">=8.0",
         "spryker/kernel": "^3.30.0",
-        "spryker/key-builder": "*",
         "spryker/locale": "*",
         "spryker/merchant": "*",
         "spryker/propel-orm": "*",

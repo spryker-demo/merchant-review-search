@@ -35,10 +35,6 @@
         <index name="spy_merchant_review-customer_reference">
             <index-column name="customer_reference"/>
         </index>
-
-        <behavior name="event">
-            <parameter name="spy_merchant_review_all" column="*"/>
-        </behavior>
     </table>
 
 </database>

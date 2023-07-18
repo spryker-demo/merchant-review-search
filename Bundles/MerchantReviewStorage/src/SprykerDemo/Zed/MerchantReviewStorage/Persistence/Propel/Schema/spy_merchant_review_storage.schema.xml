@@ -8,12 +8,6 @@
             <index-column name="fk_merchant"/>
         </index>
         <id-method-parameter value="spy_merchant_review_storage_pk_seq"/>
-        <behavior name="synchronization">
-            <parameter name="resource" value="merchant_review"/>
-            <parameter name="key_suffix_column" value="fk_merchant"/>
-            <parameter name="queue_group" value="sync.storage.merchant"/>
-            <parameter name="queue_pool" value="synchronizationPool"/>
-        </behavior>
         <behavior name="timestampable"/>
     </table>
 
