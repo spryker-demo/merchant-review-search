@@ -10,15 +10,14 @@ namespace SprykerDemo\Zed\ImportProcessSpreadsheet\Business;
 use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
 use SprykerDemo\Service\GoogleSpreadsheets\GoogleSpreadsheetsServiceInterface;
 use SprykerDemo\Zed\ImportProcess\Business\ImportProcessFacadeInterface;
-use SprykerDemo\Zed\ImportProcessSpreadsheet\Business\Assets\Deleter\ImportProcessAssetsDeleter;
-use SprykerDemo\Zed\ImportProcessSpreadsheet\Business\Assets\Downloader\ImportProcessAssetsDownloader;
-use SprykerDemo\Zed\ImportProcessSpreadsheet\Business\Assets\Downloader\ImportProcessAssetsDownloaderInterface;
-use SprykerDemo\Zed\ImportProcessSpreadsheet\Business\Assets\Downloader\SpreadsheetDownloader\AbstractSpreadsheetDownloader;
-use SprykerDemo\Zed\ImportProcessSpreadsheet\Business\Assets\Downloader\SpreadsheetDownloader\SpreadsheetCsvDownloader;
-use SprykerDemo\Zed\ImportProcessSpreadsheet\Business\Assets\Downloader\SpreadsheetReader\SpreadsheetReaderFactory;
-use SprykerDemo\Zed\ImportProcessSpreadsheet\Business\Assets\Downloader\SpreadsheetReader\SpreadsheetReaderFactoryInterface;
 use SprykerDemo\Zed\ImportProcessSpreadsheet\Business\ImportProcessCreator\ImportProcessCreator;
 use SprykerDemo\Zed\ImportProcessSpreadsheet\Business\ImportProcessCreator\ImportProcessCreatorInterface;
+use SprykerDemo\Zed\ImportProcessSpreadsheet\Business\Payload\Deleter\ImportProcessPayloadCsvDataDeleter;
+use SprykerDemo\Zed\ImportProcessSpreadsheet\Business\Payload\Deleter\ImportProcessPayloadDataDeleterInterface;
+use SprykerDemo\Zed\ImportProcessSpreadsheet\Business\Payload\Downloader\AbstractImportProcessPayloadDataDownloader;
+use SprykerDemo\Zed\ImportProcessSpreadsheet\Business\Payload\Downloader\ImportProcessPayloadCsvDataDownloader;
+use SprykerDemo\Zed\ImportProcessSpreadsheet\Business\Payload\Downloader\SpreadsheetReader\SpreadsheetReaderFactory;
+use SprykerDemo\Zed\ImportProcessSpreadsheet\Business\Payload\Downloader\SpreadsheetReader\SpreadsheetReaderFactoryInterface;
 use SprykerDemo\Zed\ImportProcessSpreadsheet\ImportProcessSpreadsheetDependencyProvider;
 
 /**
@@ -38,18 +37,18 @@ class ImportProcessSpreadsheetBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return \SprykerDemo\Zed\ImportProcessSpreadsheet\Business\Assets\Downloader\SpreadsheetDownloader\AbstractSpreadsheetDownloader
+     * @return \SprykerDemo\Zed\ImportProcessSpreadsheet\Business\Payload\Downloader\AbstractImportProcessPayloadDataDownloader
      */
-    public function createSpreadsheetDownloader(): AbstractSpreadsheetDownloader
+    public function createImportProcessPayloadDataDownloader(): AbstractImportProcessPayloadDataDownloader
     {
-        return new SpreadsheetCsvDownloader(
+        return new ImportProcessPayloadCsvDataDownloader(
             $this->createSpreadsheetReaderFactory(),
             $this->getConfig(),
         );
     }
 
     /**
-     * @return \SprykerDemo\Zed\ImportProcessSpreadsheet\Business\Assets\Downloader\SpreadsheetReader\SpreadsheetReaderFactoryInterface
+     * @return \SprykerDemo\Zed\ImportProcessSpreadsheet\Business\Payload\Downloader\SpreadsheetReader\SpreadsheetReaderFactoryInterface
      */
     public function createSpreadsheetReaderFactory(): SpreadsheetReaderFactoryInterface
     {
@@ -57,18 +56,11 @@ class ImportProcessSpreadsheetBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return \SprykerDemo\Zed\ImportProcessSpreadsheet\Business\Assets\Downloader\ImportProcessAssetsDownloaderInterface
+     * @return \SprykerDemo\Zed\ImportProcessSpreadsheet\Business\Payload\Deleter\ImportProcessPayloadDataDeleterInterface
      */
-    public function createImportProcessAssetsDownloader(): ImportProcessAssetsDownloaderInterface
+    public function createImportProcessPayloadDataDeleter(): ImportProcessPayloadDataDeleterInterface
     {
-        return new ImportProcessAssetsDownloader(
-            $this->createSpreadsheetDownloader(),
-        );
-    }
-
-    public function createImportProcessAssetsDeleter()
-    {
-        return new ImportProcessAssetsDeleter();
+        return new ImportProcessPayloadCsvDataDeleter();
     }
 
     /**

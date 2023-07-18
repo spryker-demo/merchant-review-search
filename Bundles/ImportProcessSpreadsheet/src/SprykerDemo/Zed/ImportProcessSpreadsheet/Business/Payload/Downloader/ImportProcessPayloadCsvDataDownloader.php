@@ -5,19 +5,20 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-namespace SprykerDemo\Zed\ImportProcessSpreadsheet\Business\Assets\Downloader\SpreadsheetDownloader;
+namespace SprykerDemo\Zed\ImportProcessSpreadsheet\Business\Payload\Downloader;
 
-use SprykerDemo\Zed\ImportProcessSpreadsheet\Business\Assets\Downloader\SpreadsheetReader\SpreadsheetReaderInterface;
+use Exception;
 use SprykerDemo\Zed\ImportProcessSpreadsheet\Business\Exception\SpreadsheetDownloaderException;
+use SprykerDemo\Zed\ImportProcessSpreadsheet\Business\Payload\Downloader\SpreadsheetReader\SpreadsheetReaderInterface;
 
-class SpreadsheetCsvDownloader extends AbstractSpreadsheetDownloader
+class ImportProcessPayloadCsvDataDownloader extends AbstractImportProcessPayloadDataDownloader
 {
-    /**
-     * @param string $spreadsheetUrl
-     * @param string $sheetName
-     *
-     * @return string
-     */
+ /**
+  * @param string $spreadsheetUrl
+  * @param string $sheetName
+  *
+  * @return string
+  */
     protected function buildFilePath(string $spreadsheetUrl, string $sheetName): string
     {
         $spreadsheetId = $this->getSpreadsheetIdFromUrl($spreadsheetUrl);
@@ -63,13 +64,19 @@ class SpreadsheetCsvDownloader extends AbstractSpreadsheetDownloader
 
     /**
      * @param string $filePath
-     * @param \SprykerDemo\Zed\ImportProcessSpreadsheet\Business\Assets\Downloader\SpreadsheetReader\SpreadsheetReaderInterface $spreadsheetReader
+     * @param \SprykerDemo\Zed\ImportProcessSpreadsheet\Business\Payload\Downloader\SpreadsheetReader\SpreadsheetReaderInterface $spreadsheetReader
+     *
+     * @throws \Exception
      *
      * @return void
      */
     protected function writeData(string $filePath, SpreadsheetReaderInterface $spreadsheetReader): void
     {
         $csvFile = fopen($filePath, 'w');
+
+        if (!$csvFile) {
+            throw new Exception(sprintf('Could not open file %s', $filePath));
+        }
 
         foreach ($spreadsheetReader as $sheetRow) {
             fputcsv($csvFile, $sheetRow);

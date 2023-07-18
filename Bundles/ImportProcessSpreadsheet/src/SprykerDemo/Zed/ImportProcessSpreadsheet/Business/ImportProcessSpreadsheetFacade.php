@@ -27,9 +27,7 @@ class ImportProcessSpreadsheetFacade extends AbstractFacade implements ImportPro
      */
     public function createImportProcess(string $spreadsheetUrl, array $sheetNames): ImportProcessTransfer
     {
-        return $this->getFactory()
-            ->createImportProcessCreator()
-            ->createImportProcess($spreadsheetUrl, $sheetNames);
+        return $this->getFactory()->createImportProcessCreator()->createImportProcess($spreadsheetUrl, $sheetNames);
     }
 
     /**
@@ -53,9 +51,9 @@ class ImportProcessSpreadsheetFacade extends AbstractFacade implements ImportPro
      *
      * @return \Generated\Shared\Transfer\ImportProcessTransfer
      */
-    public function downloadImportProcessPayloadAssets(ImportProcessTransfer $importProcessTransfer): ImportProcessTransfer
+    public function downloadImportProcessPayload(ImportProcessTransfer $importProcessTransfer): ImportProcessTransfer
     {
-        return $this->getFactory()->createImportProcessAssetsDownloader()->downloadAssets($importProcessTransfer);
+        return $this->getFactory()->createImportProcessPayloadDataDownloader()->downloadPayloadData($importProcessTransfer);
     }
 
     /**
@@ -69,6 +67,6 @@ class ImportProcessSpreadsheetFacade extends AbstractFacade implements ImportPro
      */
     public function cleanupImportProcessPayloadAssets(ImportProcessTransfer $importProcessTransfer): ImportProcessTransfer
     {
-        return $this->getFactory()->createImportProcessAssetsDeleter()->deleteAssets($importProcessTransfer);
+        return $this->getFactory()->createImportProcessPayloadDataDeleter()->deletePayloadData($importProcessTransfer);
     }
 }

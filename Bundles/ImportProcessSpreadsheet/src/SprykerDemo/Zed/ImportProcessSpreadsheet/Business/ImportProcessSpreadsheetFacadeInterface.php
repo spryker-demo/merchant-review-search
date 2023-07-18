@@ -35,11 +35,11 @@ interface ImportProcessSpreadsheetFacadeInterface
      *
      * @return \Generated\Shared\Transfer\ImportProcessTransfer
      */
-    public function downloadImportProcessPayloadAssets(ImportProcessTransfer $importProcessTransfer): ImportProcessTransfer;
+    public function downloadImportProcessPayload(ImportProcessTransfer $importProcessTransfer): ImportProcessTransfer;
 
     /**
      * Specification:
-     * - Removes the previously downloaded payload assets.
+     * - Removes previously downloaded payload assets.
      *
      * @api
      *

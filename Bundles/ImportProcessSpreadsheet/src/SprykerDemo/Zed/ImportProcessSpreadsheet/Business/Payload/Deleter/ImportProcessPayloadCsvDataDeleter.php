@@ -5,22 +5,28 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-namespace SprykerDemo\Zed\ImportProcessSpreadsheet\Business\Assets\Deleter;
+namespace SprykerDemo\Zed\ImportProcessSpreadsheet\Business\Payload\Deleter;
 
 use Generated\Shared\Transfer\ImportProcessTransfer;
 
-class ImportProcessAssetsDeleter
+class ImportProcessPayloadCsvDataDeleter implements ImportProcessPayloadDataDeleterInterface
 {
     /**
      * @param \Generated\Shared\Transfer\ImportProcessTransfer $importProcessTransfer
      *
      * @return \Generated\Shared\Transfer\ImportProcessTransfer
      */
-    public function deleteAssets(ImportProcessTransfer $importProcessTransfer): ImportProcessTransfer
+    public function deletePayloadData(ImportProcessTransfer $importProcessTransfer): ImportProcessTransfer
     {
         foreach ($importProcessTransfer->getPayloadOrFail()->getSourceMaps() as $sourceMapTransfer) {
-            if (file_exists($sourceMapTransfer->getSource())) {
-                unlink($sourceMapTransfer->getSource());
+            $filePath = $sourceMapTransfer->getSource();
+
+            if ($filePath === null) {
+                return $importProcessTransfer;
+            }
+
+            if (file_exists($filePath)) {
+                unlink($filePath);
             }
         }
 

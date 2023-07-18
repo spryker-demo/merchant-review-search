@@ -12,7 +12,7 @@
         {% block widget_content %}
             {% if importProcess %}
                 {% if importProcess.status == 'created' %}
-                    <input type="button" class="btn btn-primary btn-w-m" value="{{ 'Refresh status' }}" id="refresh-status-button" data-id="{{ importProcess.idImportProcess }}">
+                    <input type="button" class="btn btn-primary btn-w-m" value="{{ 'Refresh status' | trans }}" id="refresh-status-button" data-id="{{ importProcess.idImportProcess }}">
                 {% endif %}
                 <div id="process-status-container">
                     {% include '@ImportProcessGui/Index/view-status.twig' %}

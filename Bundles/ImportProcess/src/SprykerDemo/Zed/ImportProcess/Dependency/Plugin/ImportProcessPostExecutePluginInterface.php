@@ -13,6 +13,18 @@ interface ImportProcessPostExecutePluginInterface
 {
     /**
      * Specification:
+     * - Checks if this plugin is applicable for provided import process type.
+     *
+     * @api
+     *
+     * @param string $importProcessType
+     *
+     * @return bool
+     */
+    public function isApplicable(string $importProcessType): bool;
+
+    /**
+     * Specification:
      * - Is executed after an import process is run.
      *
      * @api

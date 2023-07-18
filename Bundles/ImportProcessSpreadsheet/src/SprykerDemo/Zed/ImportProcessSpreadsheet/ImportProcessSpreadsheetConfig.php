@@ -24,122 +24,122 @@ class ImportProcessSpreadsheetConfig extends AbstractBundleConfig
     /**
      * @var string
      */
-    protected const SHEET_CATEGORY_TEMPLATE = 'category_template';
+    protected const IMPORT_TYPE_CATEGORY_TEMPLATE = 'category-template';
 
     /**
      * @var string
      */
-    protected const SHEET_PRODUCT_PRICE = 'product_price';
+    protected const IMPORT_TYPE_PRODUCT_PRICE = 'product-price';
 
     /**
      * @var string
      */
-    protected const SHEET_PRODUCT_STOCK = 'product_stock';
+    protected const IMPORT_TYPE_PRODUCT_STOCK = 'product-stock';
 
     /**
      * @var string
      */
-    protected const SHEET_PRODUCT_ABSTRACT = 'product_abstract';
+    protected const IMPORT_TYPE_PRODUCT_ABSTRACT = 'product-abstract';
 
     /**
      * @var string
      */
-    protected const SHEET_PRODUCT_ABSTRACT_STORE = 'product_abstract_store';
+    protected const IMPORT_TYPE_PRODUCT_ABSTRACT_STORE = 'product-abstract-store';
 
     /**
      * @var string
      */
-    protected const SHEET_PRODUCT_CONCRETE = 'product_concrete';
+    protected const IMPORT_TYPE_PRODUCT_CONCRETE = 'product-concrete';
 
     /**
      * @var string
      */
-    protected const SHEET_PRODUCT_ATTRIBUTE_KEY = 'product_attribute_key';
+    protected const IMPORT_TYPE_PRODUCT_ATTRIBUTE_KEY = 'product-attribute-key';
 
     /**
      * @var string
      */
-    protected const SHEET_PRODUCT_MANAGEMENT_ATTRIBUTE = 'product_management_attribute';
+    protected const IMPORT_TYPE_PRODUCT_MANAGEMENT_ATTRIBUTE = 'product-management-attribute';
 
     /**
      * @var string
      */
-    protected const SHEET_PRODUCT_GROUP = 'product_group';
+    protected const IMPORT_TYPE_PRODUCT_GROUP = 'product-group';
 
     /**
      * @var string
      */
-    protected const SHEET_PRODUCT_IMAGE = 'product_image';
+    protected const IMPORT_TYPE_PRODUCT_IMAGE = 'product-image';
 
     /**
      * @var string
      */
-    protected const SHEET_DIVIDED_PRODUCT_ABSTRACT = 'divided_product_abstract';
+    protected const IMPORT_TYPE_DIVIDED_PRODUCT_ABSTRACT = 'divided-product-abstract';
 
     /**
      * @var string
      */
-    protected const SHEET_PRODUCT_APPROVAL_STATUS = 'product_approval_status';
+    protected const IMPORT_TYPE_PRODUCT_APPROVAL_STATUS = 'product-approval-status';
 
     /**
      * @var string
      */
-    protected const SHEET_DIVIDED_PRODUCT_ABSTRACT_MAIN_ATTRIBUTES = 'divided_product_abstract_main_attributes';
+    protected const IMPORT_TYPE_DIVIDED_PRODUCT_ABSTRACT_MAIN_ATTRIBUTES = 'divided-product-abstract-main-attributes';
 
     /**
      * @var string
      */
-    protected const SHEET_DIVIDED_PRODUCT_ABSTRACT_LOCALIZED_ATTRIBUTES = 'divided_product_abstract_localized_attributes';
+    protected const IMPORT_TYPE_DIVIDED_PRODUCT_ABSTRACT_LOCALIZED_ATTRIBUTES = 'divided-product-abstract-localized-attributes';
 
     /**
      * @var string
      */
-    protected const SHEET_DIVIDED_PRODUCT_ABSTRACT_URL = 'divided_product_abstract_url';
+    protected const IMPORT_TYPE_DIVIDED_PRODUCT_ABSTRACT_URL = 'divided-product-abstract-url';
 
     /**
      * @var string
      */
-    protected const SHEET_CATEGORY = 'category';
+    protected const IMPORT_TYPE_CATEGORY = 'category';
 
     /**
      * @var string
      */
-    protected const SHEET_CATEGORY_STORE = 'category_store';
+    protected const IMPORT_TYPE_CATEGORY_STORE = 'category-store';
 
     /**
      * @var string
      */
-    protected const SHEET_STOCK = 'stock';
+    protected const IMPORT_TYPE_STOCK = 'stock';
 
     /**
      * @var string
      */
-    protected const SHEET_MERCHANT_PRODUCT = 'merchant_product';
+    protected const IMPORT_TYPE_MERCHANT_PRODUCT = 'merchant-product';
 
     /**
      * @var string
      */
-    protected const SHEET_MERCHANT_PRODUCT_APPROVAL_STATUS_DEFAULT = 'merchant_product_approval_status_default';
+    protected const IMPORT_TYPE_MERCHANT_PRODUCT_APPROVAL_STATUS_DEFAULT = 'merchant-product-approval-status-default';
 
     /**
      * @var string
      */
-    protected const SHEET_MERCHANT_PRODUCT_OFFER = 'merchant_product_offer';
+    protected const IMPORT_TYPE_MERCHANT_PRODUCT_OFFER = 'merchant-product-offer';
 
     /**
      * @var string
      */
-    protected const SHEET_MERCHANT_PRODUCT_OFFER_STORE = 'merchant_product_offer_store';
+    protected const IMPORT_TYPE_MERCHANT_PRODUCT_OFFER_STORE = 'merchant-product-offer-store';
 
     /**
      * @var string
      */
-    protected const SHEET_PRODUCT_OFFER_STOCK = 'product_offer_stock';
+    protected const IMPORT_TYPE_PRODUCT_OFFER_STOCK = 'product-offer-stock';
 
     /**
      * @var string
      */
-    protected const SHEET_PRICE_PRODUCT_OFFER = 'price_product_offer';
+    protected const IMPORT_TYPE_PRICE_PRODUCT_OFFER = 'price-product-offer';
 
     /**
      * Specification:
@@ -152,30 +152,30 @@ class ImportProcessSpreadsheetConfig extends AbstractBundleConfig
     public function getAllowedSheetNames(): array
     {
         return [
-            static::SHEET_STOCK,
-            static::SHEET_CATEGORY_TEMPLATE,
-            static::SHEET_CATEGORY,
-            static::SHEET_CATEGORY_STORE,
-            static::SHEET_PRODUCT_ATTRIBUTE_KEY,
-            static::SHEET_PRODUCT_MANAGEMENT_ATTRIBUTE,
-            static::SHEET_PRODUCT_ABSTRACT,
-            static::SHEET_PRODUCT_APPROVAL_STATUS,
-            static::SHEET_PRODUCT_CONCRETE,
-            static::SHEET_PRODUCT_IMAGE,
-            static::SHEET_PRODUCT_PRICE,
-            static::SHEET_PRODUCT_STOCK,
-            static::SHEET_PRODUCT_GROUP,
-            static::SHEET_PRODUCT_ABSTRACT_STORE,
-            static::SHEET_DIVIDED_PRODUCT_ABSTRACT,
-            static::SHEET_DIVIDED_PRODUCT_ABSTRACT_MAIN_ATTRIBUTES,
-            static::SHEET_DIVIDED_PRODUCT_ABSTRACT_LOCALIZED_ATTRIBUTES,
-            static::SHEET_DIVIDED_PRODUCT_ABSTRACT_URL,
-            static::SHEET_MERCHANT_PRODUCT,
-            static::SHEET_MERCHANT_PRODUCT_APPROVAL_STATUS_DEFAULT,
-            static::SHEET_MERCHANT_PRODUCT_OFFER,
-            static::SHEET_MERCHANT_PRODUCT_OFFER_STORE,
-            static::SHEET_PRODUCT_OFFER_STOCK,
-            static::SHEET_PRICE_PRODUCT_OFFER,
+            static::IMPORT_TYPE_STOCK,
+            static::IMPORT_TYPE_CATEGORY_TEMPLATE,
+            static::IMPORT_TYPE_CATEGORY,
+            static::IMPORT_TYPE_CATEGORY_STORE,
+            static::IMPORT_TYPE_PRODUCT_ATTRIBUTE_KEY,
+            static::IMPORT_TYPE_PRODUCT_MANAGEMENT_ATTRIBUTE,
+            static::IMPORT_TYPE_PRODUCT_ABSTRACT,
+            static::IMPORT_TYPE_PRODUCT_APPROVAL_STATUS,
+            static::IMPORT_TYPE_PRODUCT_CONCRETE,
+            static::IMPORT_TYPE_PRODUCT_IMAGE,
+            static::IMPORT_TYPE_PRODUCT_PRICE,
+            static::IMPORT_TYPE_PRODUCT_STOCK,
+            static::IMPORT_TYPE_PRODUCT_GROUP,
+            static::IMPORT_TYPE_PRODUCT_ABSTRACT_STORE,
+            static::IMPORT_TYPE_DIVIDED_PRODUCT_ABSTRACT,
+            static::IMPORT_TYPE_DIVIDED_PRODUCT_ABSTRACT_MAIN_ATTRIBUTES,
+            static::IMPORT_TYPE_DIVIDED_PRODUCT_ABSTRACT_LOCALIZED_ATTRIBUTES,
+            static::IMPORT_TYPE_DIVIDED_PRODUCT_ABSTRACT_URL,
+            static::IMPORT_TYPE_MERCHANT_PRODUCT,
+            static::IMPORT_TYPE_MERCHANT_PRODUCT_APPROVAL_STATUS_DEFAULT,
+            static::IMPORT_TYPE_MERCHANT_PRODUCT_OFFER,
+            static::IMPORT_TYPE_MERCHANT_PRODUCT_OFFER_STORE,
+            static::IMPORT_TYPE_PRODUCT_OFFER_STOCK,
+            static::IMPORT_TYPE_PRICE_PRODUCT_OFFER,
         ];
     }
 

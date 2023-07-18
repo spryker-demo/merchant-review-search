@@ -13,12 +13,27 @@ use SprykerDemo\Zed\ImportProcess\Dependency\Plugin\ImportProcessPostExecutePlug
 
 /**
  * @method \SprykerDemo\Zed\ImportProcessSpreadsheet\Business\ImportProcessSpreadsheetFacadeInterface getFacade()
+ * @method \SprykerDemo\Zed\ImportProcessSpreadsheet\ImportProcessSpreadsheetConfig getConfig()
  */
-class ImportProcessSpreadsheetCleanupPlugin extends AbstractPlugin implements ImportProcessPostExecutePluginInterface
+class ImportProcessSpreadsheetPayloadCleanupPlugin extends AbstractPlugin implements ImportProcessPostExecutePluginInterface
 {
     /**
      * {@inheritDoc}
-     * - Deletes previously downloaded data import assets.
+     *
+     * @api
+     *
+     * @param string $importProcessType
+     *
+     * @return bool
+     */
+    public function isApplicable(string $importProcessType): bool
+    {
+        return $importProcessType === $this->getConfig()->getSourceType();
+    }
+
+    /**
+     * {@inheritDoc}
+     * - Deletes previously downloaded data import payload assets.
      *
      * @api
      *

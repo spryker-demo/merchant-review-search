@@ -13,9 +13,24 @@ use SprykerDemo\Zed\ImportProcess\Dependency\Plugin\ImportProcessPreExecutePlugi
 
 /**
  * @method \SprykerDemo\Zed\ImportProcessSpreadsheet\Business\ImportProcessSpreadsheetFacadeInterface getFacade()
+ * @method \SprykerDemo\Zed\ImportProcessSpreadsheet\ImportProcessSpreadsheetConfig getConfig()
  */
 class ImportProcessSpreadsheetPayloadDownloadPlugin extends AbstractPlugin implements ImportProcessPreExecutePluginInterface
 {
+    /**
+     * {@inheritDoc}
+     *
+     * @api
+     *
+     * @param string $importProcessType
+     *
+     * @return bool
+     */
+    public function isApplicable(string $importProcessType): bool
+    {
+        return $importProcessType === $this->getConfig()->getSourceType();
+    }
+
     /**
      * {@inheritDoc}
      * - Downloads spreadsheet content for later use during data import.
@@ -29,6 +44,6 @@ class ImportProcessSpreadsheetPayloadDownloadPlugin extends AbstractPlugin imple
      */
     public function preExecute(ImportProcessTransfer $importProcessTransfer): ImportProcessTransfer
     {
-        return $this->getFacade()->downloadImportProcessPayloadAssets($importProcessTransfer);
+        return $this->getFacade()->downloadImportProcessPayload($importProcessTransfer);
     }
 }

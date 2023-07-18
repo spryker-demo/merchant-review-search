@@ -5,16 +5,16 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-namespace SprykerDemo\Zed\ImportProcessSpreadsheet\Business\Assets\Downloader;
+namespace SprykerDemo\Zed\ImportProcessSpreadsheet\Business\Payload\Deleter;
 
 use Generated\Shared\Transfer\ImportProcessTransfer;
 
-interface ImportProcessAssetsDownloaderInterface
+interface ImportProcessPayloadDataDeleterInterface
 {
     /**
      * @param \Generated\Shared\Transfer\ImportProcessTransfer $importProcessTransfer
      *
      * @return \Generated\Shared\Transfer\ImportProcessTransfer
      */
-    public function downloadAssets(ImportProcessTransfer $importProcessTransfer): ImportProcessTransfer;
+    public function deletePayloadData(ImportProcessTransfer $importProcessTransfer): ImportProcessTransfer;
 }

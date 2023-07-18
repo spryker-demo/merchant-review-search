@@ -5,22 +5,22 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-namespace SprykerDemo\Zed\ImportProcessSpreadsheet\Business\Assets\Downloader\SpreadsheetReader;
+namespace SprykerDemo\Zed\ImportProcessSpreadsheet\Business\Payload\Downloader\SpreadsheetReader;
 
 use Generated\Shared\Transfer\ImportProcessSpreadsheetReaderConfigurationTransfer;
-use SprykerDemo\Service\GoogleSpreadsheets\GoogleSpreadsheetsService;
+use SprykerDemo\Service\GoogleSpreadsheets\GoogleSpreadsheetsServiceInterface;
 
 class SpreadsheetReaderFactory implements SpreadsheetReaderFactoryInterface
 {
     /**
-     * @var \SprykerDemo\Service\GoogleSpreadsheets\GoogleSpreadsheetsService
+     * @var \SprykerDemo\Service\GoogleSpreadsheets\GoogleSpreadsheetsServiceInterface
      */
-    protected GoogleSpreadsheetsService $googleSpreadsheetsService;
+    protected GoogleSpreadsheetsServiceInterface $googleSpreadsheetsService;
 
     /**
-     * @param \SprykerDemo\Service\GoogleSpreadsheets\GoogleSpreadsheetsService $googleSpreadsheetsService
+     * @param \SprykerDemo\Service\GoogleSpreadsheets\GoogleSpreadsheetsServiceInterface $googleSpreadsheetsService
      */
-    public function __construct(GoogleSpreadsheetsService $googleSpreadsheetsService)
+    public function __construct(GoogleSpreadsheetsServiceInterface $googleSpreadsheetsService)
     {
         $this->googleSpreadsheetsService = $googleSpreadsheetsService;
     }
@@ -28,7 +28,7 @@ class SpreadsheetReaderFactory implements SpreadsheetReaderFactoryInterface
     /**
      * @param \Generated\Shared\Transfer\ImportProcessSpreadsheetReaderConfigurationTransfer $spreadsheetReaderConfigurationTransfer
      *
-     * @return \SprykerDemo\Zed\ImportProcessSpreadsheet\Business\Assets\Downloader\SpreadsheetReader\SpreadsheetReaderInterface
+     * @return \SprykerDemo\Zed\ImportProcessSpreadsheet\Business\Payload\Downloader\SpreadsheetReader\SpreadsheetReaderInterface
      */
     public function createReader(ImportProcessSpreadsheetReaderConfigurationTransfer $spreadsheetReaderConfigurationTransfer): SpreadsheetReaderInterface
     {

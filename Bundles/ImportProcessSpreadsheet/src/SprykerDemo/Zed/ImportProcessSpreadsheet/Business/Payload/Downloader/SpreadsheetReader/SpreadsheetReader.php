@@ -5,7 +5,7 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-namespace SprykerDemo\Zed\ImportProcessSpreadsheet\Business\Assets\Downloader\SpreadsheetReader;
+namespace SprykerDemo\Zed\ImportProcessSpreadsheet\Business\Payload\Downloader\SpreadsheetReader;
 
 use Generated\Shared\Transfer\ImportProcessSpreadsheetReaderConfigurationTransfer;
 use SprykerDemo\Service\GoogleSpreadsheets\Exception\SpreadsheetsException;
@@ -34,7 +34,7 @@ class SpreadsheetReader implements SpreadsheetReaderInterface
     protected $position = 0;
 
     /**
-     * @var array
+     * @var array<int, mixed>
      */
     protected $rows = [];
 
@@ -175,7 +175,7 @@ class SpreadsheetReader implements SpreadsheetReaderInterface
      *
      * @throws \SprykerDemo\Service\GoogleSpreadsheets\Exception\SpreadsheetsException
      *
-     * @return array
+     * @return array<int, mixed>
      */
     protected function readFromSpreadsheet(string $range): array
     {

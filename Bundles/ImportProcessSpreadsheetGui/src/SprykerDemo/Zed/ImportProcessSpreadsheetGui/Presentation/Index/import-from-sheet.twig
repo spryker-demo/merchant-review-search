@@ -1,6 +1,6 @@
 {% extends '@Gui/Layout/layout.twig' %}
 
-{% set widget_title = 'product_upload.spreadsheet.import_types_page_headline' | trans %}
+{% set widget_title = 'import_process.spreadsheet.import_types_page_headline' | trans %}
 {% block section_title %}{{ widget_title }}{% endblock %}
 
 {% block action %}
@@ -8,12 +8,12 @@
 {% endblock %}
 
 {% block content %}
-    {% embed '@Gui/Partials/widget.twig' with { widget_title: 'product_upload.spreadsheet.import_types_box_headline' | trans } %}
+    {% embed '@Gui/Partials/widget.twig' with { widget_title: 'import_process.spreadsheet.import_types_box_headline' | trans } %}
         {% block widget_content %}
             <div class="gray-bg wrapper-content">
-                <h4>{{ 'product_upload.spreadsheet.import_Types_description_headline' | trans }}</h4>
+                <h4>{{ 'import_process.spreadsheet.import_types_description_headline' | trans }}</h4>
 
-                <p>{{ 'product_upload.spreadsheet.import_Types_description_text' | trans }}</p>
+                <p>{{ 'import_process.spreadsheet.import_types_description_text' | trans }}</p>
             </div>
 
             {% block form %}
