@@ -8,7 +8,7 @@
 require('../sass/main.scss');
 
 var $id = $('#refresh-status-button').data('id');
-$('#refresh-status-button').click(function(e) {
+$('#refresh-status-button').click(function (e) {
     e.preventDefault();
     $('#process-status-container').load('/import-process-gui/index/view-status?id-process=' + $id);
     var $newStatus = $('#process-status-data').data('status');
