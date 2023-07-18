@@ -13,8 +13,7 @@
         "spryker/zed-request": "^3.18.1"
     },
     "require-dev": {
-        "spryker/code-sniffer": "^0.17.18",
-        "spryker/customer": "^7.48.1"
+        "spryker/code-sniffer": "^0.17.18"
     },
     "autoload": {
         "psr-4": {
@@ -41,6 +40,6 @@
         "sort-packages": true
     },
     "suggest": {
-        "spryker/customer": "^7.48.1"
+        "spryker/customer": "If you want to use CompanyRepresentativeCustomerTransferExpanderPlugin."
     }
 }
