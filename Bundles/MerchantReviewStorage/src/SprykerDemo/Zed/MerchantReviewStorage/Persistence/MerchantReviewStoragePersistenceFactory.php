@@ -9,10 +9,7 @@ namespace SprykerDemo\Zed\MerchantReviewStorage\Persistence;
 
 use Orm\Zed\MerchantReviewStorage\Persistence\SpyMerchantReviewStorageQuery;
 use Spryker\Zed\Kernel\Persistence\AbstractPersistenceFactory;
-use SprykerDemo\Zed\MerchantReview\Business\MerchantReviewFacadeInterface;
-use SprykerDemo\Zed\MerchantReviewStorage\MerchantReviewStorageDependencyProvider;
 use SprykerDemo\Zed\MerchantReviewStorage\Persistence\Propel\Mapper\MerchantReviewStorageMapper;
-use SprykerDemo\Zed\MerchantReviewStorage\Persistence\Propel\Mapper\MerchantReviewStorageMapperInterface;
 
 /**
  * @method \SprykerDemo\Zed\MerchantReviewStorage\MerchantReviewStorageConfig getConfig()
@@ -28,17 +25,9 @@ class MerchantReviewStoragePersistenceFactory extends AbstractPersistenceFactory
     }
 
     /**
-     * @return \SprykerDemo\Zed\MerchantReview\Business\MerchantReviewFacadeInterface
+     * @return \SprykerDemo\Zed\MerchantReviewStorage\Persistence\Propel\Mapper\MerchantReviewStorageMapper
      */
-    public function getMerchantReviewFacade(): MerchantReviewFacadeInterface
-    {
-        return $this->getProvidedDependency(MerchantReviewStorageDependencyProvider::FACADE_MERCHANT_REVIEW);
-    }
-
-    /**
-     * @return \SprykerDemo\Zed\MerchantReviewStorage\Persistence\Propel\Mapper\MerchantReviewStorageMapperInterface
-     */
-    public function createMerchantReviewStorageMapper(): MerchantReviewStorageMapperInterface
+    public function createMerchantReviewStorageMapper(): MerchantReviewStorageMapper
     {
         return new MerchantReviewStorageMapper();
     }

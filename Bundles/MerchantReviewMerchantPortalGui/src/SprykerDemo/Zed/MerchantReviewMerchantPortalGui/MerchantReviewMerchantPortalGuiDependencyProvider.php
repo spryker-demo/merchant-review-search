@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ */
+
 namespace SprykerDemo\Zed\MerchantReviewMerchantPortalGui;
 
 use Orm\Zed\MerchantReview\Persistence\SpyMerchantReviewQuery;
@@ -12,6 +17,9 @@ use Spryker\Zed\MerchantUser\Business\MerchantUserFacadeInterface;
 
 class MerchantReviewMerchantPortalGuiDependencyProvider extends AbstractBundleDependencyProvider
 {
+    /**
+     * @var string
+     */
     public const PROPEL_QUERY_MERCHANT_REVIEW = 'PROPEL_QUERY_MERCHANT_REVIEW';
 
     /**
@@ -28,8 +36,14 @@ class MerchantReviewMerchantPortalGuiDependencyProvider extends AbstractBundleDe
      */
     public const SERVICE_GUI_TABLE_HTTP_DATA_REQUEST_EXECUTOR = 'gui_table_http_data_request_executor';
 
+    /**
+     * @var string
+     */
     public const FACADE_LOCALE = 'FACADE_LOCALE';
 
+    /**
+     * @var string
+     */
     public const FACADE_MERCHANT_USER = 'FACADE_MERCHANT_USER';
 
     /**

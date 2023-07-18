@@ -24,11 +24,11 @@ class MerchantReviewStorageEntityManager extends AbstractEntityManager implement
     {
         $merchantReviewStorageEntity = $this->getFactory()
             ->createMerchantReviewStorageQuery()
-            ->filterByFkMerchant($merchantReviewStorageTransfer->getFkMerchant())
+            ->filterByFkMerchant($merchantReviewStorageTransfer->getIdMerchant())
             ->findOneOrCreate();
 
         $merchantReviewStorageEntity->setData($merchantReviewStorageTransfer->toArray());
-        $merchantReviewStorageEntity->setFkMerchant($merchantReviewStorageTransfer->getFkMerchant());
+        $merchantReviewStorageEntity->setFkMerchant($merchantReviewStorageTransfer->getIdMerchant());
         $merchantReviewStorageEntity->save();
 
         return $this->getFactory()

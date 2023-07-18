@@ -67,9 +67,7 @@ interface MerchantReviewFacadeInterface
      *
      * @return void
      */
-    public function deleteMerchantReview(
-        int $idMerchantReview
-    ): void;
+    public function deleteMerchantReview(int $idMerchantReview): void;
 
     /**
      * Specification:

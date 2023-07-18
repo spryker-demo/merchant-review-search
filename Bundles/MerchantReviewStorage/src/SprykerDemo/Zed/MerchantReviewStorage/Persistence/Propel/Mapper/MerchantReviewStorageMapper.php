@@ -7,35 +7,11 @@
 
 namespace SprykerDemo\Zed\MerchantReviewStorage\Persistence\Propel\Mapper;
 
-use ArrayObject;
-use Generated\Shared\Transfer\MerchantReviewStorageCollectionTransfer;
 use Generated\Shared\Transfer\MerchantReviewStorageTransfer;
 use Orm\Zed\MerchantReviewStorage\Persistence\SpyMerchantReviewStorage;
 
-class MerchantReviewStorageMapper implements MerchantReviewStorageMapperInterface
+class MerchantReviewStorageMapper
 {
-    /**
-     * @param \ArrayObject $merchantReviewStorageEntities
-     *
-     * @return \Generated\Shared\Transfer\MerchantReviewStorageCollectionTransfer
-     */
-    public function mapMerchantReviewStorageEntitiesToMerchantReviewStorageCollectionTransfer(
-        ArrayObject $merchantReviewStorageEntities
-    ): MerchantReviewStorageCollectionTransfer {
-        $merchantReviews = new ArrayObject();
-        $merchantReviewStorageCollectionTransfer = new MerchantReviewStorageCollectionTransfer();
-
-        foreach ($merchantReviewStorageEntities as $merchantReviewStorageEntity) {
-            $merchantReviews->append(
-                $this->mapMerchantReviewStorageEntityToMerchantReviewStorageTransfer($merchantReviewStorageEntity),
-            );
-        }
-
-        $merchantReviewStorageCollectionTransfer->setMerchantReviews($merchantReviews);
-
-        return $merchantReviewStorageCollectionTransfer;
-    }
-
     /**
      * @param \Orm\Zed\MerchantReviewStorage\Persistence\SpyMerchantReviewStorage $merchantReviewStorageEntity
      *

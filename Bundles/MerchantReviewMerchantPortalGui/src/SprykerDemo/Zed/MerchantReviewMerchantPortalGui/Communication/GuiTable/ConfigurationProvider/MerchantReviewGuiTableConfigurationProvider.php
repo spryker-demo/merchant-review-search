@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ */
+
 namespace SprykerDemo\Zed\MerchantReviewMerchantPortalGui\Communication\GuiTable\ConfigurationProvider;
 
 use Generated\Shared\Transfer\GuiTableConfigurationTransfer;
@@ -9,14 +14,29 @@ use SprykerDemo\Zed\MerchantReviewMerchantPortalGui\MerchantReviewMerchantPortal
 
 class MerchantReviewGuiTableConfigurationProvider implements MerchantReviewGuiTableConfigurationProviderInterface
 {
+    /**
+     * @var string
+     */
     public const COL_KEY_CREATED_AT = 'created_at';
 
+    /**
+     * @var string
+     */
     public const COL_KEY_NICKNAME = 'nickname';
 
+    /**
+     * @var string
+     */
     public const COL_KEY_RATING = 'rating';
 
+    /**
+     * @var string
+     */
     public const COL_KEY_SUMMARY = 'summary';
 
+    /**
+     * @var string
+     */
     public const COL_KEY_DESCRIPTION = 'description';
 
     /**
@@ -80,7 +100,7 @@ class MerchantReviewGuiTableConfigurationProvider implements MerchantReviewGuiTa
         $guiTableConfigurationBuilder->addColumnText(static::COL_KEY_CREATED_AT, 'Date', true, false)
             ->addColumnText(static::COL_KEY_NICKNAME, 'User', true, false)
             ->addColumnText(static::COL_KEY_RATING, 'Rating', true, false)
-            ->addColumnText(self::COL_KEY_SUMMARY, 'Summary', true, false)
+            ->addColumnText(static::COL_KEY_SUMMARY, 'Summary', true, false)
             ->addColumnText(static::COL_KEY_DESCRIPTION, 'Description', true, false);
 
         return $guiTableConfigurationBuilder;

@@ -8,8 +8,6 @@
 namespace SprykerDemo\Zed\MerchantReview\Business\Model;
 
 use Generated\Shared\Transfer\MerchantReviewTransfer;
-use Orm\Zed\MerchantReview\Persistence\SpyMerchantReview;
-use Spryker\Zed\Kernel\Persistence\EntityManager\TransactionTrait;
 use SprykerDemo\Zed\MerchantReview\Persistence\MerchantReviewEntityManagerInterface;
 
 class MerchantReviewStatusUpdater implements MerchantReviewStatusUpdaterInterface

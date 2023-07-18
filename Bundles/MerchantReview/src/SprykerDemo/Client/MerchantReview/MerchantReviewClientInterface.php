@@ -9,8 +9,6 @@ namespace SprykerDemo\Client\MerchantReview;
 
 use Generated\Shared\Transfer\MerchantReviewRequestTransfer;
 use Generated\Shared\Transfer\MerchantReviewResponseTransfer;
-use Generated\Shared\Transfer\MerchantReviewSummaryTransfer;
-use Generated\Shared\Transfer\RatingAggregationTransfer;
 
 interface MerchantReviewClientInterface
 {

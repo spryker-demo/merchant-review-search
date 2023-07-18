@@ -8,7 +8,6 @@
 namespace SprykerDemo\Client\MerchantReviewStorage;
 
 use Generated\Shared\Transfer\MerchantReviewCollectionTransfer;
-use Generated\Shared\Transfer\MerchantReviewStorageTransfer;
 use Spryker\Client\Kernel\AbstractClient;
 
 /**
@@ -20,6 +19,8 @@ class MerchantReviewStorageClient extends AbstractClient implements MerchantRevi
      * {@inheritDoc}
      *
      * @api
+     *
+     * @param int $idMerchant
      *
      * @return \Generated\Shared\Transfer\MerchantReviewCollectionTransfer
      */

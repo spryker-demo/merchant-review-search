@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ */
+
 namespace SprykerDemo\Zed\MerchantReview\Persistence;
 
 use Generated\Shared\Transfer\MerchantReviewTransfer;
@@ -47,6 +52,8 @@ class MerchantReviewEntityManager extends AbstractEntityManager implements Merch
 
     /**
      * @param \Generated\Shared\Transfer\MerchantReviewTransfer $merchantReviewTransfer
+     *
+     * @throws \Propel\Runtime\Exception\EntityNotFoundException
      *
      * @return void
      */

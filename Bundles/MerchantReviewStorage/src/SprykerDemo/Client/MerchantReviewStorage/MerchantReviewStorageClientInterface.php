@@ -8,7 +8,6 @@
 namespace SprykerDemo\Client\MerchantReviewStorage;
 
 use Generated\Shared\Transfer\MerchantReviewCollectionTransfer;
-use Generated\Shared\Transfer\MerchantReviewStorageTransfer;
 
 /**
  * @method \SprykerDemo\Client\MerchantReviewStorage\MerchantReviewStorageFactory getFactory()
@@ -20,6 +19,8 @@ interface MerchantReviewStorageClientInterface
      *  - Returns all merchant reviews from storage.
      *
      * @api
+     *
+     * @param int $idMerchant
      *
      * @return \Generated\Shared\Transfer\MerchantReviewCollectionTransfer
      */

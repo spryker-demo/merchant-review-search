@@ -11,20 +11,38 @@ use Generated\Shared\Transfer\MerchantReviewStorageTransfer;
 use Generated\Shared\Transfer\MerchantReviewTransfer;
 use Spryker\Zed\EventBehavior\Business\EventBehaviorFacadeInterface;
 use SprykerDemo\Zed\MerchantReview\Business\MerchantReviewFacadeInterface;
-use SprykerDemo\Zed\MerchantReview\Persistence\MerchantReviewRepositoryInterface;
-use SprykerDemo\Zed\MerchantReviewStorage\Persistence\MerchantReviewStorageEntityManager;
+use SprykerDemo\Zed\MerchantReviewStorage\Persistence\MerchantReviewStorageEntityManagerInterface;
 
 class MerchantReviewStorageWriter implements MerchantReviewStorageWriterInterface
 {
     /**
+     * @var \Spryker\Zed\EventBehavior\Business\EventBehaviorFacadeInterface
+     */
+    protected EventBehaviorFacadeInterface $eventBehaviorFacade;
+
+    /**
+     * @var \SprykerDemo\Zed\MerchantReview\Business\MerchantReviewFacadeInterface
+     */
+    protected MerchantReviewFacadeInterface $merchantReviewFacade;
+
+    /**
+     * @var \SprykerDemo\Zed\MerchantReviewStorage\Persistence\MerchantReviewStorageEntityManagerInterface
+     */
+    protected MerchantReviewStorageEntityManagerInterface $merchantReviewStorageEntityManager;
+
+    /**
      * @param \Spryker\Zed\EventBehavior\Business\EventBehaviorFacadeInterface $eventBehaviorFacade
-     * @param \SprykerDemo\Zed\MerchantReviewStorage\Persistence\MerchantReviewStorageEntityManager $merchantReviewStorageEntityManager
+     * @param \SprykerDemo\Zed\MerchantReview\Business\MerchantReviewFacadeInterface $merchantReviewFacade
+     * @param \SprykerDemo\Zed\MerchantReviewStorage\Persistence\MerchantReviewStorageEntityManagerInterface $merchantReviewStorageEntityManager
      */
     public function __construct(
-        protected EventBehaviorFacadeInterface $eventBehaviorFacade,
-        protected MerchantReviewFacadeInterface $merchantReviewFacade,
-        protected MerchantReviewStorageEntityManager $merchantReviewStorageEntityManager
+        EventBehaviorFacadeInterface $eventBehaviorFacade,
+        MerchantReviewFacadeInterface $merchantReviewFacade,
+        MerchantReviewStorageEntityManagerInterface $merchantReviewStorageEntityManager
     ) {
+        $this->merchantReviewStorageEntityManager = $merchantReviewStorageEntityManager;
+        $this->merchantReviewFacade = $merchantReviewFacade;
+        $this->eventBehaviorFacade = $eventBehaviorFacade;
     }
 
     /**
@@ -74,7 +92,7 @@ class MerchantReviewStorageWriter implements MerchantReviewStorageWriterInterfac
         $merchantReviews = $merchantReviewStorageTransfer->getReviews();
         $merchantReviews[] = $merchantReview->toArray();
 
-        $merchantReviewStorageTransfer->setFkMerchant($merchantReview->getFkMerchant());
+        $merchantReviewStorageTransfer->setIdMerchant($merchantReview->getFkMerchant());
         $merchantReviewStorageTransfer->setReviews($merchantReviews);
 
         return $merchantReviewStorageTransfer;

@@ -8,7 +8,6 @@
 namespace SprykerDemo\Client\MerchantReviewStorage\Storage;
 
 use Generated\Shared\Transfer\MerchantReviewCollectionTransfer;
-use Generated\Shared\Transfer\MerchantReviewStorageTransfer;
 
 interface MerchantReviewStorageReaderInterface
 {

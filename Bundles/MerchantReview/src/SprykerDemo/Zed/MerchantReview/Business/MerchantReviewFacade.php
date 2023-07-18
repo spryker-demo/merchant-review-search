@@ -55,7 +55,7 @@ class MerchantReviewFacade extends AbstractFacade implements MerchantReviewFacad
      *
      * @param \Generated\Shared\Transfer\MerchantReviewTransfer $merchantReviewTransfer
      *
-     * @return \Generated\Shared\Transfer\MerchantReviewTransfer
+     * @return void
      */
     public function updateMerchantReviewStatus(
         MerchantReviewTransfer $merchantReviewTransfer
@@ -74,9 +74,8 @@ class MerchantReviewFacade extends AbstractFacade implements MerchantReviewFacad
      *
      * @return void
      */
-    public function deleteMerchantReview(
-        int $idMerchantReview
-    ): void {
+    public function deleteMerchantReview(int $idMerchantReview): void
+    {
         $this->getEntityManager()->deleteMerchantReview($idMerchantReview);
     }
 

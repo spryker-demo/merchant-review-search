@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ */
+
 namespace SprykerDemo\Zed\MerchantReviewMerchantPortalGui\Persistence\Propel;
 
 use Generated\Shared\Transfer\MerchantReviewCollectionTransfer;
@@ -8,14 +13,29 @@ use Orm\Zed\MerchantReview\Persistence\Map\SpyMerchantReviewTableMap;
 
 class MerchantReviewTableDataMapper
 {
+    /**
+     * @var string
+     */
     protected const COL_KEY_CREATED_AT = 'created_at';
 
+    /**
+     * @var string
+     */
     protected const COL_KEY_RATING = 'rating';
 
+    /**
+     * @var string
+     */
     protected const COL_KEY_DESCRIPTION = 'description';
 
+    /**
+     * @var string
+     */
     protected const COL_KEY_SUMMARY = 'summary';
 
+    /**
+     * @var string
+     */
     protected const COL_KEY_NICKNAME = 'nickname';
 
     /**

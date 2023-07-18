@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ */
+
 namespace SprykerDemo\Zed\MerchantReviewMerchantPortalGui\Communication;
 
 use Spryker\Shared\GuiTable\GuiTableFactoryInterface;
@@ -25,7 +30,7 @@ class MerchantReviewMerchantPortalGuiCommunicationFactory extends AbstractCommun
     {
         return new MerchantReviewGuiTableConfigurationProvider(
             $this->getGuiTableFactory(),
-            $this->getConfig()
+            $this->getConfig(),
         );
     }
 
@@ -37,7 +42,7 @@ class MerchantReviewMerchantPortalGuiCommunicationFactory extends AbstractCommun
         return new MerchantReviewTableDataProvider(
             $this->getRepository(),
             $this->getLocaleFacade(),
-            $this->getMerchantUserFacade()
+            $this->getMerchantUserFacade(),
         );
     }
 

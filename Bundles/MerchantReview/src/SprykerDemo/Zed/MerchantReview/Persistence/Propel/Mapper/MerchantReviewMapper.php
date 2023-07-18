@@ -33,6 +33,7 @@ class MerchantReviewMapper
 
     /**
      * @param \Orm\Zed\MerchantReview\Persistence\SpyMerchantReview $merchantReviewEntity
+     * @param \Generated\Shared\Transfer\MerchantReviewTransfer $merchantReviewTransfer
      *
      * @return \Generated\Shared\Transfer\MerchantReviewTransfer
      */
@@ -73,7 +74,7 @@ class MerchantReviewMapper
     public function mapMerchantReviewTransferToMerchantReviewEntity(
         MerchantReviewTransfer $merchantReviewTransfer,
         SpyMerchantReview $merchantReviewEntity
-    ) {
+    ): SpyMerchantReview {
         return $merchantReviewEntity->fromArray($merchantReviewTransfer->toArray());
     }
 }

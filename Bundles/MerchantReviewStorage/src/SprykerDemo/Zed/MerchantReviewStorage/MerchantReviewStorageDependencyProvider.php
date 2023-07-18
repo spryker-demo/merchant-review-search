@@ -24,6 +24,7 @@ class MerchantReviewStorageDependencyProvider extends AbstractBundleDependencyPr
      * @var string
      */
     public const FACADE_EVENT_BEHAVIOR = 'FACADE_EVENT_BEHAVIOR';
+
     /**
      * @var string
      */
@@ -36,7 +37,6 @@ class MerchantReviewStorageDependencyProvider extends AbstractBundleDependencyPr
      */
     public function provideBusinessLayerDependencies(Container $container): Container
     {
-        $container = parent::provideBusinessLayerDependencies($container);
         $container = $this->addEventBehaviorFacade($container);
         $container = $this->addMerchantReviewStorageFacade($container);
         $container = $this->addMerchantReviewFacade($container);
@@ -51,21 +51,7 @@ class MerchantReviewStorageDependencyProvider extends AbstractBundleDependencyPr
      */
     public function provideCommunicationLayerDependencies(Container $container): Container
     {
-        $container = parent::provideCommunicationLayerDependencies($container);
         $container = $this->addEventBehaviorFacade($container);
-
-        return $container;
-    }
-
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
-    public function providePersistenceLayerDependencies(Container $container): Container
-    {
-        $container = parent::providePersistenceLayerDependencies($container);
-        $container = $this->addMerchantReviewFacade($container);
 
         return $container;
     }

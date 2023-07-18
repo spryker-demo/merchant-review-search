@@ -66,6 +66,10 @@ class MerchantReviewPublisherTriggerPlugin extends AbstractPlugin implements Pub
     }
 
     /**
+     * {@inheritDoc}
+     *
+     * @api
+     *
      * @return string|null
      */
     public function getIdColumnName(): ?string
