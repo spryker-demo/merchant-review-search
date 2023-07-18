@@ -6,7 +6,7 @@
     "require": {
         "php": ">=8.0",
         "spryker-demo/merchant-review": "^1.0.0",
-        "spryker/gui-table": "^2.1.0",
+        "spryker/gui-table": "^1.9.0",
         "spryker/locale": "^4.1.0",
         "spryker/merchant-user": "^1.4.0",
         "spryker/propel-orm": "^1.19.0",
