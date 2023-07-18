@@ -8,4 +8,4 @@ import { MerchantReviewMerchantPortalTableComponent } from './merchant-review-me
     declarations: [MerchantReviewMerchantPortalTableComponent],
     exports: [MerchantReviewMerchantPortalTableComponent],
 })
-export class MerchantReviewMerchantPortalTableModule { }
+export class MerchantReviewMerchantPortalTableModule {}

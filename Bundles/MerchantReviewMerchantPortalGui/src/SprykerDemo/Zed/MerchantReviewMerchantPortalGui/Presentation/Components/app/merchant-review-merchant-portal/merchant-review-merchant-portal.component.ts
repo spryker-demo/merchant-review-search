@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, Input, ChangeDetectionStrategy } from '@angular/core'
+import { Component, ViewEncapsulation, Input, ChangeDetectionStrategy } from '@angular/core';
 import { TableConfig } from '@spryker/table';
 
 @Component({
@@ -8,7 +8,6 @@ import { TableConfig } from '@spryker/table';
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
 })
-
 export class MerchantReviewMerchantPortalComponent {
     @Input() tableConfig: TableConfig;
     @Input() tableId?: string;
