@@ -1,9 +1,0 @@
-import_process.spreadsheet.select_importer_page_headline,"Step 1: Product Spreadsheet"
-import_process.spreadsheet.select_importer_box_headline,"Spreadsheet Selection"
-import_process.spreadsheet.select_importer_description_headline,"Product Data Spreadsheet"
-import_process.spreadsheet.select_importer_description_text,"Add the URL of the Google spreadsheet containing the new product data into the input field. The import mechanism will only take the data in the document into account."
-
-import_process.spreadsheet.import_types_page_headline,"Step 2: Product Importer"
-import_process.spreadsheet.import_types_box_headline,"Select Product Import Types"
-import_process.spreadsheet.import_types_description_headline,"Product Import Types"
-import_process.spreadsheet.import_types_description_text,"Select the importer types you want to execute. Each importer type refers to another tab in the spreadsheet. The following types are available: product-abstract, product-concrete, product-abstract_store, product-image, product-stock."
