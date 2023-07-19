@@ -123,7 +123,7 @@ class ImportProcessRunner implements ImportProcessRunnerInterface
     protected function runPreExecutePlugins(ImportProcessTransfer $importProcessTransfer): ImportProcessTransfer
     {
         foreach ($this->preExecutePlugins as $preExecutePlugin) {
-            if ($preExecutePlugin->isApplicable($importProcessTransfer->getType())) {
+            if ($preExecutePlugin->isApplicable($importProcessTransfer->getTypeOrFail())) {
                 $importProcessTransfer = $preExecutePlugin->preExecute($importProcessTransfer);
             }
         }
@@ -139,7 +139,7 @@ class ImportProcessRunner implements ImportProcessRunnerInterface
     protected function runPostExecutePlugins(ImportProcessTransfer $importProcessTransfer): ImportProcessTransfer
     {
         foreach ($this->postExecutePlugins as $postExecutePlugin) {
-            if ($postExecutePlugin->isApplicable($importProcessTransfer->getType())) {
+            if ($postExecutePlugin->isApplicable($importProcessTransfer->getTypeOrFail())) {
                 $importProcessTransfer = $postExecutePlugin->postExecute($importProcessTransfer);
             }
         }

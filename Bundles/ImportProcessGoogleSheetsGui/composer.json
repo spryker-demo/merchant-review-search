@@ -4,7 +4,7 @@
     "description": "ImportProcessGoogleSheetsGui module",
     "license": "proprietary",
     "require": {
-        "google/apiclient": "*",
+        "google/apiclient": "^2.14.0",
         "php": ">=8.0",
         "spryker-demo/google-sheets": "* as 1.0.0",
         "spryker-demo/import-process-google-sheets": "* as 1.0.0",
