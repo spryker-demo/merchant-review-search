@@ -26,12 +26,12 @@ class ImportSheetForm extends AbstractType
     /**
      * @var string
      */
-    public const BLOCK_PREFIX = 'ImportSheetForm';
+    public const OPTION_IMPORT_TYPES = 'import_types';
 
     /**
      * @var string
      */
-    public const OPTION_IMPORT_TYPES = 'import_types';
+    protected const BLOCK_PREFIX = 'ImportSheetForm';
 
     /**
      * @var string

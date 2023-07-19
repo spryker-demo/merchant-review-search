@@ -16,31 +16,6 @@ use Spryker\Zed\Kernel\Persistence\AbstractRepository;
 class ImportProcessRepository extends AbstractRepository implements ImportProcessRepositoryInterface
 {
     /**
-     * @param int $idUser
-     *
-     * @return array<\Generated\Shared\Transfer\ImportProcessTransfer>
-     */
-    public function findImportProcessesByIdUser(int $idUser): array
-    {
-        $importProcessEntities = $this->getFactory()
-            ->createImportProcessQuery()
-            ->filterByFkUser($idUser)
-            ->find();
-
-        $importProcessTransfers = [];
-        foreach ($importProcessEntities as $importProcessEntity) {
-            $importProcessTransfers[] = $this->getFactory()
-                ->createImportProcessMapper()
-                ->mapImportProcessEntityToImportProcessTransfer(
-                    $importProcessEntity,
-                    new ImportProcessTransfer(),
-                );
-        }
-
-        return $importProcessTransfers;
-    }
-
-    /**
      * @param int $idImportProcess
      *
      * @return \Generated\Shared\Transfer\ImportProcessTransfer|null

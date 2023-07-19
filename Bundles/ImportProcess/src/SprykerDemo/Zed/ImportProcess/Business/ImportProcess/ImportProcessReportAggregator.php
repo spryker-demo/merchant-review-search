@@ -25,8 +25,7 @@ class ImportProcessReportAggregator implements ImportProcessReportAggregatorInte
         $totalImportTime = 0;
 
         foreach ($dataImporterReportTransfers as $dataImporterReportTransfer) {
-            $sourceReport = (new ImportProcessSourceReportTransfer())
-                ->setIsSuccess($dataImporterReportTransfer->getIsSuccess())
+            $sourceReport = (new ImportProcessSourceReportTransfer())->setIsSuccess($dataImporterReportTransfer->getIsSuccess())
                 ->setImportType($dataImporterReportTransfer->getImportType())
                 ->setImportTime($dataImporterReportTransfer->getImportTime())
                 ->setImportedDataSetCount($dataImporterReportTransfer->getImportedDataSetCount())

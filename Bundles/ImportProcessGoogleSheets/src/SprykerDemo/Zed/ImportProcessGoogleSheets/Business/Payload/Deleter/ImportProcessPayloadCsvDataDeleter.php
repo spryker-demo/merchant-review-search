@@ -21,11 +21,7 @@ class ImportProcessPayloadCsvDataDeleter implements ImportProcessPayloadDataDele
         foreach ($importProcessTransfer->getPayloadOrFail()->getSourceMaps() as $sourceMapTransfer) {
             $filePath = $sourceMapTransfer->getSource();
 
-            if ($filePath === null) {
-                return $importProcessTransfer;
-            }
-
-            if (file_exists($filePath)) {
+            if ($filePath !== null && file_exists($filePath)) {
                 unlink($filePath);
             }
         }

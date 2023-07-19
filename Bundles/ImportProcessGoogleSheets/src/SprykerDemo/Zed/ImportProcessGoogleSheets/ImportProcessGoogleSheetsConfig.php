@@ -149,7 +149,7 @@ class ImportProcessGoogleSheetsConfig extends AbstractBundleConfig
      *
      * @return array<string>
      */
-    public function getAllowedSheetNames(): array
+    public function getAllowedImportTypes(): array
     {
         return [
             static::IMPORT_TYPE_STOCK,

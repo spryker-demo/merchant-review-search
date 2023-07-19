@@ -43,6 +43,6 @@ class ImportProcessSpreadsheetPayloadCleanupPlugin extends AbstractPlugin implem
      */
     public function postExecute(ImportProcessTransfer $importProcessTransfer): ImportProcessTransfer
     {
-        return $this->getFacade()->cleanupImportProcessPayloadAssets($importProcessTransfer);
+        return $this->getFacade()->cleanupImportProcessPayloadData($importProcessTransfer);
     }
 }

@@ -39,7 +39,7 @@ class ImportProcessGoogleSheetsFacade extends AbstractFacade implements ImportPr
      */
     public function getAllowedSheetNames(): array
     {
-        return $this->getFactory()->getConfig()->getAllowedSheetNames();
+        return $this->getFactory()->getConfig()->getAllowedImportTypes();
     }
 
     /**
@@ -51,7 +51,7 @@ class ImportProcessGoogleSheetsFacade extends AbstractFacade implements ImportPr
      *
      * @return \Generated\Shared\Transfer\ImportProcessTransfer
      */
-    public function downloadImportProcessPayload(ImportProcessTransfer $importProcessTransfer): ImportProcessTransfer
+    public function downloadImportProcessPayloadData(ImportProcessTransfer $importProcessTransfer): ImportProcessTransfer
     {
         return $this->getFactory()->createImportProcessPayloadDataDownloader()->downloadPayloadData($importProcessTransfer);
     }
@@ -65,7 +65,7 @@ class ImportProcessGoogleSheetsFacade extends AbstractFacade implements ImportPr
      *
      * @return \Generated\Shared\Transfer\ImportProcessTransfer
      */
-    public function cleanupImportProcessPayloadAssets(ImportProcessTransfer $importProcessTransfer): ImportProcessTransfer
+    public function cleanupImportProcessPayloadData(ImportProcessTransfer $importProcessTransfer): ImportProcessTransfer
     {
         return $this->getFactory()->createImportProcessPayloadDataDeleter()->deletePayloadData($importProcessTransfer);
     }

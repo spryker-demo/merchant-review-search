@@ -45,13 +45,13 @@ class ImportProcessCreator implements ImportProcessCreatorInterface
      */
     public function createImportProcess(string $spreadsheetUrl, array $sheetNames): ImportProcessTransfer
     {
-        $allowedSheetNames = $this->filterAllowedSheetNames($sheetNames);
+        $allowedImportTypes = $this->filterAllowedSheetNames($sheetNames);
         $importProcessPayloadTransfer = new ImportProcessPayloadTransfer();
         $importProcessPayloadTransfer->setType($this->config->getSourceType());
 
-        foreach ($allowedSheetNames as $sheetName) {
+        foreach ($allowedImportTypes as $importType) {
             $sourceMapTransfer = (new ImportProcessSourceMapTransfer())->setSource($spreadsheetUrl)
-                ->setImportType($sheetName);
+                ->setImportType($importType);
             $importProcessPayloadTransfer->addSourceMap($sourceMapTransfer);
         }
 
@@ -65,6 +65,6 @@ class ImportProcessCreator implements ImportProcessCreatorInterface
      */
     protected function filterAllowedSheetNames(array $sheetNames): array
     {
-        return array_intersect($this->config->getAllowedSheetNames(), $sheetNames);
+        return array_intersect($this->config->getAllowedImportTypes(), $sheetNames);
     }
 }

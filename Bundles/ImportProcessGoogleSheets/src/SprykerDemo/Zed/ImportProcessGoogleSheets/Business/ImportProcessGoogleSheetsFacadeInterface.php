@@ -35,11 +35,11 @@ interface ImportProcessGoogleSheetsFacadeInterface
      *
      * @return \Generated\Shared\Transfer\ImportProcessTransfer
      */
-    public function downloadImportProcessPayload(ImportProcessTransfer $importProcessTransfer): ImportProcessTransfer;
+    public function downloadImportProcessPayloadData(ImportProcessTransfer $importProcessTransfer): ImportProcessTransfer;
 
     /**
      * Specification:
-     * - Removes previously downloaded payload assets.
+     * - Removes previously downloaded payload data.
      *
      * @api
      *
@@ -47,7 +47,7 @@ interface ImportProcessGoogleSheetsFacadeInterface
      *
      * @return \Generated\Shared\Transfer\ImportProcessTransfer
      */
-    public function cleanupImportProcessPayloadAssets(ImportProcessTransfer $importProcessTransfer): ImportProcessTransfer;
+    public function cleanupImportProcessPayloadData(ImportProcessTransfer $importProcessTransfer): ImportProcessTransfer;
 
     /**
      * Specification:

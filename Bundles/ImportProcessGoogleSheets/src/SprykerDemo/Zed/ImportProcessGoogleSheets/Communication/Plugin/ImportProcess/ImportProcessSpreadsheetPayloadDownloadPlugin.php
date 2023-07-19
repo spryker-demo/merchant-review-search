@@ -44,6 +44,6 @@ class ImportProcessSpreadsheetPayloadDownloadPlugin extends AbstractPlugin imple
      */
     public function preExecute(ImportProcessTransfer $importProcessTransfer): ImportProcessTransfer
     {
-        return $this->getFacade()->downloadImportProcessPayload($importProcessTransfer);
+        return $this->getFacade()->downloadImportProcessPayloadData($importProcessTransfer);
     }
 }
