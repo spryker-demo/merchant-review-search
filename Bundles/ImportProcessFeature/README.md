@@ -116,6 +116,31 @@ protected function getImportProcessPostExecutePlugins(): array
 {% endblock %}
 ```
 
+### Add `synchronization` Propel behavior
+
+```
+<?xml version="1.0"?>
+<database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          name="zed"
+          xsi:noNamespaceSchemaLocation="http://static.spryker.com/schema-01.xsd"
+          namespace="Orm\Zed\ImportProcess\Persistence"
+          package="src.Orm.Zed.ImportProcess.Persistence">
+
+    <table name="spy_import_process">
+        <behavior name="event">
+            <parameter name="spy_import_process_create" column="*"/>
+        </behavior>
+    </table>
+
+</database>
+```
+
+### Build Propel classes
+
+```
+console propel:install
+```
+
 ### Generate Backoffice translations
 
 ```
