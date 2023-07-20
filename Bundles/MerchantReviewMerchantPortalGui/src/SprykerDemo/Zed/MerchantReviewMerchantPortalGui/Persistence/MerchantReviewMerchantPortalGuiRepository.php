@@ -197,6 +197,7 @@ class MerchantReviewMerchantPortalGuiRepository extends AbstractRepository imple
             $merchantReviewQuery = $this->addNaturalSorting($merchantReviewQuery, $orderColumn, $orderDirection);
         }
 
+        /** @var \Orm\Zed\MerchantReview\Persistence\SpyMerchantReviewQuery $merchantReviewQuery */
         $merchantReviewQuery->orderBy($orderColumn, $orderDirection);
 
         return $merchantReviewQuery;

@@ -85,7 +85,7 @@ interface MerchantReviewFacadeInterface
      *
      * @api
      *
-     * @param array $merchantReviewIds
+     * @param array<int> $merchantReviewIds
      *
      * @return mixed
      */

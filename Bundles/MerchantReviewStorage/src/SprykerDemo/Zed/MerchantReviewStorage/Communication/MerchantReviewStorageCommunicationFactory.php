@@ -7,13 +7,12 @@
 
 namespace SprykerDemo\Zed\MerchantReviewStorage\Communication;
 
-use Spryker\Zed\EventBehavior\Business\EventBehaviorFacade;
+use Spryker\Zed\EventBehavior\Business\EventBehaviorFacadeInterface;
 use Spryker\Zed\Kernel\Communication\AbstractCommunicationFactory;
 use SprykerDemo\Zed\MerchantReview\Business\MerchantReviewFacadeInterface;
 use SprykerDemo\Zed\MerchantReviewStorage\MerchantReviewStorageDependencyProvider;
 
 /**
- * @method \SprykerDemo\Zed\MerchantReviewStorage\Persistence\MerchantReviewStorageRepositoryInterface getRepository()
  * @method \SprykerDemo\Zed\MerchantReviewStorage\MerchantReviewStorageConfig getConfig()
  * @method \SprykerDemo\Zed\MerchantReviewStorage\Business\MerchantReviewStorageFacadeInterface getFacade()
  */
@@ -22,7 +21,7 @@ class MerchantReviewStorageCommunicationFactory extends AbstractCommunicationFac
     /**
      * @return \Spryker\Zed\EventBehavior\Business\EventBehaviorFacadeInterface
      */
-    public function getEventBehaviorFacade(): EventBehaviorFacade
+    public function getEventBehaviorFacade(): EventBehaviorFacadeInterface
     {
         return $this->getProvidedDependency(MerchantReviewStorageDependencyProvider::FACADE_EVENT_BEHAVIOR);
     }

@@ -52,7 +52,7 @@ class MerchantReviewRepository extends AbstractRepository implements MerchantRev
     }
 
     /**
-     * @param array $merchantReviewIds
+     * @param array<int> $merchantReviewIds
      *
      * @return \Generated\Shared\Transfer\MerchantReviewCollectionTransfer
      */

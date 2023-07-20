@@ -10,7 +10,7 @@ namespace SprykerDemo\Zed\MerchantReviewStorage\Business\Storage;
 interface MerchantReviewStorageWriterInterface
 {
     /**
-     * @param array $eventTransfers
+     * @param array<\Generated\Shared\Transfer\EventEntityTransfer> $eventTransfers
      *
      * @return void
      */

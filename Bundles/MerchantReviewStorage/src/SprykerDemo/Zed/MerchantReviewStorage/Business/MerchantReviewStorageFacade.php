@@ -19,7 +19,7 @@ class MerchantReviewStorageFacade extends AbstractFacade implements MerchantRevi
      *
      * @api
      *
-     * @param array $eventTransfers
+     * @param array<\Generated\Shared\Transfer\EventEntityTransfer> $eventTransfers
      *
      * @return void
      */

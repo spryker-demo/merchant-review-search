@@ -14,14 +14,14 @@ use Spryker\Service\Synchronization\SynchronizationServiceInterface;
 class MerchantReviewStorageKeyGenerator implements MerchantReviewStorageKeyGeneratorInterface
 {
     /**
-     * @var array
+     * @var array<\Spryker\Service\Synchronization\Dependency\Plugin\SynchronizationKeyGeneratorPluginInterface>
      */
-    protected static $storageKeyBuilders = [];
+    protected static array $storageKeyBuilders = [];
 
     /**
      * @var \Spryker\Service\Synchronization\SynchronizationServiceInterface
      */
-    protected $synchronizationService;
+    protected SynchronizationServiceInterface $synchronizationService;
 
     /**
      * @param \Spryker\Service\Synchronization\SynchronizationServiceInterface $synchronizationService

@@ -46,7 +46,7 @@ class MerchantReviewStorageWriter implements MerchantReviewStorageWriterInterfac
     }
 
     /**
-     * @param array $eventTransfers
+     * @param array<\Generated\Shared\Transfer\EventEntityTransfer> $eventTransfers
      *
      * @return void
      */
@@ -62,7 +62,7 @@ class MerchantReviewStorageWriter implements MerchantReviewStorageWriterInterfac
     }
 
     /**
-     * @param array $merchantReviewIds
+     * @param array<int> $merchantReviewIds
      *
      * @return void
      */

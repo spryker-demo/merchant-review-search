@@ -96,7 +96,7 @@ class MerchantReviewFacade extends AbstractFacade implements MerchantReviewFacad
      *
      * @api
      *
-     * @param array $merchantReviewIds
+     * @param array<int> $merchantReviewIds
      *
      * @return \Generated\Shared\Transfer\MerchantReviewCollectionTransfer
      */

@@ -9,7 +9,6 @@ namespace SprykerDemo\Client\MerchantReview;
 
 use Spryker\Client\Kernel\AbstractFactory;
 use Spryker\Client\ZedRequest\ZedRequestClientInterface;
-use SprykerDemo\Client\MerchantReview\Calculator\MerchantReviewSummaryCalculator;
 use SprykerDemo\Client\MerchantReview\Zed\MerchantReviewStub;
 use SprykerDemo\Client\MerchantReview\Zed\MerchantReviewStubInterface;
 
@@ -32,13 +31,5 @@ class MerchantReviewFactory extends AbstractFactory
     protected function getZedRequestClient(): ZedRequestClientInterface
     {
         return $this->getProvidedDependency(MerchantReviewDependencyProvider::CLIENT_ZED_REQUEST);
-    }
-
-    /**
-     * @return \SprykerDemo\Client\MerchantReview\Calculator\MerchantReviewSummaryCalculator
-     */
-    public function createMerchantReviewSummaryCalculator(): MerchantReviewSummaryCalculator
-    {
-        return new MerchantReviewSummaryCalculator($this->getConfig());
     }
 }
