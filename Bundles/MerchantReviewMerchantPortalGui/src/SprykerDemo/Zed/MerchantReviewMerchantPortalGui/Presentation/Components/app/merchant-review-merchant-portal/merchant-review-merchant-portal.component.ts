@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation, Input, ChangeDetectionStrategy } from '@a
 import { TableConfig } from '@spryker/table';
 
 @Component({
-    selector: 'mp-merchant-reviews-merchant-portal',
+    selector: 'mp-merchant-review-merchant-portal',
     templateUrl: './merchant-review-merchant-portal.component.html',
     styleUrls: ['./merchant-review-merchant-portal.component.less'],
     changeDetection: ChangeDetectionStrategy.OnPush,
