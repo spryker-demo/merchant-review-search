@@ -118,3 +118,29 @@ class TransferConfig extends SprykerTransferConfig
     ...
 }
 ```
+
+### Override `TranslatorConfig`
+
+```php
+# src/Pyz/Zed/Translator/TranslatorConfig.php
+
+<?php
+
+namespace Pyz\Zed\Translator;
+
+use Spryker\Zed\Translator\TranslatorConfig as SprykerTranslatorConfig;
+
+class TranslatorConfig extends SprykerTranslatorConfig
+{
+    public function getCoreTranslationFilePathPatterns(): array
+    {
+        $coreTranslationFilePathPatterns = parent::getCoreTranslationFilePathPatterns();
+        $coreTranslationFilePathPatterns[] = APPLICATION_VENDOR_DIR . '/spryker/spryker-demo/Bundles/*/data/translation/Zed/[a-z][a-z]_[A-Z][A-Z].csv';
+
+        return $coreTranslationFilePathPatterns;
+    }
+
+    ...
+}
+
+```

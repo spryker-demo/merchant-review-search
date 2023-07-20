@@ -16,6 +16,15 @@ composer config repositories.spryker-demo-subscription-product-page path './demo
 composer require spryker-demo/subscription-product-feature
 ```
 
+### Add `SprykerDemo` namespace to configuration
+
+```
+$config[KernelConstants::CORE_NAMESPACES] = [
+    ...
+    'SprykerDemo',
+];
+```
+
 ### Wire the router provider plugin
 
 ```
