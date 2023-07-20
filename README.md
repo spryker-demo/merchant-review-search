@@ -144,3 +144,40 @@ class TranslatorConfig extends SprykerTranslatorConfig
 }
 
 ```
+### Frontend config
+
+#### frontend/settings.js
+```js
+
+const paths = {
+
+    // demo folders
+    demo: globalSettings.paths.demo,
+};
+
+// define global settings
+const globalSettings = {
+
+    paths: {
+
+
+        // demo folders
+        demo: '/vendor/spryker/spryker-demo',
+    },
+
+};
+
+// return settings
+return {
+    // define settings for suite-frontend-builder finder
+    find: {
+        // entry point patterns (components)
+        componentEntryPoints: {
+            // absolute dirs in which look for
+            dirs: [
+                join(globalSettings.context, paths.demo),
+            ],
+        }
+    }
+};
+```

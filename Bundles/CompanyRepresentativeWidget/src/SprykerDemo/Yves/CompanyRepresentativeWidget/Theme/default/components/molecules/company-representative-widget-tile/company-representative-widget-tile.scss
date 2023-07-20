@@ -1,0 +1,72 @@
+$setting-color-title: #2f2f2f;
+
+@mixin company-representative-widget-company-representative-widget-tile($name: '.company-representative-widget-tile') {
+    #{$name} {
+        display: flex;
+        flex-flow: row nowrap;
+        background-color: $setting-color-gray-7;
+        color: $setting-color-gray-4;
+        align-items: flex-start;
+        justify-content: center;
+        position: relative;
+        margin-bottom: rem(10);
+        font-size: rem(16);
+        font-weight: fw(medium);
+        line-height: 1.265;
+
+        &__icon {
+            flex: none;
+            position: absolute;
+            top: rem(20);
+            right: rem(20);
+            width: rem(24);
+            height: rem(24);
+            color: $setting-color-gray-4;
+
+            @include helper-breakpoint-media-min($md) {
+                position: static;
+                margin: rem(53) 0 rem(32) rem(38);
+                width: rem(32);
+                height: rem(32);
+            }
+
+            &:only-child {
+                margin: rem(32);
+            }
+        }
+
+        &__main {
+            flex: 1;
+            padding: rem(23) rem(20);
+
+            @include helper-breakpoint-media-min($md) {
+                padding: rem(34) rem(32);
+            }
+        }
+
+        &__title {
+            color: $setting-color-title;
+            font-size: rem(24);
+            line-height: 1.265;
+            font-weight: fw(medium);
+        }
+
+        &__text {
+            margin: 0;
+        }
+
+        &__title + &__text {
+            margin-top: rem(20);
+        }
+
+        &__list-item {
+            &:not(:last-child) {
+                margin-bottom: rem(22);
+            }
+        }
+
+        @content;
+    }
+}
+
+@include company-representative-widget-company-representative-widget-tile;

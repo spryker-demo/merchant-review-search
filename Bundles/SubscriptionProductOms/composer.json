@@ -5,9 +5,11 @@
     "license": "proprietary",
     "require": {
         "php": ">=8.0",
-        "spryker/oms": "*",
-        "spryker/product": "*",
-        "spryker/zed-request": "*"
+        "spryker/kernel": "^3.70.0",
+        "spryker/oms": "^11.22.1",
+        "spryker/product": "^6.29.1",
+        "spryker/sales": "^11.34.2",
+        "spryker/zed-request": "^3.18.1"
     },
     "require-dev": {
         "spryker/code-sniffer": "*"

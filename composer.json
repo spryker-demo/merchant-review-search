@@ -9,9 +9,22 @@
         "spryker/code-sniffer": "dev-master"
     },
     "replace": {
+        "spryker-demo/frontend-configurator": "*",
+        "spryker-demo/frontend-configurator-gui": "*",
+        "spryker-demo/frontend-configurator-storage": "*",
+        "spryker-demo/frontend-configurator-widget": "*",
+        "spryker-demo/frontend-configurator-feature": "*",
         "spryker-demo/subscription-product-page": "*",
         "spryker-demo/subscription-product-oms": "*",
-        "spryker-demo/subscription-product-feature": "*"
+        "spryker-demo/subscription-product-feature": "*",
+        "spryker-demo/merchant-registration": "*",
+        "spryker-demo/merchant-registration-page": "*",
+        "spryker-demo/merchant-registration-data-import": "*",
+        "spryker-demo/merchant-registration-feature": "*",
+        "spryker-demo/company-representative": "*",
+        "spryker-demo/company-representative-gui": "*",
+        "spryker-demo/company-representative-widget": "*",
+        "spryker-demo/company-representative-feature": "*"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
