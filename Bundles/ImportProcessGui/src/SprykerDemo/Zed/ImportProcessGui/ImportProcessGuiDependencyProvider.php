@@ -7,6 +7,7 @@
 
 namespace SprykerDemo\Zed\ImportProcessGui;
 
+use Orm\Zed\ImportProcess\Persistence\SpyImportProcessQuery;
 use Spryker\Zed\Kernel\AbstractBundleDependencyProvider;
 use Spryker\Zed\Kernel\Container;
 
@@ -20,7 +21,12 @@ class ImportProcessGuiDependencyProvider extends AbstractBundleDependencyProvide
     /**
      * @var string
      */
-    public const FACADE_PRODUCT_IMPORT_PROCESS = 'FACADE_PRODUCT_IMPORT_PROCESS';
+    public const FACADE_IMPORT_PROCESS = 'FACADE_IMPORT_PROCESS';
+
+    /**
+     * @var string
+     */
+    public const QUERY_IMPORT_PROCESS = 'QUERY_IMPORT_PROCESS';
 
     /**
      * @param \Spryker\Zed\Kernel\Container $container
@@ -29,9 +35,9 @@ class ImportProcessGuiDependencyProvider extends AbstractBundleDependencyProvide
      */
     public function provideCommunicationLayerDependencies(Container $container): Container
     {
-        $container = parent::provideCommunicationLayerDependencies($container);
         $container = $this->addAclFacade($container);
         $container = $this->addImportProcessFacade($container);
+        $container = $this->addImportProcessQuery($container);
 
         return $container;
     }
@@ -57,8 +63,22 @@ class ImportProcessGuiDependencyProvider extends AbstractBundleDependencyProvide
      */
     protected function addImportProcessFacade(Container $container): Container
     {
-        $container->set(static::FACADE_PRODUCT_IMPORT_PROCESS, function (Container $container) {
+        $container->set(static::FACADE_IMPORT_PROCESS, function (Container $container) {
             return $container->getLocator()->importProcess()->facade();
+        });
+
+        return $container;
+    }
+
+    /**
+     * @param \Spryker\Zed\Kernel\Container $container
+     *
+     * @return \Spryker\Zed\Kernel\Container
+     */
+    protected function addImportProcessQuery(Container $container): Container
+    {
+        $container->set(static::QUERY_IMPORT_PROCESS, function () {
+            return SpyImportProcessQuery::create();
         });
 
         return $container;

@@ -26,7 +26,22 @@ class SelectSheetForm extends AbstractType
     /**
      * @var string
      */
-    public const BLOCK_PREFIX = 'selectSheetForm';
+    protected const BLOCK_PREFIX = 'selectSheetForm';
+
+    /**
+     * @var string
+     */
+    protected const LABEL_SPREADSHEET_URL = 'Spreadsheet URL';
+
+    /**
+     * @var string
+     */
+    protected const REGEX_SPREADSHEET_URL = '/^https:\/\/docs.google.com\/spreadsheets\/d\/[a-zA-Z0-9_-]+\/edit(.*)$/';
+
+    /**
+     * @var string
+     */
+    protected const VALIDATION_MESSAGE_SPREADSHEET_URL = 'Please enter a valid Google Spreadsheet URL';
 
     /**
      * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
@@ -69,15 +84,15 @@ class SelectSheetForm extends AbstractType
     protected function addSheetUrlField(FormBuilderInterface $builder)
     {
         $builder->add(static::FIELD_SHEET_URL, TextType::class, [
-            'label' => 'Spreadsheet URL',
+            'label' => static::LABEL_SPREADSHEET_URL,
             'required' => true,
             'attr' => [
                 'placeholder' => '',
             ],
             'constraints' => [
                 new Regex([
-                    'pattern' => '/^https:\/\/docs.google.com\/spreadsheets\/d\/[a-zA-Z0-9_-]+\/edit(.*)$/',
-                    'message' => 'Please enter a valid Google Spreadsheet URL',
+                    'pattern' => static::REGEX_SPREADSHEET_URL,
+                    'message' => static::VALIDATION_MESSAGE_SPREADSHEET_URL,
                 ]),
             ],
         ]);

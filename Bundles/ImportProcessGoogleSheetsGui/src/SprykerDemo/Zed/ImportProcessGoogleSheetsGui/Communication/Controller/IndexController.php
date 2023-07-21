@@ -8,7 +8,6 @@
 namespace SprykerDemo\Zed\ImportProcessGoogleSheetsGui\Communication\Controller;
 
 use Spryker\Service\UtilText\Model\Url\Url;
-use Spryker\Zed\Kernel\BundleConfigResolverAwareTrait;
 use Spryker\Zed\Kernel\Communication\Controller\AbstractController;
 use SprykerDemo\Zed\ImportProcessGoogleSheetsGui\Communication\Exception\SpreadsheetAccessDeniedException;
 use SprykerDemo\Zed\ImportProcessGoogleSheetsGui\Communication\Form\ImportSheetForm;
@@ -20,8 +19,6 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class IndexController extends AbstractController
 {
-    use BundleConfigResolverAwareTrait;
-
     /**
      * @var string
      */

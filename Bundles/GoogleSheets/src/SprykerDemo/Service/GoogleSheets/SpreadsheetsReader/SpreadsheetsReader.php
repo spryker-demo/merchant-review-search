@@ -15,6 +15,11 @@ use SprykerDemo\Service\GoogleSheets\GoogleSheetsConfig;
 class SpreadsheetsReader implements SpreadsheetsReaderInterface
 {
     /**
+     * @var string
+     */
+    protected const REGEX_SPREADSHEET_ID = '/(?<=\/spreadsheets\/d\/)[a-zA-Z0-9-_]+/';
+
+    /**
      * @var \Google_Service_Sheets
      */
     protected Google_Service_Sheets $googleSheetsService;
@@ -89,7 +94,7 @@ class SpreadsheetsReader implements SpreadsheetsReaderInterface
     {
         $matches = [];
 
-        preg_match('/(?<=\/spreadsheets\/d\/)[a-zA-Z0-9-_]+/', $spreadsheetUrl, $matches);
+        preg_match(static::REGEX_SPREADSHEET_ID, $spreadsheetUrl, $matches);
         $spreadsheetId = $matches[0] ?? null;
 
         if ($spreadsheetId === null) {

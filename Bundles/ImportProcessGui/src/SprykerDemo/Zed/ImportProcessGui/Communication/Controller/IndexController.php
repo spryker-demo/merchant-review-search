@@ -7,7 +7,6 @@
 
 namespace SprykerDemo\Zed\ImportProcessGui\Communication\Controller;
 
-use Spryker\Zed\Kernel\BundleConfigResolverAwareTrait;
 use Spryker\Zed\Kernel\Communication\Controller\AbstractController;
 use SprykerDemo\Zed\ImportProcessGui\ImportProcessGuiConfig;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -19,8 +18,6 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class IndexController extends AbstractController
 {
-    use BundleConfigResolverAwareTrait;
-
     /**
      * @var string
      */
@@ -42,7 +39,7 @@ class IndexController extends AbstractController
     public function indexAction(): array
     {
         $table = $this->getFactory()
-            ->createTable();
+            ->createImportProcessGuiTable();
 
         return $this->viewResponse([
             'table' => $table->render(),
@@ -55,7 +52,7 @@ class IndexController extends AbstractController
     public function tableAction(): JsonResponse
     {
         $table = $this->getFactory()
-            ->createTable();
+            ->createImportProcessGuiTable();
 
         return $this->jsonResponse($table->fetchData());
     }

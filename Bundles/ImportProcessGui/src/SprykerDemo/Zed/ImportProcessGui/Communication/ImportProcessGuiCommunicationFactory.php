@@ -22,7 +22,7 @@ class ImportProcessGuiCommunicationFactory extends AbstractCommunicationFactory
     /**
      * @return \SprykerDemo\Zed\ImportProcessGui\Communication\Table\ImportProcessGuiTable
      */
-    public function createTable(): ImportProcessGuiTable
+    public function createImportProcessGuiTable(): ImportProcessGuiTable
     {
         return new ImportProcessGuiTable(
             $this->getImportProcessQuery(),
@@ -35,7 +35,7 @@ class ImportProcessGuiCommunicationFactory extends AbstractCommunicationFactory
      */
     protected function getImportProcessQuery(): SpyImportProcessQuery
     {
-        return SpyImportProcessQuery::create();
+        return $this->getProvidedDependency(ImportProcessGuiDependencyProvider::QUERY_IMPORT_PROCESS);
     }
 
     /**
@@ -51,6 +51,6 @@ class ImportProcessGuiCommunicationFactory extends AbstractCommunicationFactory
      */
     public function getImportProcessFacade(): ImportProcessFacadeInterface
     {
-        return $this->getProvidedDependency(ImportProcessGuiDependencyProvider::FACADE_PRODUCT_IMPORT_PROCESS);
+        return $this->getProvidedDependency(ImportProcessGuiDependencyProvider::FACADE_IMPORT_PROCESS);
     }
 }

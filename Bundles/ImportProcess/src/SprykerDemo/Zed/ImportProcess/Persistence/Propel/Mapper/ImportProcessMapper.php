@@ -5,7 +5,7 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-namespace SprykerDemo\Zed\ImportProcess\Persistence\Mapper;
+namespace SprykerDemo\Zed\ImportProcess\Persistence\Propel\Mapper;
 
 use Generated\Shared\Transfer\ImportProcessPayloadTransfer;
 use Generated\Shared\Transfer\ImportProcessReportTransfer;

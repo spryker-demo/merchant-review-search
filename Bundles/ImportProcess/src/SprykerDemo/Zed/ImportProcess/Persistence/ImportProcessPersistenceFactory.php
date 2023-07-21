@@ -9,11 +9,10 @@ namespace SprykerDemo\Zed\ImportProcess\Persistence;
 
 use Orm\Zed\ImportProcess\Persistence\SpyImportProcessQuery;
 use Spryker\Zed\Kernel\Persistence\AbstractPersistenceFactory;
-use SprykerDemo\Zed\ImportProcess\Persistence\Mapper\ImportProcessMapper;
+use SprykerDemo\Zed\ImportProcess\Persistence\Propel\Mapper\ImportProcessMapper;
 
 /**
  * @method \SprykerDemo\Zed\ImportProcess\ImportProcessConfig getConfig()
- * @method \SprykerDemo\Zed\ImportProcess\Persistence\ImportProcessQueryContainerInterface getQueryContainer()
  * @method \SprykerDemo\Zed\ImportProcess\Persistence\ImportProcessRepositoryInterface getRepository()
  * @method \SprykerDemo\Zed\ImportProcess\Persistence\ImportProcessEntityManagerInterface getEntityManager()
  */
@@ -28,7 +27,7 @@ class ImportProcessPersistenceFactory extends AbstractPersistenceFactory
     }
 
     /**
-     * @return \SprykerDemo\Zed\ImportProcess\Persistence\Mapper\ImportProcessMapper
+     * @return \SprykerDemo\Zed\ImportProcess\Persistence\Propel\Mapper\ImportProcessMapper
      */
     public function createImportProcessMapper(): ImportProcessMapper
     {
