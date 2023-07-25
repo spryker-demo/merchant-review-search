@@ -13,7 +13,9 @@
             <div class="gray-bg wrapper-content">
                 <h4>{{ 'import_process.google_sheets.import_types_description_headline' | trans }}</h4>
 
-                <p>{{ 'import_process.google_sheets.import_types_description_text' | trans }}</p>
+                <p>{{ 'import_process.google_sheets.import_types_description_text' | trans({
+                        '%import_types%': allowedImportTypes | join(', ')
+                    }) }}</p>
             </div>
 
             {% block form %}

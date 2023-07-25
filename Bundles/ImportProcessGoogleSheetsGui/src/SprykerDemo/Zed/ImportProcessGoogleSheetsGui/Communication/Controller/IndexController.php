@@ -96,6 +96,9 @@ class IndexController extends AbstractController
         if (!$form->isSubmitted() || !$form->isValid()) {
             return $this->viewResponse([
                 'form' => $form->createView(),
+                'allowedImportTypes' => $this->getFactory()
+                    ->getImportProcessGoogleSheetsFacade()
+                    ->getAllowedImportTypes(),
             ]);
         }
 

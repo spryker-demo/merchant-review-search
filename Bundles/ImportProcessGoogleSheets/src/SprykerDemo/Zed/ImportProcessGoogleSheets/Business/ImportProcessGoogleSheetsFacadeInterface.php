@@ -51,11 +51,11 @@ interface ImportProcessGoogleSheetsFacadeInterface
 
     /**
      * Specification:
-     * - Gets applicable sorted spreadsheet sheet names.
+     * - Gets applicable sorted import types.
      *
      * @api
      *
      * @return array<string>
      */
-    public function getAllowedSheetNames(): array;
+    public function getAllowedImportTypes(): array;
 }

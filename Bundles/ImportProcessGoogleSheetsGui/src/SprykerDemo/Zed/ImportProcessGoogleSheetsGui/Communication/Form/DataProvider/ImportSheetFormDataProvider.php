@@ -88,7 +88,7 @@ class ImportSheetFormDataProvider
     protected function getAllowedSheetNames(array $sheetNames): array
     {
         return array_intersect(
-            $this->importProcessGoogleSheetsFacade->getAllowedSheetNames(),
+            $this->importProcessGoogleSheetsFacade->getAllowedImportTypes(),
             $sheetNames,
         );
     }

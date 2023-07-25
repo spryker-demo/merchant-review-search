@@ -37,7 +37,7 @@ class ImportProcessGoogleSheetsFacade extends AbstractFacade implements ImportPr
      *
      * @return array<string>
      */
-    public function getAllowedSheetNames(): array
+    public function getAllowedImportTypes(): array
     {
         return $this->getFactory()->getConfig()->getAllowedImportTypes();
     }
