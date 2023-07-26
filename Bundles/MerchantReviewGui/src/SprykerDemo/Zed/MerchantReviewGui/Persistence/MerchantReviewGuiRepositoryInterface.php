@@ -5,19 +5,16 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-namespace SprykerDemo\Zed\MerchantReview\Persistence;
+namespace SprykerDemo\Zed\MerchantReviewGui\Persistence;
 
 use Orm\Zed\MerchantReview\Persistence\SpyMerchantReviewQuery;
 
-interface MerchantReviewQueryContainerInterface
+interface MerchantReviewGuiRepositoryInterface
 {
     /**
-     * Specification:
-     * - Returns SpyMerchantReviewQuery.
-     *
-     * @api
+     * @param int $idLocale
      *
      * @return \Orm\Zed\MerchantReview\Persistence\SpyMerchantReviewQuery
      */
-    public function queryMerchantReview(): SpyMerchantReviewQuery;
+    public function getMerchantReviewQuery(int $idLocale): SpyMerchantReviewQuery;
 }
