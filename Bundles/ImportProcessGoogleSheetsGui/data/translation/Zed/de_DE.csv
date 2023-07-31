@@ -1,9 +1,13 @@
-import_process.google_sheets.select_importer_page_headline,"Schritt 1: Produkt-Spreadsheet"
-import_process.google_sheets.select_importer_box_headline,"Spreadsheet auswählen"
-import_process.google_sheets.select_importer_description_headline,"Produktdaten-Spreadsheet"
-import_process.google_sheets.select_importer_description_text,"Fügen Sie die URL des Google Spreadsheets, das die neuen Produktdaten enthält, in das Eingabefeld ein. Der Importmechanismus berücksichtigt nur die Daten in diesem Dokument."
+import_process.google_sheets.import_sheet_form_validation.not_blank,"Bitte wähle mindestens einen Importtypen aus"
 
-import_process.google_sheets.import_types_page_headline,"Schritt 2: Produktdatenimport"
-import_process.google_sheets.import_types_box_headline,"Produktdatenimport Typen auswählen"
-import_process.google_sheets.import_types_description_headline,"Produktdatenimport Typen"
-import_process.google_sheets.import_types_description_text,"Wähle die Importer, welche du ausführen möchtest. Jeder Importer bezieht sich auf einen jeweiligen Tab in deinem Spreadsheet. Die folgenden Importer sind verfügbar: %import_types%."
+import_process.google_sheets.select_importer_page_headline,"Schritt 1: Produkttabelle"
+import_process.google_sheets.select_importer_box_headline,"Spreadsheet auswählen"
+import_process.google_sheets.select_importer_description_headline,"Produktdatentabelle"
+import_process.google_sheets.select_importer_description_text,"Fügen Sie die URL des Google Spreadsheets, das die neuen Produktdaten enthält, in das Eingabefeld ein. Der Importmechanismus berücksichtigt nur die Daten in diesem Dokument."
+import_process.google_sheets.spreadsheet_access_denied_error_message,"Zugriff auf das bereitgestellte Arbeitsblatt verweigert. Bitte gewähren Sie den Zugriff per Link auf das bereitgestellte Arbeitsblatt."
+
+import_process.google_sheets.import_types_page_headline,"Schritt 2: Produktimport"
+import_process.google_sheets.import_types_box_headline,"Produktimporter-Typen auswählen"
+import_process.google_sheets.import_types_description_headline,"Produktimporter-Typen"
+import_process.google_sheets.import_types_description_text,"Wählen Sie die Produktimporter-Typen aus, die Sie ausführen möchten. Jeder Produktimporter-Typen verweist auf einen Tab in der Tabelle. Die folgenden Typen sind verfügbar: %import_types%."
+

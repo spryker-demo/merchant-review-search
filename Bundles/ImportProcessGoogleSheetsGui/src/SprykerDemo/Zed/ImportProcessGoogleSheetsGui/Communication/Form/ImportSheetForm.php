@@ -36,7 +36,7 @@ class ImportSheetForm extends AbstractType
     /**
      * @var string
      */
-    protected const VALIDATION_NOT_BLANK_MESSAGE = 'validation.not_blank';
+    protected const VALIDATION_NOT_BLANK_MESSAGE = 'import_process.google_sheets.import_sheet_form_validation.not_blank';
 
     /**
      * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
