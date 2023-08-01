@@ -22,7 +22,7 @@ class IndexController extends AbstractController
     /**
      * @var string
      */
-    protected const SPREADSHEET_ACCESS_DENIED_ERROR_MESSAGE = 'Access denied to the provided spreadsheet. Please grant access by link to the provided spreadsheet.';
+    protected const SPREADSHEET_ACCESS_DENIED_ERROR_MESSAGE = 'import_process.google_sheets.spreadsheet_access_denied_error_message';
 
     /**
      * @var string
