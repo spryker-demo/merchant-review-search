@@ -1,0 +1,23 @@
+{
+    "name": "spryker-demo/import-process-feature",
+    "type": "metapackage",
+    "description": "Import process [feature]",
+    "license": "proprietary",
+    "require": {
+        "php": ">=8.0",
+        "spryker-demo/import-process": "*",
+        "spryker-demo/import-process-google-sheets": "*",
+        "spryker-demo/import-process-google-sheets-gui": "*",
+        "spryker-demo/import-process-gui": "*"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
