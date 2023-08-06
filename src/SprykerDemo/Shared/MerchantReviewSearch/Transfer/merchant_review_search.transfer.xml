@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<transfers xmlns="spryker:transfer-01"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="spryker:transfer-01 http://static.spryker.com/transfer-01.xsd">
+
+    <transfer name="MerchantReviewSearchRequest">
+        <property name="idMerchant" type="int"/>
+        <property name="requestParams" type="array" singular="requestParams"/>
+    </transfer>
+    
+    <transfer name="MerchantReviewSearch">
+        <property name="idMerchantReviewSearch" type="int"/>
+        <property name="idMerchnatReview" type="int"/>
+        <property name="fkMerchant" type="int"/>
+        <property name="fkLocale" type="int"/>
+        <property name="createdAt" type="string"/>
+        <property name="updatedAt" type="string"/>
+        <property name="data" type="array" singular="data"/>
+        <property name="structuredData" type="string"/>
+        <property name="key" type="string"/>
+    </transfer>
+
+    <transfer name="MerchantSearch">
+        <property name="averageRating" type="float"/>
+        <property name="reviewCount" type="int"/>
+        <property name="idMerchant" type="int"/>
+    </transfer>
+
+</transfers>

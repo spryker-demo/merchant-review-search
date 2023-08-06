@@ -1,51 +1,50 @@
 {
-    "name": "spryker/spryker-demo",
-    "description": "Spryker Demo Packages",
+    "name": "spryker-demo/merchant-review-search",
+    "type": "library",
+    "description": "MerchantReviewSearch module",
     "license": "proprietary",
     "require": {
-        "php": ">=8.0"
+        "php": ">=8.0",
+        "spryker-demo/merchant-review": "*",
+        "spryker/event-behavior": "*",
+        "spryker/kernel": "^3.70.0",
+        "spryker/publisher-extension": "*",
+        "spryker/search": "*",
+        "spryker/search-extension": "*",
+        "spryker/store": "*",
+        "spryker/util-encoding": "*"
     },
     "require-dev": {
-        "spryker/code-sniffer": "dev-master"
+        "spryker/code-sniffer": "*",
+        "spryker/elastica": "*",
+        "spryker/search-elasticsearch": "*"
     },
-    "replace": {
-        "spryker-demo/frontend-configurator": "*",
-        "spryker-demo/frontend-configurator-gui": "*",
-        "spryker-demo/frontend-configurator-storage": "*",
-        "spryker-demo/frontend-configurator-widget": "*",
-        "spryker-demo/frontend-configurator-feature": "*",
-        "spryker-demo/google-sheets": "*",
-        "spryker-demo/import-process": "*",
-        "spryker-demo/import-process-google-sheets": "*",
-        "spryker-demo/import-process-google-sheets-gui": "*",
-        "spryker-demo/import-process-gui": "*",
-        "spryker-demo/merchant-review": "*",
-        "spryker-demo/merchant-review-gui": "*",
-        "spryker-demo/merchant-review-merchant-portal-gui": "*",
-        "spryker-demo/merchant-review-storage": "*",
-        "spryker-demo/merchant-review-widget": "*",
-        "spryker-demo/subscription-product-page": "*",
-        "spryker-demo/subscription-product-oms": "*",
-        "spryker-demo/subscription-product-feature": "*",
-        "spryker-demo/merchant-registration": "*",
-        "spryker-demo/merchant-registration-page": "*",
-        "spryker-demo/merchant-registration-data-import": "*",
-        "spryker-demo/merchant-registration-feature": "*",
-        "spryker-demo/company-representative": "*",
-        "spryker-demo/company-representative-gui": "*",
-        "spryker-demo/company-representative-widget": "*",
-        "spryker-demo/company-representative-feature": "*"
+    "autoload": {
+        "psr-4": {
+            "SprykerDemo\\": "src/SprykerDemo/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SprykerDemoTest\\": "tests/SprykerDemoTest/"
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
-    "config": {
-        "use-include-path": true,
-        "process-timeout": 1200,
-        "allow-plugins": {
-            "dealerdirect/phpcodesniffer-composer-installer": true
+    "scripts": {
+        "cs-check": "phpcs -p -s --standard=vendor/spryker/code-sniffer/SprykerStrict/ruleset.xml src/ tests/",
+        "cs-fix": "phpcbf -p --standard=vendor/spryker/code-sniffer/SprykerStrict/ruleset.xml src/ tests/"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
         }
     },
-    "scripts": {
-        "cs-check": "php -d memory_limit=1300M vendor/bin/phpcs"
+    "config": {
+        "sort-packages": true
+    },
+    "suggest": {
+        "spryker/elastica": "ADD SUGGEST DESCRIPTION",
+        "spryker/search-elasticsearch": "ADD SUGGEST DESCRIPTION"
     }
 }

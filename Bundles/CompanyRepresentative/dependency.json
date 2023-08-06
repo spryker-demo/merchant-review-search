@@ -1,5 +1,0 @@
-{
-    "exclude-dev": {
-        "spryker/customer": "Provides plugin interfaces to extend customer transfer."
-    }
-}

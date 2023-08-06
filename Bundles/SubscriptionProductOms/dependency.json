@@ -1,5 +1,0 @@
-{
-    "include": {
-        "spryker/sales": "Provides sales order item entity for OMS plugins."
-    }
-}
