@@ -84,7 +84,7 @@ class MerchantReviewSearchDependencyProvider extends AbstractDependencyProvider
     }
 
     /**
-     * @return array<\Spryker\Client\Search\Dependency\Plugin\QueryExpanderPluginInterface>
+     * @return array<\Spryker\Client\SearchExtension\Dependency\Plugin\QueryExpanderPluginInterface>
      */
     public function getMerchantReviewsQueryExpanderPlugins(): array
     {
@@ -92,7 +92,7 @@ class MerchantReviewSearchDependencyProvider extends AbstractDependencyProvider
     }
 
     /**
-     * @return array<\Spryker\Client\Search\Dependency\Plugin\ResultFormatterPluginInterface>
+     * @return array<\Spryker\Client\SearchExtension\Dependency\Plugin\ResultFormatterPluginInterface>
      */
     public function getMerchantReviewsSearchResultFormatterPlugins(): array
     {
