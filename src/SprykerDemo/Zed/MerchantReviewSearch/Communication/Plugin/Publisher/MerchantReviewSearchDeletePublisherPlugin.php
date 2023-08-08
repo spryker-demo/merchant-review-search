@@ -9,7 +9,7 @@ namespace SprykerDemo\Zed\MerchantReviewSearch\Communication\Plugin\Publisher;
 
 use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 use Spryker\Zed\PublisherExtension\Dependency\Plugin\PublisherPluginInterface;
-use SprykerDemo\Zed\MerchantReview\Dependency\MerchantReviewEvents;
+use SprykerDemo\Shared\MerchantReviewSearch\MerchantReviewSearchConfig;
 
 /**
  * @method \SprykerDemo\Zed\MerchantReviewSearch\Business\MerchantReviewSearchFacadeInterface getFacade()
@@ -45,8 +45,8 @@ class MerchantReviewSearchDeletePublisherPlugin extends AbstractPlugin implement
     public function getSubscribedEvents(): array
     {
         return [
-            MerchantReviewEvents::ENTITY_SPY_MERCHANT_REVIEW_DELETE,
-            MerchantReviewEvents::MERCHANT_REVIEW_UNPUBLISH,
+            MerchantReviewSearchConfig::ENTITY_SPY_MERCHANT_REVIEW_DELETE,
+            MerchantReviewSearchConfig::MERCHANT_REVIEW_UNPUBLISH,
         ];
     }
 }

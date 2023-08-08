@@ -10,7 +10,6 @@
         <property name="idMerchantReviewSearch" type="int"/>
         <property name="idMerchnatReview" type="int"/>
         <property name="fkMerchant" type="int"/>
-        <property name="fkLocale" type="int"/>
         <property name="createdAt" type="string"/>
         <property name="updatedAt" type="string"/>
         <property name="data" type="array" singular="data"/>
@@ -18,10 +17,16 @@
         <property name="key" type="string"/>
     </transfer>
 
-    <transfer name="MerchantSearch">
-        <property name="averageRating" type="float"/>
-        <property name="reviewCount" type="int"/>
-        <property name="idMerchant" type="int"/>
+    <transfer name="MerchantReviewCriteria">
+        <property name="merchantReviewIds" type="int[]"/>
+        <property name="filter" type="Filter"/>
+    </transfer>
+
+     <transfer name="Filter">
+        <property name="limit" type="int"/>
+        <property name="offset" type="int"/>
+        <property name="orderBy" type="string"/>
+        <property name="orderDirection" type="string"/>
     </transfer>
 
 </transfers>

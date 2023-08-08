@@ -55,6 +55,18 @@ class MerchantReviewSearchDependencyProvider extends AbstractBundleDependencyPro
      *
      * @return \Spryker\Zed\Kernel\Container
      */
+    public function provideCommunicationLayerDependencies(Container $container): Container
+    {
+        $container = $this->addMerchantReviewFacade($container);
+
+        return $container;
+    }
+
+    /**
+     * @param \Spryker\Zed\Kernel\Container $container
+     *
+     * @return \Spryker\Zed\Kernel\Container
+     */
     public function addMerchantReviewFacade(Container $container): Container
     {
         $container->set(static::FACADE_MERCHANT_REVIEW, function (Container $container) {

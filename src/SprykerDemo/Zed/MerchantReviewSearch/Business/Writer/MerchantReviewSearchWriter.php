@@ -8,6 +8,7 @@
 namespace SprykerDemo\Zed\MerchantReviewSearch\Business\Writer;
 
 use Generated\Shared\Search\MerchantReviewIndexMap;
+use Generated\Shared\Transfer\MerchantReviewCriteriaTransfer;
 use Generated\Shared\Transfer\MerchantReviewSearchTransfer;
 use Generated\Shared\Transfer\MerchantReviewTransfer;
 use Orm\Zed\MerchantReview\Persistence\Map\SpyMerchantReviewTableMap;
@@ -86,8 +87,9 @@ class MerchantReviewSearchWriter implements MerchantReviewSearchWriterInterface
             return;
         }
 
-        $merchantReviewCollectionTransfer = $this->merchantReviewFacade->getMerchantReviewsByIds($merchantReviewIds);
-        if (!$merchantReviewCollectionTransfer->getReviews()->count()) {
+        $merchantReviewCollectionTransfer = $this->merchantReviewFacade->getMerchantReviews((new MerchantReviewCriteriaTransfer())->setMerchantReviewIds($merchantReviewIds));
+
+        if (!$merchantReviewCollectionTransfer->getMerchantReviews()->count()) {
             $this->merchantReviewSearchEntityManager->deleteMerchantReviewSearchByMerchantReviewIds($merchantReviewIds);
 
             return;
@@ -95,7 +97,7 @@ class MerchantReviewSearchWriter implements MerchantReviewSearchWriterInterface
 
         $merchantReviewSearchTransfersIndexedByMerchantReviewId = $this->merchantReviewSearchRepository->getMerchantReviewSearchTransfersIndexedByMerchantReviewId($merchantReviewIds);
 
-        $this->processMerchantReviewSearchEntities($merchantReviewCollectionTransfer->getReviews()->getArrayCopy(), $merchantReviewSearchTransfersIndexedByMerchantReviewId);
+        $this->processMerchantReviewSearchEntities($merchantReviewCollectionTransfer->getMerchantReviews()->getArrayCopy(), $merchantReviewSearchTransfersIndexedByMerchantReviewId);
     }
 
     /**
