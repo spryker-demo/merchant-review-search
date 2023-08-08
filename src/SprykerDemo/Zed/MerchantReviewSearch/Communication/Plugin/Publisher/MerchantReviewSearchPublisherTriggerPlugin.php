@@ -27,7 +27,7 @@ class MerchantReviewSearchPublisherTriggerPlugin extends AbstractPlugin implemen
      * @param int $offset
      * @param int $limit
      *
-     * @return array<\Spryker\Shared\Kernel\Transfer\AbstractTransfer>
+     * @return array<\Generated\Shared\Transfer\MerchantReviewTransfer>
      */
     public function getData(int $offset, int $limit): array
     {
@@ -76,7 +76,7 @@ class MerchantReviewSearchPublisherTriggerPlugin extends AbstractPlugin implemen
      * @param int $offset
      * @param int $limit
      *
-     * @return \Generated\Shared\Transfer\FilterTransfer
+     * @return \Generated\Shared\Transfer\MerchantReviewCriteriaTransfer
      */
     protected function createCriteriaTransfer(int $offset, int $limit): MerchantReviewCriteriaTransfer
     {

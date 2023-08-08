@@ -28,9 +28,9 @@ class RatingAggregationResultFormatterPlugin extends AbstractElasticsearchResult
 
     /**
      * @param \Elastica\ResultSet $searchResult
-     * @param array $requestParameters
+     * @param array<string, mixed> $requestParameters
      *
-     * @return array
+     * @return array<int|string, mixed>
      */
     protected function formatSearchResult(ResultSet $searchResult, array $requestParameters): array
     {
@@ -43,7 +43,7 @@ class RatingAggregationResultFormatterPlugin extends AbstractElasticsearchResult
     /**
      * @param \Elastica\ResultSet $searchResult
      *
-     * @return array
+     * @return array<int|string, mixed>
      */
     protected function extractRatingAggregation(ResultSet $searchResult): array
     {
@@ -58,9 +58,9 @@ class RatingAggregationResultFormatterPlugin extends AbstractElasticsearchResult
     }
 
     /**
-     * @param array $result
+     * @param array<int|string, mixed> $result
      *
-     * @return array
+     * @return array<int|string, mixed>
      */
     protected function sortResults(array $result): array
     {

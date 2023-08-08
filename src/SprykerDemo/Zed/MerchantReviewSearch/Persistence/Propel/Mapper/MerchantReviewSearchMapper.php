@@ -39,7 +39,10 @@ class MerchantReviewSearchMapper
         SpyMerchantReviewSearch $spyMerchantReviewSearch
     ): SpyMerchantReviewSearch {
         $spyMerchantReviewSearch->fromArray($merchantReviewSearchTransfer->toArray());
-        $spyMerchantReviewSearch->setFkMerchantReview($merchantReviewSearchTransfer->getIdMerchnatReview());
+
+        if ($merchantReviewSearchTransfer->getIdMerchnatReview()) {
+            $spyMerchantReviewSearch->setFkMerchantReview($merchantReviewSearchTransfer->getIdMerchnatReview());
+        }
 
         if ($spyMerchantReviewSearch->getPrimaryKey()) {
             $spyMerchantReviewSearch->setNew(false);

@@ -29,11 +29,11 @@ class MerchantReviewsResultFormatterPlugin extends AbstractElasticsearchResultFo
 
     /**
      * @param \Elastica\ResultSet $searchResult
-     * @param array $requestParameters
+     * @param array<string, mixed> $requestParameters
      *
-     * @return mixed
+     * @return array<\Generated\Shared\Transfer\MerchantReviewTransfer>
      */
-    public function formatSearchResult(ResultSet $searchResult, array $requestParameters = [])
+    public function formatSearchResult(ResultSet $searchResult, array $requestParameters = []): array
     {
         $merchantReviews = [];
         foreach ($searchResult->getResults() as $document) {
@@ -44,7 +44,7 @@ class MerchantReviewsResultFormatterPlugin extends AbstractElasticsearchResultFo
     }
 
     /**
-     * @param array $searchResultData
+     * @param array<string, mixed> $searchResultData
      *
      * @return \Generated\Shared\Transfer\MerchantReviewTransfer
      */

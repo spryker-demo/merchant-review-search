@@ -12,7 +12,7 @@ use Generated\Shared\Transfer\MerchantReviewSearchTransfer;
 interface MerchantReviewSearchEntityManagerInterface
 {
     /**
-     * @param array<int> $merchantReviewIds
+     * @param array<int, int> $merchantReviewIds
      *
      * @return void
      */

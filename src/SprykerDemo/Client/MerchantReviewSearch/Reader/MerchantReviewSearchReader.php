@@ -46,7 +46,7 @@ class MerchantReviewSearchReader implements MerchantReviewSearchReaderInterface
     /**
      * @param \Generated\Shared\Transfer\MerchantReviewSearchRequestTransfer $merchantReviewSearchRequestTransfer
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function search(MerchantReviewSearchRequestTransfer $merchantReviewSearchRequestTransfer): array
     {
