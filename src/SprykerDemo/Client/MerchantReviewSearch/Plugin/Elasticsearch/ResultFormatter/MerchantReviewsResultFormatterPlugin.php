@@ -50,9 +50,6 @@ class MerchantReviewsResultFormatterPlugin extends AbstractElasticsearchResultFo
      */
     protected function mapMerchantReviewDocument(array $searchResultData): MerchantReviewTransfer
     {
-        $merchantReviewTransfer = new MerchantReviewTransfer();
-        $merchantReviewTransfer->fromArray($searchResultData, true);
-
-        return $merchantReviewTransfer;
+        return (new MerchantReviewTransfer())->fromArray($searchResultData, true);
     }
 }

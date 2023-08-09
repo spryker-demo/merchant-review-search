@@ -16,17 +16,17 @@ class MerchantReviewSearchReader implements MerchantReviewSearchReaderInterface
     /**
      * @var \Spryker\Client\SearchExtension\Dependency\Plugin\QueryInterface
      */
-    protected $searchQueryPlugin;
+    protected QueryInterface $searchQueryPlugin;
 
     /**
      * @var \Spryker\Client\Search\SearchClientInterface
      */
-    protected $searchClient;
+    protected SearchClientInterface $searchClient;
 
     /**
      * @var array<\Spryker\Client\Search\Dependency\Plugin\ResultFormatterPluginInterface>
      */
-    protected $searchResultFormatterPlugins;
+    protected array $searchResultFormatterPlugins;
 
     /**
      * @param \Spryker\Client\Search\Dependency\Plugin\QueryInterface $merchantReviewsQueryPlugin

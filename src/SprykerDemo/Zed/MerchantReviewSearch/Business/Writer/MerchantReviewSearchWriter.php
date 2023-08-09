@@ -110,15 +110,14 @@ class MerchantReviewSearchWriter implements MerchantReviewSearchWriterInterface
     {
         $merchantReviewIdsToDelete = [];
         foreach ($merchantReviews as $merchantReview) {
-            if ($merchantReview->getStatus() !== SpyMerchantReviewTableMap::COL_STATUS_APPROVED) {
-                if ($merchantReview->getIdMerchantReview() !== null && isset($merchantReviewSearchTransfersIndexedByMerchantReviewId[$merchantReview->getIdMerchantReview()])) {
-                    $merchantReviewIdsToDelete[] = $merchantReview->getIdMerchantReview();
-                }
+            if ($merchantReview->getStatus() === SpyMerchantReviewTableMap::COL_STATUS_APPROVED) {
+                $this->storeMerchantReviewSearch($merchantReview, $merchantReviewSearchTransfersIndexedByMerchantReviewId[$merchantReview->getIdMerchantReview()] ?? $this->createMerchantSearchTransfer($merchantReview));
 
                 continue;
             }
-
-            $this->storeMerchantReviewSearch($merchantReview, $merchantReviewSearchTransfersIndexedByMerchantReviewId[$merchantReview->getIdMerchantReview()] ?? $this->createMerchantSearchTransfer($merchantReview));
+            if ($merchantReview->getIdMerchantReview() !== null && isset($merchantReviewSearchTransfersIndexedByMerchantReviewId[$merchantReview->getIdMerchantReview()])) {
+                $merchantReviewIdsToDelete[] = $merchantReview->getIdMerchantReview();
+            }
         }
 
         if ($merchantReviewIdsToDelete) {
