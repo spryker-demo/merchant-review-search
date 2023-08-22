@@ -10,6 +10,12 @@
             <index-column name="fk_merchant_review"/>
         </index>
         <id-method-parameter value="spy_merchant_review_search_pk_seq"/>
+        <behavior name="synchronization">
+            <parameter name="resource" value="merchant_review"/>
+            <parameter name="key_suffix_column" value="fk_merchant_review"/>
+            <parameter name="queue_group" value="sync.search.merchant_review"/>
+            <parameter name="params" value='{"type":"merchant-review"}'/>
+        </behavior>
         <behavior name="timestampable"/>
     </table>
 
