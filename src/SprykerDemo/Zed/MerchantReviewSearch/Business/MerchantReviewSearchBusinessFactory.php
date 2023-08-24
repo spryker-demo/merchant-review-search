@@ -19,7 +19,6 @@ use SprykerDemo\Zed\MerchantReviewSearch\Business\Writer\MerchantReviewSearchWri
 use SprykerDemo\Zed\MerchantReviewSearch\MerchantReviewSearchDependencyProvider;
 
 /**
- * @method \SprykerDemo\Zed\MerchantReviewSearch\MerchantReviewSearchConfig getConfig()
  * @method \SprykerDemo\Zed\MerchantReviewSearch\Persistence\MerchantReviewSearchEntityManagerInterface getEntityManager()
  * @method \SprykerDemo\Zed\MerchantReviewSearch\Persistence\MerchantReviewSearchRepositoryInterface getRepository()
  */

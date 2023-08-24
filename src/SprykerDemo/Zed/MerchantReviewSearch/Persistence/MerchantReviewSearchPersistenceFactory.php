@@ -11,9 +11,6 @@ use Orm\Zed\MerchantReviewSearch\Persistence\SpyMerchantReviewSearchQuery;
 use Spryker\Zed\Kernel\Persistence\AbstractPersistenceFactory;
 use SprykerDemo\Zed\MerchantReviewSearch\Persistence\Propel\Mapper\MerchantReviewSearchMapper;
 
-/**
- * @method \SprykerDemo\Zed\MerchantReviewSearch\MerchantReviewSearchConfig getConfig()
- */
 class MerchantReviewSearchPersistenceFactory extends AbstractPersistenceFactory
 {
     /**
