@@ -23,7 +23,7 @@ class MerchantReviewSearchConfig extends AbstractBundleConfig
 
     /**
      * Specification:
-     * - Queue name as used for processing merchant review messages
+     * - Queue name as used for processing merchant review messages.
      *
      * @api
      *
@@ -33,7 +33,7 @@ class MerchantReviewSearchConfig extends AbstractBundleConfig
 
     /**
      * Specification:
-     * - Resource name, this will use for key generating
+     * - Resource name, this will use for key generating.
      *
      * @api
      *
@@ -43,7 +43,7 @@ class MerchantReviewSearchConfig extends AbstractBundleConfig
 
     /**
      * Specification
-     * - This events will be used for spy_merchant_review publishing
+     * - This events will be used for spy_merchant_review publishing.
      *
      * @api
      *
@@ -53,7 +53,7 @@ class MerchantReviewSearchConfig extends AbstractBundleConfig
 
     /**
      * Specification
-     * - This events will be used for spy_merchant_review un-publishing
+     * - This events will be used for spy_merchant_review un-publishing.
      *
      * @api
      *
@@ -63,7 +63,7 @@ class MerchantReviewSearchConfig extends AbstractBundleConfig
 
     /**
      * Specification
-     * - This events will be used for spy_merchant_review entity update
+     * - This events will be used for spy_merchant_review entity update.
      *
      * @api
      *
@@ -73,7 +73,7 @@ class MerchantReviewSearchConfig extends AbstractBundleConfig
 
     /**
      * Specification
-     * - This events will be used for spy_merchant_review entity deletion
+     * - This events will be used for spy_merchant_review entity deletion.
      *
      * @api
      *
