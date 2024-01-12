@@ -19,8 +19,6 @@ class MerchantReviewSearchWritePublisherPlugin extends AbstractPlugin implements
 {
     /**
      * {@inheritDoc}
-     *
-     * Specification:
      *  - Writes merchant review search collection by merchant review events.
      *
      * @api

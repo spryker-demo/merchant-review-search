@@ -45,7 +45,7 @@
         "sort-packages": true
     },
     "suggest": {
-        "spryker/elastica": "ADD SUGGEST DESCRIPTION",
-        "spryker/search-elasticsearch": "ADD SUGGEST DESCRIPTION"
+        "spryker/elastica": "If you want to use Elasticsearch as the search engine.",
+        "spryker/search-elasticsearch": "If you want to use search plugins."
     }
 }

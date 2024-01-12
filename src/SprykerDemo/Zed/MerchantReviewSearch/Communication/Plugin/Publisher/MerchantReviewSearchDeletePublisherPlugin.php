@@ -19,8 +19,6 @@ class MerchantReviewSearchDeletePublisherPlugin extends AbstractPlugin implement
 {
     /**
      * {@inheritDoc}
-     *
-     * Specification:
      *  - Writes merchant review search collection by merchant review events.
      *
      * @api
