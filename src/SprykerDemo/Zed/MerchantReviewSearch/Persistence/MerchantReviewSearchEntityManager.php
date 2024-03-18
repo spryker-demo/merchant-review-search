@@ -23,11 +23,13 @@ class MerchantReviewSearchEntityManager extends AbstractEntityManager implements
      */
     public function deleteMerchantReviewSearchByMerchantReviewIds(array $merchantReviewIds): void
     {
-        $this->getFactory()
+        /** @var \Propel\Runtime\Collection\ObjectCollection $merchantReviewSearchEntities */
+        $merchantReviewSearchEntities = $this->getFactory()
             ->createMerchantReviewSearchQuery()
             ->filterByFkMerchantReview_In($merchantReviewIds)
-            ->find()
-            ->delete();
+            ->find();
+
+        $merchantReviewSearchEntities->delete();
     }
 
     /**
