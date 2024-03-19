@@ -159,7 +159,7 @@ class MerchantReviewSearchWriter implements MerchantReviewSearchWriterInterface
     {
         return [
             MerchantReviewIndexMap::STORE => $this->storeFacade->getCurrentStore(),
-            MerchantReviewIndexMap::LOCALE => $this->localeFacade->getLocaleById($merchantReviewTransfer->getIdLocale())->getLocaleName(),
+            MerchantReviewIndexMap::LOCALE => $merchantReviewTransfer->getIdLocale() ? $this->localeFacade->getLocaleById($merchantReviewTransfer->getIdLocale())->getLocaleName() : null,
             MerchantReviewIndexMap::ID_MERCHANT => $merchantReviewTransfer->getFkMerchant(),
             MerchantReviewIndexMap::RATING => $merchantReviewTransfer->getRating(),
             MerchantReviewIndexMap::SEARCH_RESULT_DATA => $merchantReviewTransfer->toArray(),
