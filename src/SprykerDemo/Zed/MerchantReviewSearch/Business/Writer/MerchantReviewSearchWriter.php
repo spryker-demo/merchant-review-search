@@ -14,6 +14,7 @@ use Generated\Shared\Transfer\MerchantReviewTransfer;
 use Orm\Zed\MerchantReview\Persistence\Map\SpyMerchantReviewTableMap;
 use Spryker\Service\UtilEncoding\UtilEncodingServiceInterface;
 use Spryker\Zed\EventBehavior\Business\EventBehaviorFacadeInterface;
+use Spryker\Zed\Locale\Business\LocaleFacadeInterface;
 use Spryker\Zed\Store\Business\StoreFacadeInterface;
 use SprykerDemo\Zed\MerchantReview\Business\MerchantReviewFacadeInterface;
 use SprykerDemo\Zed\MerchantReviewSearch\Persistence\MerchantReviewSearchEntityManagerInterface;
@@ -52,12 +53,18 @@ class MerchantReviewSearchWriter implements MerchantReviewSearchWriterInterface
     protected UtilEncodingServiceInterface $utilEncodingService;
 
     /**
+     * @var \Spryker\Zed\Locale\Business\LocaleFacadeInterface
+     */
+    protected LocaleFacadeInterface $localeFacade;
+
+    /**
      * @param \SprykerDemo\Zed\MerchantReviewSearch\Persistence\MerchantReviewSearchEntityManagerInterface $merchantReviewSearchEntityManager
      * @param \SprykerDemo\Zed\MerchantReviewSearch\Persistence\MerchantReviewSearchRepositoryInterface $merchantReviewSearchRepository
      * @param \SprykerDemo\Zed\MerchantReview\Business\MerchantReviewFacadeInterface $merchantReviewFacade
      * @param \Spryker\Zed\EventBehavior\Business\EventBehaviorFacadeInterface $eventBehaviorFacade
      * @param \Spryker\Zed\Store\Business\StoreFacadeInterface $storeFacade
      * @param \Spryker\Service\UtilEncoding\UtilEncodingServiceInterface $utilEncodingService
+     * @param \Spryker\Zed\Locale\Business\LocaleFacadeInterface $localeFacade
      */
     public function __construct(
         MerchantReviewSearchEntityManagerInterface $merchantReviewSearchEntityManager,
@@ -65,7 +72,8 @@ class MerchantReviewSearchWriter implements MerchantReviewSearchWriterInterface
         MerchantReviewFacadeInterface $merchantReviewFacade,
         EventBehaviorFacadeInterface $eventBehaviorFacade,
         StoreFacadeInterface $storeFacade,
-        UtilEncodingServiceInterface $utilEncodingService
+        UtilEncodingServiceInterface $utilEncodingService,
+        LocaleFacadeInterface $localeFacade
     ) {
         $this->merchantReviewSearchEntityManager = $merchantReviewSearchEntityManager;
         $this->merchantReviewSearchRepository = $merchantReviewSearchRepository;
@@ -73,6 +81,7 @@ class MerchantReviewSearchWriter implements MerchantReviewSearchWriterInterface
         $this->eventBehaviorFacade = $eventBehaviorFacade;
         $this->storeFacade = $storeFacade;
         $this->utilEncodingService = $utilEncodingService;
+        $this->localeFacade = $localeFacade;
     }
 
     /**
@@ -150,6 +159,7 @@ class MerchantReviewSearchWriter implements MerchantReviewSearchWriterInterface
     {
         return [
             MerchantReviewIndexMap::STORE => $this->storeFacade->getCurrentStore(),
+            MerchantReviewIndexMap::LOCALE => $this->localeFacade->getLocaleById($merchantReviewTransfer->getIdLocale())->getLocaleName(),
             MerchantReviewIndexMap::ID_MERCHANT => $merchantReviewTransfer->getFkMerchant(),
             MerchantReviewIndexMap::RATING => $merchantReviewTransfer->getRating(),
             MerchantReviewIndexMap::SEARCH_RESULT_DATA => $merchantReviewTransfer->toArray(),
