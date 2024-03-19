@@ -127,7 +127,7 @@ class MerchantReviewSearchDependencyProvider extends AbstractBundleDependencyPro
         return $container;
     }
 
-    /*
+    /**
      * @param \Spryker\Zed\Kernel\Container $container
      *
      * @return \Spryker\Zed\Kernel\Container
