@@ -35,6 +35,14 @@ class MerchantReviewSearchDependencyProvider extends AbstractBundleDependencyPro
      */
     public const SERVICE_UTIL_ENCODING = 'SERVICE_UTIL_ENCODING';
 
+    /*
+     * @var string
+     */
+    /**
+     * @var string
+     */
+    public const FACADE_LOCALE = 'FACADE_LOCALE';
+
     /**
      * @param \Spryker\Zed\Kernel\Container $container
      *
@@ -46,6 +54,7 @@ class MerchantReviewSearchDependencyProvider extends AbstractBundleDependencyPro
         $container = $this->addEventBehaviorFacade($container);
         $container = $this->addStoreFacade($container);
         $container = $this->addUtilEncodingService($container);
+        $container = $this->addLocaleFacade($container);
 
         return $container;
     }
@@ -113,6 +122,20 @@ class MerchantReviewSearchDependencyProvider extends AbstractBundleDependencyPro
     {
         $container->set(static::SERVICE_UTIL_ENCODING, function (Container $container) {
             return $container->getLocator()->utilEncoding()->service();
+        });
+
+        return $container;
+    }
+
+    /**
+     * @param \Spryker\Zed\Kernel\Container $container
+     *
+     * @return \Spryker\Zed\Kernel\Container
+     */
+    public function addLocaleFacade(Container $container): Container
+    {
+        $container->set(static::FACADE_LOCALE, function (Container $container) {
+            return $container->getLocator()->locale()->facade();
         });
 
         return $container;

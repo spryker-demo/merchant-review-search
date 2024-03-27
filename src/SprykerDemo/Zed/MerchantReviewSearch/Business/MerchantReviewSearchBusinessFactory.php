@@ -10,6 +10,7 @@ namespace SprykerDemo\Zed\MerchantReviewSearch\Business;
 use Spryker\Service\UtilEncoding\UtilEncodingServiceInterface;
 use Spryker\Zed\EventBehavior\Business\EventBehaviorFacadeInterface;
 use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
+use Spryker\Zed\Locale\Business\LocaleFacadeInterface;
 use Spryker\Zed\Store\Business\StoreFacadeInterface;
 use SprykerDemo\Zed\MerchantReview\Business\MerchantReviewFacadeInterface;
 use SprykerDemo\Zed\MerchantReviewSearch\Business\Deleter\MerchantReviewSearchDeleter;
@@ -36,6 +37,7 @@ class MerchantReviewSearchBusinessFactory extends AbstractBusinessFactory
             $this->getEventBehaviorFacade(),
             $this->getStoreFacade(),
             $this->getUtilEncodingService(),
+            $this->getLocaleFacade(),
         );
     }
 
@@ -77,5 +79,13 @@ class MerchantReviewSearchBusinessFactory extends AbstractBusinessFactory
     public function createMerchantReviewSearchDeleter(): MerchantReviewSearchDeleterInterface
     {
         return new MerchantReviewSearchDeleter($this->getEntityManager(), $this->getEventBehaviorFacade());
+    }
+
+    /**
+     * @return \Spryker\Zed\Locale\Business\LocaleFacadeInterface
+     */
+    public function getLocaleFacade(): LocaleFacadeInterface
+    {
+        return $this->getProvidedDependency(MerchantReviewSearchDependencyProvider::FACADE_LOCALE);
     }
 }
