@@ -28,6 +28,16 @@ class MerchantReviewSearchDependencyProvider extends AbstractDependencyProvider
     public const MERCHANT_REVIEWS_QUERY_EXPANDER_PLUGINS = 'MERCHANT_REVIEWS_QUERY_EXPANDER_PLUGINS';
 
     /**
+     * @var string
+     */
+    public const MERCHANT_RATING_AGGREGATION_RESULT_FORMATTER_PLUGINS = 'MERCHANT_RATING_AGGREGATION_RESULT_FORMATTER_PLUGINS';
+
+    /**
+     * @var string
+     */
+    public const MERCHANT_RATING_AGGREGATION_QUERY_EXPANDER_PLUGINS = 'MERCHANT_RATING_AGGREGATION_QUERY_EXPANDER_PLUGINS';
+
+    /**
      * @param \Spryker\Client\Kernel\Container $container
      *
      * @return \Spryker\Client\Kernel\Container
@@ -37,6 +47,8 @@ class MerchantReviewSearchDependencyProvider extends AbstractDependencyProvider
         $container = $this->addSearchClient($container);
         $container = $this->addMerchantReviewsSearchResultFormatterPlugins($container);
         $container = $this->addMerchantReviewsQueryExpanderPlugins($container);
+        $container = $this->addMerchantRatingAggregationResultFormatterPlugins($container);
+        $container = $this->addMerchantRatingAggregationQueryExpanderPlugins($container);
 
         return $container;
     }
@@ -84,6 +96,34 @@ class MerchantReviewSearchDependencyProvider extends AbstractDependencyProvider
     }
 
     /**
+     * @param \Spryker\Client\Kernel\Container $container
+     *
+     * @return \Spryker\Client\Kernel\Container
+     */
+    protected function addMerchantRatingAggregationResultFormatterPlugins(Container $container): Container
+    {
+        $container->set(static::MERCHANT_RATING_AGGREGATION_RESULT_FORMATTER_PLUGINS, function () {
+            return $this->getMerchantRatingAggregationResultFormatterPlugins();
+        });
+
+        return $container;
+    }
+
+    /**
+     * @param \Spryker\Client\Kernel\Container $container
+     *
+     * @return \Spryker\Client\Kernel\Container
+     */
+    protected function addMerchantRatingAggregationQueryExpanderPlugins(Container $container): Container
+    {
+        $container->set(static::MERCHANT_RATING_AGGREGATION_QUERY_EXPANDER_PLUGINS, function () {
+            return $this->getMerchantRatingAggregationQueryExpanderPlugins();
+        });
+
+        return $container;
+    }
+
+    /**
      * @return array<\Spryker\Client\SearchExtension\Dependency\Plugin\QueryExpanderPluginInterface>
      */
     public function getMerchantReviewsQueryExpanderPlugins(): array
@@ -95,6 +135,22 @@ class MerchantReviewSearchDependencyProvider extends AbstractDependencyProvider
      * @return array<\Spryker\Client\SearchExtension\Dependency\Plugin\ResultFormatterPluginInterface>
      */
     public function getMerchantReviewsSearchResultFormatterPlugins(): array
+    {
+        return [];
+    }
+
+    /**
+     * @return array<\Spryker\Client\SearchExtension\Dependency\Plugin\QueryExpanderPluginInterface>
+     */
+    protected function getMerchantRatingAggregationQueryExpanderPlugins(): array
+    {
+        return [];
+    }
+
+    /**
+     * @return array<\Spryker\Client\SearchExtension\Dependency\Plugin\ResultFormatterPluginInterface>
+     */
+    protected function getMerchantRatingAggregationResultFormatterPlugins(): array
     {
         return [];
     }

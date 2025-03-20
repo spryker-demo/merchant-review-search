@@ -8,6 +8,7 @@
 namespace SprykerDemo\Client\MerchantReviewSearch;
 
 use Generated\Shared\Transfer\MerchantReviewSearchRequestTransfer;
+use Generated\Shared\Transfer\RatingAggregationTransfer;
 
 interface MerchantReviewSearchClientInterface
 {
@@ -22,4 +23,16 @@ interface MerchantReviewSearchClientInterface
      * @return array<string, mixed>
      */
     public function search(MerchantReviewSearchRequestTransfer $merchantReviewSearchRequestTransfer): array;
+
+    /**
+     * Specification:
+     *  - Gets merchant rating aggregation.
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\MerchantReviewSearchRequestTransfer $merchantReviewSearchRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\RatingAggregationTransfer
+     */
+    public function getMerchantRatingAggregation(MerchantReviewSearchRequestTransfer $merchantReviewSearchRequestTransfer): RatingAggregationTransfer;
 }

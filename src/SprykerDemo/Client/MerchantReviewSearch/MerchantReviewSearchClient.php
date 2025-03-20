@@ -8,6 +8,7 @@
 namespace SprykerDemo\Client\MerchantReviewSearch;
 
 use Generated\Shared\Transfer\MerchantReviewSearchRequestTransfer;
+use Generated\Shared\Transfer\RatingAggregationTransfer;
 use Spryker\Client\Kernel\AbstractClient;
 
 /**
@@ -29,5 +30,21 @@ class MerchantReviewSearchClient extends AbstractClient implements MerchantRevie
         return $this->getFactory()
             ->createMerchantReviewSearchReader($merchantReviewSearchRequestTransfer)
             ->search($merchantReviewSearchRequestTransfer);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\MerchantReviewSearchRequestTransfer $merchantReviewSearchRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\RatingAggregationTransfer
+     */
+    public function getMerchantRatingAggregation(MerchantReviewSearchRequestTransfer $merchantReviewSearchRequestTransfer): RatingAggregationTransfer
+    {
+        return $this->getFactory()
+            ->createMerchantRatingAggregationReader($merchantReviewSearchRequestTransfer)
+            ->get($merchantReviewSearchRequestTransfer);
     }
 }

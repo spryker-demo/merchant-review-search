@@ -8,10 +8,11 @@
 namespace SprykerDemo\Client\MerchantReviewSearch\Reader;
 
 use Generated\Shared\Transfer\MerchantReviewSearchRequestTransfer;
+use Generated\Shared\Transfer\RatingAggregationTransfer;
 use Spryker\Client\Search\SearchClientInterface;
 use Spryker\Client\SearchExtension\Dependency\Plugin\QueryInterface;
 
-class MerchantReviewSearchReader implements MerchantReviewSearchReaderInterface
+class MerchantRatingAggregationReader implements MerchantRatingAggregationReaderInterface
 {
     /**
      * @var \Spryker\Client\SearchExtension\Dependency\Plugin\QueryInterface
@@ -26,34 +27,36 @@ class MerchantReviewSearchReader implements MerchantReviewSearchReaderInterface
     /**
      * @var array<\Spryker\Client\SearchExtension\Dependency\Plugin\ResultFormatterPluginInterface>
      */
-    protected array $searchResultFormatterPlugins;
+    protected array $ratingAggregationResultFormatterPlugins;
 
     /**
-     * @param \Spryker\Client\Search\Dependency\Plugin\QueryInterface $merchantReviewsQueryPlugin
+     * @param \Spryker\Client\SearchExtension\Dependency\Plugin\QueryInterface $merchantReviewsQueryPlugin
      * @param \Spryker\Client\Search\SearchClientInterface $searchClient
-     * @param array<\Spryker\Client\SearchExtension\Dependency\Plugin\ResultFormatterPluginInterface> $searchResultFormatterPlugins
+     * @param array<\Spryker\Client\SearchExtension\Dependency\Plugin\ResultFormatterPluginInterface> $ratingAggregationResultFormatterPlugins
      */
     public function __construct(
         QueryInterface $merchantReviewsQueryPlugin,
         SearchClientInterface $searchClient,
-        array $searchResultFormatterPlugins
+        array $ratingAggregationResultFormatterPlugins
     ) {
         $this->searchQueryPlugin = $merchantReviewsQueryPlugin;
         $this->searchClient = $searchClient;
-        $this->searchResultFormatterPlugins = $searchResultFormatterPlugins;
+        $this->ratingAggregationResultFormatterPlugins = $ratingAggregationResultFormatterPlugins;
     }
 
     /**
      * @param \Generated\Shared\Transfer\MerchantReviewSearchRequestTransfer $merchantReviewSearchRequestTransfer
      *
-     * @return array<string, mixed>
+     * @return \Generated\Shared\Transfer\RatingAggregationTransfer
      */
-    public function search(MerchantReviewSearchRequestTransfer $merchantReviewSearchRequestTransfer): array
+    public function get(MerchantReviewSearchRequestTransfer $merchantReviewSearchRequestTransfer): RatingAggregationTransfer
     {
-        return $this->searchClient->search(
+        $ratingAggregationData = $this->searchClient->search(
             $this->searchQueryPlugin,
-            $this->searchResultFormatterPlugins,
+            $this->ratingAggregationResultFormatterPlugins,
             $merchantReviewSearchRequestTransfer->getRequestParams(),
         );
+
+        return (new RatingAggregationTransfer())->fromArray($ratingAggregationData, true);
     }
 }
