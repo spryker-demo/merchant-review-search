@@ -4,7 +4,7 @@
     "description": "MerchantReviewSearch module",
     "license": "proprietary",
     "require": {
-        "php": ">=8.0",
+        "php": ">=8.2",
         "spryker-demo/merchant-review": "^1.0.0",
         "spryker/event-behavior": "^1.25.0",
         "spryker/kernel": "^3.70.0",
